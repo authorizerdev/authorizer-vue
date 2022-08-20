@@ -1,0 +1,33 @@
+{
+	"name": "authorizer-vue",
+	"version": "0.0.1",
+	"main": "dist/library.js",
+	"module": "dist/library.mjs",
+	"files": [
+		"dist/*"
+	],
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "rollup -c"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anik-ghosh-au7/authorizer-vue.git"
+	},
+	"author": "Anik Ghosh",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/anik-ghosh-au7/authorizer-vue/issues"
+	},
+	"homepage": "https://github.com/anik-ghosh-au7/authorizer-vue#readme",
+	"peerDependencies": {
+		"vue": "^3.2.21"
+	},
+	"devDependencies": {
+		"@vue/compiler-sfc": "^3.2.37",
+		"rollup": "^2.78.1",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-vue": "^6.0.0"
+	}
+}
