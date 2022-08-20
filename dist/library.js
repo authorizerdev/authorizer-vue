@@ -19,7 +19,7 @@ var script = {
 	name: 'InputTextarea',
 };
 
-const _hoisted_1 = /*#__PURE__*/vue.createElementVNode("h1", null, "hello world", -1 /* HOISTED */);
+const _hoisted_1 = /*#__PURE__*/vue.createElementVNode("h1", null, "hello world!!", -1 /* HOISTED */);
 const _hoisted_2 = /*#__PURE__*/vue.createElementVNode("textarea", null, null, -1 /* HOISTED */);
 const _hoisted_3 = [
   _hoisted_1,

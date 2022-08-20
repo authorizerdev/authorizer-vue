@@ -16,5 +16,9 @@ export default [
 			},
 		],
 		plugins: [vue(), peerDepsExternal()],
+		watch: {
+			include: './src/**',
+			clearScreen: false,
+		},
 	},
 ];
