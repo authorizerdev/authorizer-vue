@@ -1,9 +1,17 @@
-<script setup></script>
+<script></script>
 
 <template>
 	<div class="greetings">
 		--
-		<InputTextarea />
+		<AuthorizerProvider />
+		<AuthorizerSignup />
+		<AuthorizerBasicAuthLogin />
+		<AuthorizerMagicLinkLogin />
+		<AuthorizerForgotPassword />
+		<AuthorizerSocialLogin />
+		<AuthorizerResetPassword />
+		<AuthorizerVerifyOtp />
+		<Authorizer />
 		--
 	</div>
 </template>
