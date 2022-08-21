@@ -6,6 +6,7 @@ import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
 import AuthorizerSocialLogin from './AuthorizerSocialLogin.vue';
 import AuthorizerResetPassword from './AuthorizerResetPassword.vue';
 import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
+import Authorizer from './Authorizer.vue';
 
 export default {
 	AuthorizerProvider,
@@ -16,4 +17,5 @@ export default {
 	AuthorizerSocialLogin,
 	AuthorizerResetPassword,
 	AuthorizerVerifyOtp,
+	Authorizer,
 };

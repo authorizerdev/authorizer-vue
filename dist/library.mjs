@@ -1,6 +1,6 @@
 import { openBlock, createElementBlock, createElementVNode } from 'vue';
 
-var script$7 = {
+var script$8 = {
 	name: 'AuthorizerProvider',
 };
 
@@ -9,99 +9,111 @@ const _hoisted_2 = [
   _hoisted_1
 ];
 
-function render$7(_ctx, _cache, $props, $setup, $data, $options) {
+function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, _hoisted_2))
 }
 
-script$7.render = render$7;
-script$7.__file = "src/components/AuthorizerProvider.vue";
+script$8.render = render$8;
+script$8.__file = "src/components/AuthorizerProvider.vue";
 
-var script$6 = {
+var script$7 = {
 	name: 'AuthorizerSignup',
 };
 
-function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer Signup Component"))
 }
 
-script$6.render = render$6;
-script$6.__file = "src/components/AuthorizerSignup.vue";
+script$7.render = render$7;
+script$7.__file = "src/components/AuthorizerSignup.vue";
 
-var script$5 = {
+var script$6 = {
 	name: 'AuthorizerBasicAuthLogin',
 };
 
-function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+function render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer BasicAuthLogin Component"))
 }
 
-script$5.render = render$5;
-script$5.__file = "src/components/AuthorizerBasicAuthLogin.vue";
+script$6.render = render$6;
+script$6.__file = "src/components/AuthorizerBasicAuthLogin.vue";
 
-var script$4 = {
+var script$5 = {
 	name: 'AuthorizerMagicLinkLogin',
 };
 
-function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer MagicLinkLogin Component"))
 }
 
-script$4.render = render$4;
-script$4.__file = "src/components/AuthorizerMagicLinkLogin.vue";
+script$5.render = render$5;
+script$5.__file = "src/components/AuthorizerMagicLinkLogin.vue";
 
-var script$3 = {
+var script$4 = {
 	name: 'AuthorizerForgotPassword',
 };
 
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
 }
 
-script$3.render = render$3;
-script$3.__file = "src/components/AuthorizerForgotPassword.vue";
+script$4.render = render$4;
+script$4.__file = "src/components/AuthorizerForgotPassword.vue";
 
-var script$2 = {
+var script$3 = {
 	name: 'AuthorizerSocialLogin',
 };
 
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer SocialLogin Component"))
 }
 
-script$2.render = render$2;
-script$2.__file = "src/components/AuthorizerSocialLogin.vue";
+script$3.render = render$3;
+script$3.__file = "src/components/AuthorizerSocialLogin.vue";
 
-var script$1 = {
+var script$2 = {
 	name: 'AuthorizerResetPassword',
 };
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer ResetPassword Component"))
 }
 
-script$1.render = render$1;
-script$1.__file = "src/components/AuthorizerResetPassword.vue";
+script$2.render = render$2;
+script$2.__file = "src/components/AuthorizerResetPassword.vue";
 
-var script = {
+var script$1 = {
 	name: 'AuthorizerVerifyOtp',
 };
 
-function render(_ctx, _cache, $props, $setup, $data, $options) {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer VerifyOtp Component"))
 }
 
+script$1.render = render$1;
+script$1.__file = "src/components/AuthorizerVerifyOtp.vue";
+
+var script = {
+	name: 'Authorizer',
+};
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, "Authorizer Component"))
+}
+
 script.render = render;
-script.__file = "src/components/AuthorizerVerifyOtp.vue";
+script.__file = "src/components/Authorizer.vue";
 
 var components = {
-	AuthorizerProvider: script$7,
-	AuthorizerSignup: script$6,
-	AuthorizerBasicAuthLogin: script$5,
-	AuthorizerMagicLinkLogin: script$4,
-	AuthorizerForgotPassword: script$3,
-	AuthorizerSocialLogin: script$2,
-	AuthorizerResetPassword: script$1,
-	AuthorizerVerifyOtp: script,
+	AuthorizerProvider: script$8,
+	AuthorizerSignup: script$7,
+	AuthorizerBasicAuthLogin: script$6,
+	AuthorizerMagicLinkLogin: script$5,
+	AuthorizerForgotPassword: script$4,
+	AuthorizerSocialLogin: script$3,
+	AuthorizerResetPassword: script$2,
+	AuthorizerVerifyOtp: script$1,
+	Authorizer: script,
 };
 
 const plugin = {
