@@ -20,5 +20,6 @@ export default [
 			include: './src/**',
 			clearScreen: false,
 		},
+		external: ['@authorizerdev/authorizer-js'],
 	},
 ];

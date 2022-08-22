@@ -1,10 +1,10 @@
 <template>
-	<div>Authorizer Component</div>
+	<div>Authorizer Root Component</div>
 </template>
 
 <script>
 export default {
-	name: 'Authorizer',
+	name: 'AuthorizerRoot',
 };
 </script>
 

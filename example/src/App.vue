@@ -1,11 +1,11 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue';
+import Parent from './components/Parent.vue';
 </script>
 
 <template>
 	<header>
 		<div class="wrapper">
-			<HelloWorld msg="You did it!" />
+			<Parent />
 		</div>
 	</header>
 </template>
