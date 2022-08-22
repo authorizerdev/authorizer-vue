@@ -220,7 +220,6 @@ var script$8 = {
 					clientID: props?.config?.client_id || state.config.client_id,
 					...props.config,
 				});
-				console.log('config changed authorizerRef ==>> ', authorizerRef.value);
 			}
 		);
 	},
