@@ -213,12 +213,18 @@ export default {
 		watch(
 			() => props.config,
 			() => {
-				authorizerRef.value = new Authorizer({
+				state.config = {
+					...state.config,
+					...props.config,
 					authorizerURL:
 						props?.config?.authorizerURL || state.config.authorizerURL,
 					redirectURL: props?.config?.redirectURL || state.config.redirectURL,
 					clientID: props?.config?.client_id || state.config.client_id,
-					...props.config,
+				};
+				authorizerRef.value = new Authorizer({
+					authorizerURL: state.config.authorizerURL,
+					redirectURL: state.config.redirectURL,
+					clientID: state.config.client_id,
 				});
 			}
 		);
