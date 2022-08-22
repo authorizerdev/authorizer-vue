@@ -195,9 +195,7 @@ var script$8 = {
 			});
 		};
 		provide('useAuthorizer', () => {
-			return Object.entries(toRefs(state)).reduce((acc, item) => {
-				return { ...acc, [item[0]]: item[1].value };
-			}, {});
+			return toRefs(state);
 		});
 		onMounted(() => {
 			getToken();

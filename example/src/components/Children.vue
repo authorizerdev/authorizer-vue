@@ -17,8 +17,8 @@ export default {
 	name: 'Children',
 	setup() {
 		const useAuthorizer = inject('useAuthorizer');
-		const { user, logout } = useAuthorizer();
-		console.log('client user ==>> ', user, logout);
+		const { user } = useAuthorizer();
+		console.log('client user ==>> ', user.value);
 	},
 };
 </script>

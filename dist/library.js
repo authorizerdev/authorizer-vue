@@ -197,9 +197,7 @@ var script$8 = {
 			});
 		};
 		vue.provide('useAuthorizer', () => {
-			return Object.entries(vue.toRefs(state)).reduce((acc, item) => {
-				return { ...acc, [item[0]]: item[1].value };
-			}, {});
+			return vue.toRefs(state);
 		});
 		vue.onMounted(() => {
 			getToken();
