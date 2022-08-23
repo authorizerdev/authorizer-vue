@@ -1,4 +1,4 @@
-import { reactive, ref, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock } from 'vue';
+import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 
 const hasWindow = () => typeof window !== 'undefined';
@@ -15,26 +15,33 @@ var script$8 = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
+		const config = {
+			authorizerURL: props?.config?.authorizerURL || '',
+			redirectURL: props?.config?.redirectURL
+				? props.config.redirectURL
+				: hasWindow()
+				? window.location.origin
+				: '/',
+			client_id: props?.config?.client_id || '',
+			is_google_login_enabled: props?.config?.is_google_login_enabled || false,
+			is_github_login_enabled: props?.config?.is_github_login_enabled || false,
+			is_facebook_login_enabled:
+				props?.config?.is_facebook_login_enabled || false,
+			is_linkedin_login_enabled:
+				props?.config?.is_linkedin_login_enabled || false,
+			is_apple_login_enabled: props?.config?.is_apple_login_enabled || false,
+			is_email_verification_enabled:
+				props?.config?.is_email_verification_enabled || false,
+			is_basic_authentication_enabled:
+				props?.config?.is_basic_authentication_enabled || false,
+			is_magic_link_login_enabled:
+				props?.config?.is_magic_link_login_enabled || false,
+			is_sign_up_enabled: props?.config?.is_sign_up_enabled || false,
+			is_strong_password_enabled:
+				props?.config?.is_strong_password_enabled || true,
+		};
 		const state = reactive({
-			config: {
-				authorizerURL: props?.config?.authorizerURL || '',
-				redirectURL: props?.config?.redirectURL
-					? props.config.redirectURL
-					: hasWindow()
-					? window.location.origin
-					: '/',
-				client_id: props?.config?.client_id || '',
-				is_google_login_enabled: false,
-				is_github_login_enabled: false,
-				is_facebook_login_enabled: false,
-				is_linkedin_login_enabled: false,
-				is_apple_login_enabled: false,
-				is_email_verification_enabled: false,
-				is_basic_authentication_enabled: false,
-				is_magic_link_login_enabled: false,
-				is_sign_up_enabled: false,
-				is_strong_password_enabled: true,
-			},
+			config,
 			user: null,
 			token: null,
 			loading: false,
@@ -42,7 +49,11 @@ var script$8 = {
 			setToken: () => {},
 			setUser: () => {},
 			setAuthData: () => {},
-			authorizerRef: null,
+			authorizerRef: new Authorizer({
+				authorizerURL: config.authorizerURL,
+				redirectURL: config.redirectURL,
+				clientID: config.client_id,
+			}),
 			logout: async () => {},
 		});
 		function dispatch({ type, payload }) {
@@ -66,18 +77,11 @@ var script$8 = {
 					throw new Error();
 			}
 		}
-		const authorizerRef = ref(
-			new Authorizer({
-				authorizerURL: state.config.authorizerURL,
-				redirectURL: state.config.redirectURL,
-				clientID: state.config.client_id,
-			})
-		);
 		let intervalRef = null;
 		const getToken = async () => {
-			const metaRes = await authorizerRef.value.getMetaData();
+			const metaRes = await state.authorizerRef.getMetaData();
 			try {
-				const res = await authorizerRef.value.getSession();
+				const res = await state.authorizerRef.getSession();
 				if (res.access_token && res.user) {
 					const token = {
 						access_token: res.access_token,
@@ -182,7 +186,7 @@ var script$8 = {
 					loading: true,
 				},
 			});
-			await authorizerRef.value.logout();
+			await state.authorizerRef.logout();
 			const loggedOutState = {
 				user: null,
 				token: null,
@@ -221,7 +225,7 @@ var script$8 = {
 					redirectURL: props?.config?.redirectURL || state.config.redirectURL,
 					clientID: props?.config?.client_id || state.config.client_id,
 				};
-				authorizerRef.value = new Authorizer({
+				state.authorizerRef = new Authorizer({
 					authorizerURL: state.config.authorizerURL,
 					redirectURL: state.config.redirectURL,
 					clientID: state.config.client_id,
