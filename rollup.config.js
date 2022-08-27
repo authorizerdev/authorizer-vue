@@ -20,6 +20,6 @@ export default [
 			include: './src/**',
 			clearScreen: false,
 		},
-		external: ['@authorizerdev/authorizer-js'],
+		external: ['vue', '@authorizerdev/authorizer-js', 'vue3-styled-components'],
 	},
 ];

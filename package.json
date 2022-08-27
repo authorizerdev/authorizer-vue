@@ -22,9 +22,7 @@
 		"url": "https://github.com/anik-ghosh-au7/authorizer-vue/issues"
 	},
 	"homepage": "https://github.com/anik-ghosh-au7/authorizer-vue#readme",
-	"peerDependencies": {
-		"vue": "^3.2.21"
-	},
+	"peerDependencies": {},
 	"devDependencies": {
 		"@vue/compiler-sfc": "^3.2.37",
 		"rollup": "^2.78.1",
@@ -32,6 +30,8 @@
 		"rollup-plugin-vue": "^6.0.0"
 	},
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.0.0"
+		"vue": "^3.2.21",
+		"@authorizerdev/authorizer-js": "^1.0.0",
+		"vue3-styled-components": "^1.2.1"
 	}
 }
