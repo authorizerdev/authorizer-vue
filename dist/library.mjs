@@ -352,165 +352,6 @@ const media = Object.keys(sizes).reduce((acc, label) => {
 	return acc;
 }, {});
 
-const props = [];
-
-const Wrapper = Styled('div', props)`
-	font-family: ${(props) => props.theme.fonts.fontStack};
-	color: ${(props) => props.theme.colors.textColor};
-	font-size: ${(props) => props.theme.fonts.mediumText};
-	box-sizing: border-box;
-
-	*,
-	*:before,
-	*:after {
-		box-sizing: inherit;
-	};
-`;
-
-Styled('span', props)`
-  color: ${(props) => props.theme.colors.danger};
-  padding-right: 3px;
-`;
-
-Styled('div', props)`
-  color: ${(props) => props.theme.colors.danger};
-  font-size: ${(props) => props.theme.fonts.smallText};
-`;
-
-Styled('div', props)`
-  margin-bottom: 15px;
-`;
-
-Styled('label', props)`
-  display: block;
-  margin-bottom: 3px;
-`;
-
-Styled('input', props)`
-  padding: 10px;
-  border-radius: ${(props) => props.theme.radius.input};
-  width: 100%;
-  border-color: ${(props) =>
-		props.hasError ? props.theme.colors.danger : props.theme.colors.primary};
-  outline-color: ${(props) =>
-		props.hasError ? props.theme.colors.danger : props.theme.colors.primary};
-`;
-
-Styled('button', props)`
-  padding: 15px 10px;
-  width: ${(props) => (props.style?.width ? props.style.width : '100%')};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 375;
-  max-height: 64px;
-  background-color: ${(props) =>
-		props.appearance === ButtonAppearance.Primary
-			? props.theme.colors.primary
-			: '#ffffff'};
-  color: ${(props) =>
-		props.appearance === ButtonAppearance.Default
-			? props.theme.colors.textColor
-			: '#ffffff'};
-  border-radius: ${(props) => props.theme.radius.button};
-  border-color: ${(props) => props.theme.colors.textColor};
-  border: ${(props) =>
-		props.appearance === ButtonAppearance.Primary ? '0px' : '1px'};
-  border-style: solid;
-  cursor: pointer;
-  position: relative;
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: ${(props) => props.theme.colors.primaryDisabled};
-  }
-
-  svg {
-    position: absolute;
-    left: 10px;
-  }
-`;
-
-Styled('span', props)`
-  color: ${(props) => props.theme.colors.primary};
-  cursor: pointer;
-`;
-
-Styled('div', props)`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 10px 0px;
-
-  ::before {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid ${(props) => props.theme.colors.gray};
-  }
-
-  ::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid ${(props) => props.theme.colors.gray};
-  }
-
-  :not(:empty)::before {
-    margin-right: 0.25em;
-  }
-
-  :not(:empty)::after {
-    margin-left: 0.25em;
-  }
-`;
-
-Styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-`;
-
-Styled('div', props)`
-  padding: 10px;
-  color: white;
-  border-radius: ${(props) => props.theme.radius.card};
-  margin: 10px 0px;
-  font-size: ${(props) => props.theme.fonts.smallText};
-  ${(props) =>
-		props.type === 'error' &&
-		`
-    background-color: ${props.theme.colors.danger};
-  `}
-  ${(props) =>
-		props.type === 'success' &&
-		`
-    background-color: ${props.theme.colors.success};
-  `};
-`;
-
-Styled('div', props)`
-  display: flex;
-  flex-direction: ${({ flexDirection, isResponsive }) =>
-		isResponsive && flexDirection !== 'column'
-			? 'column'
-			: flexDirection || 'row'};
-  flex-wrap: ${({ wrap }) => wrap || 'wrap'};
-  ${({ alignItems }) =>
-		alignItems &&
-		css`
-			align-items: ${alignItems};
-		`};
-  ${({ justifyContent }) =>
-		justifyContent &&
-		css`
-			justify-content: ${justifyContent};
-		`};
-  ${media.lg`
-    flex-direction: ${({ flexDirection }) => flexDirection || 'row'}
-  `}
-`;
-
 // colors: https://tailwindcss.com/docs/customizing-colors
 
 const theme = {
@@ -540,12 +381,164 @@ const theme = {
 	},
 };
 
+const props = [];
+
+const Wrapper = Styled('div')`
+	font-family: ${theme.fonts.fontStack};
+	color: ${theme.colors.textColor};
+	font-size: ${theme.fonts.mediumText};
+	box-sizing: border-box;
+
+	*,
+	*:before,
+	*:after {
+		box-sizing: inherit;
+	};
+`;
+
+Styled('span')`
+  color: ${theme.colors.danger};
+  padding-right: 3px;
+`;
+
+Styled('div')`
+  color: ${theme.colors.danger};
+  font-size: ${theme.fonts.smallText};
+`;
+
+Styled('div')`
+  margin-bottom: 15px;
+`;
+
+Styled('label')`
+  display: block;
+  margin-bottom: 3px;
+`;
+
+Styled('input', props)`
+  padding: 10px;
+  border-radius: ${(props) => theme.radius.input};
+  width: 100%;
+  border-color: ${(props) =>
+		props.hasError ? theme.colors.danger : theme.colors.primary};
+  outline-color: ${(props) =>
+		props.hasError ? theme.colors.danger : theme.colors.primary};
+`;
+
+Styled('button', props)`
+  padding: 15px 10px;
+  width: ${(props) => (props.style?.width ? props.style.width : '100%')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 375;
+  max-height: 64px;
+  background-color: ${(props) =>
+		props.appearance === 'Primary' ? theme.colors.primary : '#ffffff'};
+  color: ${(props) =>
+		props.appearance === 'Default' ? theme.colors.textColor : '#ffffff'};
+  border-radius: ${theme.radius.button};
+  border-color: ${theme.colors.textColor};
+  border: ${(props) => (props.appearance === 'Primary' ? '0px' : '1px')};
+  border-style: solid;
+  cursor: pointer;
+  position: relative;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${theme.colors.primaryDisabled};
+  }
+
+  svg {
+    position: absolute;
+    left: 10px;
+  }
+`;
+
+Styled('span')`
+  color: ${theme.colors.primary};
+  cursor: pointer;
+`;
+
+Styled('div')`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 10px 0px;
+
+  ::before {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid ${theme.colors.gray};
+  }
+
+  ::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid ${theme.colors.gray};
+  }
+
+  :not(:empty)::before {
+    margin-right: 0.25em;
+  }
+
+  :not(:empty)::after {
+    margin-left: 0.25em;
+  }
+`;
+
+Styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+`;
+
+Styled('div', props)`
+  padding: 10px;
+  color: white;
+  border-radius: ${theme.radius.card};
+  margin: 10px 0px;
+  font-size: ${theme.fonts.smallText};
+  ${(props) =>
+		props.type === 'Error' &&
+		`
+    background-color: ${theme.colors.danger};
+  `}
+  ${(props) =>
+		props.type === 'Success' &&
+		`
+    background-color: ${theme.colors.success};
+  `};
+`;
+
+Styled('div', props)`
+  display: flex;
+  flex-direction: ${({ flexDirection, isResponsive }) =>
+		isResponsive && flexDirection !== 'column'
+			? 'column'
+			: flexDirection || 'row'};
+  flex-wrap: ${({ wrap }) => wrap || 'wrap'};
+  ${({ alignItems }) =>
+		alignItems &&
+		css`
+			align-items: ${alignItems};
+		`};
+  ${({ justifyContent }) =>
+		justifyContent &&
+		css`
+			justify-content: ${justifyContent};
+		`};
+  ${media.lg`
+    flex-direction: ${({ flexDirection }) => flexDirection || 'row'}
+  `}
+`;
+
 var script = {
 	name: 'AuthorizerRoot',
 	data() {
-		return {
-			theme,
-		};
+		return {};
 	},
 	components: {
 		Wrapper,
@@ -557,12 +550,12 @@ const _hoisted_1 = /*#__PURE__*/createTextVNode("Authorizer Root Component");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Wrapper = resolveComponent("Wrapper");
 
-  return (openBlock(), createBlock(_component_Wrapper, { theme: $data.theme }, {
+  return (openBlock(), createBlock(_component_Wrapper, null, {
     default: withCtx(() => [
       _hoisted_1
     ]),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["theme"]))
+  }))
 }
 
 script.render = render;

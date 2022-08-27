@@ -1,12 +1,13 @@
 import Styled from 'vue3-styled-components';
 import { media } from './media';
+import { theme } from './theme';
 
 const props = [];
 
-const Wrapper = Styled('div', props)`
-	font-family: ${(props) => props.theme.fonts.fontStack};
-	color: ${(props) => props.theme.colors.textColor};
-	font-size: ${(props) => props.theme.fonts.mediumText};
+const Wrapper = Styled('div')`
+	font-family: ${theme.fonts.fontStack};
+	color: ${theme.colors.textColor};
+	font-size: ${theme.fonts.mediumText};
 	box-sizing: border-box;
 
 	*,
@@ -16,33 +17,33 @@ const Wrapper = Styled('div', props)`
 	};
 `;
 
-const Required = Styled('span', props)`
-  color: ${(props) => props.theme.colors.danger};
+const Required = Styled('span')`
+  color: ${theme.colors.danger};
   padding-right: 3px;
 `;
 
-const Error = Styled('div', props)`
-  color: ${(props) => props.theme.colors.danger};
-  font-size: ${(props) => props.theme.fonts.smallText};
+const Error = Styled('div')`
+  color: ${theme.colors.danger};
+  font-size: ${theme.fonts.smallText};
 `;
 
-const FieldWrapper = Styled('div', props)`
+const FieldWrapper = Styled('div')`
   margin-bottom: 15px;
 `;
 
-const Label = Styled('label', props)`
+const Label = Styled('label')`
   display: block;
   margin-bottom: 3px;
 `;
 
 const Input = Styled('input', props)`
   padding: 10px;
-  border-radius: ${(props) => props.theme.radius.input};
+  border-radius: ${(props) => theme.radius.input};
   width: 100%;
   border-color: ${(props) =>
-		props.hasError ? props.theme.colors.danger : props.theme.colors.primary};
+		props.hasError ? theme.colors.danger : theme.colors.primary};
   outline-color: ${(props) =>
-		props.hasError ? props.theme.colors.danger : props.theme.colors.primary};
+		props.hasError ? theme.colors.danger : theme.colors.primary};
 `;
 
 const Button = Styled('button', props)`
@@ -54,24 +55,19 @@ const Button = Styled('button', props)`
   max-width: 375;
   max-height: 64px;
   background-color: ${(props) =>
-		props.appearance === ButtonAppearance.Primary
-			? props.theme.colors.primary
-			: '#ffffff'};
+		props.appearance === 'Primary' ? theme.colors.primary : '#ffffff'};
   color: ${(props) =>
-		props.appearance === ButtonAppearance.Default
-			? props.theme.colors.textColor
-			: '#ffffff'};
-  border-radius: ${(props) => props.theme.radius.button};
-  border-color: ${(props) => props.theme.colors.textColor};
-  border: ${(props) =>
-		props.appearance === ButtonAppearance.Primary ? '0px' : '1px'};
+		props.appearance === 'Default' ? theme.colors.textColor : '#ffffff'};
+  border-radius: ${theme.radius.button};
+  border-color: ${theme.colors.textColor};
+  border: ${(props) => (props.appearance === 'Primary' ? '0px' : '1px')};
   border-style: solid;
   cursor: pointer;
   position: relative;
 
   &:disabled {
     cursor: not-allowed;
-    background-color: ${(props) => props.theme.colors.primaryDisabled};
+    background-color: ${theme.colors.primaryDisabled};
   }
 
   svg {
@@ -80,12 +76,12 @@ const Button = Styled('button', props)`
   }
 `;
 
-const Link = Styled('span', props)`
-  color: ${(props) => props.theme.colors.primary};
+const Link = Styled('span')`
+  color: ${theme.colors.primary};
   cursor: pointer;
 `;
 
-const Separator = Styled('div', props)`
+const Separator = Styled('div')`
   display: flex;
   align-items: center;
   text-align: center;
@@ -94,13 +90,13 @@ const Separator = Styled('div', props)`
   ::before {
     content: '';
     flex: 1;
-    border-bottom: 1px solid ${(props) => props.theme.colors.gray};
+    border-bottom: 1px solid ${theme.colors.gray};
   }
 
   ::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid ${(props) => props.theme.colors.gray};
+    border-bottom: 1px solid ${theme.colors.gray};
   }
 
   :not(:empty)::before {
@@ -123,18 +119,18 @@ const Footer = Styled('div')`
 const MessageWrapper = Styled('div', props)`
   padding: 10px;
   color: white;
-  border-radius: ${(props) => props.theme.radius.card};
+  border-radius: ${theme.radius.card};
   margin: 10px 0px;
-  font-size: ${(props) => props.theme.fonts.smallText};
+  font-size: ${theme.fonts.smallText};
   ${(props) =>
-		props.type === 'error' &&
+		props.type === 'Error' &&
 		`
-    background-color: ${props.theme.colors.danger};
+    background-color: ${theme.colors.danger};
   `}
   ${(props) =>
-		props.type === 'success' &&
+		props.type === 'Success' &&
 		`
-    background-color: ${props.theme.colors.success};
+    background-color: ${theme.colors.success};
   `};
 `;
 
