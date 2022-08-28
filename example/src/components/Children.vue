@@ -7,7 +7,7 @@
 		<AuthorizerSocialLogin />
 		<AuthorizerResetPassword /> -->
 		<!-- <AuthorizerVerifyOtp /> -->
-		<AuthorizerRoot :onLogin="onLogin" />
+		<authorizer-root :onLogin="onLogin" />
 	</div>
 </template>
 
