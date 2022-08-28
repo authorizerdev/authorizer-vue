@@ -1,4 +1,4 @@
-import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createBlock, withCtx, createElementVNode, toDisplayString, createTextVNode } from 'vue';
+import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createBlock, withCtx, createVNode, createCommentVNode } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css as css$1 } from 'vue3-styled-components';
 
@@ -560,11 +560,18 @@ const createRandomString = () => {
 
 var script = {
 	name: 'AuthorizerRoot',
-	components: [Wrapper],
+	components: [
+		Wrapper,
+		script$3,
+		script$7,
+		script$5,
+		script$4,
+		script$6,
+	],
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
-	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+	setup(props) {
 		const useAuthorizer = inject('useAuthorizer');
-		useAuthorizer();
+		const { config } = useAuthorizer();
 		const state = reactive({
 			view: Views.Login,
 		});
@@ -578,12 +585,10 @@ var script = {
 		const scope = searchParams.get('scope')
 			? searchParams.get('scope')?.toString().split(' ')
 			: ['openid', 'profile', 'email'];
-
 		const urlProps = {
 			state: paramsState,
 			scope,
 		};
-
 		const redirectURL =
 			searchParams.get('redirect_uri') || searchParams.get('redirectURL');
 		if (redirectURL) {
@@ -591,24 +596,62 @@ var script = {
 		} else {
 			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
 		}
-
 		urlProps.redirect_uri = urlProps.redirectURL;
-		return { ...toRefs(state), setView, urlProps };
+		return { ...props, ...toRefs(state), setView, urlProps, config, Views };
 	},
 };
 
-const _hoisted_1 = /*#__PURE__*/createTextVNode(" Authorizer Root Component ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_AuthorizerSocialLogin = resolveComponent("AuthorizerSocialLogin");
+  const _component_AuthorizerBasicAuthLogin = resolveComponent("AuthorizerBasicAuthLogin");
+  const _component_AuthorizerSignup = resolveComponent("AuthorizerSignup");
+  const _component_AuthorizerMagicLinkLogin = resolveComponent("AuthorizerMagicLinkLogin");
+  const _component_AuthorizerForgotPassword = resolveComponent("AuthorizerForgotPassword");
   const _component_Wrapper = resolveComponent("Wrapper");
 
   return (openBlock(), createBlock(_component_Wrapper, null, {
     default: withCtx(() => [
-      _hoisted_1,
-      createElementVNode("div", null, toDisplayString(_ctx.view), 1 /* TEXT */),
-      createElementVNode("button", {
-        onClick: _cache[0] || (_cache[0] = $event => ($setup.setView('Signup')))
-      }, "change view")
+      createVNode(_component_AuthorizerSocialLogin, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
+      (
+				_ctx.view === $setup.Views.Login &&
+				$setup.config.value.is_basic_authentication_enabled &&
+				!$setup.config.value.is_magic_link_login_enabled
+			)
+        ? (openBlock(), createBlock(_component_AuthorizerBasicAuthLogin, {
+            key: 0,
+            setView: $setup.setView,
+            onLogin: $props.onLogin,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onLogin", "urlProps"]))
+        : createCommentVNode("v-if", true),
+      (
+				_ctx.view === $setup.Views.Signup &&
+				$setup.config.value.is_basic_authentication_enabled &&
+				!$setup.config.value.is_magic_link_login_enabled &&
+				$setup.config.value.is_sign_up_enabled
+			)
+        ? (openBlock(), createBlock(_component_AuthorizerSignup, {
+            key: 1,
+            setView: $setup.setView,
+            onSignup: $props.onSignup,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
+        : createCommentVNode("v-if", true),
+      (_ctx.view === $setup.Views.Login && $setup.config.value.is_magic_link_login_enabled)
+        ? (openBlock(), createBlock(_component_AuthorizerMagicLinkLogin, {
+            key: 2,
+            onMagicLinkLogin: $props.onMagicLinkLogin,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps"]))
+        : createCommentVNode("v-if", true),
+      (_ctx.view === $setup.Views.ForgotPassword)
+        ? (openBlock(), createBlock(_component_AuthorizerForgotPassword, {
+            key: 3,
+            setView: $setup.setView,
+            onForgotPassword: $props.onForgotPassword,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onForgotPassword", "urlProps"]))
+        : createCommentVNode("v-if", true)
     ]),
     _: 1 /* STABLE */
   }))

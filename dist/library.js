@@ -566,11 +566,18 @@ const createRandomString = () => {
 
 var script = {
 	name: 'AuthorizerRoot',
-	components: [Wrapper],
+	components: [
+		Wrapper,
+		script$3,
+		script$7,
+		script$5,
+		script$4,
+		script$6,
+	],
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
-	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+	setup(props) {
 		const useAuthorizer = vue.inject('useAuthorizer');
-		useAuthorizer();
+		const { config } = useAuthorizer();
 		const state = vue.reactive({
 			view: Views.Login,
 		});
@@ -584,12 +591,10 @@ var script = {
 		const scope = searchParams.get('scope')
 			? searchParams.get('scope')?.toString().split(' ')
 			: ['openid', 'profile', 'email'];
-
 		const urlProps = {
 			state: paramsState,
 			scope,
 		};
-
 		const redirectURL =
 			searchParams.get('redirect_uri') || searchParams.get('redirectURL');
 		if (redirectURL) {
@@ -597,24 +602,62 @@ var script = {
 		} else {
 			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
 		}
-
 		urlProps.redirect_uri = urlProps.redirectURL;
-		return { ...vue.toRefs(state), setView, urlProps };
+		return { ...props, ...vue.toRefs(state), setView, urlProps, config, Views };
 	},
 };
 
-const _hoisted_1 = /*#__PURE__*/vue.createTextVNode(" Authorizer Root Component ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_AuthorizerSocialLogin = vue.resolveComponent("AuthorizerSocialLogin");
+  const _component_AuthorizerBasicAuthLogin = vue.resolveComponent("AuthorizerBasicAuthLogin");
+  const _component_AuthorizerSignup = vue.resolveComponent("AuthorizerSignup");
+  const _component_AuthorizerMagicLinkLogin = vue.resolveComponent("AuthorizerMagicLinkLogin");
+  const _component_AuthorizerForgotPassword = vue.resolveComponent("AuthorizerForgotPassword");
   const _component_Wrapper = vue.resolveComponent("Wrapper");
 
   return (vue.openBlock(), vue.createBlock(_component_Wrapper, null, {
     default: vue.withCtx(() => [
-      _hoisted_1,
-      vue.createElementVNode("div", null, vue.toDisplayString(_ctx.view), 1 /* TEXT */),
-      vue.createElementVNode("button", {
-        onClick: _cache[0] || (_cache[0] = $event => ($setup.setView('Signup')))
-      }, "change view")
+      vue.createVNode(_component_AuthorizerSocialLogin, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
+      (
+				_ctx.view === $setup.Views.Login &&
+				$setup.config.value.is_basic_authentication_enabled &&
+				!$setup.config.value.is_magic_link_login_enabled
+			)
+        ? (vue.openBlock(), vue.createBlock(_component_AuthorizerBasicAuthLogin, {
+            key: 0,
+            setView: $setup.setView,
+            onLogin: $props.onLogin,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onLogin", "urlProps"]))
+        : vue.createCommentVNode("v-if", true),
+      (
+				_ctx.view === $setup.Views.Signup &&
+				$setup.config.value.is_basic_authentication_enabled &&
+				!$setup.config.value.is_magic_link_login_enabled &&
+				$setup.config.value.is_sign_up_enabled
+			)
+        ? (vue.openBlock(), vue.createBlock(_component_AuthorizerSignup, {
+            key: 1,
+            setView: $setup.setView,
+            onSignup: $props.onSignup,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
+        : vue.createCommentVNode("v-if", true),
+      (_ctx.view === $setup.Views.Login && $setup.config.value.is_magic_link_login_enabled)
+        ? (vue.openBlock(), vue.createBlock(_component_AuthorizerMagicLinkLogin, {
+            key: 2,
+            onMagicLinkLogin: $props.onMagicLinkLogin,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps"]))
+        : vue.createCommentVNode("v-if", true),
+      (_ctx.view === $setup.Views.ForgotPassword)
+        ? (vue.openBlock(), vue.createBlock(_component_AuthorizerForgotPassword, {
+            key: 3,
+            setView: $setup.setView,
+            onForgotPassword: $props.onForgotPassword,
+            urlProps: $setup.urlProps
+          }, null, 8 /* PROPS */, ["setView", "onForgotPassword", "urlProps"]))
+        : vue.createCommentVNode("v-if", true)
     ]),
     _: 1 /* STABLE */
   }))

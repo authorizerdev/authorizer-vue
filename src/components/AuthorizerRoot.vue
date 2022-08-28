@@ -1,10 +1,38 @@
 <template>
 	<Wrapper>
-		Authorizer Root Component
-		<div>
-			{{ view }}
-		</div>
-		<button @click="setView('Signup')">change view</button>
+		<AuthorizerSocialLogin :urlProps="urlProps" />
+		<AuthorizerBasicAuthLogin
+			v-if="
+				view === Views.Login &&
+				config.value.is_basic_authentication_enabled &&
+				!config.value.is_magic_link_login_enabled
+			"
+			:setView="setView"
+			:onLogin="onLogin"
+			:urlProps="urlProps"
+		/>
+		<AuthorizerSignup
+			v-if="
+				view === Views.Signup &&
+				config.value.is_basic_authentication_enabled &&
+				!config.value.is_magic_link_login_enabled &&
+				config.value.is_sign_up_enabled
+			"
+			:setView="setView"
+			:onSignup="onSignup"
+			:urlProps="urlProps"
+		/>
+		<AuthorizerMagicLinkLogin
+			v-if="view === Views.Login && config.value.is_magic_link_login_enabled"
+			:onMagicLinkLogin="onMagicLinkLogin"
+			:urlProps="urlProps"
+		/>
+		<AuthorizerForgotPassword
+			v-if="view === Views.ForgotPassword"
+			:setView="setView"
+			:onForgotPassword="onForgotPassword"
+			:urlProps="urlProps"
+		/>
 	</Wrapper>
 </template>
 
@@ -14,11 +42,23 @@ import { Wrapper } from '../styles/index';
 import { Views } from '../constants/index';
 import { hasWindow } from '../utils/window';
 import { createRandomString } from '../utils/common';
+import AuthorizerSocialLogin from './AuthorizerSocialLogin.vue';
+import AuthorizerSignup from './AuthorizerSignup.vue';
+import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.vue';
+import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
+import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.vue';
 export default {
 	name: 'AuthorizerRoot',
-	components: [Wrapper],
+	components: [
+		Wrapper,
+		AuthorizerSocialLogin,
+		AuthorizerSignup,
+		AuthorizerMagicLinkLogin,
+		AuthorizerForgotPassword,
+		AuthorizerBasicAuthLogin,
+	],
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
-	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+	setup(props) {
 		const useAuthorizer = inject('useAuthorizer');
 		const { config } = useAuthorizer();
 		const state = reactive({
@@ -34,12 +74,10 @@ export default {
 		const scope = searchParams.get('scope')
 			? searchParams.get('scope')?.toString().split(' ')
 			: ['openid', 'profile', 'email'];
-
 		const urlProps = {
 			state: paramsState,
 			scope,
 		};
-
 		const redirectURL =
 			searchParams.get('redirect_uri') || searchParams.get('redirectURL');
 		if (redirectURL) {
@@ -47,9 +85,8 @@ export default {
 		} else {
 			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
 		}
-
 		urlProps.redirect_uri = urlProps.redirectURL;
-		return { ...toRefs(state), setView, urlProps };
+		return { ...props, ...toRefs(state), setView, urlProps, config, Views };
 	},
 };
 </script>
