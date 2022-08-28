@@ -6,11 +6,10 @@
 import { Wrapper } from '../styles/styledComponents';
 export default {
 	name: 'AuthorizerRoot',
-	data() {
+	components: [Wrapper],
+	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
+	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
 		return {};
-	},
-	components: {
-		Wrapper,
 	},
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<AuthorizerSignup />
+		<!-- <AuthorizerSignup />
 		<AuthorizerBasicAuthLogin />
 		<AuthorizerMagicLinkLogin />
 		<AuthorizerForgotPassword />
 		<AuthorizerSocialLogin />
 		<AuthorizerResetPassword />
-		<AuthorizerVerifyOtp />
-		<AuthorizerRoot />
+		<AuthorizerVerifyOtp /> -->
+		<AuthorizerRoot :onLogin="onLogin" />
 	</div>
 </template>
 
@@ -19,6 +19,12 @@ export default {
 		const useAuthorizer = inject('useAuthorizer');
 		const { user } = useAuthorizer();
 		console.log('client user ==>> ', user.value);
+		function onLogin() {
+			console.log('test login');
+		}
+		return {
+			onLogin,
+		};
 	},
 };
 </script>
