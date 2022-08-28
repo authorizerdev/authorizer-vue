@@ -1,7 +1,7 @@
 <template>
-	<Wrapper>
-		<AuthorizerSocialLogin :urlProps="urlProps" />
-		<AuthorizerBasicAuthLogin
+	<styled-wrapper>
+		<authorizer-social-login :urlProps="urlProps" />
+		<authorizer-basic-auth-login
 			v-if="
 				view === Views.Login &&
 				config.is_basic_authentication_enabled &&
@@ -11,7 +11,7 @@
 			:onLogin="onLogin"
 			:urlProps="urlProps"
 		/>
-		<AuthorizerSignup
+		<authorizer-signup
 			v-if="
 				view === Views.Signup &&
 				config.is_basic_authentication_enabled &&
@@ -22,23 +22,23 @@
 			:onSignup="onSignup"
 			:urlProps="urlProps"
 		/>
-		<AuthorizerMagicLinkLogin
+		<authorizer-magic-link-login
 			v-if="view === Views.Login && config.is_magic_link_login_enabled"
 			:onMagicLinkLogin="onMagicLinkLogin"
 			:urlProps="urlProps"
 		/>
-		<AuthorizerForgotPassword
+		<authorizer-forgot-password
 			v-if="view === Views.ForgotPassword"
 			:setView="setView"
 			:onForgotPassword="onForgotPassword"
 			:urlProps="urlProps"
 		/>
-	</Wrapper>
+	</styled-wrapper>
 </template>
 
 <script>
 import { reactive, toRefs, inject } from 'vue';
-import { Wrapper } from '../styles/index';
+import { StyledWrapper } from '../styles/index';
 import { Views } from '../constants/index';
 import { hasWindow } from '../utils/window';
 import { createRandomString } from '../utils/common';
@@ -49,14 +49,14 @@ import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
 import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.vue';
 export default {
 	name: 'AuthorizerRoot',
-	components: [
-		Wrapper,
-		AuthorizerSocialLogin,
-		AuthorizerSignup,
-		AuthorizerMagicLinkLogin,
-		AuthorizerForgotPassword,
-		AuthorizerBasicAuthLogin,
-	],
+	components: {
+		'styled-wrapper': StyledWrapper,
+		'authorizer-social-login': AuthorizerSocialLogin,
+		'authorizer-signup': AuthorizerSignup,
+		'authorizer-magic-link-login': AuthorizerMagicLinkLogin,
+		'authorizer-forgot-password': AuthorizerForgotPassword,
+		'authorizer-basic-auth-login': AuthorizerBasicAuthLogin,
+	},
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup(props) {
 		const useAuthorizer = inject('useAuthorizer');

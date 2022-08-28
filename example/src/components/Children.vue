@@ -5,8 +5,8 @@
 		<AuthorizerMagicLinkLogin />
 		<AuthorizerForgotPassword />
 		<AuthorizerSocialLogin />
-		<AuthorizerResetPassword />
-		<AuthorizerVerifyOtp /> -->
+		<AuthorizerResetPassword /> -->
+		<!-- <AuthorizerVerifyOtp /> -->
 		<AuthorizerRoot :onLogin="onLogin" />
 	</div>
 </template>

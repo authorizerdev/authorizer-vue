@@ -1,10 +1,10 @@
-import Styled from 'vue3-styled-components';
+import Styled, { css } from 'vue3-styled-components';
 import { media } from './media';
 import { theme } from './theme';
 
 const props = [];
 
-const Wrapper = Styled('div')`
+const StyledWrapper = Styled('div')`
 	font-family: ${theme.fonts.fontStack};
 	color: ${theme.colors.textColor};
 	font-size: ${theme.fonts.mediumText};
@@ -17,26 +17,26 @@ const Wrapper = Styled('div')`
 	};
 `;
 
-const Required = Styled('span')`
+const StyledRequired = Styled('span')`
   color: ${theme.colors.danger};
   padding-right: 3px;
 `;
 
-const Error = Styled('div')`
+const StyledError = Styled('div')`
   color: ${theme.colors.danger};
   font-size: ${theme.fonts.smallText};
 `;
 
-const FieldWrapper = Styled('div')`
+const StyledFieldWrapper = Styled('div')`
   margin-bottom: 15px;
 `;
 
-const Label = Styled('label')`
+const StyledLabel = Styled('label')`
   display: block;
   margin-bottom: 3px;
 `;
 
-const Input = Styled('input', props)`
+const StyledInput = Styled('input', props)`
   padding: 10px;
   border-radius: ${(props) => theme.radius.input};
   width: 100%;
@@ -46,7 +46,7 @@ const Input = Styled('input', props)`
 		props.hasError ? theme.colors.danger : theme.colors.primary};
 `;
 
-const Button = Styled('button', props)`
+const StyledButton = Styled('button', props)`
   padding: 15px 10px;
   width: ${(props) => (props.style?.width ? props.style.width : '100%')};
   display: flex;
@@ -76,12 +76,12 @@ const Button = Styled('button', props)`
   }
 `;
 
-const Link = Styled('span')`
+const StyledLink = Styled('span')`
   color: ${theme.colors.primary};
   cursor: pointer;
 `;
 
-const Separator = Styled('div')`
+const StyledSeparator = Styled('div')`
   display: flex;
   align-items: center;
   text-align: center;
@@ -108,7 +108,7 @@ const Separator = Styled('div')`
   }
 `;
 
-const Footer = Styled('div')`
+const StyledFooter = Styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -116,7 +116,7 @@ const Footer = Styled('div')`
   margin-top: 15px;
 `;
 
-const MessageWrapper = Styled('div', props)`
+const StyledMessageWrapper = Styled('div', props)`
   padding: 10px;
   color: white;
   border-radius: ${theme.radius.card};
@@ -134,7 +134,7 @@ const MessageWrapper = Styled('div', props)`
   `};
 `;
 
-const Flex = Styled('div', props)`
+const StyledFlex = Styled('div', props)`
   display: flex;
   flex-direction: ${({ flexDirection, isResponsive }) =>
 		isResponsive && flexDirection !== 'column'
@@ -157,16 +157,16 @@ const Flex = Styled('div', props)`
 `;
 
 export {
-	Wrapper,
-	Required,
-	Error,
-	FieldWrapper,
-	Label,
-	Input,
-	Button,
-	Link,
-	Separator,
-	Footer,
-	MessageWrapper,
-	Flex,
+	StyledWrapper,
+	StyledRequired,
+	StyledError,
+	StyledFieldWrapper,
+	StyledLabel,
+	StyledInput,
+	StyledButton,
+	StyledLink,
+	StyledSeparator,
+	StyledFooter,
+	StyledMessageWrapper,
+	StyledFlex,
 };

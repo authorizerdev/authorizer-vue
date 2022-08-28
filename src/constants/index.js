@@ -11,3 +11,13 @@ export const Views = {
 	Signup: 'Signup',
 	ForgotPassword: 'ForgotPassword',
 };
+
+export const ButtonAppearance = {
+	Primary: 'Primary',
+	Default: 'Default',
+};
+
+export const MessageType = {
+	Error: 'Error',
+	Success: 'Success',
+};

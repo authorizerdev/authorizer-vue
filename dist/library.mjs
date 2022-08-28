@@ -1,6 +1,6 @@
-import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createBlock, withCtx, createVNode, createCommentVNode } from 'vue';
+import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createElementVNode, createVNode, withCtx, createCommentVNode, createTextVNode, createBlock } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
-import Styled, { css as css$1 } from 'vue3-styled-components';
+import Styled, { css } from 'vue3-styled-components';
 
 const hasWindow = () => typeof window !== 'undefined';
 
@@ -16,6 +16,11 @@ const Views = {
 	Login: 'Login',
 	Signup: 'Signup',
 	ForgotPassword: 'ForgotPassword',
+};
+
+const ButtonAppearance = {
+	Primary: 'Primary',
+	Default: 'Default',
 };
 
 var script$8 = {
@@ -291,38 +296,29 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
 script$4.render = render$4;
 script$4.__file = "src/components/AuthorizerForgotPassword.vue";
 
-var script$3 = {
-	name: 'AuthorizerSocialLogin',
+const getCrypto = () => {
+	//ie 11.x uses msCrypto
+	return hasWindow() ? window.crypto || window.msCrypto : null;
 };
 
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer SocialLogin Component"))
-}
-
-script$3.render = render$3;
-script$3.__file = "src/components/AuthorizerSocialLogin.vue";
-
-var script$2 = {
-	name: 'AuthorizerResetPassword',
+const createRandomString = () => {
+	const charset =
+		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
+	let random = '';
+	const crypto = getCrypto();
+	if (crypto) {
+		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
+		randomValues.forEach((v) => (random += charset[v % charset.length]));
+	}
+	return random;
 };
 
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer ResetPassword Component"))
-}
-
-script$2.render = render$2;
-script$2.__file = "src/components/AuthorizerResetPassword.vue";
-
-var script$1 = {
-	name: 'AuthorizerVerifyOtp',
+const createQueryParams = (params) => {
+	return Object.keys(params)
+		.filter((k) => typeof params[k] !== 'undefined')
+		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+		.join('&');
 };
-
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer VerifyOtp Component"))
-}
-
-script$1.render = render$1;
-script$1.__file = "src/components/AuthorizerVerifyOtp.vue";
 
 const sizes = {
 	sm: 576,
@@ -350,9 +346,9 @@ const sizes = {
 
 const media = Object.keys(sizes).reduce((acc, label) => {
 	acc[label] = (args) =>
-		css$1`
+		css`
 			@media (min-width: ${sizes[label] / 16}em) {
-				${css$1(args)}
+				${css(args)}
 			}
 		`;
 	return acc;
@@ -389,7 +385,7 @@ const theme = {
 
 const props = [];
 
-const Wrapper = Styled('div')`
+const StyledWrapper = Styled('div')`
 	font-family: ${theme.fonts.fontStack};
 	color: ${theme.colors.textColor};
 	font-size: ${theme.fonts.mediumText};
@@ -431,7 +427,7 @@ Styled('input', props)`
 		props.hasError ? theme.colors.danger : theme.colors.primary};
 `;
 
-Styled('button', props)`
+const StyledButton = Styled('button', props)`
   padding: 15px 10px;
   width: ${(props) => (props.style?.width ? props.style.width : '100%')};
   display: flex;
@@ -541,33 +537,100 @@ Styled('div', props)`
   `}
 `;
 
-const getCrypto = () => {
-	//ie 11.x uses msCrypto
-	return hasWindow() ? window.crypto || window.msCrypto : null;
+var script$3 = {
+	name: 'AuthorizerSocialLogin',
+	props: ['urlProps'],
+	components: {
+		'styled-button': StyledButton,
+	},
+	setup({ urlProps }) {
+		const useAuthorizer = inject('useAuthorizer');
+		const { config } = useAuthorizer();
+		const hasSocialLogin =
+			config.is_google_login_enabled ||
+			config.is_github_login_enabled ||
+			config.is_facebook_login_enabled ||
+			config.is_linkedin_login_enabled ||
+			config.is_apple_login_enabled;
+		const queryParams = createQueryParams({
+			...urlProps,
+			scope: urlProps.scope.join(' '),
+		});
+		const windowObject = hasWindow() ? window : null;
+		return {
+			config: config.value,
+			hasSocialLogin,
+			queryParams,
+			ButtonAppearance,
+			window: windowObject,
+		};
+	},
 };
 
-const createRandomString = () => {
-	const charset =
-		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
-	let random = '';
-	const crypto = getCrypto();
-	if (crypto) {
-		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
-		randomValues.forEach((v) => (random += charset[v % charset.length]));
-	}
-	return random;
+const _hoisted_1 = { style: {"{\n\t\t\t\twidth":"'100%'"} };
+const _hoisted_2 = { id: "appleid-signin" };
+const _hoisted_3 = /*#__PURE__*/createTextVNode(" Sign in with Apple ");
+const _hoisted_4 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_styled_button = resolveComponent("styled-button");
+
+  return (openBlock(), createElementBlock("div", _hoisted_1, [
+    createElementVNode("div", _hoisted_2, [
+      createVNode(_component_styled_button, {
+        appearance: $setup.ButtonAppearance.Primary,
+        onClick: _cache[0] || (_cache[0] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/apple?${$setup.queryParams}`;
+					}
+				)
+      }, {
+        default: withCtx(() => [
+          createCommentVNode(" <Apple /> "),
+          _hoisted_3
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["appearance"]),
+      _hoisted_4
+    ])
+  ]))
+}
+
+script$3.render = render$3;
+script$3.__file = "src/components/AuthorizerSocialLogin.vue";
+
+var script$2 = {
+	name: 'AuthorizerResetPassword',
 };
+
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, "Authorizer ResetPassword Component"))
+}
+
+script$2.render = render$2;
+script$2.__file = "src/components/AuthorizerResetPassword.vue";
+
+var script$1 = {
+	name: 'AuthorizerVerifyOtp',
+};
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, "Authorizer VerifyOtp Component"))
+}
+
+script$1.render = render$1;
+script$1.__file = "src/components/AuthorizerVerifyOtp.vue";
 
 var script = {
 	name: 'AuthorizerRoot',
-	components: [
-		Wrapper,
-		script$3,
-		script$7,
-		script$5,
-		script$4,
-		script$6,
-	],
+	components: {
+		'styled-wrapper': StyledWrapper,
+		'authorizer-social-login': script$3,
+		'authorizer-signup': script$7,
+		'authorizer-magic-link-login': script$5,
+		'authorizer-forgot-password': script$4,
+		'authorizer-basic-auth-login': script$6,
+	},
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup(props) {
 		const useAuthorizer = inject('useAuthorizer');
@@ -609,22 +672,22 @@ var script = {
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_AuthorizerSocialLogin = resolveComponent("AuthorizerSocialLogin");
-  const _component_AuthorizerBasicAuthLogin = resolveComponent("AuthorizerBasicAuthLogin");
-  const _component_AuthorizerSignup = resolveComponent("AuthorizerSignup");
-  const _component_AuthorizerMagicLinkLogin = resolveComponent("AuthorizerMagicLinkLogin");
-  const _component_AuthorizerForgotPassword = resolveComponent("AuthorizerForgotPassword");
-  const _component_Wrapper = resolveComponent("Wrapper");
+  const _component_authorizer_social_login = resolveComponent("authorizer-social-login");
+  const _component_authorizer_basic_auth_login = resolveComponent("authorizer-basic-auth-login");
+  const _component_authorizer_signup = resolveComponent("authorizer-signup");
+  const _component_authorizer_magic_link_login = resolveComponent("authorizer-magic-link-login");
+  const _component_authorizer_forgot_password = resolveComponent("authorizer-forgot-password");
+  const _component_styled_wrapper = resolveComponent("styled-wrapper");
 
-  return (openBlock(), createBlock(_component_Wrapper, null, {
+  return (openBlock(), createBlock(_component_styled_wrapper, null, {
     default: withCtx(() => [
-      createVNode(_component_AuthorizerSocialLogin, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
+      createVNode(_component_authorizer_social_login, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
       (
 				_ctx.view === $setup.Views.Login &&
 				$setup.config.is_basic_authentication_enabled &&
 				!$setup.config.is_magic_link_login_enabled
 			)
-        ? (openBlock(), createBlock(_component_AuthorizerBasicAuthLogin, {
+        ? (openBlock(), createBlock(_component_authorizer_basic_auth_login, {
             key: 0,
             setView: $setup.setView,
             onLogin: $props.onLogin,
@@ -637,7 +700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 				!$setup.config.is_magic_link_login_enabled &&
 				$setup.config.is_sign_up_enabled
 			)
-        ? (openBlock(), createBlock(_component_AuthorizerSignup, {
+        ? (openBlock(), createBlock(_component_authorizer_signup, {
             key: 1,
             setView: $setup.setView,
             onSignup: $props.onSignup,
@@ -645,14 +708,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
         : createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled)
-        ? (openBlock(), createBlock(_component_AuthorizerMagicLinkLogin, {
+        ? (openBlock(), createBlock(_component_authorizer_magic_link_login, {
             key: 2,
             onMagicLinkLogin: $props.onMagicLinkLogin,
             urlProps: $setup.urlProps
           }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps"]))
         : createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.ForgotPassword)
-        ? (openBlock(), createBlock(_component_AuthorizerForgotPassword, {
+        ? (openBlock(), createBlock(_component_authorizer_forgot_password, {
             key: 3,
             setView: $setup.setView,
             onForgotPassword: $props.onForgotPassword,
