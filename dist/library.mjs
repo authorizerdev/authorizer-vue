@@ -597,7 +597,14 @@ var script = {
 			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
 		}
 		urlProps.redirect_uri = urlProps.redirectURL;
-		return { ...props, ...toRefs(state), setView, urlProps, config, Views };
+		return {
+			...props,
+			...toRefs(state),
+			config: config.value,
+			setView,
+			urlProps,
+			Views,
+		};
 	},
 };
 
@@ -614,8 +621,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       createVNode(_component_AuthorizerSocialLogin, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
       (
 				_ctx.view === $setup.Views.Login &&
-				$setup.config.value.is_basic_authentication_enabled &&
-				!$setup.config.value.is_magic_link_login_enabled
+				$setup.config.is_basic_authentication_enabled &&
+				!$setup.config.is_magic_link_login_enabled
 			)
         ? (openBlock(), createBlock(_component_AuthorizerBasicAuthLogin, {
             key: 0,
@@ -626,9 +633,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         : createCommentVNode("v-if", true),
       (
 				_ctx.view === $setup.Views.Signup &&
-				$setup.config.value.is_basic_authentication_enabled &&
-				!$setup.config.value.is_magic_link_login_enabled &&
-				$setup.config.value.is_sign_up_enabled
+				$setup.config.is_basic_authentication_enabled &&
+				!$setup.config.is_magic_link_login_enabled &&
+				$setup.config.is_sign_up_enabled
 			)
         ? (openBlock(), createBlock(_component_AuthorizerSignup, {
             key: 1,
@@ -637,7 +644,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             urlProps: $setup.urlProps
           }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
         : createCommentVNode("v-if", true),
-      (_ctx.view === $setup.Views.Login && $setup.config.value.is_magic_link_login_enabled)
+      (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled)
         ? (openBlock(), createBlock(_component_AuthorizerMagicLinkLogin, {
             key: 2,
             onMagicLinkLogin: $props.onMagicLinkLogin,

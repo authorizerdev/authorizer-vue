@@ -4,8 +4,8 @@
 		<AuthorizerBasicAuthLogin
 			v-if="
 				view === Views.Login &&
-				config.value.is_basic_authentication_enabled &&
-				!config.value.is_magic_link_login_enabled
+				config.is_basic_authentication_enabled &&
+				!config.is_magic_link_login_enabled
 			"
 			:setView="setView"
 			:onLogin="onLogin"
@@ -14,16 +14,16 @@
 		<AuthorizerSignup
 			v-if="
 				view === Views.Signup &&
-				config.value.is_basic_authentication_enabled &&
-				!config.value.is_magic_link_login_enabled &&
-				config.value.is_sign_up_enabled
+				config.is_basic_authentication_enabled &&
+				!config.is_magic_link_login_enabled &&
+				config.is_sign_up_enabled
 			"
 			:setView="setView"
 			:onSignup="onSignup"
 			:urlProps="urlProps"
 		/>
 		<AuthorizerMagicLinkLogin
-			v-if="view === Views.Login && config.value.is_magic_link_login_enabled"
+			v-if="view === Views.Login && config.is_magic_link_login_enabled"
 			:onMagicLinkLogin="onMagicLinkLogin"
 			:urlProps="urlProps"
 		/>
@@ -86,7 +86,14 @@ export default {
 			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
 		}
 		urlProps.redirect_uri = urlProps.redirectURL;
-		return { ...props, ...toRefs(state), setView, urlProps, config, Views };
+		return {
+			...props,
+			...toRefs(state),
+			config: config.value,
+			setView,
+			urlProps,
+			Views,
+		};
 	},
 };
 </script>
