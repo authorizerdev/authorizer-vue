@@ -1,4 +1,4 @@
-import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, resolveComponent, createBlock, withCtx, createTextVNode } from 'vue';
+import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, resolveComponent, createBlock, withCtx, createElementVNode, toDisplayString, createTextVNode } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css as css$1 } from 'vue3-styled-components';
 
@@ -10,6 +10,12 @@ const AuthorizerProviderActionType = {
 	SET_LOADING: 'SET_LOADING',
 	SET_AUTH_DATA: 'SET_AUTH_DATA',
 	SET_CONFIG: 'SET_CONFIG',
+};
+
+const Views = {
+	Login: 'Login',
+	Signup: 'Signup',
+	ForgotPassword: 'ForgotPassword',
 };
 
 var script$8 = {
@@ -537,22 +543,25 @@ Styled('div', props)`
 
 var script = {
 	name: 'AuthorizerRoot',
-	data() {
-		return {};
-	},
-	components: {
-		Wrapper,
+	components: [Wrapper],
+	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
+	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+		const state = reactive({
+			view: Views.Login,
+		});
+		return toRefs(state);
 	},
 };
 
-const _hoisted_1 = /*#__PURE__*/createTextVNode("Authorizer Root Component");
+const _hoisted_1 = /*#__PURE__*/createTextVNode(" Authorizer Root Component ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Wrapper = resolveComponent("Wrapper");
 
   return (openBlock(), createBlock(_component_Wrapper, null, {
     default: withCtx(() => [
-      _hoisted_1
+      _hoisted_1,
+      createElementVNode("div", null, toDisplayString(_ctx.view), 1 /* TEXT */)
     ]),
     _: 1 /* STABLE */
   }))

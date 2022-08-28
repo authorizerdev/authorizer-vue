@@ -5,3 +5,9 @@ export const AuthorizerProviderActionType = {
 	SET_AUTH_DATA: 'SET_AUTH_DATA',
 	SET_CONFIG: 'SET_CONFIG',
 };
+
+export const Views = {
+	Login: 'Login',
+	Signup: 'Signup',
+	ForgotPassword: 'ForgotPassword',
+};

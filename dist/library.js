@@ -18,6 +18,12 @@ const AuthorizerProviderActionType = {
 	SET_CONFIG: 'SET_CONFIG',
 };
 
+const Views = {
+	Login: 'Login',
+	Signup: 'Signup',
+	ForgotPassword: 'ForgotPassword',
+};
+
 var script$8 = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
@@ -543,22 +549,25 @@ Styled__default["default"]('div', props)`
 
 var script = {
 	name: 'AuthorizerRoot',
-	data() {
-		return {};
-	},
-	components: {
-		Wrapper,
+	components: [Wrapper],
+	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
+	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+		const state = vue.reactive({
+			view: Views.Login,
+		});
+		return vue.toRefs(state);
 	},
 };
 
-const _hoisted_1 = /*#__PURE__*/vue.createTextVNode("Authorizer Root Component");
+const _hoisted_1 = /*#__PURE__*/vue.createTextVNode(" Authorizer Root Component ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Wrapper = vue.resolveComponent("Wrapper");
 
   return (vue.openBlock(), vue.createBlock(_component_Wrapper, null, {
     default: vue.withCtx(() => [
-      _hoisted_1
+      _hoisted_1,
+      vue.createElementVNode("div", null, vue.toDisplayString(_ctx.view), 1 /* TEXT */)
     ]),
     _: 1 /* STABLE */
   }))
