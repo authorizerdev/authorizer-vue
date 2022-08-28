@@ -63,7 +63,7 @@ var script$8 = {
 			}),
 			logout: async () => {},
 		});
-		function dispatch({ type, payload }) {
+		const dispatch = ({ type, payload }) => {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
 					state.user = payload.user;
@@ -83,7 +83,7 @@ var script$8 = {
 				default:
 					throw new Error();
 			}
-		}
+		};
 		let intervalRef = null;
 		const getToken = async () => {
 			const metaRes = await state.authorizerRef.getMetaData();

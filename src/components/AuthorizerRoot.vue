@@ -9,7 +9,7 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { Wrapper } from '../styles/styledComponents';
+import { Wrapper } from '../styles/index';
 import { Views } from '../constants/index';
 export default {
 	name: 'AuthorizerRoot',
