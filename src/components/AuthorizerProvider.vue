@@ -48,7 +48,7 @@ export default {
 			}),
 			logout: async () => {},
 		});
-		const dispatch = ({ type, payload }) => {
+		function dispatch({ type, payload }) {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
 					state.user = payload.user;
@@ -63,12 +63,12 @@ export default {
 					state.config = payload.config;
 					break;
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
-					state.value = payload;
+					Object.assign(state, payload);
 					break;
 				default:
 					throw new Error();
 			}
-		};
+		}
 		let intervalRef = null;
 		const getToken = async () => {
 			const metaRes = await state.authorizerRef.getMetaData();

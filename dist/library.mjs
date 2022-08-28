@@ -1,4 +1,4 @@
-import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createElementVNode, createVNode, withCtx, createCommentVNode, createTextVNode, createBlock } from 'vue';
+import { reactive, provide, toRefs, onMounted, onUnmounted, watch, openBlock, createElementBlock, inject, resolveComponent, createVNode, withCtx, createCommentVNode, createBlock, createTextVNode, createElementVNode } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css } from 'vue3-styled-components';
 
@@ -68,7 +68,7 @@ var script$8 = {
 			}),
 			logout: async () => {},
 		});
-		const dispatch = ({ type, payload }) => {
+		function dispatch({ type, payload }) {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
 					state.user = payload.user;
@@ -83,12 +83,12 @@ var script$8 = {
 					state.config = payload.config;
 					break;
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
-					state.value = payload;
+					Object.assign(state, payload);
 					break;
 				default:
 					throw new Error();
 			}
-		};
+		}
 		let intervalRef = null;
 		const getToken = async () => {
 			const metaRes = await state.authorizerRef.getMetaData();
@@ -462,7 +462,7 @@ Styled('span')`
   cursor: pointer;
 `;
 
-Styled('div')`
+const StyledSeparator = Styled('div')`
   display: flex;
   align-items: center;
   text-align: center;
@@ -542,6 +542,7 @@ var script$3 = {
 	props: ['urlProps'],
 	components: {
 		'styled-button': StyledButton,
+		'styled-separator': StyledSeparator,
 	},
 	setup({ urlProps }) {
 		const useAuthorizer = inject('useAuthorizer');
@@ -567,32 +568,122 @@ var script$3 = {
 	},
 };
 
-const _hoisted_1 = { style: {"{\n\t\t\t\twidth":"'100%'"} };
-const _hoisted_2 = { id: "appleid-signin" };
-const _hoisted_3 = /*#__PURE__*/createTextVNode(" Sign in with Apple ");
-const _hoisted_4 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_1 = {
+  key: 0,
+  id: "appleid-signin"
+};
+const _hoisted_2 = /*#__PURE__*/createTextVNode(" Sign in with Apple ");
+const _hoisted_3 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_4 = /*#__PURE__*/createTextVNode(" Sign in with Google ");
+const _hoisted_5 = /*#__PURE__*/createTextVNode(" Sign in with Github ");
+const _hoisted_6 = /*#__PURE__*/createTextVNode(" Sign in with Facebook ");
+const _hoisted_7 = /*#__PURE__*/createTextVNode(" Sign in with Linkedin ");
+const _hoisted_8 = /*#__PURE__*/createTextVNode(" OR ");
 
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_button = resolveComponent("styled-button");
+  const _component_styled_separator = resolveComponent("styled-separator");
 
-  return (openBlock(), createElementBlock("div", _hoisted_1, [
-    createElementVNode("div", _hoisted_2, [
-      createVNode(_component_styled_button, {
-        appearance: $setup.ButtonAppearance.Primary,
-        onClick: _cache[0] || (_cache[0] = 
+  return (openBlock(), createElementBlock("div", null, [
+    ($setup.config.is_apple_login_enabled)
+      ? (openBlock(), createElementBlock("div", _hoisted_1, [
+          createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Primary,
+            onClick: _cache[0] || (_cache[0] = 
 					() => {
 						$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/apple?${$setup.queryParams}`;
 					}
 				)
-      }, {
-        default: withCtx(() => [
-          createCommentVNode(" <Apple /> "),
+          }, {
+            default: withCtx(() => [
+              createCommentVNode(" <Apple /> "),
+              _hoisted_2
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
           _hoisted_3
-        ]),
-        _: 1 /* STABLE */
-      }, 8 /* PROPS */, ["appearance"]),
-      _hoisted_4
-    ])
+        ]))
+      : createCommentVNode("v-if", true),
+    ($setup.config.is_google_login_enabled)
+      ? (openBlock(), createBlock(_component_styled_button, {
+          key: 1,
+          appearance: $setup.ButtonAppearance.Primary,
+          onClick: _cache[1] || (_cache[1] = 
+				() => {
+					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/google?${$setup.queryParams}`;
+				}
+			)
+        }, {
+          default: withCtx(() => [
+            createCommentVNode(" <Google /> "),
+            _hoisted_4
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["appearance"]))
+      : createCommentVNode("v-if", true),
+    ($setup.config.is_github_login_enabled)
+      ? (openBlock(), createBlock(_component_styled_button, {
+          key: 2,
+          appearance: $setup.ButtonAppearance.Primary,
+          onClick: _cache[2] || (_cache[2] = 
+				() => {
+					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/github?${$setup.queryParams}`;
+				}
+			)
+        }, {
+          default: withCtx(() => [
+            createCommentVNode(" <Github /> "),
+            _hoisted_5
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["appearance"]))
+      : createCommentVNode("v-if", true),
+    ($setup.config.is_facebook_login_enabled)
+      ? (openBlock(), createBlock(_component_styled_button, {
+          key: 3,
+          appearance: $setup.ButtonAppearance.Primary,
+          onClick: _cache[3] || (_cache[3] = 
+				() => {
+					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/facebook?${$setup.queryParams}`;
+				}
+			)
+        }, {
+          default: withCtx(() => [
+            createCommentVNode(" <Facebook /> "),
+            _hoisted_6
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["appearance"]))
+      : createCommentVNode("v-if", true),
+    ($setup.config.is_linkedin_login_enabled)
+      ? (openBlock(), createBlock(_component_styled_button, {
+          key: 4,
+          appearance: $setup.ButtonAppearance.Primary,
+          onClick: _cache[4] || (_cache[4] = 
+				() => {
+					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/linkedin?${$setup.queryParams}`;
+				}
+			)
+        }, {
+          default: withCtx(() => [
+            createCommentVNode(" <Linkedin /> "),
+            _hoisted_7
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["appearance"]))
+      : createCommentVNode("v-if", true),
+    (
+				$setup.hasSocialLogin &&
+				($setup.config.is_basic_authentication_enabled ||
+					$setup.config.is_magic_link_login_enabled)
+			)
+      ? (openBlock(), createBlock(_component_styled_separator, { key: 5 }, {
+          default: withCtx(() => [
+            _hoisted_8
+          ]),
+          _: 1 /* STABLE */
+        }))
+      : createCommentVNode("v-if", true)
   ]))
 }
 
