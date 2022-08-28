@@ -547,15 +547,59 @@ Styled__default["default"]('div', props)`
   `}
 `;
 
+const getCrypto = () => {
+	//ie 11.x uses msCrypto
+	return hasWindow() ? window.crypto || window.msCrypto : null;
+};
+
+const createRandomString = () => {
+	const charset =
+		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
+	let random = '';
+	const crypto = getCrypto();
+	if (crypto) {
+		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
+		randomValues.forEach((v) => (random += charset[v % charset.length]));
+	}
+	return random;
+};
+
 var script = {
 	name: 'AuthorizerRoot',
 	components: [Wrapper],
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup({ onLogin, onSignup, onMagicLinkLogin, onForgotPassword }) {
+		const useAuthorizer = vue.inject('useAuthorizer');
+		useAuthorizer();
 		const state = vue.reactive({
 			view: Views.Login,
 		});
-		return vue.toRefs(state);
+		const setView = (viewType) => {
+			if (viewType) state.view = viewType;
+		};
+		const searchParams = new URLSearchParams(
+			hasWindow() ? window.location.search : ``
+		);
+		const paramsState = searchParams.get('state') || createRandomString();
+		const scope = searchParams.get('scope')
+			? searchParams.get('scope')?.toString().split(' ')
+			: ['openid', 'profile', 'email'];
+
+		const urlProps = {
+			state: paramsState,
+			scope,
+		};
+
+		const redirectURL =
+			searchParams.get('redirect_uri') || searchParams.get('redirectURL');
+		if (redirectURL) {
+			urlProps.redirectURL = redirectURL;
+		} else {
+			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
+		}
+
+		urlProps.redirect_uri = urlProps.redirectURL;
+		return { ...vue.toRefs(state), setView, urlProps };
 	},
 };
 
@@ -567,7 +611,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createBlock(_component_Wrapper, null, {
     default: vue.withCtx(() => [
       _hoisted_1,
-      vue.createElementVNode("div", null, vue.toDisplayString(_ctx.view), 1 /* TEXT */)
+      vue.createElementVNode("div", null, vue.toDisplayString(_ctx.view), 1 /* TEXT */),
+      vue.createElementVNode("button", {
+        onClick: _cache[0] || (_cache[0] = $event => ($setup.setView('Signup')))
+      }, "change view")
     ]),
     _: 1 /* STABLE */
   }))
