@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, inject } from 'vue';
+import { reactive, toRefs } from 'vue';
 import { StyledWrapper } from '../styles/index';
 import { Views } from '../constants/index';
 import { hasWindow } from '../utils/window';
@@ -47,6 +47,8 @@ import AuthorizerSignup from './AuthorizerSignup.vue';
 import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.vue';
 import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
 import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.vue';
+import globalState from '../state/globalState';
+import globalConfig from '../state/globalConfig';
 export default {
 	name: 'AuthorizerRoot',
 	components: {
@@ -59,8 +61,6 @@ export default {
 	},
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup(props) {
-		const useAuthorizer = inject('useAuthorizer');
-		const { config } = useAuthorizer();
 		const state = reactive({
 			view: Views.Login,
 		});
@@ -89,7 +89,7 @@ export default {
 		return {
 			...props,
 			...toRefs(state),
-			config: config.value,
+			config: globalConfig,
 			setView,
 			urlProps,
 			Views,

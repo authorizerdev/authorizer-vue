@@ -1,69 +1,64 @@
 <script>
-import { reactive, toRefs, onMounted, watch, onUnmounted, provide } from 'vue';
+import { toRefs, onMounted, watch, onUnmounted, provide } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import { hasWindow } from '../utils/window';
 import { AuthorizerProviderActionType } from '../constants/index';
+import globalState from '../state/globalState';
+import globalConfig from '../state/globalConfig';
 export default {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
-		const config = {
-			authorizerURL: props?.config?.authorizerURL || '',
-			redirectURL: props?.config?.redirectURL
-				? props.config.redirectURL
-				: hasWindow()
-				? window.location.origin
-				: '/',
-			client_id: props?.config?.client_id || '',
-			is_google_login_enabled: props?.config?.is_google_login_enabled || false,
-			is_github_login_enabled: props?.config?.is_github_login_enabled || false,
-			is_facebook_login_enabled:
-				props?.config?.is_facebook_login_enabled || false,
-			is_linkedin_login_enabled:
-				props?.config?.is_linkedin_login_enabled || false,
-			is_apple_login_enabled: props?.config?.is_apple_login_enabled || false,
-			is_email_verification_enabled:
-				props?.config?.is_email_verification_enabled || false,
-			is_basic_authentication_enabled:
-				props?.config?.is_basic_authentication_enabled || false,
-			is_magic_link_login_enabled:
-				props?.config?.is_magic_link_login_enabled || false,
-			is_sign_up_enabled: props?.config?.is_sign_up_enabled || false,
-			is_strong_password_enabled:
-				props?.config?.is_strong_password_enabled || true,
-		};
-		const state = reactive({
-			config,
-			user: null,
-			token: null,
-			loading: false,
-			setLoading: () => {},
-			setToken: () => {},
-			setUser: () => {},
-			setAuthData: () => {},
-			authorizerRef: new Authorizer({
-				authorizerURL: config.authorizerURL,
-				redirectURL: config.redirectURL,
-				clientID: config.client_id,
-			}),
-			logout: async () => {},
+		globalConfig.authorizerURL = props?.config?.authorizerURL || '';
+		globalConfig.redirectURL = props?.config?.redirectURL
+			? props.config.redirectURL
+			: hasWindow()
+			? window.location.origin
+			: '/';
+		globalConfig.client_id = props?.config?.client_id || '';
+		globalConfig.is_google_login_enabled =
+			props?.config?.is_google_login_enabled || false;
+		globalConfig.is_github_login_enabled =
+			props?.config?.is_github_login_enabled || false;
+		globalConfig.is_facebook_login_enabled =
+			props?.config?.is_facebook_login_enabled || false;
+		globalConfig.is_linkedin_login_enabled =
+			props?.config?.is_linkedin_login_enabled || false;
+		globalConfig.is_apple_login_enabled =
+			props?.config?.is_apple_login_enabled || false;
+		globalConfig.is_email_verification_enabled =
+			props?.config?.is_email_verification_enabled || false;
+		globalConfig.is_basic_authentication_enabled =
+			props?.config?.is_basic_authentication_enabled || false;
+		globalConfig.is_magic_link_login_enabled =
+			props?.config?.is_magic_link_login_enabled || false;
+		globalConfig.is_sign_up_enabled =
+			props?.config?.is_sign_up_enabled || false;
+		globalConfig.is_strong_password_enabled =
+			props?.config?.is_strong_password_enabled || true;
+		globalState.authorizerRef = new Authorizer({
+			authorizerURL: globalConfig.authorizerURL,
+			redirectURL: globalConfig.redirectURL,
+			clientID: globalConfig.client_id,
 		});
 		function dispatch({ type, payload }) {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
-					state.user = payload.user;
+					globalState.user = payload.user;
 					break;
 				case AuthorizerProviderActionType.SET_TOKEN:
-					state.token = payload.token;
+					globalState.token = payload.token;
 					break;
 				case AuthorizerProviderActionType.SET_LOADING:
-					state.loading = payload.loading;
+					globalState.loading = payload.loading;
 					break;
 				case AuthorizerProviderActionType.SET_CONFIG:
-					state.config = payload.config;
+					Object.assign(globalConfig, payload.config);
 					break;
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
-					Object.assign(state, payload);
+					const { config, ...rest } = payload;
+					Object.assign(globalConfig, config);
+					Object.assign(globalState, rest);
 					break;
 				default:
 					throw new Error();
@@ -71,9 +66,9 @@ export default {
 		}
 		let intervalRef = null;
 		const getToken = async () => {
-			const metaRes = await state.authorizerRef.getMetaData();
+			const metaRes = await globalState.authorizerRef.getMetaData();
 			try {
-				const res = await state.authorizerRef.getSession();
+				const res = await globalState.authorizerRef.getSession();
 				if (res.access_token && res.user) {
 					const token = {
 						access_token: res.access_token,
@@ -84,11 +79,11 @@ export default {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							...state,
+							...globalState,
 							token,
 							user: res.user,
 							config: {
-								...state.config,
+								...globalConfig,
 								...metaRes,
 							},
 							loading: false,
@@ -102,11 +97,11 @@ export default {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							...state,
+							...globalState,
 							token: null,
 							user: null,
 							config: {
-								...state.config,
+								...globalConfig,
 								...metaRes,
 							},
 							loading: false,
@@ -117,11 +112,11 @@ export default {
 				dispatch({
 					type: AuthorizerProviderActionType.SET_AUTH_DATA,
 					payload: {
-						...state,
+						...globalState,
 						token: null,
 						user: null,
 						config: {
-							...state.config,
+							...globalConfig,
 							...metaRes,
 						},
 						loading: false,
@@ -129,7 +124,7 @@ export default {
 				});
 			}
 		};
-		state.setToken = (token) => {
+		globalState.setToken = (token) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_TOKEN,
 				payload: {
@@ -143,7 +138,7 @@ export default {
 				}, token.expires_in * 1000);
 			}
 		};
-		state.setAuthData = (data) => {
+		globalState.setAuthData = (data) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_AUTH_DATA,
 				payload: data,
@@ -155,7 +150,7 @@ export default {
 				}, data.token.expires_in * 1000);
 			}
 		};
-		state.setUser = (user) => {
+		globalState.setUser = (user) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_USER,
 				payload: {
@@ -163,7 +158,7 @@ export default {
 				},
 			});
 		};
-		state.setLoading = (loading) => {
+		globalState.setLoading = (loading) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
@@ -171,19 +166,19 @@ export default {
 				},
 			});
 		};
-		state.logout = async () => {
+		globalState.logout = async () => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
 					loading: true,
 				},
 			});
-			await state.authorizerRef.logout();
+			await globalState.authorizerRef.logout();
 			const loggedOutState = {
 				user: null,
 				token: null,
 				loading: false,
-				config: state.config,
+				config: globalConfig,
 			};
 			dispatch({
 				type: AuthorizerProviderActionType.SET_AUTH_DATA,
@@ -191,7 +186,7 @@ export default {
 			});
 		};
 		provide('useAuthorizer', () => {
-			return toRefs(state);
+			return toRefs(globalState);
 		});
 		onMounted(() => {
 			getToken();
@@ -201,26 +196,29 @@ export default {
 				clearInterval(intervalRef);
 			}
 		});
-		watch(state, () => {
+		watch([globalState, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback(state);
+				props.onStateChangeCallback({ ...globalState, ...globalConfig });
 			}
 		});
 		watch(
-			() => props.config,
 			() => {
-				state.config = {
-					...state.config,
+				return { ...props.config };
+			},
+			() => {
+				const updatedConfig = {
+					...globalConfig,
 					...props.config,
 					authorizerURL:
-						props?.config?.authorizerURL || state.config.authorizerURL,
-					redirectURL: props?.config?.redirectURL || state.config.redirectURL,
-					clientID: props?.config?.client_id || state.config.client_id,
+						props?.config?.authorizerURL || globalConfig.authorizerURL,
+					redirectURL: props?.config?.redirectURL || globalConfig.redirectURL,
+					clientID: props?.config?.client_id || globalConfig.client_id,
 				};
-				state.authorizerRef = new Authorizer({
-					authorizerURL: state.config.authorizerURL,
-					redirectURL: state.config.redirectURL,
-					clientID: state.config.client_id,
+				Object.assign(globalConfig, updatedConfig);
+				globalState.authorizerRef = new Authorizer({
+					authorizerURL: globalConfig.authorizerURL,
+					redirectURL: globalConfig.redirectURL,
+					clientID: globalConfig.client_id,
 				});
 			}
 		);

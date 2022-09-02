@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { inject } from 'vue';
+import { inject, watch } from 'vue';
 export default {
 	name: 'Children',
 	setup() {
@@ -22,6 +22,10 @@ export default {
 		function onLogin() {
 			console.log('test login');
 		}
+		watch(user, function (newvalue, oldvalue) {
+			console.log('old value from client ==>> ', oldvalue);
+			console.log('new value from client ==>> ', newvalue);
+		});
 		return {
 			onLogin,
 		};

@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import { inject } from 'vue';
 import { hasWindow } from '../utils/window';
 import { createQueryParams } from '../utils/common';
 import { StyledButton, StyledSeparator } from '../styles/index';
 import { ButtonAppearance } from '../constants/index';
+import globalConfig from '../state/globalConfig';
 export default {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
@@ -88,21 +88,19 @@ export default {
 		'styled-separator': StyledSeparator,
 	},
 	setup({ urlProps }) {
-		const useAuthorizer = inject('useAuthorizer');
-		const { config } = useAuthorizer();
 		const hasSocialLogin =
-			config.is_google_login_enabled ||
-			config.is_github_login_enabled ||
-			config.is_facebook_login_enabled ||
-			config.is_linkedin_login_enabled ||
-			config.is_apple_login_enabled;
+			globalConfig.is_google_login_enabled ||
+			globalConfig.is_github_login_enabled ||
+			globalConfig.is_facebook_login_enabled ||
+			globalConfig.is_linkedin_login_enabled ||
+			globalConfig.is_apple_login_enabled;
 		const queryParams = createQueryParams({
 			...urlProps,
 			scope: urlProps.scope.join(' '),
 		});
 		const windowObject = hasWindow() ? window : null;
 		return {
-			config: config.value,
+			config: globalConfig,
 			hasSocialLogin,
 			queryParams,
 			ButtonAppearance,
