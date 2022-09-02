@@ -244,7 +244,7 @@ var script$8 = {
 		});
 		watch([globalState, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback({ ...globalState, ...globalConfig });
+				props.onStateChangeCallback({ ...globalState, config: globalConfig });
 			}
 		});
 		watch(

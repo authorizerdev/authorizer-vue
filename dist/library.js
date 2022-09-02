@@ -250,7 +250,7 @@ var script$8 = {
 		});
 		vue.watch([globalState, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback({ ...globalState, ...globalConfig });
+				props.onStateChangeCallback({ ...globalState, config: globalConfig });
 			}
 		});
 		vue.watch(
