@@ -5,6 +5,7 @@
 <script>
 export default {
 	name: 'AuthorizerBasicAuthLogin',
+	props: ['urlProps'],
 };
 </script>
 

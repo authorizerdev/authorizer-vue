@@ -4,8 +4,8 @@
 		<authorizer-basic-auth-login
 			v-if="
 				view === Views.Login &&
-				config.is_basic_authentication_enabled &&
-				!config.is_magic_link_login_enabled
+				config.is_basic_authentication_enabled.value &&
+				!config.is_magic_link_login_enabled.value
 			"
 			:setView="setView"
 			:onLogin="onLogin"
@@ -14,16 +14,16 @@
 		<authorizer-signup
 			v-if="
 				view === Views.Signup &&
-				config.is_basic_authentication_enabled &&
-				!config.is_magic_link_login_enabled &&
-				config.is_sign_up_enabled
+				config.is_basic_authentication_enabled.value &&
+				!config.is_magic_link_login_enabled.value &&
+				config.is_sign_up_enabled.value
 			"
 			:setView="setView"
 			:onSignup="onSignup"
 			:urlProps="urlProps"
 		/>
 		<authorizer-magic-link-login
-			v-if="view === Views.Login && config.is_magic_link_login_enabled"
+			v-if="view === Views.Login && config.is_magic_link_login_enabled.value"
 			:onMagicLinkLogin="onMagicLinkLogin"
 			:urlProps="urlProps"
 		/>
@@ -47,7 +47,6 @@ import AuthorizerSignup from './AuthorizerSignup.vue';
 import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.vue';
 import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
 import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.vue';
-import globalState from '../state/globalState';
 import globalConfig from '../state/globalConfig';
 export default {
 	name: 'AuthorizerRoot',
@@ -89,7 +88,7 @@ export default {
 		return {
 			...props,
 			...toRefs(state),
-			config: globalConfig,
+			config: { ...toRefs(globalConfig) },
 			setView,
 			urlProps,
 			Views,

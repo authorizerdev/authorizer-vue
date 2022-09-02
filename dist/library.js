@@ -61,56 +61,62 @@ var script$8 = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
-		globalConfig.authorizerURL = props?.config?.authorizerURL || '';
-		globalConfig.redirectURL = props?.config?.redirectURL
+		const config = { ...vue.toRefs(globalConfig) };
+		const state = { ...vue.toRefs(globalState) };
+		config.authorizerURL.value = props?.config?.authorizerURL || '';
+		config.redirectURL.value = props?.config?.redirectURL
 			? props.config.redirectURL
 			: hasWindow()
 			? window.location.origin
 			: '/';
-		globalConfig.client_id = props?.config?.client_id || '';
-		globalConfig.is_google_login_enabled =
+		config.client_id.value = props?.config?.client_id || '';
+		config.is_google_login_enabled.value =
 			props?.config?.is_google_login_enabled || false;
-		globalConfig.is_github_login_enabled =
+		config.is_github_login_enabled.value =
 			props?.config?.is_github_login_enabled || false;
-		globalConfig.is_facebook_login_enabled =
+		config.is_facebook_login_enabled.value =
 			props?.config?.is_facebook_login_enabled || false;
-		globalConfig.is_linkedin_login_enabled =
+		config.is_linkedin_login_enabled.value =
 			props?.config?.is_linkedin_login_enabled || false;
-		globalConfig.is_apple_login_enabled =
+		config.is_apple_login_enabled.value =
 			props?.config?.is_apple_login_enabled || false;
-		globalConfig.is_email_verification_enabled =
+		config.is_email_verification_enabled.value =
 			props?.config?.is_email_verification_enabled || false;
-		globalConfig.is_basic_authentication_enabled =
+		config.is_basic_authentication_enabled.value =
 			props?.config?.is_basic_authentication_enabled || false;
-		globalConfig.is_magic_link_login_enabled =
+		config.is_magic_link_login_enabled.value =
 			props?.config?.is_magic_link_login_enabled || false;
-		globalConfig.is_sign_up_enabled =
+		config.is_sign_up_enabled.value =
 			props?.config?.is_sign_up_enabled || false;
-		globalConfig.is_strong_password_enabled =
+		config.is_strong_password_enabled.value =
 			props?.config?.is_strong_password_enabled || true;
-		globalState.authorizerRef = new authorizerJs.Authorizer({
-			authorizerURL: globalConfig.authorizerURL,
-			redirectURL: globalConfig.redirectURL,
-			clientID: globalConfig.client_id,
+		state.authorizerRef.value = new authorizerJs.Authorizer({
+			authorizerURL: props?.config?.authorizerURL || '',
+			redirectURL: props?.config?.redirectURL
+				? props.config.redirectURL
+				: hasWindow()
+				? window.location.origin
+				: '/',
+			clientID: props?.config?.client_id || '',
 		});
 		function dispatch({ type, payload }) {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
-					globalState.user = payload.user;
+					state.user.value = payload.user;
 					break;
 				case AuthorizerProviderActionType.SET_TOKEN:
-					globalState.token = payload.token;
+					state.token.value = payload.token;
 					break;
 				case AuthorizerProviderActionType.SET_LOADING:
-					globalState.loading = payload.loading;
+					state.loading.value = payload.loading;
 					break;
 				case AuthorizerProviderActionType.SET_CONFIG:
 					Object.assign(globalConfig, payload.config);
 					break;
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
 					const { config, ...rest } = payload;
-					Object.assign(globalConfig, config);
-					Object.assign(globalState, rest);
+					Object.assign(globalConfig, { ...globalConfig, ...config });
+					Object.assign(globalState, { ...globalState, ...rest });
 					break;
 				default:
 					throw new Error();
@@ -118,9 +124,9 @@ var script$8 = {
 		}
 		let intervalRef = null;
 		const getToken = async () => {
-			const metaRes = await globalState.authorizerRef.getMetaData();
+			const metaRes = await state.authorizerRef.value.getMetaData();
 			try {
-				const res = await globalState.authorizerRef.getSession();
+				const res = await state.authorizerRef.value.getSession();
 				if (res.access_token && res.user) {
 					const token = {
 						access_token: res.access_token,
@@ -131,13 +137,9 @@ var script$8 = {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							...globalState,
 							token,
 							user: res.user,
-							config: {
-								...globalConfig,
-								...metaRes,
-							},
+							config: metaRes,
 							loading: false,
 						},
 					});
@@ -149,13 +151,9 @@ var script$8 = {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							...globalState,
 							token: null,
 							user: null,
-							config: {
-								...globalConfig,
-								...metaRes,
-							},
+							config: metaRes,
 							loading: false,
 						},
 					});
@@ -164,19 +162,15 @@ var script$8 = {
 				dispatch({
 					type: AuthorizerProviderActionType.SET_AUTH_DATA,
 					payload: {
-						...globalState,
 						token: null,
 						user: null,
-						config: {
-							...globalConfig,
-							...metaRes,
-						},
+						config: metaRes,
 						loading: false,
 					},
 				});
 			}
 		};
-		globalState.setToken = (token) => {
+		state.setToken.value = (token) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_TOKEN,
 				payload: {
@@ -190,7 +184,7 @@ var script$8 = {
 				}, token.expires_in * 1000);
 			}
 		};
-		globalState.setAuthData = (data) => {
+		state.setAuthData.value = (data) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_AUTH_DATA,
 				payload: data,
@@ -202,7 +196,7 @@ var script$8 = {
 				}, data.token.expires_in * 1000);
 			}
 		};
-		globalState.setUser = (user) => {
+		state.setUser.value = (user) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_USER,
 				payload: {
@@ -210,7 +204,7 @@ var script$8 = {
 				},
 			});
 		};
-		globalState.setLoading = (loading) => {
+		state.setLoading.value = (loading) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
@@ -218,14 +212,14 @@ var script$8 = {
 				},
 			});
 		};
-		globalState.logout = async () => {
+		state.logout.value = async () => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
 					loading: true,
 				},
 			});
-			await globalState.authorizerRef.logout();
+			await state.authorizerRef.value.logout();
 			const loggedOutState = {
 				user: null,
 				token: null,
@@ -267,10 +261,12 @@ var script$8 = {
 					clientID: props?.config?.client_id || globalConfig.client_id,
 				};
 				Object.assign(globalConfig, updatedConfig);
-				globalState.authorizerRef = new authorizerJs.Authorizer({
-					authorizerURL: globalConfig.authorizerURL,
-					redirectURL: globalConfig.redirectURL,
-					clientID: globalConfig.client_id,
+				state.authorizerRef.value = vue.computed(function () {
+					return new authorizerJs.Authorizer({
+						authorizerURL: config.authorizerURL.value,
+						redirectURL: config.redirectURL.value,
+						clientID: config.client_id.value,
+					});
 				});
 			}
 		);
@@ -295,6 +291,7 @@ script$7.__file = "src/components/AuthorizerSignup.vue";
 
 var script$6 = {
 	name: 'AuthorizerBasicAuthLogin',
+	props: ['urlProps'],
 };
 
 function render$6(_ctx, _cache, $props, $setup, $data, $options) {
@@ -575,19 +572,23 @@ var script$3 = {
 		'styled-separator': StyledSeparator,
 	},
 	setup({ urlProps }) {
-		const hasSocialLogin =
-			globalConfig.is_google_login_enabled ||
-			globalConfig.is_github_login_enabled ||
-			globalConfig.is_facebook_login_enabled ||
-			globalConfig.is_linkedin_login_enabled ||
-			globalConfig.is_apple_login_enabled;
+		const config = { ...vue.toRefs(globalConfig) };
+		const hasSocialLogin = vue.computed(function () {
+			return (
+				config.is_google_login_enabled.value ||
+				config.is_github_login_enabled.value ||
+				config.is_facebook_login_enabled.value ||
+				config.is_linkedin_login_enabled.value ||
+				config.is_apple_login_enabled.value
+			);
+		});
 		const queryParams = createQueryParams({
 			...urlProps,
 			scope: urlProps.scope.join(' '),
 		});
 		const windowObject = hasWindow() ? window : null;
 		return {
-			config: globalConfig,
+			config,
 			hasSocialLogin,
 			queryParams,
 			ButtonAppearance,
@@ -613,13 +614,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_separator = vue.resolveComponent("styled-separator");
 
   return (vue.openBlock(), vue.createElementBlock("div", null, [
-    ($setup.config.is_apple_login_enabled)
+    ($setup.config.is_apple_login_enabled.value)
       ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
           vue.createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             onClick: _cache[0] || (_cache[0] = 
 					() => {
-						$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/apple?${$setup.queryParams}`;
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/apple?${$setup.queryParams}`;
 					}
 				)
           }, {
@@ -632,13 +633,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
           _hoisted_3
         ]))
       : vue.createCommentVNode("v-if", true),
-    ($setup.config.is_google_login_enabled)
+    ($setup.config.is_google_login_enabled.value)
       ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
           key: 1,
           appearance: $setup.ButtonAppearance.Primary,
           onClick: _cache[1] || (_cache[1] = 
 				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/google?${$setup.queryParams}`;
+					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/google?${$setup.queryParams}`;
 				}
 			)
         }, {
@@ -649,13 +650,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
           _: 1 /* STABLE */
         }, 8 /* PROPS */, ["appearance"]))
       : vue.createCommentVNode("v-if", true),
-    ($setup.config.is_github_login_enabled)
+    ($setup.config.is_github_login_enabled.value)
       ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
           key: 2,
           appearance: $setup.ButtonAppearance.Primary,
           onClick: _cache[2] || (_cache[2] = 
 				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/github?${$setup.queryParams}`;
+					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/github?${$setup.queryParams}`;
 				}
 			)
         }, {
@@ -666,13 +667,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
           _: 1 /* STABLE */
         }, 8 /* PROPS */, ["appearance"]))
       : vue.createCommentVNode("v-if", true),
-    ($setup.config.is_facebook_login_enabled)
+    ($setup.config.is_facebook_login_enabled.value)
       ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
           key: 3,
           appearance: $setup.ButtonAppearance.Primary,
           onClick: _cache[3] || (_cache[3] = 
 				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/facebook?${$setup.queryParams}`;
+					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/facebook?${$setup.queryParams}`;
 				}
 			)
         }, {
@@ -683,13 +684,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
           _: 1 /* STABLE */
         }, 8 /* PROPS */, ["appearance"]))
       : vue.createCommentVNode("v-if", true),
-    ($setup.config.is_linkedin_login_enabled)
+    ($setup.config.is_linkedin_login_enabled.value)
       ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
           key: 4,
           appearance: $setup.ButtonAppearance.Primary,
           onClick: _cache[4] || (_cache[4] = 
 				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL}/oauth_login/linkedin?${$setup.queryParams}`;
+					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/linkedin?${$setup.queryParams}`;
 				}
 			)
         }, {
@@ -702,8 +703,8 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
       : vue.createCommentVNode("v-if", true),
     (
 				$setup.hasSocialLogin &&
-				($setup.config.is_basic_authentication_enabled ||
-					$setup.config.is_magic_link_login_enabled)
+				($setup.config.is_basic_authentication_enabled.value ||
+					$setup.config.is_magic_link_login_enabled.value)
 			)
       ? (vue.openBlock(), vue.createBlock(_component_styled_separator, { key: 5 }, {
           default: vue.withCtx(() => [
@@ -780,7 +781,7 @@ var script = {
 		return {
 			...props,
 			...vue.toRefs(state),
-			config: globalConfig,
+			config: { ...vue.toRefs(globalConfig) },
 			setView,
 			urlProps,
 			Views,
@@ -801,8 +802,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       vue.createVNode(_component_authorizer_social_login, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
       (
 				_ctx.view === $setup.Views.Login &&
-				$setup.config.is_basic_authentication_enabled &&
-				!$setup.config.is_magic_link_login_enabled
+				$setup.config.is_basic_authentication_enabled.value &&
+				!$setup.config.is_magic_link_login_enabled.value
 			)
         ? (vue.openBlock(), vue.createBlock(_component_authorizer_basic_auth_login, {
             key: 0,
@@ -813,9 +814,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         : vue.createCommentVNode("v-if", true),
       (
 				_ctx.view === $setup.Views.Signup &&
-				$setup.config.is_basic_authentication_enabled &&
-				!$setup.config.is_magic_link_login_enabled &&
-				$setup.config.is_sign_up_enabled
+				$setup.config.is_basic_authentication_enabled.value &&
+				!$setup.config.is_magic_link_login_enabled.value &&
+				$setup.config.is_sign_up_enabled.value
 			)
         ? (vue.openBlock(), vue.createBlock(_component_authorizer_signup, {
             key: 1,
@@ -824,7 +825,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             urlProps: $setup.urlProps
           }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
         : vue.createCommentVNode("v-if", true),
-      (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled)
+      (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled.value)
         ? (vue.openBlock(), vue.createBlock(_component_authorizer_magic_link_login, {
             key: 2,
             onMagicLinkLogin: $props.onMagicLinkLogin,
