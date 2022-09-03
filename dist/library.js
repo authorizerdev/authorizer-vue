@@ -604,10 +604,14 @@ const _hoisted_1 = {
 const _hoisted_2 = /*#__PURE__*/vue.createTextVNode(" Sign in with Apple ");
 const _hoisted_3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_4 = /*#__PURE__*/vue.createTextVNode(" Sign in with Google ");
-const _hoisted_5 = /*#__PURE__*/vue.createTextVNode(" Sign in with Github ");
-const _hoisted_6 = /*#__PURE__*/vue.createTextVNode(" Sign in with Facebook ");
-const _hoisted_7 = /*#__PURE__*/vue.createTextVNode(" Sign in with Linkedin ");
-const _hoisted_8 = /*#__PURE__*/vue.createTextVNode(" OR ");
+const _hoisted_5 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = /*#__PURE__*/vue.createTextVNode(" Sign in with Github ");
+const _hoisted_7 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_8 = /*#__PURE__*/vue.createTextVNode(" Sign in with Facebook ");
+const _hoisted_9 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_10 = /*#__PURE__*/vue.createTextVNode(" Sign in with Linkedin ");
+const _hoisted_11 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_12 = /*#__PURE__*/vue.createTextVNode(" OR ");
 
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_button = vue.resolveComponent("styled-button");
@@ -617,7 +621,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     ($setup.config.is_apple_login_enabled.value)
       ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
           vue.createVNode(_component_styled_button, {
-            appearance: $setup.ButtonAppearance.Primary,
+            appearance: $setup.ButtonAppearance.Default,
             onClick: _cache[0] || (_cache[0] = 
 					() => {
 						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/apple?${$setup.queryParams}`;
@@ -634,72 +638,80 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
         ]))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_google_login_enabled.value)
-      ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
-          key: 1,
-          appearance: $setup.ButtonAppearance.Primary,
-          onClick: _cache[1] || (_cache[1] = 
-				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/google?${$setup.queryParams}`;
-				}
-			)
-        }, {
-          default: vue.withCtx(() => [
-            vue.createCommentVNode(" <Google /> "),
-            _hoisted_4
-          ]),
-          _: 1 /* STABLE */
-        }, 8 /* PROPS */, ["appearance"]))
+      ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+          vue.createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Default,
+            onClick: _cache[1] || (_cache[1] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/google?${$setup.queryParams}`;
+					}
+				)
+          }, {
+            default: vue.withCtx(() => [
+              vue.createCommentVNode(" <Google /> "),
+              _hoisted_4
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
+          _hoisted_5
+        ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_github_login_enabled.value)
-      ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
-          key: 2,
-          appearance: $setup.ButtonAppearance.Primary,
-          onClick: _cache[2] || (_cache[2] = 
-				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/github?${$setup.queryParams}`;
-				}
-			)
-        }, {
-          default: vue.withCtx(() => [
-            vue.createCommentVNode(" <Github /> "),
-            _hoisted_5
-          ]),
-          _: 1 /* STABLE */
-        }, 8 /* PROPS */, ["appearance"]))
+      ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 2 }, [
+          vue.createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Default,
+            onClick: _cache[2] || (_cache[2] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/github?${$setup.queryParams}`;
+					}
+				)
+          }, {
+            default: vue.withCtx(() => [
+              vue.createCommentVNode(" <Github /> "),
+              _hoisted_6
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
+          _hoisted_7
+        ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_facebook_login_enabled.value)
-      ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
-          key: 3,
-          appearance: $setup.ButtonAppearance.Primary,
-          onClick: _cache[3] || (_cache[3] = 
-				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/facebook?${$setup.queryParams}`;
-				}
-			)
-        }, {
-          default: vue.withCtx(() => [
-            vue.createCommentVNode(" <Facebook /> "),
-            _hoisted_6
-          ]),
-          _: 1 /* STABLE */
-        }, 8 /* PROPS */, ["appearance"]))
+      ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 3 }, [
+          vue.createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Default,
+            onClick: _cache[3] || (_cache[3] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/facebook?${$setup.queryParams}`;
+					}
+				)
+          }, {
+            default: vue.withCtx(() => [
+              vue.createCommentVNode(" <Facebook /> "),
+              _hoisted_8
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
+          _hoisted_9
+        ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_linkedin_login_enabled.value)
-      ? (vue.openBlock(), vue.createBlock(_component_styled_button, {
-          key: 4,
-          appearance: $setup.ButtonAppearance.Primary,
-          onClick: _cache[4] || (_cache[4] = 
-				() => {
-					$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/linkedin?${$setup.queryParams}`;
-				}
-			)
-        }, {
-          default: vue.withCtx(() => [
-            vue.createCommentVNode(" <Linkedin /> "),
-            _hoisted_7
-          ]),
-          _: 1 /* STABLE */
-        }, 8 /* PROPS */, ["appearance"]))
+      ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 4 }, [
+          vue.createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Default,
+            onClick: _cache[4] || (_cache[4] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/linkedin?${$setup.queryParams}`;
+					}
+				)
+          }, {
+            default: vue.withCtx(() => [
+              vue.createCommentVNode(" <Linkedin /> "),
+              _hoisted_10
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
+          _hoisted_11
+        ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     (
 				$setup.hasSocialLogin &&
@@ -708,7 +720,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
 			)
       ? (vue.openBlock(), vue.createBlock(_component_styled_separator, { key: 5 }, {
           default: vue.withCtx(() => [
-            _hoisted_8
+            _hoisted_12
           ]),
           _: 1 /* STABLE */
         }))

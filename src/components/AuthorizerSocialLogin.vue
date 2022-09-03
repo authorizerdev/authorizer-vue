@@ -2,7 +2,7 @@
 	<div>
 		<div id="appleid-signin" v-if="config.is_apple_login_enabled.value">
 			<styled-button
-				:appearance="ButtonAppearance.Primary"
+				:appearance="ButtonAppearance.Default"
 				@click="
 					() => {
 						window.location.href = `${config.authorizerURL.value}/oauth_login/apple?${queryParams}`;
@@ -14,54 +14,62 @@
 			</styled-button>
 			<br />
 		</div>
-		<styled-button
-			v-if="config.is_google_login_enabled.value"
-			:appearance="ButtonAppearance.Primary"
-			@click="
-				() => {
-					window.location.href = `${config.authorizerURL.value}/oauth_login/google?${queryParams}`;
-				}
-			"
-		>
-			<!-- <Google /> -->
-			Sign in with Google
-		</styled-button>
-		<styled-button
-			v-if="config.is_github_login_enabled.value"
-			:appearance="ButtonAppearance.Primary"
-			@click="
-				() => {
-					window.location.href = `${config.authorizerURL.value}/oauth_login/github?${queryParams}`;
-				}
-			"
-		>
-			<!-- <Github /> -->
-			Sign in with Github
-		</styled-button>
-		<styled-button
-			v-if="config.is_facebook_login_enabled.value"
-			:appearance="ButtonAppearance.Primary"
-			@click="
-				() => {
-					window.location.href = `${config.authorizerURL.value}/oauth_login/facebook?${queryParams}`;
-				}
-			"
-		>
-			<!-- <Facebook /> -->
-			Sign in with Facebook
-		</styled-button>
-		<styled-button
-			v-if="config.is_linkedin_login_enabled.value"
-			:appearance="ButtonAppearance.Primary"
-			@click="
-				() => {
-					window.location.href = `${config.authorizerURL.value}/oauth_login/linkedin?${queryParams}`;
-				}
-			"
-		>
-			<!-- <Linkedin /> -->
-			Sign in with Linkedin
-		</styled-button>
+		<template v-if="config.is_google_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => {
+						window.location.href = `${config.authorizerURL.value}/oauth_login/google?${queryParams}`;
+					}
+				"
+			>
+				<!-- <Google /> -->
+				Sign in with Google
+			</styled-button>
+			<br />
+		</template>
+		<template v-if="config.is_github_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => {
+						window.location.href = `${config.authorizerURL.value}/oauth_login/github?${queryParams}`;
+					}
+				"
+			>
+				<!-- <Github /> -->
+				Sign in with Github
+			</styled-button>
+			<br />
+		</template>
+		<template v-if="config.is_facebook_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => {
+						window.location.href = `${config.authorizerURL.value}/oauth_login/facebook?${queryParams}`;
+					}
+				"
+			>
+				<!-- <Facebook /> -->
+				Sign in with Facebook
+			</styled-button>
+			<br />
+		</template>
+		<template v-if="config.is_linkedin_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => {
+						window.location.href = `${config.authorizerURL.value}/oauth_login/linkedin?${queryParams}`;
+					}
+				"
+			>
+				<!-- <Linkedin /> -->
+				Sign in with Linkedin
+			</styled-button>
+			<br />
+		</template>
 		<styled-separator
 			v-if="
 				hasSocialLogin &&
