@@ -15,18 +15,14 @@
 				}"
 				:onStateChangeCallback="stateChangeCallback"
 			>
-				<login />
+				<router-view />
 			</authorizer-provider>
 		</div>
 	</div>
 </template>
 
 <script>
-import Login from './views/Login.vue';
 export default {
-	components: {
-		login: Login,
-	},
 	setup() {
 		const stateChangeCallback = (state) => {
 			console.log('state changes from client ==>> ', state);
