@@ -232,7 +232,7 @@ var script$e = {
 			});
 		};
 		vue.provide('useAuthorizer', () => {
-			return vue.toRefs(globalState);
+			return { ...vue.toRefs(globalState), config: { ...vue.toRefs(globalConfig) } };
 		});
 		vue.onMounted(() => {
 			getToken();

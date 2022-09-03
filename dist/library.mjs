@@ -226,7 +226,7 @@ var script$e = {
 			});
 		};
 		provide('useAuthorizer', () => {
-			return toRefs(globalState);
+			return { ...toRefs(globalState), config: { ...toRefs(globalConfig) } };
 		});
 		onMounted(() => {
 			getToken();

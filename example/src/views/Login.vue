@@ -12,15 +12,18 @@ export default {
 	name: 'Login',
 	setup() {
 		const useAuthorizer = inject('useAuthorizer');
-		const { user } = useAuthorizer();
-		console.log('client user ==>> ', user.value);
+		const { user, config } = useAuthorizer();
 		function onLogin() {
 			console.log('test login');
 		}
-		watch(user, function (newvalue, oldvalue) {
-			console.log('old value from client ==>> ', oldvalue);
-			console.log('new value from client ==>> ', newvalue);
-		});
+		// watch(user, function (newvalue, oldvalue) {
+		// 	console.log('old value from client ==>> ', oldvalue);
+		// 	console.log('new value from client ==>> ', newvalue);
+		// });
+		// watch(config.is_google_login_enabled, function (newvalue, oldvalue) {
+		// 	console.log('old value from client ==>> ', oldvalue);
+		// 	console.log('new value from client ==>> ', newvalue);
+		// });
 		return {
 			onLogin,
 		};
