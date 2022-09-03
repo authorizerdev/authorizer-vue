@@ -1,12 +1,7 @@
 <template>
 	<div>
-		<!-- <AuthorizerSignup />
-		<AuthorizerBasicAuthLogin />
-		<AuthorizerMagicLinkLogin />
-		<AuthorizerForgotPassword />
-		<AuthorizerSocialLogin />
-		<AuthorizerResetPassword /> -->
-		<!-- <AuthorizerVerifyOtp /> -->
+		<h1 :style="{ textAlign: 'center' }">Welcome to Authorizer</h1>
+		<br />
 		<authorizer-root :onLogin="onLogin" />
 	</div>
 </template>
