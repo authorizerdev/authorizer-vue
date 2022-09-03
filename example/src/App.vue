@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Children from './components/Children.vue';
+import Children from './views/Children.vue';
 export default {
 	components: {
 		children: Children,
