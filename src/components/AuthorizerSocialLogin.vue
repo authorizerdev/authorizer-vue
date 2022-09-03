@@ -9,7 +9,7 @@
 					}
 				"
 			>
-				<!-- <Apple /> -->
+				<apple />
 				Sign in with Apple
 			</styled-button>
 			<br />
@@ -23,7 +23,7 @@
 					}
 				"
 			>
-				<!-- <Google /> -->
+				<google />
 				Sign in with Google
 			</styled-button>
 			<br />
@@ -37,7 +37,7 @@
 					}
 				"
 			>
-				<!-- <Github /> -->
+				<github />
 				Sign in with Github
 			</styled-button>
 			<br />
@@ -51,7 +51,7 @@
 					}
 				"
 			>
-				<!-- <Facebook /> -->
+				<facebook />
 				Sign in with Facebook
 			</styled-button>
 			<br />
@@ -65,7 +65,7 @@
 					}
 				"
 			>
-				<!-- <Linkedin /> -->
+				<linkedin />
 				Sign in with Linkedin
 			</styled-button>
 			<br />
@@ -89,12 +89,22 @@ import { StyledButton, StyledSeparator } from '../styles/index';
 import { ButtonAppearance } from '../constants/index';
 import globalConfig from '../state/globalConfig';
 import { computed, toRefs } from 'vue';
+import Google from '../icons/Google.vue';
+import Facebook from '../icons/Facebook.vue';
+import Github from '../icons/Github.vue';
+import Linkedin from '../icons/Linkedin.vue';
+import Apple from '../icons/Apple.vue';
 export default {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-separator': StyledSeparator,
+		google: Google,
+		github: Github,
+		facebook: Facebook,
+		linkedin: Linkedin,
+		apple: Apple,
 	},
 	setup({ urlProps }) {
 		const config = { ...toRefs(globalConfig) };
