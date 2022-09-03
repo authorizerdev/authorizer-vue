@@ -15,17 +15,17 @@
 				}"
 				:onStateChangeCallback="stateChangeCallback"
 			>
-				<children />
+				<login />
 			</authorizer-provider>
 		</div>
 	</div>
 </template>
 
 <script>
-import Children from './views/Children.vue';
+import Login from './views/Login.vue';
 export default {
 	components: {
-		children: Children,
+		login: Login,
 	},
 	setup() {
 		const stateChangeCallback = (state) => {

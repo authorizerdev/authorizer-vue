@@ -14,7 +14,7 @@
 <script>
 import { inject, watch } from 'vue';
 export default {
-	name: 'Children',
+	name: 'Login',
 	setup() {
 		const useAuthorizer = inject('useAuthorizer');
 		const { user } = useAuthorizer();
