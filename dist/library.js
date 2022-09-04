@@ -426,7 +426,7 @@ const StyledButton = Styled__default["default"]('button', props)`
   }
 `;
 
-Styled__default["default"]('span')`
+const StyledLink = Styled__default["default"]('span')`
   color: ${theme.colors.primary};
   cursor: pointer;
 `;
@@ -458,7 +458,7 @@ const StyledSeparator = Styled__default["default"]('div')`
   }
 `;
 
-Styled__default["default"]('div')`
+const StyledFooter = Styled__default["default"]('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -506,13 +506,50 @@ Styled__default["default"]('div', props)`
   `}
 `;
 
+const StyledFormGroup = Styled__default["default"]('div', props)`
+  width: 100%;
+  border: 0px;
+  background-color: #ffffff;
+  padding: 0 0 15px;
+  .form-input-label{
+    padding: 2.5px;
+    span {
+      color: red;
+    }
+  }
+  .form-input-field{
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: ${theme.radius.input};
+    border: 1px;
+    border-style: solid;
+    border-color: ${(props) =>
+			props.hasError ? theme.colors.danger : theme.colors.textColor};
+    :focus {
+      ${(props) => props.hasError && `outline-color: ${theme.colors.danger}`};
+    }
+  }
+  .form-input-error {
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+  }
+`;
+
 var script$c = {
 	name: 'AuthorizerBasicAuthLogin',
-	props: ['urlProps'],
+	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
+		'styled-form-group': StyledFormGroup,
+		'styled-footer': StyledFooter,
+		'styled-link': StyledLink,
 	},
-	setup() {
+	setup({ setView, onLogin, urlProps }) {
 		const formData = vue.reactive({
 			email: null,
 			password: null,
@@ -532,80 +569,129 @@ var script$c = {
 			passwordError,
 			onSubmit,
 			ButtonAppearance,
+			setView,
+			Views,
+			config: { ...vue.toRefs(globalConfig) },
 		};
 	},
 };
 
-const _hoisted_1$7 = /*#__PURE__*/vue.createTextVNode(" *");
-const _hoisted_2$2 = /*#__PURE__*/vue.createElementVNode("label", { for: "" }, "Email", -1 /* HOISTED */);
-const _hoisted_3$1 = /*#__PURE__*/vue.createElementVNode("div", { class: "pre-icon os-icon os-icon-user-male-circle" }, null, -1 /* HOISTED */);
+const _hoisted_1$7 = /*#__PURE__*/vue.createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/vue.createElementVNode("span", null, "* "),
+  /*#__PURE__*/vue.createTextVNode("Email")
+], -1 /* HOISTED */);
+const _hoisted_2$2 = {
+  key: 0,
+  class: "form-input-error"
+};
+const _hoisted_3$1 = /*#__PURE__*/vue.createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/vue.createElementVNode("span", null, "* "),
+  /*#__PURE__*/vue.createTextVNode("Password")
+], -1 /* HOISTED */);
 const _hoisted_4$1 = {
   key: 0,
-  class: "error-msg"
+  class: "form-input-error"
 };
-const _hoisted_5$1 = /*#__PURE__*/vue.createTextVNode(" *");
-const _hoisted_6$1 = /*#__PURE__*/vue.createElementVNode("label", { for: "" }, "Password", -1 /* HOISTED */);
-const _hoisted_7$1 = /*#__PURE__*/vue.createElementVNode("div", { class: "pre-icon os-icon os-icon-fingerprint" }, null, -1 /* HOISTED */);
-const _hoisted_8$1 = {
-  key: 0,
-  class: "error-msg"
-};
-const _hoisted_9$1 = /*#__PURE__*/vue.createTextVNode(" Login ");
+const _hoisted_5$1 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$1 = /*#__PURE__*/vue.createTextVNode(" Login ");
+const _hoisted_7$1 = /*#__PURE__*/vue.createTextVNode(" Forgot Password? ");
+const _hoisted_8$1 = { key: 0 };
+const _hoisted_9$1 = /*#__PURE__*/vue.createTextVNode(" Don't have an account? ");
+const _hoisted_10$1 = /*#__PURE__*/vue.createTextVNode("Sign Up");
 
 function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_styled_form_group = vue.resolveComponent("styled-form-group");
   const _component_styled_button = vue.resolveComponent("styled-button");
+  const _component_styled_link = vue.resolveComponent("styled-link");
+  const _component_styled_footer = vue.resolveComponent("styled-footer");
 
-  return (vue.openBlock(), vue.createElementBlock("form", {
-    onSubmit: _cache[2] || (_cache[2] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
-  }, [
-    vue.createCommentVNode(" Email "),
-    vue.createElementVNode("div", {
-      class: vue.normalizeClass(["form-group", { error: $setup.emailError }])
+  return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+    vue.createElementVNode("form", {
+      onSubmit: _cache[2] || (_cache[2] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
     }, [
-      _hoisted_1$7,
-      _hoisted_2$2,
-      vue.withDirectives(vue.createElementVNode("input", {
-        class: "form-control",
-        placeholder: "Enter your username",
-        type: "email",
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
-      }, null, 512 /* NEED_PATCH */), [
-        [vue.vModelText, _ctx.email]
-      ]),
-      _hoisted_3$1,
-      ($setup.emailError)
-        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$1, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
-        : vue.createCommentVNode("v-if", true)
-    ], 2 /* CLASS */),
-    vue.createCommentVNode(" password "),
-    vue.createElementVNode("div", {
-      class: vue.normalizeClass(["form-group", { error: $setup.passwordError }])
-    }, [
+      vue.createCommentVNode(" Email "),
+      vue.createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
+        default: vue.withCtx(() => [
+          _hoisted_1$7,
+          vue.withDirectives(vue.createElementVNode("input", {
+            class: "form-input-field",
+            placeholder: "eg. foo@bar.com",
+            type: "email",
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
+          }, null, 512 /* NEED_PATCH */), [
+            [vue.vModelText, _ctx.email]
+          ]),
+          ($setup.emailError)
+            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$2, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
+            : vue.createCommentVNode("v-if", true)
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["hasError"]),
+      vue.createCommentVNode(" password "),
+      vue.createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
+        default: vue.withCtx(() => [
+          _hoisted_3$1,
+          vue.withDirectives(vue.createElementVNode("input", {
+            class: "form-input-field",
+            placeholder: "********",
+            type: "password",
+            "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ((_ctx.password) = $event))
+          }, null, 512 /* NEED_PATCH */), [
+            [vue.vModelText, _ctx.password]
+          ]),
+          ($setup.passwordError)
+            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$1, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
+            : vue.createCommentVNode("v-if", true)
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["hasError"]),
       _hoisted_5$1,
-      _hoisted_6$1,
-      vue.withDirectives(vue.createElementVNode("input", {
-        class: "form-control",
-        placeholder: "Enter your password",
-        type: "password",
-        "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ((_ctx.password) = $event))
-      }, null, 512 /* NEED_PATCH */), [
-        [vue.vModelText, _ctx.password]
-      ]),
-      _hoisted_7$1,
-      ($setup.passwordError)
-        ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$1, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
-        : vue.createCommentVNode("v-if", true)
-    ], 2 /* CLASS */),
-    vue.createVNode(_component_styled_button, {
-      appearance: $setup.ButtonAppearance.Primary,
-      disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
-    }, {
-      default: vue.withCtx(() => [
-        _hoisted_9$1
-      ]),
-      _: 1 /* STABLE */
-    }, 8 /* PROPS */, ["appearance", "disabled"])
-  ], 32 /* HYDRATE_EVENTS */))
+      vue.createVNode(_component_styled_button, {
+        appearance: $setup.ButtonAppearance.Primary,
+        disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
+      }, {
+        default: vue.withCtx(() => [
+          _hoisted_6$1
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["appearance", "disabled"])
+    ], 32 /* HYDRATE_EVENTS */),
+    ($setup.setView)
+      ? (vue.openBlock(), vue.createBlock(_component_styled_footer, { key: 0 }, {
+          default: vue.withCtx(() => [
+            vue.createVNode(_component_styled_link, {
+              onClick: _cache[3] || (_cache[3] = () => $setup.setView($setup.Views.ForgotPassword)),
+              style: { marginBottom: '10px' }
+            }, {
+              default: vue.withCtx(() => [
+                _hoisted_7$1
+              ]),
+              _: 1 /* STABLE */
+            }),
+            ($setup.config.is_sign_up_enabled.value)
+              ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$1, [
+                  _hoisted_9$1,
+                  vue.createVNode(_component_styled_link, {
+                    onClick: _cache[4] || (_cache[4] = () => $setup.setView($setup.Views.Signup))
+                  }, {
+                    default: vue.withCtx(() => [
+                      _hoisted_10$1
+                    ]),
+                    _: 1 /* STABLE */
+                  })
+                ]))
+              : vue.createCommentVNode("v-if", true)
+          ]),
+          _: 1 /* STABLE */
+        }))
+      : vue.createCommentVNode("v-if", true)
+  ], 64 /* STABLE_FRAGMENT */))
 }
 
 script$c.render = render$c;
