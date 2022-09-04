@@ -897,7 +897,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["appearance", "disabled"])
     ], 32 /* HYDRATE_EVENTS */),
-    ($props.setView)
+    ($setup.setView)
       ? (openBlock(), createBlock(_component_styled_footer, { key: 2 }, {
           default: withCtx(() => [
             (_ctx.sendingOtp)
@@ -916,7 +916,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
               ? (openBlock(), createElementBlock("div", _hoisted_10$2, [
                   _hoisted_11$2,
                   createVNode(_component_styled_link, {
-                    onClick: _cache[2] || (_cache[2] = () => $props.setView($setup.Views.Signup))
+                    onClick: _cache[2] || (_cache[2] = () => $setup.setView($setup.Views.Signup))
                   }, {
                     default: withCtx(() => [
                       _hoisted_12$2
