@@ -7,62 +7,71 @@
 		/>
 	</template>
 	<template v-else>
-		<form @submit.prevent="onSubmit">
-			<!-- Email -->
-			<styled-form-group :hasError="emailError">
-				<label class="form-input-label" for=""><span>* </span>Email</label>
-				<input
-					class="form-input-field"
-					placeholder="eg. foo@bar.com"
-					type="email"
-					v-model="email"
+		<div>
+			<template v-if="error">
+				<message
+					:type="MessageType.Error"
+					:text="error"
+					@close="onErrorClose"
 				/>
-				<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
-			</styled-form-group>
+			</template>
+			<form @submit.prevent="onSubmit">
+				<!-- Email -->
+				<styled-form-group :hasError="emailError">
+					<label class="form-input-label" for=""><span>* </span>Email</label>
+					<input
+						class="form-input-field"
+						placeholder="eg. foo@bar.com"
+						type="email"
+						v-model="email"
+					/>
+					<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
+				</styled-form-group>
 
-			<!-- password -->
-			<styled-form-group :hasError="passwordError">
-				<label class="form-input-label" for=""><span>* </span>Password</label>
-				<input
-					class="form-input-field"
-					placeholder="********"
-					type="password"
-					v-model="password"
-				/>
-				<div v-if="passwordError" class="form-input-error">
-					{{ passwordError }}
-				</div>
-			</styled-form-group>
-			<br />
-			<styled-button
-				:appearance="ButtonAppearance.Primary"
-				:disabled="emailError || passwordError || !email || !password"
-			>
-				<template v-if="loading">Processing ...</template>
-				<template v-else>Log In</template>
-			</styled-button>
-		</form>
-		<template v-if="setView">
-			<styled-footer>
-				<styled-link
-					@click="() => setView(Views.ForgotPassword)"
-					:style="{ marginBottom: '10px' }"
+				<!-- password -->
+				<styled-form-group :hasError="passwordError">
+					<label class="form-input-label" for=""><span>* </span>Password</label>
+					<input
+						class="form-input-field"
+						placeholder="********"
+						type="password"
+						v-model="password"
+					/>
+					<div v-if="passwordError" class="form-input-error">
+						{{ passwordError }}
+					</div>
+				</styled-form-group>
+				<br />
+				<styled-button
+					:appearance="ButtonAppearance.Primary"
+					:disabled="emailError || passwordError || !email || !password"
 				>
-					Forgot Password?
-				</styled-link>
-				<div v-if="config.is_sign_up_enabled.value">
-					Don't have an account?
-					<styled-link @click="() => setView(Views.Signup)"
-						>Sign Up</styled-link
+					<template v-if="loading">Processing ...</template>
+					<template v-else>Log In</template>
+				</styled-button>
+			</form>
+			<template v-if="setView">
+				<styled-footer>
+					<styled-link
+						@click="() => setView(Views.ForgotPassword)"
+						:style="{ marginBottom: '10px' }"
 					>
-				</div>
-			</styled-footer>
-		</template>
+						Forgot Password?
+					</styled-link>
+					<div v-if="config.is_sign_up_enabled.value">
+						Don't have an account?
+						<styled-link @click="() => setView(Views.Signup)"
+							>Sign Up</styled-link
+						>
+					</div>
+				</styled-footer>
+			</template>
+		</div>
 	</template>
 </template>
 
 <script>
-import { reactive, toRefs, computed, ref } from 'vue';
+import { reactive, toRefs, computed } from 'vue';
 import {
 	StyledButton,
 	StyledFormGroup,
@@ -75,6 +84,8 @@ import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
 import { validateEmail } from '../utils/common';
 import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
+import Message from './Message.vue';
+import { MessageType } from '../constants/index';
 export default {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
@@ -84,12 +95,15 @@ export default {
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
 		'authorizer-verify-otp': AuthorizerVerifyOtp,
+		message: Message,
 	},
 	setup({ setView, onLogin, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
-		const loading = ref(false);
-		const error = ref(null);
+		const componentState = reactive({
+			loading: false,
+			error: null,
+		});
 		const otpData = reactive({
 			isScreenVisible: false,
 			email: null,
@@ -111,8 +125,11 @@ export default {
 				return 'Password is required';
 			}
 		});
+		const onErrorClose = () => {
+			componentState.error = null;
+		};
 		const onSubmit = async () => {
-			loading.value = true;
+			componentState.loading = true;
 			try {
 				const data = {
 					email: formData.email,
@@ -130,7 +147,7 @@ export default {
 					return;
 				}
 				if (res) {
-					error.value = null;
+					componentState.error = null;
 					setAuthData.value({
 						user: res.user || null,
 						token: {
@@ -147,12 +164,14 @@ export default {
 					onLogin(res);
 				}
 			} catch (error) {
-				loading.value = false;
-				error.value = error.message;
+				componentState.loading = false;
+				componentState.error = error.message;
 			}
 		};
 		return {
 			...toRefs(formData),
+			...toRefs(componentState),
+			otpData: { ...toRefs(otpData) },
 			emailError,
 			passwordError,
 			onSubmit,
@@ -160,9 +179,8 @@ export default {
 			setView,
 			Views,
 			config,
-			error,
-			loading,
-			otpData: { ...toRefs(otpData) },
+			MessageType,
+			onErrorClose,
 		};
 	},
 };

@@ -1,4 +1,4 @@
-import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, ref, resolveComponent, createBlock, Fragment, createElementVNode, withModifiers, createCommentVNode, createVNode, withCtx, withDirectives, vModelText, toDisplayString, createTextVNode, normalizeStyle, renderSlot } from 'vue';
+import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, normalizeStyle, renderSlot, resolveComponent, createBlock, withCtx, createElementVNode, createVNode, toDisplayString, createCommentVNode, withModifiers, withDirectives, vModelText, Fragment, createTextVNode } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css } from 'vue3-styled-components';
 
@@ -21,6 +21,11 @@ const Views = {
 const ButtonAppearance = {
 	Primary: 'Primary',
 	Default: 'Default',
+};
+
+const MessageType = {
+	Error: 'Error',
+	Success: 'Success',
 };
 
 var globalState = reactive({
@@ -51,7 +56,7 @@ var globalConfig = reactive({
 	is_strong_password_enabled: true,
 });
 
-var script$e = {
+var script$g = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -270,18 +275,18 @@ var script$e = {
 	},
 };
 
-script$e.__file = "src/components/AuthorizerProvider.vue";
+script$g.__file = "src/components/AuthorizerProvider.vue";
 
-var script$d = {
+var script$f = {
 	name: 'AuthorizerSignup',
 };
 
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer Signup Component"))
 }
 
-script$d.render = render$d;
-script$d.__file = "src/components/AuthorizerSignup.vue";
+script$f.render = render$f;
+script$f.__file = "src/components/AuthorizerSignup.vue";
 
 const sizes = {
 	sm: 576,
@@ -460,7 +465,7 @@ const StyledFooter = Styled('div')`
   margin-top: 15px;
 `;
 
-Styled('div', props)`
+const StyledMessageWrapper = Styled('div', props)`
   padding: 10px;
   color: white;
   border-radius: ${theme.radius.card};
@@ -478,7 +483,7 @@ Styled('div', props)`
   `};
 `;
 
-Styled('div', props)`
+const StyledFlex = Styled('div', props)`
   display: flex;
   flex-direction: ${({ flexDirection, isResponsive }) =>
 		isResponsive && flexDirection !== 'column'
@@ -566,18 +571,149 @@ const validateEmail = (email) => {
 		);
 };
 
-var script$c = {
+const capitalizeFirstLetter = (data) => {
+	return data.charAt(0).toUpperCase() + data.slice(1);
+};
+
+var script$e = {
 	name: 'AuthorizerVerifyOtp',
 };
 
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("div", null, "Authorizer VerifyOtp Component"))
 }
 
+script$e.render = render$e;
+script$e.__file = "src/components/AuthorizerVerifyOtp.vue";
+
+var script$d = {
+	name: 'IconRoot',
+	props: ['height', 'width', 'viewBox', 'style'],
+	setup(props) {
+		const rootStyle = { userSelect: 'none' };
+		const composedStyle = computed(function () {
+			return { ...rootStyle, ...props.style };
+		});
+		return {
+			height: props?.height || 16,
+			width: props?.width || 16,
+			viewBox: props.viewBox,
+			style: composedStyle,
+		};
+	},
+};
+
+const _hoisted_1$9 = ["viewBox", "width", "height"];
+
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("svg", {
+    viewBox: $setup.viewBox,
+    width: $setup.width,
+    height: $setup.height,
+    style: normalizeStyle($setup.style)
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 12 /* STYLE, PROPS */, _hoisted_1$9))
+}
+
+script$d.render = render$d;
+script$d.__file = "src/components/IconRoot.vue";
+
+var script$c = {
+	name: 'Close',
+	props: ['height', 'width'],
+	components: {
+		'icon-root': script$d,
+	},
+	setup(props) {
+		return {
+			height: props.height,
+			width: props.width,
+		};
+	},
+};
+
+const _hoisted_1$8 = /*#__PURE__*/createElementVNode("g", null, [
+  /*#__PURE__*/createElementVNode("path", {
+    fill: "#ffffff",
+    d: "M617.2,495.8l349.1,350.9c31.7,31.8,31.7,83.5,0,115.3c-31.7,31.9-83.1,31.9-114.8,0L502.4,611.2L149.8,965.6c-32,32.2-83.8,32.2-115.8,0c-32-32.1-32-84.3,0-116.4l352.6-354.5L48.2,154.6c-31.7-31.9-31.7-83.5,0-115.4c31.7-31.9,83.1-31.9,114.7,0l338.4,340.2l343.3-345c32-32.1,83.8-32.1,115.8,0c32,32.2,32,84.3,0,116.4L617.2,495.8z"
+  })
+], -1 /* HOISTED */);
+
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_icon_root = resolveComponent("icon-root");
+
+  return (openBlock(), createBlock(_component_icon_root, {
+    width: $setup.width,
+    height: $setup.height,
+    viewBox: '0 0 1000 1000'
+  }, {
+    default: withCtx(() => [
+      _hoisted_1$8
+    ]),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["width", "height"]))
+}
+
 script$c.render = render$c;
-script$c.__file = "src/components/AuthorizerVerifyOtp.vue";
+script$c.__file = "src/icons/Close.vue";
 
 var script$b = {
+	name: 'Message',
+	props: ['type', 'text', 'onClose'],
+	components: {
+		'styled-message-wrapper': StyledMessageWrapper,
+		'styled-flex': StyledFlex,
+		close: script$c,
+	},
+	setup({ type, text, onClose }) {
+		return {
+			type,
+			text: capitalizeFirstLetter(text),
+			onClose,
+		};
+	},
+};
+
+const _hoisted_1$7 = { style: { flex: 1 } };
+
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_close = resolveComponent("close");
+  const _component_styled_flex = resolveComponent("styled-flex");
+  const _component_styled_message_wrapper = resolveComponent("styled-message-wrapper");
+
+  return (openBlock(), createBlock(_component_styled_message_wrapper, { type: $setup.type }, {
+    default: withCtx(() => [
+      createVNode(_component_styled_flex, {
+        alignItems: "center",
+        justifyContent: "space-between"
+      }, {
+        default: withCtx(() => [
+          createElementVNode("div", _hoisted_1$7, toDisplayString($setup.text), 1 /* TEXT */),
+          ($setup.onClose)
+            ? (openBlock(), createElementBlock("span", {
+                key: 0,
+                style: { cursor: 'pointer' },
+                onClick: _cache[0] || (_cache[0] = (...args) => ($setup.onClose && $setup.onClose(...args)))
+              }, [
+                createVNode(_component_close, {
+                  height: "10px",
+                  width: "10px"
+                })
+              ]))
+            : createCommentVNode("v-if", true)
+        ]),
+        _: 1 /* STABLE */
+      })
+    ]),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["type"]))
+}
+
+script$b.render = render$b;
+script$b.__file = "src/components/Message.vue";
+
+var script$a = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
@@ -585,13 +721,16 @@ var script$b = {
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		'authorizer-verify-otp': script$c,
+		'authorizer-verify-otp': script$e,
+		message: script$b,
 	},
 	setup({ setView, onLogin, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
-		const loading = ref(false);
-		const error = ref(null);
+		const componentState = reactive({
+			loading: false,
+			error: null,
+		});
 		const otpData = reactive({
 			isScreenVisible: false,
 			email: null,
@@ -613,8 +752,11 @@ var script$b = {
 				return 'Password is required';
 			}
 		});
+		const onErrorClose = () => {
+			componentState.error = null;
+		};
 		const onSubmit = async () => {
-			loading.value = true;
+			componentState.loading = true;
 			try {
 				const data = {
 					email: formData.email,
@@ -632,7 +774,7 @@ var script$b = {
 					return;
 				}
 				if (res) {
-					error.value = null;
+					componentState.error = null;
 					setAuthData.value({
 						user: res.user || null,
 						token: {
@@ -649,12 +791,14 @@ var script$b = {
 					onLogin(res);
 				}
 			} catch (error) {
-				loading.value = false;
-				error.value = error.message;
+				componentState.loading = false;
+				componentState.error = error.message;
 			}
 		};
 		return {
 			...toRefs(formData),
+			...toRefs(componentState),
+			otpData: { ...toRefs(otpData) },
 			emailError,
 			passwordError,
 			onSubmit,
@@ -662,45 +806,46 @@ var script$b = {
 			setView,
 			Views,
 			config,
-			error,
-			loading,
-			otpData: { ...toRefs(otpData) },
+			MessageType,
+			onErrorClose,
 		};
 	},
 };
 
-const _hoisted_1$7 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_1$6 = { key: 1 };
+const _hoisted_2$2 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
 ], -1 /* HOISTED */);
-const _hoisted_2$2 = {
+const _hoisted_3$1 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_3$1 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_4$1 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Password")
 ], -1 /* HOISTED */);
-const _hoisted_4$1 = {
+const _hoisted_5$1 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_5$1 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6$1 = /*#__PURE__*/createTextVNode("Processing ...");
-const _hoisted_7$1 = /*#__PURE__*/createTextVNode("Log In");
-const _hoisted_8$1 = /*#__PURE__*/createTextVNode(" Forgot Password? ");
-const _hoisted_9$1 = { key: 0 };
-const _hoisted_10$1 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
-const _hoisted_11$1 = /*#__PURE__*/createTextVNode("Sign Up");
+const _hoisted_6$1 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_7$1 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_8$1 = /*#__PURE__*/createTextVNode("Log In");
+const _hoisted_9$1 = /*#__PURE__*/createTextVNode(" Forgot Password? ");
+const _hoisted_10$1 = { key: 0 };
+const _hoisted_11$1 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
+const _hoisted_12$1 = /*#__PURE__*/createTextVNode("Sign Up");
 
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_authorizer_verify_otp = resolveComponent("authorizer-verify-otp");
+  const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_styled_button = resolveComponent("styled-button");
   const _component_styled_link = resolveComponent("styled-link");
@@ -713,14 +858,22 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         onLogin: $props.onLogin,
         email: $setup.otpData.email.value
       }, null, 8 /* PROPS */, ["setView", "onLogin", "email"]))
-    : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+    : (openBlock(), createElementBlock("div", _hoisted_1$6, [
+        (_ctx.error)
+          ? (openBlock(), createBlock(_component_message, {
+              key: 0,
+              type: $setup.MessageType.Error,
+              text: _ctx.error,
+              onClose: $setup.onErrorClose
+            }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
+          : createCommentVNode("v-if", true),
         createElementVNode("form", {
           onSubmit: _cache[2] || (_cache[2] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
         }, [
           createCommentVNode(" Email "),
           createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: withCtx(() => [
-              _hoisted_1$7,
+              _hoisted_2$2,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -730,7 +883,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
                 [vModelText, _ctx.email]
               ]),
               ($setup.emailError)
-                ? (openBlock(), createElementBlock("div", _hoisted_2$2, toDisplayString($setup.emailError), 1 /* TEXT */))
+                ? (openBlock(), createElementBlock("div", _hoisted_3$1, toDisplayString($setup.emailError), 1 /* TEXT */))
                 : createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -738,7 +891,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" password "),
           createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
             default: withCtx(() => [
-              _hoisted_3$1,
+              _hoisted_4$1,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "********",
@@ -748,48 +901,48 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
                 [vModelText, _ctx.password]
               ]),
               ($setup.passwordError)
-                ? (openBlock(), createElementBlock("div", _hoisted_4$1, toDisplayString($setup.passwordError), 1 /* TEXT */))
+                ? (openBlock(), createElementBlock("div", _hoisted_5$1, toDisplayString($setup.passwordError), 1 /* TEXT */))
                 : createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["hasError"]),
-          _hoisted_5$1,
+          _hoisted_6$1,
           createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
           }, {
             default: withCtx(() => [
-              ($setup.loading)
+              (_ctx.loading)
                 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                    _hoisted_6$1
+                    _hoisted_7$1
                   ], 64 /* STABLE_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                    _hoisted_7$1
+                    _hoisted_8$1
                   ], 64 /* STABLE_FRAGMENT */))
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance", "disabled"])
         ], 32 /* HYDRATE_EVENTS */),
         ($setup.setView)
-          ? (openBlock(), createBlock(_component_styled_footer, { key: 0 }, {
+          ? (openBlock(), createBlock(_component_styled_footer, { key: 1 }, {
               default: withCtx(() => [
                 createVNode(_component_styled_link, {
                   onClick: _cache[3] || (_cache[3] = () => $setup.setView($setup.Views.ForgotPassword)),
                   style: { marginBottom: '10px' }
                 }, {
                   default: withCtx(() => [
-                    _hoisted_8$1
+                    _hoisted_9$1
                   ]),
                   _: 1 /* STABLE */
                 }),
                 ($setup.config.is_sign_up_enabled.value)
-                  ? (openBlock(), createElementBlock("div", _hoisted_9$1, [
-                      _hoisted_10$1,
+                  ? (openBlock(), createElementBlock("div", _hoisted_10$1, [
+                      _hoisted_11$1,
                       createVNode(_component_styled_link, {
                         onClick: _cache[4] || (_cache[4] = () => $setup.setView($setup.Views.Signup))
                       }, {
                         default: withCtx(() => [
-                          _hoisted_11$1
+                          _hoisted_12$1
                         ]),
                         _: 1 /* STABLE */
                       })
@@ -799,71 +952,38 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }))
           : createCommentVNode("v-if", true)
-      ], 64 /* STABLE_FRAGMENT */))
-}
-
-script$b.render = render$b;
-script$b.__file = "src/components/AuthorizerBasicAuthLogin.vue";
-
-var script$a = {
-	name: 'AuthorizerMagicLinkLogin',
-};
-
-function render$a(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer MagicLinkLogin Component"))
+      ]))
 }
 
 script$a.render = render$a;
-script$a.__file = "src/components/AuthorizerMagicLinkLogin.vue";
+script$a.__file = "src/components/AuthorizerBasicAuthLogin.vue";
 
 var script$9 = {
-	name: 'AuthorizerForgotPassword',
+	name: 'AuthorizerMagicLinkLogin',
 };
 
 function render$9(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
+  return (openBlock(), createElementBlock("div", null, "Authorizer MagicLinkLogin Component"))
 }
 
 script$9.render = render$9;
-script$9.__file = "src/components/AuthorizerForgotPassword.vue";
+script$9.__file = "src/components/AuthorizerMagicLinkLogin.vue";
 
 var script$8 = {
-	name: 'IconRoot',
-	props: ['height', 'width', 'viewBox', 'style'],
-	setup(props) {
-		const rootStyle = { userSelect: 'none' };
-		const composedStyle = computed(function () {
-			return { ...rootStyle, ...props.style };
-		});
-		return {
-			height: props?.height || 16,
-			width: props?.width || 16,
-			viewBox: props.viewBox,
-			style: composedStyle,
-		};
-	},
+	name: 'AuthorizerForgotPassword',
 };
 
-const _hoisted_1$6 = ["viewBox", "width", "height"];
-
 function render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("svg", {
-    viewBox: $setup.viewBox,
-    width: $setup.width,
-    height: $setup.height,
-    style: normalizeStyle($setup.style)
-  }, [
-    renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$6))
+  return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
 }
 
 script$8.render = render$8;
-script$8.__file = "src/components/IconRoot.vue";
+script$8.__file = "src/components/AuthorizerForgotPassword.vue";
 
 var script$7 = {
 	name: 'Google',
 	components: {
-		'icon-root': script$8,
+		'icon-root': script$d,
 	},
 };
 
@@ -906,7 +1026,7 @@ script$7.__file = "src/icons/Google.vue";
 var script$6 = {
 	name: 'Facebook',
 	components: {
-		'icon-root': script$8,
+		'icon-root': script$d,
 	},
 };
 
@@ -934,7 +1054,7 @@ script$6.__file = "src/icons/Facebook.vue";
 var script$5 = {
 	name: 'Github',
 	components: {
-		'icon-root': script$8,
+		'icon-root': script$d,
 	},
 };
 
@@ -964,7 +1084,7 @@ script$5.__file = "src/icons/Github.vue";
 var script$4 = {
 	name: 'Linkedin',
 	components: {
-		'icon-root': script$8,
+		'icon-root': script$d,
 	},
 };
 
@@ -1000,7 +1120,7 @@ script$4.__file = "src/icons/Linkedin.vue";
 var script$3 = {
 	name: 'Apple',
 	components: {
-		'icon-root': script$8,
+		'icon-root': script$d,
 	},
 };
 
@@ -1218,10 +1338,10 @@ var script = {
 	components: {
 		'styled-wrapper': StyledWrapper,
 		'authorizer-social-login': script$2,
-		'authorizer-signup': script$d,
-		'authorizer-magic-link-login': script$a,
-		'authorizer-forgot-password': script$9,
-		'authorizer-basic-auth-login': script$b,
+		'authorizer-signup': script$f,
+		'authorizer-magic-link-login': script$9,
+		'authorizer-forgot-password': script$8,
+		'authorizer-basic-auth-login': script$a,
 	},
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup(props) {
@@ -1321,14 +1441,14 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$e,
-	AuthorizerSignup: script$d,
-	AuthorizerBasicAuthLogin: script$b,
-	AuthorizerMagicLinkLogin: script$a,
-	AuthorizerForgotPassword: script$9,
+	AuthorizerProvider: script$g,
+	AuthorizerSignup: script$f,
+	AuthorizerBasicAuthLogin: script$a,
+	AuthorizerMagicLinkLogin: script$9,
+	AuthorizerForgotPassword: script$8,
 	AuthorizerSocialLogin: script$2,
 	AuthorizerResetPassword: script$1,
-	AuthorizerVerifyOtp: script$c,
+	AuthorizerVerifyOtp: script$e,
 	AuthorizerRoot: script,
 };
 
