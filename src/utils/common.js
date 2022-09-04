@@ -32,7 +32,7 @@ export const createQueryParams = (params) => {
 		.join('&');
 };
 
-export const validateEmail = (email) => {
+export const isValidEmail = (email) => {
 	return String(email)
 		.toLowerCase()
 		.match(
@@ -41,5 +41,10 @@ export const validateEmail = (email) => {
 };
 
 export const capitalizeFirstLetter = (data) => {
-	return data.charAt(0).toUpperCase() + data.slice(1);
+	return data ? data.charAt(0).toUpperCase() + data.slice(1) : null;
+};
+
+export const isValidOtp = (otp) => {
+	const re = /^([A-Z0-9]{6})$/;
+	return otp && re.test(String(otp.trim()));
 };

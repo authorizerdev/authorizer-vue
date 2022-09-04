@@ -82,7 +82,7 @@ import { ButtonAppearance } from '../constants/index';
 import { Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { validateEmail } from '../utils/common';
+import { isValidEmail } from '../utils/common';
 import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
 import Message from './Message.vue';
 import { MessageType } from '../constants/index';
@@ -116,7 +116,7 @@ export default {
 			if (formData.email === '') {
 				return 'Email is required';
 			}
-			if (formData.email && !validateEmail(formData.email)) {
+			if (formData.email && !isValidEmail(formData.email)) {
 				return 'Please enter valid email';
 			}
 		});

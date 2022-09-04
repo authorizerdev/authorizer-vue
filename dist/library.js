@@ -569,7 +569,7 @@ const createQueryParams = (params) => {
 		.join('&');
 };
 
-const validateEmail = (email) => {
+const isValidEmail = (email) => {
 	return String(email)
 		.toLowerCase()
 		.match(
@@ -578,21 +578,15 @@ const validateEmail = (email) => {
 };
 
 const capitalizeFirstLetter = (data) => {
-	return data.charAt(0).toUpperCase() + data.slice(1);
+	return data ? data.charAt(0).toUpperCase() + data.slice(1) : null;
+};
+
+const isValidOtp = (otp) => {
+	const re = /^([A-Z0-9]{6})$/;
+	return otp && re.test(String(otp.trim()));
 };
 
 var script$e = {
-	name: 'AuthorizerVerifyOtp',
-};
-
-function render$e(_ctx, _cache, $props, $setup, $data, $options) {
-  return (vue.openBlock(), vue.createElementBlock("div", null, "Authorizer VerifyOtp Component"))
-}
-
-script$e.render = render$e;
-script$e.__file = "src/components/AuthorizerVerifyOtp.vue";
-
-var script$d = {
 	name: 'IconRoot',
 	props: ['height', 'width', 'viewBox', 'style'],
 	setup(props) {
@@ -609,9 +603,9 @@ var script$d = {
 	},
 };
 
-const _hoisted_1$9 = ["viewBox", "width", "height"];
+const _hoisted_1$a = ["viewBox", "width", "height"];
 
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
     viewBox: $setup.viewBox,
     width: $setup.width,
@@ -619,17 +613,17 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
     style: vue.normalizeStyle($setup.style)
   }, [
     vue.renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$9))
+  ], 12 /* STYLE, PROPS */, _hoisted_1$a))
 }
 
-script$d.render = render$d;
-script$d.__file = "src/components/IconRoot.vue";
+script$e.render = render$e;
+script$e.__file = "src/components/IconRoot.vue";
 
-var script$c = {
+var script$d = {
 	name: 'Close',
 	props: ['height', 'width'],
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 	setup(props) {
 		return {
@@ -639,14 +633,14 @@ var script$c = {
 	},
 };
 
-const _hoisted_1$8 = /*#__PURE__*/vue.createElementVNode("g", null, [
+const _hoisted_1$9 = /*#__PURE__*/vue.createElementVNode("g", null, [
   /*#__PURE__*/vue.createElementVNode("path", {
     fill: "#ffffff",
     d: "M617.2,495.8l349.1,350.9c31.7,31.8,31.7,83.5,0,115.3c-31.7,31.9-83.1,31.9-114.8,0L502.4,611.2L149.8,965.6c-32,32.2-83.8,32.2-115.8,0c-32-32.1-32-84.3,0-116.4l352.6-354.5L48.2,154.6c-31.7-31.9-31.7-83.5,0-115.4c31.7-31.9,83.1-31.9,114.7,0l338.4,340.2l343.3-345c32-32.1,83.8-32.1,115.8,0c32,32.2,32,84.3,0,116.4L617.2,495.8z"
   })
 ], -1 /* HOISTED */);
 
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = vue.resolveComponent("icon-root");
 
   return (vue.openBlock(), vue.createBlock(_component_icon_root, {
@@ -655,22 +649,22 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 1000 1000'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$8
+      _hoisted_1$9
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["width", "height"]))
 }
 
-script$c.render = render$c;
-script$c.__file = "src/icons/Close.vue";
+script$d.render = render$d;
+script$d.__file = "src/icons/Close.vue";
 
-var script$b = {
+var script$c = {
 	name: 'Message',
 	props: ['type', 'text', 'onClose'],
 	components: {
 		'styled-message-wrapper': StyledMessageWrapper,
 		'styled-flex': StyledFlex,
-		close: script$c,
+		close: script$d,
 	},
 	setup({ type, text, onClose }) {
 		return {
@@ -681,9 +675,9 @@ var script$b = {
 	},
 };
 
-const _hoisted_1$7 = { style: { flex: 1 } };
+const _hoisted_1$8 = { style: { flex: 1 } };
 
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_close = vue.resolveComponent("close");
   const _component_styled_flex = vue.resolveComponent("styled-flex");
   const _component_styled_message_wrapper = vue.resolveComponent("styled-message-wrapper");
@@ -695,7 +689,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         justifyContent: "space-between"
       }, {
         default: vue.withCtx(() => [
-          vue.createElementVNode("div", _hoisted_1$7, vue.toDisplayString($setup.text), 1 /* TEXT */),
+          vue.createElementVNode("div", _hoisted_1$8, vue.toDisplayString($setup.text), 1 /* TEXT */),
           ($setup.onClose)
             ? (vue.openBlock(), vue.createElementBlock("span", {
                 key: 0,
@@ -716,8 +710,190 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8 /* PROPS */, ["type"]))
 }
 
+script$c.render = render$c;
+script$c.__file = "src/components/Message.vue";
+
+var script$b = {
+	name: 'AuthorizerVerifyOtp',
+	props: ['setView', 'onLogin', 'email'],
+	components: {
+		'styled-button': StyledButton,
+		'styled-form-group': StyledFormGroup,
+		'styled-footer': StyledFooter,
+		'styled-link': StyledLink,
+		message: script$c,
+	},
+	setup({ setView, onLogin, email }) {
+		const config = { ...vue.toRefs(globalConfig) };
+		({ ...vue.toRefs(globalState) });
+		const componentState = vue.reactive({
+			error: null,
+			successMessage: null,
+			loading: false,
+			sendingOtp: false,
+			otp: null,
+		});
+		const otpError = vue.computed(() => {
+			if (componentState.otp === '') {
+				return 'OTP is required';
+			}
+			if (componentState.otp && !isValidOtp(componentState.otp)) {
+				return 'Please enter valid OTP';
+			}
+		});
+		const onSubmit = async () => {
+			console.log('form submitted ==>> ', componentState.otp);
+		};
+		const onSuccessClose = () => {
+			componentState.successMessage = null;
+		};
+		const onErrorClose = () => {
+			componentState.error = null;
+		};
+		const resendOtp = async () => {
+			console.log('sending otp');
+		};
+		return {
+			...vue.toRefs(componentState),
+			config,
+			otpError,
+			onSubmit,
+			MessageType,
+			onSuccessClose,
+			onErrorClose,
+			ButtonAppearance,
+			resendOtp,
+			Views,
+		};
+	},
+};
+
+const _hoisted_1$7 = /*#__PURE__*/vue.createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
+const _hoisted_2$3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_3$2 = /*#__PURE__*/vue.createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/vue.createElementVNode("span", null, "* "),
+  /*#__PURE__*/vue.createTextVNode("OTP (One Time Password)")
+], -1 /* HOISTED */);
+const _hoisted_4$2 = {
+  key: 0,
+  class: "form-input-error"
+};
+const _hoisted_5$2 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$2 = /*#__PURE__*/vue.createTextVNode("Processing ...");
+const _hoisted_7$2 = /*#__PURE__*/vue.createTextVNode("Submit");
+const _hoisted_8$2 = {
+  key: 0,
+  style: { marginBottom: '10px' }
+};
+const _hoisted_9$2 = /*#__PURE__*/vue.createTextVNode(" Resend OTP ");
+const _hoisted_10$2 = { key: 2 };
+const _hoisted_11$2 = /*#__PURE__*/vue.createTextVNode(" Don't have an account? ");
+const _hoisted_12$2 = /*#__PURE__*/vue.createTextVNode("Sign Up");
+
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_message = vue.resolveComponent("message");
+  const _component_styled_form_group = vue.resolveComponent("styled-form-group");
+  const _component_styled_button = vue.resolveComponent("styled-button");
+  const _component_styled_link = vue.resolveComponent("styled-link");
+  const _component_styled_footer = vue.resolveComponent("styled-footer");
+
+  return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+    (_ctx.successMessage)
+      ? (vue.openBlock(), vue.createBlock(_component_message, {
+          key: 0,
+          type: $setup.MessageType.Success,
+          text: _ctx.successMessage,
+          onClose: $setup.onSuccessClose
+        }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
+      : vue.createCommentVNode("v-if", true),
+    (_ctx.error)
+      ? (vue.openBlock(), vue.createBlock(_component_message, {
+          key: 1,
+          type: $setup.MessageType.Error,
+          text: _ctx.error,
+          onClose: $setup.onErrorClose
+        }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
+      : vue.createCommentVNode("v-if", true),
+    _hoisted_1$7,
+    _hoisted_2$3,
+    vue.createElementVNode("form", {
+      onSubmit: _cache[1] || (_cache[1] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
+    }, [
+      vue.createCommentVNode(" OTP "),
+      vue.createVNode(_component_styled_form_group, { hasError: $setup.otpError }, {
+        default: vue.withCtx(() => [
+          _hoisted_3$2,
+          vue.withDirectives(vue.createElementVNode("input", {
+            class: "form-input-field",
+            placeholder: "eg. AB123C",
+            type: "password",
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.otp) = $event))
+          }, null, 512 /* NEED_PATCH */), [
+            [vue.vModelText, _ctx.otp]
+          ]),
+          ($setup.otpError)
+            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$2, vue.toDisplayString($setup.otpError), 1 /* TEXT */))
+            : vue.createCommentVNode("v-if", true)
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["hasError"]),
+      _hoisted_5$2,
+      vue.createVNode(_component_styled_button, {
+        appearance: $setup.ButtonAppearance.Primary,
+        disabled: $setup.otpError || !_ctx.otp
+      }, {
+        default: vue.withCtx(() => [
+          (_ctx.loading)
+            ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                _hoisted_6$2
+              ], 64 /* STABLE_FRAGMENT */))
+            : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                _hoisted_7$2
+              ], 64 /* STABLE_FRAGMENT */))
+        ]),
+        _: 1 /* STABLE */
+      }, 8 /* PROPS */, ["appearance", "disabled"])
+    ], 32 /* HYDRATE_EVENTS */),
+    ($props.setView)
+      ? (vue.openBlock(), vue.createBlock(_component_styled_footer, { key: 2 }, {
+          default: vue.withCtx(() => [
+            (_ctx.sendingOtp)
+              ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_8$2, "Sending ..."))
+              : (vue.openBlock(), vue.createBlock(_component_styled_link, {
+                  key: 1,
+                  onClick: $setup.resendOtp,
+                  style: { marginBottom: '10px' }
+                }, {
+                  default: vue.withCtx(() => [
+                    _hoisted_9$2
+                  ]),
+                  _: 1 /* STABLE */
+                }, 8 /* PROPS */, ["onClick"])),
+            ($setup.config.is_sign_up_enabled.value)
+              ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_10$2, [
+                  _hoisted_11$2,
+                  vue.createVNode(_component_styled_link, {
+                    onClick: _cache[2] || (_cache[2] = () => $props.setView($setup.Views.Signup))
+                  }, {
+                    default: vue.withCtx(() => [
+                      _hoisted_12$2
+                    ]),
+                    _: 1 /* STABLE */
+                  })
+                ]))
+              : vue.createCommentVNode("v-if", true)
+          ]),
+          _: 1 /* STABLE */
+        }))
+      : vue.createCommentVNode("v-if", true)
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
 script$b.render = render$b;
-script$b.__file = "src/components/Message.vue";
+script$b.__file = "src/components/AuthorizerVerifyOtp.vue";
 
 var script$a = {
 	name: 'AuthorizerBasicAuthLogin',
@@ -727,8 +903,8 @@ var script$a = {
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		'authorizer-verify-otp': script$e,
-		message: script$b,
+		'authorizer-verify-otp': script$b,
+		message: script$c,
 	},
 	setup({ setView, onLogin, urlProps }) {
 		const config = { ...vue.toRefs(globalConfig) };
@@ -749,7 +925,7 @@ var script$a = {
 			if (formData.email === '') {
 				return 'Email is required';
 			}
-			if (formData.email && !validateEmail(formData.email)) {
+			if (formData.email && !isValidEmail(formData.email)) {
 				return 'Please enter valid email';
 			}
 		});
@@ -989,7 +1165,7 @@ script$8.__file = "src/components/AuthorizerForgotPassword.vue";
 var script$7 = {
 	name: 'Google',
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 };
 
@@ -1032,7 +1208,7 @@ script$7.__file = "src/icons/Google.vue";
 var script$6 = {
 	name: 'Facebook',
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 };
 
@@ -1060,7 +1236,7 @@ script$6.__file = "src/icons/Facebook.vue";
 var script$5 = {
 	name: 'Github',
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 };
 
@@ -1090,7 +1266,7 @@ script$5.__file = "src/icons/Github.vue";
 var script$4 = {
 	name: 'Linkedin',
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 };
 
@@ -1126,7 +1302,7 @@ script$4.__file = "src/icons/Linkedin.vue";
 var script$3 = {
 	name: 'Apple',
 	components: {
-		'icon-root': script$d,
+		'icon-root': script$e,
 	},
 };
 
@@ -1454,7 +1630,7 @@ var components = {
 	AuthorizerForgotPassword: script$8,
 	AuthorizerSocialLogin: script$2,
 	AuthorizerResetPassword: script$1,
-	AuthorizerVerifyOtp: script$e,
+	AuthorizerVerifyOtp: script$b,
 	AuthorizerRoot: script,
 };
 
