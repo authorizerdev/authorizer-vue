@@ -1,4 +1,4 @@
-import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, normalizeStyle, renderSlot, resolveComponent, createBlock, withCtx, createElementVNode, createVNode, createCommentVNode, Fragment, createTextVNode } from 'vue';
+import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, resolveComponent, withModifiers, createCommentVNode, createElementVNode, normalizeClass, withDirectives, vModelText, toDisplayString, createVNode, withCtx, createTextVNode, normalizeStyle, renderSlot, createBlock, Fragment } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css } from 'vue3-styled-components';
 
@@ -283,64 +283,6 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
 script$d.render = render$d;
 script$d.__file = "src/components/AuthorizerSignup.vue";
 
-var script$c = {
-	name: 'AuthorizerBasicAuthLogin',
-	props: ['urlProps'],
-};
-
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer BasicAuthLogin Component"))
-}
-
-script$c.render = render$c;
-script$c.__file = "src/components/AuthorizerBasicAuthLogin.vue";
-
-var script$b = {
-	name: 'AuthorizerMagicLinkLogin',
-};
-
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer MagicLinkLogin Component"))
-}
-
-script$b.render = render$b;
-script$b.__file = "src/components/AuthorizerMagicLinkLogin.vue";
-
-var script$a = {
-	name: 'AuthorizerForgotPassword',
-};
-
-function render$a(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
-}
-
-script$a.render = render$a;
-script$a.__file = "src/components/AuthorizerForgotPassword.vue";
-
-const getCrypto = () => {
-	//ie 11.x uses msCrypto
-	return hasWindow() ? window.crypto || window.msCrypto : null;
-};
-
-const createRandomString = () => {
-	const charset =
-		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
-	let random = '';
-	const crypto = getCrypto();
-	if (crypto) {
-		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
-		randomValues.forEach((v) => (random += charset[v % charset.length]));
-	}
-	return random;
-};
-
-const createQueryParams = (params) => {
-	return Object.keys(params)
-		.filter((k) => typeof params[k] !== 'undefined')
-		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-		.join('&');
-};
-
 const sizes = {
 	sm: 576,
 	md: 768,
@@ -557,6 +499,153 @@ Styled('div', props)`
     flex-direction: ${({ flexDirection }) => flexDirection || 'row'}
   `}
 `;
+
+var script$c = {
+	name: 'AuthorizerBasicAuthLogin',
+	props: ['urlProps'],
+	components: {
+		'styled-button': StyledButton,
+	},
+	setup() {
+		const formData = reactive({
+			email: null,
+			password: null,
+		});
+		const emailError = computed(() => {
+			return formData.email === '' ? 'Email is required' : null;
+		});
+		const passwordError = computed(() => {
+			return formData.password === '' ? 'Password is required' : null;
+		});
+		function onSubmit(values) {
+			console.log('form submitted ==>> ', values);
+		}
+		return {
+			...toRefs(formData),
+			emailError,
+			passwordError,
+			onSubmit,
+			ButtonAppearance,
+		};
+	},
+};
+
+const _hoisted_1$7 = /*#__PURE__*/createElementVNode("label", { for: "" }, "Email", -1 /* HOISTED */);
+const _hoisted_2$2 = /*#__PURE__*/createElementVNode("div", { class: "pre-icon os-icon os-icon-user-male-circle" }, null, -1 /* HOISTED */);
+const _hoisted_3$1 = {
+  key: 0,
+  class: "error-msg"
+};
+const _hoisted_4$1 = /*#__PURE__*/createElementVNode("label", { for: "" }, "Password", -1 /* HOISTED */);
+const _hoisted_5$1 = /*#__PURE__*/createElementVNode("div", { class: "pre-icon os-icon os-icon-fingerprint" }, null, -1 /* HOISTED */);
+const _hoisted_6$1 = {
+  key: 0,
+  class: "error-msg"
+};
+const _hoisted_7$1 = /*#__PURE__*/createTextVNode(" Login ");
+
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_styled_button = resolveComponent("styled-button");
+
+  return (openBlock(), createElementBlock("form", {
+    onSubmit: _cache[2] || (_cache[2] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
+  }, [
+    createCommentVNode(" Email "),
+    createElementVNode("div", {
+      class: normalizeClass(["form-group", { error: $setup.emailError }])
+    }, [
+      _hoisted_1$7,
+      withDirectives(createElementVNode("input", {
+        class: "form-control",
+        placeholder: "Enter your username",
+        type: "email",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
+      }, null, 512 /* NEED_PATCH */), [
+        [vModelText, _ctx.email]
+      ]),
+      _hoisted_2$2,
+      ($setup.emailError)
+        ? (openBlock(), createElementBlock("div", _hoisted_3$1, toDisplayString($setup.emailError), 1 /* TEXT */))
+        : createCommentVNode("v-if", true)
+    ], 2 /* CLASS */),
+    createCommentVNode(" password "),
+    createElementVNode("div", {
+      class: normalizeClass(["form-group", { error: $setup.passwordError }])
+    }, [
+      _hoisted_4$1,
+      withDirectives(createElementVNode("input", {
+        class: "form-control",
+        placeholder: "Enter your password",
+        type: "password",
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ((_ctx.password) = $event))
+      }, null, 512 /* NEED_PATCH */), [
+        [vModelText, _ctx.password]
+      ]),
+      _hoisted_5$1,
+      ($setup.passwordError)
+        ? (openBlock(), createElementBlock("div", _hoisted_6$1, toDisplayString($setup.passwordError), 1 /* TEXT */))
+        : createCommentVNode("v-if", true)
+    ], 2 /* CLASS */),
+    createVNode(_component_styled_button, {
+      appearance: $setup.ButtonAppearance.Primary,
+      disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
+    }, {
+      default: withCtx(() => [
+        _hoisted_7$1
+      ]),
+      _: 1 /* STABLE */
+    }, 8 /* PROPS */, ["appearance", "disabled"])
+  ], 32 /* HYDRATE_EVENTS */))
+}
+
+script$c.render = render$c;
+script$c.__file = "src/components/AuthorizerBasicAuthLogin.vue";
+
+var script$b = {
+	name: 'AuthorizerMagicLinkLogin',
+};
+
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, "Authorizer MagicLinkLogin Component"))
+}
+
+script$b.render = render$b;
+script$b.__file = "src/components/AuthorizerMagicLinkLogin.vue";
+
+var script$a = {
+	name: 'AuthorizerForgotPassword',
+};
+
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
+}
+
+script$a.render = render$a;
+script$a.__file = "src/components/AuthorizerForgotPassword.vue";
+
+const getCrypto = () => {
+	//ie 11.x uses msCrypto
+	return hasWindow() ? window.crypto || window.msCrypto : null;
+};
+
+const createRandomString = () => {
+	const charset =
+		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
+	let random = '';
+	const crypto = getCrypto();
+	if (crypto) {
+		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
+		randomValues.forEach((v) => (random += charset[v % charset.length]));
+	}
+	return random;
+};
+
+const createQueryParams = (params) => {
+	return Object.keys(params)
+		.filter((k) => typeof params[k] !== 'undefined')
+		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+		.join('&');
+};
 
 var script$9 = {
 	name: 'IconRoot',
