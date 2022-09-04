@@ -540,6 +540,38 @@ const StyledFormGroup = Styled__default["default"]('div', props)`
   }
 `;
 
+const getCrypto = () => {
+	//ie 11.x uses msCrypto
+	return hasWindow() ? window.crypto || window.msCrypto : null;
+};
+
+const createRandomString = () => {
+	const charset =
+		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
+	let random = '';
+	const crypto = getCrypto();
+	if (crypto) {
+		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
+		randomValues.forEach((v) => (random += charset[v % charset.length]));
+	}
+	return random;
+};
+
+const createQueryParams = (params) => {
+	return Object.keys(params)
+		.filter((k) => typeof params[k] !== 'undefined')
+		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+		.join('&');
+};
+
+const validateEmail = (email) => {
+	return String(email)
+		.toLowerCase()
+		.match(
+			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		);
+};
+
 var script$c = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
@@ -555,7 +587,12 @@ var script$c = {
 			password: null,
 		});
 		const emailError = vue.computed(() => {
-			return formData.email === '' ? 'Email is required' : null;
+			if (formData.email === '') {
+				return 'Email is required';
+			}
+			if (formData.email && !validateEmail(formData.email)) {
+				return 'Please enter valid email';
+			}
 		});
 		const passwordError = vue.computed(() => {
 			return formData.password === '' ? 'Password is required' : null;
@@ -718,30 +755,6 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
 
 script$a.render = render$a;
 script$a.__file = "src/components/AuthorizerForgotPassword.vue";
-
-const getCrypto = () => {
-	//ie 11.x uses msCrypto
-	return hasWindow() ? window.crypto || window.msCrypto : null;
-};
-
-const createRandomString = () => {
-	const charset =
-		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
-	let random = '';
-	const crypto = getCrypto();
-	if (crypto) {
-		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
-		randomValues.forEach((v) => (random += charset[v % charset.length]));
-	}
-	return random;
-};
-
-const createQueryParams = (params) => {
-	return Object.keys(params)
-		.filter((k) => typeof params[k] !== 'undefined')
-		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-		.join('&');
-};
 
 var script$9 = {
 	name: 'IconRoot',

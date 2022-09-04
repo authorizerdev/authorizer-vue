@@ -60,6 +60,7 @@ import {
 import { ButtonAppearance } from '../constants/index';
 import { Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
+import { validateEmail } from '../utils/common';
 export default {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
@@ -75,7 +76,12 @@ export default {
 			password: null,
 		});
 		const emailError = computed(() => {
-			return formData.email === '' ? 'Email is required' : null;
+			if (formData.email === '') {
+				return 'Email is required';
+			}
+			if (formData.email && !validateEmail(formData.email)) {
+				return 'Please enter valid email';
+			}
 		});
 		const passwordError = computed(() => {
 			return formData.password === '' ? 'Password is required' : null;
