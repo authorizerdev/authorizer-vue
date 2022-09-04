@@ -725,7 +725,7 @@ var script$b = {
 	},
 	setup({ setView, onLogin, email }) {
 		const config = { ...vue.toRefs(globalConfig) };
-		({ ...vue.toRefs(globalState) });
+		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -742,7 +742,35 @@ var script$b = {
 			}
 		});
 		const onSubmit = async () => {
-			console.log('form submitted ==>> ', componentState.otp);
+			componentState.successMessage = null;
+			try {
+				componentState.loading = true;
+				const res = await authorizerRef.value.verifyOtp({
+					email,
+					otp: componentState.otp,
+				});
+				componentState.loading = false;
+				if (res) {
+					componentState.error = null;
+					setAuthData.value({
+						user: res.user || null,
+						token: {
+							access_token: res.access_token,
+							expires_in: res.expires_in,
+							refresh_token: res.refresh_token,
+							id_token: res.id_token,
+						},
+						config,
+						loading: false,
+					});
+				}
+				if (onLogin) {
+					onLogin(res);
+				}
+			} catch (error) {
+				componentState.loading = false;
+				componentState.error = error.message;
+			}
 		};
 		const onSuccessClose = () => {
 			componentState.successMessage = null;
@@ -751,7 +779,24 @@ var script$b = {
 			componentState.error = null;
 		};
 		const resendOtp = async () => {
-			console.log('sending otp');
+			componentState.successMessage = null;
+			try {
+				componentState.sendingOtp = true;
+				const res = await authorizerRef.value.resendOtp({
+					email,
+				});
+				componentState.sendingOtp = false;
+				if (res && res?.message) {
+					componentState.error = null;
+					componentState.successMessage = res.message;
+				}
+				if (onLogin) {
+					onLogin(res);
+				}
+			} catch (error) {
+				componentState.loading = false;
+				componentState.error = error.message;
+			}
 		};
 		return {
 			...vue.toRefs(componentState),
@@ -764,6 +809,7 @@ var script$b = {
 			ButtonAppearance,
 			resendOtp,
 			Views,
+			setView,
 		};
 	},
 };
