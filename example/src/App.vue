@@ -6,7 +6,7 @@
 				margin: `10px auto`,
 				border: `1px solid #D1D5DB`,
 				padding: `25px 20px`,
-				borderRadius: 5,
+				'border-radius': `5px`,
 			}"
 		>
 			<authorizer-provider
