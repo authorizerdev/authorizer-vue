@@ -2,7 +2,7 @@
 	<form @submit.prevent="onSubmit">
 		<!-- Email -->
 		<div class="form-group" :class="{ error: emailError }">
-			<label for="">Email</label>
+			*<label for="">Email</label>
 			<input
 				class="form-control"
 				placeholder="Enter your username"
@@ -15,7 +15,7 @@
 
 		<!-- password -->
 		<div class="form-group" :class="{ error: passwordError }">
-			<label for="">Password</label>
+			*<label for="">Password</label>
 			<input
 				class="form-control"
 				placeholder="Enter your password"
