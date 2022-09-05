@@ -671,7 +671,7 @@ var script$g = {
 	},
 };
 
-const _hoisted_1$d = ["viewBox", "width", "height"];
+const _hoisted_1$e = ["viewBox", "width", "height"];
 
 function render$g(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("svg", {
@@ -681,7 +681,7 @@ function render$g(_ctx, _cache, $props, $setup, $data, $options) {
     style: vue.normalizeStyle($setup.style)
   }, [
     vue.renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$d))
+  ], 12 /* STYLE, PROPS */, _hoisted_1$e))
 }
 
 script$g.render = render$g;
@@ -701,7 +701,7 @@ var script$f = {
 	},
 };
 
-const _hoisted_1$c = /*#__PURE__*/vue.createElementVNode("g", null, [
+const _hoisted_1$d = /*#__PURE__*/vue.createElementVNode("g", null, [
   /*#__PURE__*/vue.createElementVNode("path", {
     fill: "#ffffff",
     d: "M617.2,495.8l349.1,350.9c31.7,31.8,31.7,83.5,0,115.3c-31.7,31.9-83.1,31.9-114.8,0L502.4,611.2L149.8,965.6c-32,32.2-83.8,32.2-115.8,0c-32-32.1-32-84.3,0-116.4l352.6-354.5L48.2,154.6c-31.7-31.9-31.7-83.5,0-115.4c31.7-31.9,83.1-31.9,114.7,0l338.4,340.2l343.3-345c32-32.1,83.8-32.1,115.8,0c32,32.2,32,84.3,0,116.4L617.2,495.8z"
@@ -717,7 +717,7 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 1000 1000'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$c
+      _hoisted_1$d
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["width", "height"]))
@@ -743,7 +743,7 @@ var script$e = {
 	},
 };
 
-const _hoisted_1$b = { style: { flex: 1 } };
+const _hoisted_1$c = { style: { flex: 1 } };
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_close = vue.resolveComponent("close");
@@ -757,7 +757,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
         justifyContent: "space-between"
       }, {
         default: vue.withCtx(() => [
-          vue.createElementVNode("div", _hoisted_1$b, vue.toDisplayString($setup.text), 1 /* TEXT */),
+          vue.createElementVNode("div", _hoisted_1$c, vue.toDisplayString($setup.text), 1 /* TEXT */),
           ($setup.onClose)
             ? (vue.openBlock(), vue.createElementBlock("span", {
                 key: 0,
@@ -822,15 +822,15 @@ var script$d = {
 	},
 };
 
-const _hoisted_1$a = /*#__PURE__*/vue.createElementVNode("p", null, [
+const _hoisted_1$b = /*#__PURE__*/vue.createElementVNode("p", null, [
   /*#__PURE__*/vue.createElementVNode("b", null, "Criteria for a strong password:")
 ], -1 /* HOISTED */);
-const _hoisted_2$6 = ["checked"];
-const _hoisted_3$5 = /*#__PURE__*/vue.createTextVNode("At least 6 characters");
-const _hoisted_4$5 = ["checked"];
-const _hoisted_5$5 = /*#__PURE__*/vue.createTextVNode("At least 1 lowercase letter");
-const _hoisted_6$5 = ["checked"];
-const _hoisted_7$5 = /*#__PURE__*/vue.createTextVNode("At least 1 uppercase letter");
+const _hoisted_2$7 = ["checked"];
+const _hoisted_3$6 = /*#__PURE__*/vue.createTextVNode("At least 6 characters");
+const _hoisted_4$6 = ["checked"];
+const _hoisted_5$6 = /*#__PURE__*/vue.createTextVNode("At least 1 lowercase letter");
+const _hoisted_6$6 = ["checked"];
+const _hoisted_7$6 = /*#__PURE__*/vue.createTextVNode("At least 1 uppercase letter");
 const _hoisted_8$5 = ["checked"];
 const _hoisted_9$5 = /*#__PURE__*/vue.createTextVNode("At least 1 numeric character");
 const _hoisted_10$4 = ["checked"];
@@ -869,7 +869,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           _: 1 /* STABLE */
         }),
-        _hoisted_1$a,
+        _hoisted_1$b,
         vue.createVNode(_component_styled_flex, { flexDirection: "column" }, {
           default: vue.withCtx(() => [
             vue.createVNode(_component_styled_flex, {
@@ -881,10 +881,10 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
                   readOnly: "",
                   type: "checkbox",
                   checked: _ctx.hasSixChar
-                }, null, 8 /* PROPS */, _hoisted_2$6),
+                }, null, 8 /* PROPS */, _hoisted_2$7),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
-                    _hoisted_3$5
+                    _hoisted_3$6
                   ]),
                   _: 1 /* STABLE */
                 })
@@ -900,10 +900,10 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
                   readOnly: "",
                   type: "checkbox",
                   checked: _ctx.hasLowerCase
-                }, null, 8 /* PROPS */, _hoisted_4$5),
+                }, null, 8 /* PROPS */, _hoisted_4$6),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
-                    _hoisted_5$5
+                    _hoisted_5$6
                   ]),
                   _: 1 /* STABLE */
                 })
@@ -919,10 +919,10 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
                   readOnly: "",
                   type: "checkbox",
                   checked: _ctx.hasUpperCase
-                }, null, 8 /* PROPS */, _hoisted_6$5),
+                }, null, 8 /* PROPS */, _hoisted_6$6),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
-                    _hoisted_7$5
+                    _hoisted_7$6
                   ]),
                   _: 1 /* STABLE */
                 })
@@ -1122,40 +1122,40 @@ var script$c = {
 	},
 };
 
-const _hoisted_1$9 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_1$a = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Email")
 ], -1 /* HOISTED */);
-const _hoisted_2$5 = {
+const _hoisted_2$6 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_3$4 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_3$5 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Password")
 ], -1 /* HOISTED */);
-const _hoisted_4$4 = {
+const _hoisted_4$5 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_5$4 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_5$5 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Confirm Password")
 ], -1 /* HOISTED */);
-const _hoisted_6$4 = {
+const _hoisted_6$5 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_7$4 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_7$5 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_8$4 = /*#__PURE__*/vue.createTextVNode("Processing ...");
 const _hoisted_9$4 = /*#__PURE__*/vue.createTextVNode("Sign Up");
 const _hoisted_10$3 = /*#__PURE__*/vue.createTextVNode(" Already have an account? ");
@@ -1190,7 +1190,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           vue.createCommentVNode(" Email "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: vue.withCtx(() => [
-              _hoisted_1$9,
+              _hoisted_1$a,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1200,7 +1200,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.email]
               ]),
               ($setup.emailError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$5, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2$6, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1208,7 +1208,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           vue.createCommentVNode(" password "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
             default: vue.withCtx(() => [
-              _hoisted_3$4,
+              _hoisted_3$5,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "********",
@@ -1218,7 +1218,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.password]
               ]),
               ($setup.passwordError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$4, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$5, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1226,7 +1226,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           vue.createCommentVNode(" confirm password "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.confirmPasswordError }, {
             default: vue.withCtx(() => [
-              _hoisted_5$4,
+              _hoisted_5$5,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "********",
@@ -1236,7 +1236,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.confirmPassword]
               ]),
               ($setup.confirmPasswordError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$4, vue.toDisplayString($setup.confirmPasswordError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_6$5, vue.toDisplayString($setup.confirmPasswordError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1247,7 +1247,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
                   value: _ctx.password,
                   setDisableButton: $setup.setDisableButton
                 }, null, 8 /* PROPS */, ["value", "setDisableButton"]),
-                _hoisted_7$4
+                _hoisted_7$5
               ], 64 /* STABLE_FRAGMENT */))
             : vue.createCommentVNode("v-if", true),
           vue.createVNode(_component_styled_button, {
@@ -1400,22 +1400,22 @@ var script$b = {
 	},
 };
 
-const _hoisted_1$8 = /*#__PURE__*/vue.createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
-const _hoisted_2$4 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_3$3 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_1$9 = /*#__PURE__*/vue.createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
+const _hoisted_2$5 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_3$4 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("OTP (One Time Password)")
 ], -1 /* HOISTED */);
-const _hoisted_4$3 = {
+const _hoisted_4$4 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_5$3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6$3 = /*#__PURE__*/vue.createTextVNode("Processing ...");
-const _hoisted_7$3 = /*#__PURE__*/vue.createTextVNode("Submit");
+const _hoisted_5$4 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$4 = /*#__PURE__*/vue.createTextVNode("Processing ...");
+const _hoisted_7$4 = /*#__PURE__*/vue.createTextVNode("Submit");
 const _hoisted_8$3 = {
   key: 0,
   style: { marginBottom: '10px' }
@@ -1449,15 +1449,15 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           onClose: $setup.onErrorClose
         }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
       : vue.createCommentVNode("v-if", true),
-    _hoisted_1$8,
-    _hoisted_2$4,
+    _hoisted_1$9,
+    _hoisted_2$5,
     vue.createElementVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
     }, [
       vue.createCommentVNode(" OTP "),
       vue.createVNode(_component_styled_form_group, { hasError: $setup.otpError }, {
         default: vue.withCtx(() => [
-          _hoisted_3$3,
+          _hoisted_3$4,
           vue.withDirectives(vue.createElementVNode("input", {
             class: "form-input-field",
             placeholder: "eg. AB123C",
@@ -1467,12 +1467,12 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
             [vue.vModelText, _ctx.otp]
           ]),
           ($setup.otpError)
-            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$3, vue.toDisplayString($setup.otpError), 1 /* TEXT */))
+            ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$4, vue.toDisplayString($setup.otpError), 1 /* TEXT */))
             : vue.createCommentVNode("v-if", true)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["hasError"]),
-      _hoisted_5$3,
+      _hoisted_5$4,
       vue.createVNode(_component_styled_button, {
         appearance: $setup.ButtonAppearance.Primary,
         disabled: $setup.otpError || !_ctx.otp
@@ -1480,10 +1480,10 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         default: vue.withCtx(() => [
           (_ctx.loading)
             ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-                _hoisted_6$3
+                _hoisted_6$4
               ], 64 /* STABLE_FRAGMENT */))
             : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
-                _hoisted_7$3
+                _hoisted_7$4
               ], 64 /* STABLE_FRAGMENT */))
         ]),
         _: 1 /* STABLE */
@@ -1626,31 +1626,31 @@ var script$a = {
 	},
 };
 
-const _hoisted_1$7 = { key: 1 };
-const _hoisted_2$3 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_1$8 = { key: 1 };
+const _hoisted_2$4 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Email")
 ], -1 /* HOISTED */);
-const _hoisted_3$2 = {
+const _hoisted_3$3 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_4$2 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_4$3 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Password")
 ], -1 /* HOISTED */);
-const _hoisted_5$2 = {
+const _hoisted_5$3 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_6$2 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_7$2 = /*#__PURE__*/vue.createTextVNode("Processing ...");
+const _hoisted_6$3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_7$3 = /*#__PURE__*/vue.createTextVNode("Processing ...");
 const _hoisted_8$2 = /*#__PURE__*/vue.createTextVNode("Log In");
 const _hoisted_9$2 = /*#__PURE__*/vue.createTextVNode(" Forgot Password? ");
 const _hoisted_10$1 = { key: 0 };
@@ -1672,7 +1672,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
         onLogin: $props.onLogin,
         email: $setup.otpData.email.value
       }, null, 8 /* PROPS */, ["setView", "onLogin", "email"]))
-    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$7, [
+    : (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$8, [
         (_ctx.error)
           ? (vue.openBlock(), vue.createBlock(_component_message, {
               key: 0,
@@ -1687,7 +1687,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           vue.createCommentVNode(" Email "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: vue.withCtx(() => [
-              _hoisted_2$3,
+              _hoisted_2$4,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1697,7 +1697,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.email]
               ]),
               ($setup.emailError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$2, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3$3, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1705,7 +1705,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           vue.createCommentVNode(" password "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
             default: vue.withCtx(() => [
-              _hoisted_4$2,
+              _hoisted_4$3,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "********",
@@ -1715,12 +1715,12 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.password]
               ]),
               ($setup.passwordError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$2, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_5$3, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["hasError"]),
-          _hoisted_6$2,
+          _hoisted_6$3,
           vue.createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
@@ -1728,7 +1728,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
             default: vue.withCtx(() => [
               (_ctx.loading)
                 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-                    _hoisted_7$2
+                    _hoisted_7$3
                   ], 64 /* STABLE_FRAGMENT */))
                 : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
                     _hoisted_8$2
@@ -1850,26 +1850,26 @@ var script$8 = {
 	},
 };
 
-const _hoisted_1$6 = /*#__PURE__*/vue.createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, [
+const _hoisted_1$7 = /*#__PURE__*/vue.createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, [
   /*#__PURE__*/vue.createTextVNode(" Please enter your email address. "),
   /*#__PURE__*/vue.createElementVNode("br"),
   /*#__PURE__*/vue.createTextVNode(" We will send you an email to reset your password. ")
 ], -1 /* HOISTED */);
-const _hoisted_2$2 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_3$1 = /*#__PURE__*/vue.createElementVNode("label", {
+const _hoisted_2$3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_3$2 = /*#__PURE__*/vue.createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/vue.createElementVNode("span", null, "* "),
   /*#__PURE__*/vue.createTextVNode("Email")
 ], -1 /* HOISTED */);
-const _hoisted_4$1 = {
+const _hoisted_4$2 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_5$1 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6$1 = /*#__PURE__*/vue.createTextVNode("Processing ...");
-const _hoisted_7$1 = /*#__PURE__*/vue.createTextVNode("Send Email");
+const _hoisted_5$2 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$2 = /*#__PURE__*/vue.createTextVNode("Processing ...");
+const _hoisted_7$2 = /*#__PURE__*/vue.createTextVNode("Send Email");
 const _hoisted_8$1 = /*#__PURE__*/vue.createTextVNode(" Remember your password? ");
 const _hoisted_9$1 = /*#__PURE__*/vue.createTextVNode("Log In");
 
@@ -1895,15 +1895,15 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
               onClose: $setup.onErrorClose
             }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
           : vue.createCommentVNode("v-if", true),
-        _hoisted_1$6,
-        _hoisted_2$2,
+        _hoisted_1$7,
+        _hoisted_2$3,
         vue.createElementVNode("form", {
           onSubmit: _cache[1] || (_cache[1] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
         }, [
           vue.createCommentVNode(" Email "),
           vue.createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: vue.withCtx(() => [
-              _hoisted_3$1,
+              _hoisted_3$2,
               vue.withDirectives(vue.createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1913,12 +1913,12 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue.vModelText, _ctx.email]
               ]),
               ($setup.emailError)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$1, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
+                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4$2, vue.toDisplayString($setup.emailError), 1 /* TEXT */))
                 : vue.createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["hasError"]),
-          _hoisted_5$1,
+          _hoisted_5$2,
           vue.createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             disabled: $setup.emailError || !_ctx.email
@@ -1926,10 +1926,10 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
             default: vue.withCtx(() => [
               (_ctx.loading)
                 ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
-                    _hoisted_6$1
+                    _hoisted_6$2
                   ], 64 /* STABLE_FRAGMENT */))
                 : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
-                    _hoisted_7$1
+                    _hoisted_7$2
                   ], 64 /* STABLE_FRAGMENT */))
             ]),
             _: 1 /* STABLE */
@@ -1966,7 +1966,7 @@ var script$7 = {
 	},
 };
 
-const _hoisted_1$5 = /*#__PURE__*/vue.createElementVNode("g", { transform: "matrix(1, 0, 0, 1, 27.009001, -39.238998)" }, [
+const _hoisted_1$6 = /*#__PURE__*/vue.createElementVNode("g", { transform: "matrix(1, 0, 0, 1, 27.009001, -39.238998)" }, [
   /*#__PURE__*/vue.createElementVNode("path", {
     fill: "#4285F4",
     d: "M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"
@@ -1993,7 +1993,7 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
     height: 24
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$5
+      _hoisted_1$6
     ]),
     _: 1 /* STABLE */
   }))
@@ -2009,7 +2009,7 @@ var script$6 = {
 	},
 };
 
-const _hoisted_1$4 = /*#__PURE__*/vue.createElementVNode("path", { d: "M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37,19h-2c-2.14,0-3,0.5-3,2 v3h5l-1,5h-4v15h-5V29h-4v-5h4v-3c0-4,2-7,6-7c2.9,0,4,1,4,1V19z" }, null, -1 /* HOISTED */);
+const _hoisted_1$5 = /*#__PURE__*/vue.createElementVNode("path", { d: "M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37,19h-2c-2.14,0-3,0.5-3,2 v3h5l-1,5h-4v15h-5V29h-4v-5h4v-3c0-4,2-7,6-7c2.9,0,4,1,4,1V19z" }, null, -1 /* HOISTED */);
 
 function render$6(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = vue.resolveComponent("icon-root");
@@ -2021,7 +2021,7 @@ function render$6(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#1877f2'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$4
+      _hoisted_1$5
     ]),
     _: 1 /* STABLE */
   }))
@@ -2037,7 +2037,7 @@ var script$5 = {
 	},
 };
 
-const _hoisted_1$3 = /*#__PURE__*/vue.createElementVNode("path", {
+const _hoisted_1$4 = /*#__PURE__*/vue.createElementVNode("path", {
   d: "M145.66 0C65.219 0 0 65.219 0 145.66c0 80.45 65.219 145.66 145.66 145.66s145.66-65.21 145.66-145.66C291.319 65.219 226.1 0 145.66 0zm40.802 256.625c-.838-11.398-1.775-25.518-1.83-31.235-.364-4.388-.838-15.549-11.434-22.677 42.068-3.523 62.087-26.774 63.526-57.499 1.202-17.497-5.754-32.883-18.107-45.3.628-13.282-.401-29.023-1.256-35.941-9.486-2.731-31.608 8.949-37.79 13.947-13.037-5.062-44.945-6.837-64.336 0-13.747-9.668-29.396-15.64-37.926-13.974-7.875 17.452-2.813 33.948-1.275 35.914-10.142 9.268-24.289 20.675-20.447 44.572 6.163 35.04 30.816 53.94 70.508 58.564-8.466 1.73-9.896 8.048-10.606 10.788-26.656 10.997-34.275-6.791-37.644-11.425-11.188-13.847-21.23-9.832-21.849-9.614-.601.218-1.056 1.092-.992 1.511.564 2.986 6.655 6.018 6.955 6.263 8.257 6.154 11.316 17.27 13.2 20.438 11.844 19.473 39.374 11.398 39.638 11.562.018 1.702-.191 16.032-.355 27.184C64.245 245.992 27.311 200.2 27.311 145.66c0-65.365 52.984-118.348 118.348-118.348S264.008 80.295 264.008 145.66c0 51.008-32.318 94.332-77.546 110.965z",
   fill: "#2b414d"
 }, null, -1 /* HOISTED */);
@@ -2051,7 +2051,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 291.32 291.32'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$3
+      _hoisted_1$4
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["viewBox"]))
@@ -2067,11 +2067,11 @@ var script$4 = {
 	},
 };
 
-const _hoisted_1$2 = /*#__PURE__*/vue.createElementVNode("path", {
+const _hoisted_1$3 = /*#__PURE__*/vue.createElementVNode("path", {
   fill: "#0288D1",
   d: "M42 37a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5V11a5 5 0 0 1 5-5h26a5 5 0 0 1 5 5v26z"
 }, null, -1 /* HOISTED */);
-const _hoisted_2$1 = /*#__PURE__*/vue.createElementVNode("path", {
+const _hoisted_2$2 = /*#__PURE__*/vue.createElementVNode("path", {
   fill: "#FFF",
   d: "M12 19h5v17h-5zm2.485-2h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99-.144.35-.101 1.318-.101 1.807v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36z"
 }, null, -1 /* HOISTED */);
@@ -2086,8 +2086,8 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#1877f2'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$2,
-      _hoisted_2$1
+      _hoisted_1$3,
+      _hoisted_2$2
     ]),
     _: 1 /* STABLE */
   }))
@@ -2103,7 +2103,7 @@ var script$3 = {
 	},
 };
 
-const _hoisted_1$1 = /*#__PURE__*/vue.createElementVNode("path", { d: "M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615-.35 1.116-6.599 22.563-21.757 44.716-13.104 19.153-26.705 38.235-48.13 38.63-21.05.388-27.82-12.483-51.888-12.483-24.061 0-31.582 12.088-51.51 12.871-20.68.783-36.428-20.71-49.64-39.793-27-39.033-47.633-110.3-19.928-158.406 13.763-23.89 38.36-39.017 65.056-39.405 20.307-.387 39.475 13.662 51.889 13.662 12.406 0 35.699-16.895 60.186-14.414 10.25.427 39.026 4.14 57.503 31.186-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199-15.826.636-34.962 10.546-46.314 23.828-10.173 11.763-19.082 30.589-16.678 48.633 17.64 1.365 35.66-8.964 46.64-22.262" }, null, -1 /* HOISTED */);
+const _hoisted_1$2 = /*#__PURE__*/vue.createElementVNode("path", { d: "M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615-.35 1.116-6.599 22.563-21.757 44.716-13.104 19.153-26.705 38.235-48.13 38.63-21.05.388-27.82-12.483-51.888-12.483-24.061 0-31.582 12.088-51.51 12.871-20.68.783-36.428-20.71-49.64-39.793-27-39.033-47.633-110.3-19.928-158.406 13.763-23.89 38.36-39.017 65.056-39.405 20.307-.387 39.475 13.662 51.889 13.662 12.406 0 35.699-16.895 60.186-14.414 10.25.427 39.026 4.14 57.503 31.186-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199-15.826.636-34.962 10.546-46.314 23.828-10.173 11.763-19.082 30.589-16.678 48.633 17.64 1.365 35.66-8.964 46.64-22.262" }, null, -1 /* HOISTED */);
 
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = vue.resolveComponent("icon-root");
@@ -2115,7 +2115,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#000000'
   }, {
     default: vue.withCtx(() => [
-      _hoisted_1$1
+      _hoisted_1$2
     ]),
     _: 1 /* STABLE */
   }))
@@ -2162,16 +2162,16 @@ var script$2 = {
 	},
 };
 
-const _hoisted_1 = {
+const _hoisted_1$1 = {
   key: 0,
   id: "appleid-signin"
 };
-const _hoisted_2 = /*#__PURE__*/vue.createTextVNode(" Sign in with Apple ");
-const _hoisted_3 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_4 = /*#__PURE__*/vue.createTextVNode(" Sign in with Google ");
-const _hoisted_5 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6 = /*#__PURE__*/vue.createTextVNode(" Sign in with Github ");
-const _hoisted_7 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_2$1 = /*#__PURE__*/vue.createTextVNode(" Sign in with Apple ");
+const _hoisted_3$1 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_4$1 = /*#__PURE__*/vue.createTextVNode(" Sign in with Google ");
+const _hoisted_5$1 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$1 = /*#__PURE__*/vue.createTextVNode(" Sign in with Github ");
+const _hoisted_7$1 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_8 = /*#__PURE__*/vue.createTextVNode(" Sign in with Facebook ");
 const _hoisted_9 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_10 = /*#__PURE__*/vue.createTextVNode(" Sign in with Linkedin ");
@@ -2189,7 +2189,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (vue.openBlock(), vue.createElementBlock("div", null, [
     ($setup.config.is_apple_login_enabled.value)
-      ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+      ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$1, [
           vue.createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Default,
             onClick: _cache[0] || (_cache[0] = 
@@ -2200,11 +2200,11 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             default: vue.withCtx(() => [
               vue.createVNode(_component_apple),
-              _hoisted_2
+              _hoisted_2$1
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance"]),
-          _hoisted_3
+          _hoisted_3$1
         ]))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_google_login_enabled.value)
@@ -2219,11 +2219,11 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             default: vue.withCtx(() => [
               vue.createVNode(_component_google),
-              _hoisted_4
+              _hoisted_4$1
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance"]),
-          _hoisted_5
+          _hoisted_5$1
         ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_github_login_enabled.value)
@@ -2238,11 +2238,11 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
           }, {
             default: vue.withCtx(() => [
               vue.createVNode(_component_github),
-              _hoisted_6
+              _hoisted_6$1
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance"]),
-          _hoisted_7
+          _hoisted_7$1
         ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
     ($setup.config.is_facebook_login_enabled.value)
@@ -2301,12 +2301,222 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
 script$2.render = render$2;
 script$2.__file = "src/components/AuthorizerSocialLogin.vue";
 
-var script$1 = {
-	name: 'AuthorizerResetPassword',
+const getSearchParams = (search = '') => {
+	let searchPrams = search;
+	if (!searchPrams && hasWindow()) {
+		searchPrams = window.location.search;
+	}
+	const urlSearchParams = new URLSearchParams(`${searchPrams}`);
+	const params = Object.fromEntries(urlSearchParams.entries());
+	return params;
 };
 
+var script$1 = {
+	name: 'AuthorizerResetPassword',
+	props: ['onReset'],
+	components: {
+		'styled-wrapper': StyledWrapper,
+		'styled-button': StyledButton,
+		'styled-form-group': StyledFormGroup,
+		'password-strength-indicator': script$d,
+		message: script$e,
+	},
+	setup({ onReset }) {
+		const { token, redirect_uri } = getSearchParams();
+		const config = { ...vue.toRefs(globalConfig) };
+		const { authorizerRef } = { ...vue.toRefs(globalState) };
+		const componentState = vue.reactive({
+			error: !token ? 'Invalid token' : null,
+			loading: false,
+			disableContinueButton: false,
+		});
+		const formData = vue.reactive({
+			password: null,
+			confirmPassword: null,
+		});
+		const passwordError = vue.computed(() => {
+			if (formData.password === '') {
+				return 'Password is required';
+			}
+			if (
+				formData.password &&
+				formData.confirmPassword &&
+				formData.confirmPassword !== formData.password
+			) {
+				return `Password and confirm passwords don't match`;
+			}
+		});
+		const confirmPasswordError = vue.computed(() => {
+			if (formData.confirmPassword === '') {
+				return 'Confirm password is required';
+			}
+			if (
+				formData.password &&
+				formData.confirmPassword &&
+				formData.confirmPassword !== formData.password
+			) {
+				return `Password and confirm passwords don't match`;
+			}
+		});
+		const onSubmit = async () => {
+			componentState.loading = true;
+			try {
+				const res = await authorizerRef.value.resetPassword({
+					token,
+					password: formData.password,
+					confirm_password: formData.confirmPassword,
+				});
+				componentState.loading = false;
+				componentState.error = null;
+				if (onReset) {
+					onReset(res);
+				} else {
+					window.location.href =
+						redirect_uri || config.redirectURL.value || window.location.origin;
+				}
+			} catch (error) {
+				componentState.loading = false;
+				componentState.error = error.message;
+			}
+		};
+		const setDisableButton = (value) => {
+			componentState.disableContinueButton = value;
+		};
+		const onErrorClose = () => {
+			componentState.error = null;
+		};
+		return {
+			...vue.toRefs(componentState),
+			...vue.toRefs(formData),
+			config,
+			passwordError,
+			confirmPasswordError,
+			onSubmit,
+			MessageType,
+			ButtonAppearance,
+			setDisableButton,
+			onErrorClose,
+		};
+	},
+};
+
+const _hoisted_1 = /*#__PURE__*/vue.createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/vue.createElementVNode("span", null, "* "),
+  /*#__PURE__*/vue.createTextVNode("Password")
+], -1 /* HOISTED */);
+const _hoisted_2 = {
+  key: 0,
+  class: "form-input-error"
+};
+const _hoisted_3 = /*#__PURE__*/vue.createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/vue.createElementVNode("span", null, "* "),
+  /*#__PURE__*/vue.createTextVNode("Confirm Password")
+], -1 /* HOISTED */);
+const _hoisted_4 = {
+  key: 0,
+  class: "form-input-error"
+};
+const _hoisted_5 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6 = /*#__PURE__*/vue.createTextVNode("Processing ...");
+const _hoisted_7 = /*#__PURE__*/vue.createTextVNode("Continue");
+
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return (vue.openBlock(), vue.createElementBlock("div", null, "Authorizer ResetPassword Component"))
+  const _component_message = vue.resolveComponent("message");
+  const _component_styled_form_group = vue.resolveComponent("styled-form-group");
+  const _component_password_strength_indicator = vue.resolveComponent("password-strength-indicator");
+  const _component_styled_button = vue.resolveComponent("styled-button");
+  const _component_styled_wrapper = vue.resolveComponent("styled-wrapper");
+
+  return (vue.openBlock(), vue.createBlock(_component_styled_wrapper, null, {
+    default: vue.withCtx(() => [
+      (_ctx.error)
+        ? (vue.openBlock(), vue.createBlock(_component_message, {
+            key: 0,
+            type: $setup.MessageType.Error,
+            text: _ctx.error,
+            onClose: _ctx.onErrorClose
+          }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
+        : vue.createCommentVNode("v-if", true),
+      vue.createElementVNode("form", {
+        onSubmit: _cache[2] || (_cache[2] = vue.withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
+      }, [
+        vue.createCommentVNode(" password "),
+        vue.createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
+          default: vue.withCtx(() => [
+            _hoisted_1,
+            vue.withDirectives(vue.createElementVNode("input", {
+              class: "form-input-field",
+              placeholder: "********",
+              type: "password",
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.password) = $event))
+            }, null, 512 /* NEED_PATCH */), [
+              [vue.vModelText, _ctx.password]
+            ]),
+            ($setup.passwordError)
+              ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_2, vue.toDisplayString($setup.passwordError), 1 /* TEXT */))
+              : vue.createCommentVNode("v-if", true)
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["hasError"]),
+        vue.createCommentVNode(" confirm password "),
+        vue.createVNode(_component_styled_form_group, { hasError: $setup.confirmPasswordError }, {
+          default: vue.withCtx(() => [
+            _hoisted_3,
+            vue.withDirectives(vue.createElementVNode("input", {
+              class: "form-input-field",
+              placeholder: "********",
+              type: "password",
+              "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ((_ctx.confirmPassword) = $event))
+            }, null, 512 /* NEED_PATCH */), [
+              [vue.vModelText, _ctx.confirmPassword]
+            ]),
+            ($setup.confirmPasswordError)
+              ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_4, vue.toDisplayString($setup.confirmPasswordError), 1 /* TEXT */))
+              : vue.createCommentVNode("v-if", true)
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["hasError"]),
+        ($setup.config.is_strong_password_enabled.value)
+          ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+              vue.createVNode(_component_password_strength_indicator, {
+                value: _ctx.password,
+                setDisableButton: $setup.setDisableButton
+              }, null, 8 /* PROPS */, ["value", "setDisableButton"]),
+              _hoisted_5
+            ], 64 /* STABLE_FRAGMENT */))
+          : vue.createCommentVNode("v-if", true),
+        vue.createVNode(_component_styled_button, {
+          appearance: $setup.ButtonAppearance.Primary,
+          disabled: 
+					$setup.passwordError ||
+					$setup.confirmPasswordError ||
+					!_ctx.password ||
+					!_ctx.confirmPassword ||
+					_ctx.loading ||
+					_ctx.disableContinueButton
+				
+        }, {
+          default: vue.withCtx(() => [
+            (_ctx.loading)
+              ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 0 }, [
+                  _hoisted_6
+                ], 64 /* STABLE_FRAGMENT */))
+              : (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 1 }, [
+                  _hoisted_7
+                ], 64 /* STABLE_FRAGMENT */))
+          ]),
+          _: 1 /* STABLE */
+        }, 8 /* PROPS */, ["appearance", "disabled"])
+      ], 32 /* HYDRATE_EVENTS */)
+    ]),
+    _: 1 /* STABLE */
+  }))
 }
 
 script$1.render = render$1;
