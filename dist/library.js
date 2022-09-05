@@ -1258,6 +1258,7 @@ var script$8 = {
 			MessageType,
 			ButtonAppearance,
 			Views,
+			setView,
 			emailError,
 		};
 	},

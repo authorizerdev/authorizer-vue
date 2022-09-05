@@ -120,6 +120,7 @@ export default {
 			MessageType,
 			ButtonAppearance,
 			Views,
+			setView,
 			emailError,
 		};
 	},
