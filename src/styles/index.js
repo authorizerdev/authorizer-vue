@@ -1,6 +1,7 @@
 import Styled, { css } from 'vue3-styled-components';
 import { media } from './media';
 import { theme } from './theme';
+import { passwordStrengthIndicatorOpacity } from '../constants/index';
 
 const props = [];
 
@@ -190,6 +191,24 @@ const StyledFormGroup = Styled('div', props)`
   }
 `;
 
+const StyledCheckBoxLabel = Styled('div')`
+  margin-left: 5px
+`;
+
+const StyledPasswordStrengthWrapper = Styled('div')`
+  margin: 2% 0 0;
+`;
+
+const StyledPasswordStrength = Styled('div')`
+  width: 100%;
+  height: 10px;
+  flex: 0.75;
+  border-radius: 5px;
+  margin-right: 5px;
+  background-color: ${theme.colors.primary};
+  opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
+`;
+
 export {
 	StyledWrapper,
 	StyledRequired,
@@ -204,4 +223,7 @@ export {
 	StyledMessageWrapper,
 	StyledFlex,
 	StyledFormGroup,
+	StyledCheckBoxLabel,
+	StyledPasswordStrengthWrapper,
+	StyledPasswordStrength,
 };

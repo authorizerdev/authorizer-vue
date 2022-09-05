@@ -53,7 +53,7 @@ export const formatErrorMessage = (message) => {
 	return message.replace(`[GraphQL] `, '');
 };
 
-export const validatePassword = (value) => {
+export const validatePassword = (value = '') => {
 	const res = {
 		score: 0,
 		strength: '',
