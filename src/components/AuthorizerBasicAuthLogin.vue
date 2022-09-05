@@ -156,7 +156,7 @@ export default {
 							refresh_token: res.refresh_token,
 							id_token: res.id_token,
 						},
-						config,
+						config: globalConfig,
 						loading: false,
 					});
 				}

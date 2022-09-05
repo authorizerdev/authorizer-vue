@@ -1082,7 +1082,7 @@ var script$c = {
 								refresh_token: res.refresh_token,
 								id_token: res.id_token,
 							},
-							config,
+							config: globalConfig,
 							loading: false,
 						});
 					} else {
@@ -1346,7 +1346,7 @@ var script$b = {
 							refresh_token: res.refresh_token,
 							id_token: res.id_token,
 						},
-						config,
+						config: globalConfig,
 						loading: false,
 					});
 				}
@@ -1597,7 +1597,7 @@ var script$a = {
 							refresh_token: res.refresh_token,
 							id_token: res.id_token,
 						},
-						config,
+						config: globalConfig,
 						loading: false,
 					});
 				}
