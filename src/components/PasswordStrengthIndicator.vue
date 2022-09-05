@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, computed, watch } from 'vue';
+import { reactive, toRefs, watch } from 'vue';
 import {
 	StyledCheckBoxLabel,
 	StyledPasswordStrengthWrapper,
