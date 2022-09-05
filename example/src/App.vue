@@ -12,6 +12,7 @@
 			<authorizer-provider
 				:config="{
 					authorizerURL: 'http://localhost:8080',
+					redirectURL: 'http://localhost:5173/dashboard',
 				}"
 				:onStateChangeCallback="stateChangeCallback"
 			>
