@@ -597,7 +597,7 @@ var script$e = {
 	},
 };
 
-const _hoisted_1$a = ["viewBox", "width", "height"];
+const _hoisted_1$b = ["viewBox", "width", "height"];
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("svg", {
@@ -607,7 +607,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
     style: normalizeStyle($setup.style)
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$a))
+  ], 12 /* STYLE, PROPS */, _hoisted_1$b))
 }
 
 script$e.render = render$e;
@@ -627,7 +627,7 @@ var script$d = {
 	},
 };
 
-const _hoisted_1$9 = /*#__PURE__*/createElementVNode("g", null, [
+const _hoisted_1$a = /*#__PURE__*/createElementVNode("g", null, [
   /*#__PURE__*/createElementVNode("path", {
     fill: "#ffffff",
     d: "M617.2,495.8l349.1,350.9c31.7,31.8,31.7,83.5,0,115.3c-31.7,31.9-83.1,31.9-114.8,0L502.4,611.2L149.8,965.6c-32,32.2-83.8,32.2-115.8,0c-32-32.1-32-84.3,0-116.4l352.6-354.5L48.2,154.6c-31.7-31.9-31.7-83.5,0-115.4c31.7-31.9,83.1-31.9,114.7,0l338.4,340.2l343.3-345c32-32.1,83.8-32.1,115.8,0c32,32.2,32,84.3,0,116.4L617.2,495.8z"
@@ -643,7 +643,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 1000 1000'
   }, {
     default: withCtx(() => [
-      _hoisted_1$9
+      _hoisted_1$a
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["width", "height"]))
@@ -669,7 +669,7 @@ var script$c = {
 	},
 };
 
-const _hoisted_1$8 = { style: { flex: 1 } };
+const _hoisted_1$9 = { style: { flex: 1 } };
 
 function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_close = resolveComponent("close");
@@ -683,7 +683,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
         justifyContent: "space-between"
       }, {
         default: withCtx(() => [
-          createElementVNode("div", _hoisted_1$8, toDisplayString($setup.text), 1 /* TEXT */),
+          createElementVNode("div", _hoisted_1$9, toDisplayString($setup.text), 1 /* TEXT */),
           ($setup.onClose)
             ? (openBlock(), createElementBlock("span", {
                 key: 0,
@@ -808,27 +808,27 @@ var script$b = {
 	},
 };
 
-const _hoisted_1$7 = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
-const _hoisted_2$3 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_3$2 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_1$8 = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
+const _hoisted_2$4 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_3$3 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("OTP (One Time Password)")
 ], -1 /* HOISTED */);
-const _hoisted_4$2 = {
+const _hoisted_4$3 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_5$2 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6$2 = /*#__PURE__*/createTextVNode("Processing ...");
-const _hoisted_7$2 = /*#__PURE__*/createTextVNode("Submit");
-const _hoisted_8$2 = {
+const _hoisted_5$3 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$3 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_7$3 = /*#__PURE__*/createTextVNode("Submit");
+const _hoisted_8$3 = {
   key: 0,
   style: { marginBottom: '10px' }
 };
-const _hoisted_9$2 = /*#__PURE__*/createTextVNode(" Resend OTP ");
+const _hoisted_9$3 = /*#__PURE__*/createTextVNode(" Resend OTP ");
 const _hoisted_10$2 = { key: 2 };
 const _hoisted_11$2 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
 const _hoisted_12$2 = /*#__PURE__*/createTextVNode("Sign Up");
@@ -857,15 +857,15 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           onClose: $setup.onErrorClose
         }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
       : createCommentVNode("v-if", true),
-    _hoisted_1$7,
-    _hoisted_2$3,
+    _hoisted_1$8,
+    _hoisted_2$4,
     createElementVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
     }, [
       createCommentVNode(" OTP "),
       createVNode(_component_styled_form_group, { hasError: $setup.otpError }, {
         default: withCtx(() => [
-          _hoisted_3$2,
+          _hoisted_3$3,
           withDirectives(createElementVNode("input", {
             class: "form-input-field",
             placeholder: "eg. AB123C",
@@ -875,12 +875,12 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
             [vModelText, _ctx.otp]
           ]),
           ($setup.otpError)
-            ? (openBlock(), createElementBlock("div", _hoisted_4$2, toDisplayString($setup.otpError), 1 /* TEXT */))
+            ? (openBlock(), createElementBlock("div", _hoisted_4$3, toDisplayString($setup.otpError), 1 /* TEXT */))
             : createCommentVNode("v-if", true)
         ]),
         _: 1 /* STABLE */
       }, 8 /* PROPS */, ["hasError"]),
-      _hoisted_5$2,
+      _hoisted_5$3,
       createVNode(_component_styled_button, {
         appearance: $setup.ButtonAppearance.Primary,
         disabled: $setup.otpError || !_ctx.otp
@@ -888,10 +888,10 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         default: withCtx(() => [
           (_ctx.loading)
             ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                _hoisted_6$2
+                _hoisted_6$3
               ], 64 /* STABLE_FRAGMENT */))
             : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                _hoisted_7$2
+                _hoisted_7$3
               ], 64 /* STABLE_FRAGMENT */))
         ]),
         _: 1 /* STABLE */
@@ -901,14 +901,14 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
       ? (openBlock(), createBlock(_component_styled_footer, { key: 2 }, {
           default: withCtx(() => [
             (_ctx.sendingOtp)
-              ? (openBlock(), createElementBlock("div", _hoisted_8$2, "Sending ..."))
+              ? (openBlock(), createElementBlock("div", _hoisted_8$3, "Sending ..."))
               : (openBlock(), createBlock(_component_styled_link, {
                   key: 1,
                   onClick: $setup.resendOtp,
                   style: { marginBottom: '10px' }
                 }, {
                   default: withCtx(() => [
-                    _hoisted_9$2
+                    _hoisted_9$3
                   ]),
                   _: 1 /* STABLE */
                 }, 8 /* PROPS */, ["onClick"])),
@@ -1034,33 +1034,33 @@ var script$a = {
 	},
 };
 
-const _hoisted_1$6 = { key: 1 };
-const _hoisted_2$2 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_1$7 = { key: 1 };
+const _hoisted_2$3 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
 ], -1 /* HOISTED */);
-const _hoisted_3$1 = {
+const _hoisted_3$2 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_4$1 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_4$2 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Password")
 ], -1 /* HOISTED */);
-const _hoisted_5$1 = {
+const _hoisted_5$2 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_6$1 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_7$1 = /*#__PURE__*/createTextVNode("Processing ...");
-const _hoisted_8$1 = /*#__PURE__*/createTextVNode("Log In");
-const _hoisted_9$1 = /*#__PURE__*/createTextVNode(" Forgot Password? ");
+const _hoisted_6$2 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_7$2 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_8$2 = /*#__PURE__*/createTextVNode("Log In");
+const _hoisted_9$2 = /*#__PURE__*/createTextVNode(" Forgot Password? ");
 const _hoisted_10$1 = { key: 0 };
 const _hoisted_11$1 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
 const _hoisted_12$1 = /*#__PURE__*/createTextVNode("Sign Up");
@@ -1080,7 +1080,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
         onLogin: $props.onLogin,
         email: $setup.otpData.email.value
       }, null, 8 /* PROPS */, ["setView", "onLogin", "email"]))
-    : (openBlock(), createElementBlock("div", _hoisted_1$6, [
+    : (openBlock(), createElementBlock("div", _hoisted_1$7, [
         (_ctx.error)
           ? (openBlock(), createBlock(_component_message, {
               key: 0,
@@ -1095,7 +1095,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" Email "),
           createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: withCtx(() => [
-              _hoisted_2$2,
+              _hoisted_2$3,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1105,7 +1105,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
                 [vModelText, _ctx.email]
               ]),
               ($setup.emailError)
-                ? (openBlock(), createElementBlock("div", _hoisted_3$1, toDisplayString($setup.emailError), 1 /* TEXT */))
+                ? (openBlock(), createElementBlock("div", _hoisted_3$2, toDisplayString($setup.emailError), 1 /* TEXT */))
                 : createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1113,7 +1113,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" password "),
           createVNode(_component_styled_form_group, { hasError: $setup.passwordError }, {
             default: withCtx(() => [
-              _hoisted_4$1,
+              _hoisted_4$2,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "********",
@@ -1123,12 +1123,12 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
                 [vModelText, _ctx.password]
               ]),
               ($setup.passwordError)
-                ? (openBlock(), createElementBlock("div", _hoisted_5$1, toDisplayString($setup.passwordError), 1 /* TEXT */))
+                ? (openBlock(), createElementBlock("div", _hoisted_5$2, toDisplayString($setup.passwordError), 1 /* TEXT */))
                 : createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["hasError"]),
-          _hoisted_6$1,
+          _hoisted_6$2,
           createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             disabled: $setup.emailError || $setup.passwordError || !_ctx.email || !_ctx.password
@@ -1136,10 +1136,10 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
             default: withCtx(() => [
               (_ctx.loading)
                 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                    _hoisted_7$1
+                    _hoisted_7$2
                   ], 64 /* STABLE_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                    _hoisted_8$1
+                    _hoisted_8$2
                   ], 64 /* STABLE_FRAGMENT */))
             ]),
             _: 1 /* STABLE */
@@ -1153,7 +1153,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
                   style: { marginBottom: '10px' }
                 }, {
                   default: withCtx(() => [
-                    _hoisted_9$1
+                    _hoisted_9$2
                   ]),
                   _: 1 /* STABLE */
                 }),
@@ -1193,10 +1193,174 @@ script$9.__file = "src/components/AuthorizerMagicLinkLogin.vue";
 
 var script$8 = {
 	name: 'AuthorizerForgotPassword',
+	props: ['setView', 'onForgotPassword', 'urlProps'],
+	components: {
+		'styled-button': StyledButton,
+		'styled-form-group': StyledFormGroup,
+		'styled-footer': StyledFooter,
+		'styled-link': StyledLink,
+		message: script$c,
+	},
+	setup({ setView, onForgotPassword, urlProps }) {
+		const config = { ...toRefs(globalConfig) };
+		const { authorizerRef } = { ...toRefs(globalState) };
+		const componentState = reactive({
+			error: null,
+			successMessage: null,
+			loading: false,
+			email: null,
+		});
+		const emailError = computed(() => {
+			if (componentState.email === '') {
+				return 'Email is required';
+			}
+			if (componentState.email && !isValidEmail(componentState.email)) {
+				return 'Please enter valid email';
+			}
+		});
+		const onSubmit = async () => {
+			try {
+				componentState.loading = true;
+				const res = await authorizerRef.value.forgotPassword({
+					email: componentState.email,
+					state: urlProps.state || '',
+					redirect_uri:
+						urlProps.redirect_uri ||
+						config.redirectURL.value ||
+						window.location.origin,
+				});
+				componentState.loading = false;
+				if (res && res.message) {
+					componentState.error = null;
+					componentState.successMessage = res.message;
+				}
+				if (onForgotPassword) {
+					onForgotPassword(res);
+				}
+			} catch (error) {
+				componentState.loading = false;
+				componentState.error = error.message;
+			}
+		};
+		const onErrorClose = () => {
+			componentState.error = null;
+		};
+		return {
+			...toRefs(componentState),
+			onSubmit,
+			onErrorClose,
+			MessageType,
+			ButtonAppearance,
+			Views,
+			emailError,
+		};
+	},
 };
 
+const _hoisted_1$6 = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, [
+  /*#__PURE__*/createTextVNode(" Please enter your email address. "),
+  /*#__PURE__*/createElementVNode("br"),
+  /*#__PURE__*/createTextVNode(" We will send you an email to reset your password. ")
+], -1 /* HOISTED */);
+const _hoisted_2$2 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_3$1 = /*#__PURE__*/createElementVNode("label", {
+  class: "form-input-label",
+  for: ""
+}, [
+  /*#__PURE__*/createElementVNode("span", null, "* "),
+  /*#__PURE__*/createTextVNode("Email")
+], -1 /* HOISTED */);
+const _hoisted_4$1 = {
+  key: 0,
+  class: "form-input-error"
+};
+const _hoisted_5$1 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_6$1 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_7$1 = /*#__PURE__*/createTextVNode("Send Email");
+const _hoisted_8$1 = /*#__PURE__*/createTextVNode(" Remember your password? ");
+const _hoisted_9$1 = /*#__PURE__*/createTextVNode("Log In");
+
 function render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", null, "Authorizer ForgotPassword Component"))
+  const _component_message = resolveComponent("message");
+  const _component_styled_form_group = resolveComponent("styled-form-group");
+  const _component_styled_button = resolveComponent("styled-button");
+  const _component_styled_link = resolveComponent("styled-link");
+  const _component_styled_footer = resolveComponent("styled-footer");
+
+  return (_ctx.successMessage)
+    ? (openBlock(), createBlock(_component_message, {
+        key: 0,
+        type: $setup.MessageType.Success,
+        text: _ctx.successMessage
+      }, null, 8 /* PROPS */, ["type", "text"]))
+    : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+        (_ctx.error)
+          ? (openBlock(), createBlock(_component_message, {
+              key: 0,
+              type: $setup.MessageType.Error,
+              text: _ctx.error,
+              onClose: $setup.onErrorClose
+            }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
+          : createCommentVNode("v-if", true),
+        _hoisted_1$6,
+        _hoisted_2$2,
+        createElementVNode("form", {
+          onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
+        }, [
+          createCommentVNode(" Email "),
+          createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
+            default: withCtx(() => [
+              _hoisted_3$1,
+              withDirectives(createElementVNode("input", {
+                class: "form-input-field",
+                placeholder: "eg. foo@bar.com",
+                type: "email",
+                "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vModelText, _ctx.email]
+              ]),
+              ($setup.emailError)
+                ? (openBlock(), createElementBlock("div", _hoisted_4$1, toDisplayString($setup.emailError), 1 /* TEXT */))
+                : createCommentVNode("v-if", true)
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["hasError"]),
+          _hoisted_5$1,
+          createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Primary,
+            disabled: $setup.emailError || !_ctx.email
+          }, {
+            default: withCtx(() => [
+              (_ctx.loading)
+                ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+                    _hoisted_6$1
+                  ], 64 /* STABLE_FRAGMENT */))
+                : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+                    _hoisted_7$1
+                  ], 64 /* STABLE_FRAGMENT */))
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance", "disabled"])
+        ], 32 /* HYDRATE_EVENTS */),
+        ($props.setView)
+          ? (openBlock(), createBlock(_component_styled_footer, { key: 1 }, {
+              default: withCtx(() => [
+                createElementVNode("div", null, [
+                  _hoisted_8$1,
+                  createVNode(_component_styled_link, {
+                    onClick: _cache[2] || (_cache[2] = () => $props.setView($setup.Views.Login))
+                  }, {
+                    default: withCtx(() => [
+                      _hoisted_9$1
+                    ]),
+                    _: 1 /* STABLE */
+                  })
+                ])
+              ]),
+              _: 1 /* STABLE */
+            }))
+          : createCommentVNode("v-if", true)
+      ], 64 /* STABLE_FRAGMENT */))
 }
 
 script$8.render = render$8;

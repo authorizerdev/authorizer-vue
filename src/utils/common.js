@@ -48,3 +48,7 @@ export const isValidOtp = (otp) => {
 	const re = /^([A-Z0-9]{6})$/;
 	return otp && re.test(String(otp.trim()));
 };
+
+export const formatErrorMessage = (message) => {
+	return message.replace(`[GraphQL] `, '');
+};
