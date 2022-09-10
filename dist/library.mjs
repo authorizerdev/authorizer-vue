@@ -65,7 +65,7 @@ var globalConfig = reactive({
 	is_strong_password_enabled: true,
 });
 
-var script$h = {
+var script$i = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -284,7 +284,7 @@ var script$h = {
 	},
 };
 
-script$h.__file = "src/components/AuthorizerProvider.vue";
+script$i.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -648,7 +648,7 @@ const validatePassword = (value = '') => {
 	return { ...res, isValid };
 };
 
-var script$g = {
+var script$h = {
 	name: 'IconRoot',
 	props: ['height', 'width', 'viewBox', 'style'],
 	setup(props) {
@@ -665,9 +665,9 @@ var script$g = {
 	},
 };
 
-const _hoisted_1$f = ["viewBox", "width", "height"];
+const _hoisted_1$g = ["viewBox", "width", "height"];
 
-function render$g(_ctx, _cache, $props, $setup, $data, $options) {
+function render$h(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("svg", {
     viewBox: $setup.viewBox,
     width: $setup.width,
@@ -675,17 +675,17 @@ function render$g(_ctx, _cache, $props, $setup, $data, $options) {
     style: normalizeStyle($setup.style)
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$f))
+  ], 12 /* STYLE, PROPS */, _hoisted_1$g))
 }
 
-script$g.render = render$g;
-script$g.__file = "src/components/IconRoot.vue";
+script$h.render = render$h;
+script$h.__file = "src/components/IconRoot.vue";
 
-var script$f = {
+var script$g = {
 	name: 'Close',
 	props: ['height', 'width'],
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 	setup(props) {
 		return {
@@ -695,14 +695,14 @@ var script$f = {
 	},
 };
 
-const _hoisted_1$e = /*#__PURE__*/createElementVNode("g", null, [
+const _hoisted_1$f = /*#__PURE__*/createElementVNode("g", null, [
   /*#__PURE__*/createElementVNode("path", {
     fill: "#ffffff",
     d: "M617.2,495.8l349.1,350.9c31.7,31.8,31.7,83.5,0,115.3c-31.7,31.9-83.1,31.9-114.8,0L502.4,611.2L149.8,965.6c-32,32.2-83.8,32.2-115.8,0c-32-32.1-32-84.3,0-116.4l352.6-354.5L48.2,154.6c-31.7-31.9-31.7-83.5,0-115.4c31.7-31.9,83.1-31.9,114.7,0l338.4,340.2l343.3-345c32-32.1,83.8-32.1,115.8,0c32,32.2,32,84.3,0,116.4L617.2,495.8z"
   })
 ], -1 /* HOISTED */);
 
-function render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function render$g(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -711,22 +711,22 @@ function render$f(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 1000 1000'
   }, {
     default: withCtx(() => [
-      _hoisted_1$e
+      _hoisted_1$f
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["width", "height"]))
 }
 
-script$f.render = render$f;
-script$f.__file = "src/icons/Close.vue";
+script$g.render = render$g;
+script$g.__file = "src/icons/Close.vue";
 
-var script$e = {
+var script$f = {
 	name: 'Message',
 	props: ['type', 'text', 'onClose'],
 	components: {
 		'styled-message-wrapper': StyledMessageWrapper,
 		'styled-flex': StyledFlex,
-		close: script$f,
+		close: script$g,
 	},
 	setup({ type, text, onClose }) {
 		return {
@@ -737,9 +737,9 @@ var script$e = {
 	},
 };
 
-const _hoisted_1$d = { style: { flex: 1 } };
+const _hoisted_1$e = { style: { flex: 1 } };
 
-function render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_close = resolveComponent("close");
   const _component_styled_flex = resolveComponent("styled-flex");
   const _component_styled_message_wrapper = resolveComponent("styled-message-wrapper");
@@ -751,7 +751,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
         justifyContent: "space-between"
       }, {
         default: withCtx(() => [
-          createElementVNode("div", _hoisted_1$d, toDisplayString($setup.text), 1 /* TEXT */),
+          createElementVNode("div", _hoisted_1$e, toDisplayString($setup.text), 1 /* TEXT */),
           ($setup.onClose)
             ? (openBlock(), createElementBlock("span", {
                 key: 0,
@@ -772,10 +772,10 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8 /* PROPS */, ["type"]))
 }
 
-script$e.render = render$e;
-script$e.__file = "src/components/Message.vue";
+script$f.render = render$f;
+script$f.__file = "src/components/Message.vue";
 
-var script$d = {
+var script$e = {
 	name: 'PasswordStrengthIndicator',
 	props: ['value', 'setDisableButton'],
 	components: {
@@ -816,7 +816,7 @@ var script$d = {
 	},
 };
 
-const _hoisted_1$c = /*#__PURE__*/createElementVNode("p", null, [
+const _hoisted_1$d = /*#__PURE__*/createElementVNode("p", null, [
   /*#__PURE__*/createElementVNode("b", null, "Criteria for a strong password:")
 ], -1 /* HOISTED */);
 const _hoisted_2$8 = ["checked"];
@@ -830,9 +830,9 @@ const _hoisted_9$5 = /*#__PURE__*/createTextVNode("At least 1 numeric character"
 const _hoisted_10$4 = ["checked"];
 const _hoisted_11$4 = /*#__PURE__*/createTextVNode("At least 1 special character");
 const _hoisted_12$3 = ["checked"];
-const _hoisted_13 = /*#__PURE__*/createTextVNode("Maximum 36 characters");
+const _hoisted_13$1 = /*#__PURE__*/createTextVNode("Maximum 36 characters");
 
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_password_strength = resolveComponent("styled-password-strength");
   const _component_styled_flex = resolveComponent("styled-flex");
   const _component_styled_check_box_label = resolveComponent("styled-check-box-label");
@@ -863,7 +863,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           _: 1 /* STABLE */
         }),
-        _hoisted_1$c,
+        _hoisted_1$d,
         createVNode(_component_styled_flex, { flexDirection: "column" }, {
           default: withCtx(() => [
             createVNode(_component_styled_flex, {
@@ -973,7 +973,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
                 }, null, 8 /* PROPS */, _hoisted_12$3),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
-                    _hoisted_13
+                    _hoisted_13$1
                   ]),
                   _: 1 /* STABLE */
                 })
@@ -989,19 +989,19 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   ]))
 }
 
-script$d.render = render$d;
-script$d.__file = "src/components/PasswordStrengthIndicator.vue";
+script$e.render = render$e;
+script$e.__file = "src/components/PasswordStrengthIndicator.vue";
 
-var script$c = {
+var script$d = {
 	name: 'AuthorizerSignup',
 	props: ['setView', 'onSignup', 'urlProps'],
 	components: {
-		'password-strength-indicator': script$d,
+		'password-strength-indicator': script$e,
 		'styled-button': StyledButton,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		message: script$e,
+		message: script$f,
 	},
 	setup({ setView, onSignup, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
@@ -1116,7 +1116,7 @@ var script$c = {
 	},
 };
 
-const _hoisted_1$b = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_1$c = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
@@ -1155,7 +1155,7 @@ const _hoisted_9$4 = /*#__PURE__*/createTextVNode("Sign Up");
 const _hoisted_10$3 = /*#__PURE__*/createTextVNode(" Already have an account? ");
 const _hoisted_11$3 = /*#__PURE__*/createTextVNode("Log In");
 
-function render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_password_strength_indicator = resolveComponent("password-strength-indicator");
@@ -1184,7 +1184,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" Email "),
           createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: withCtx(() => [
-              _hoisted_1$b,
+              _hoisted_1$c,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1269,13 +1269,13 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance", "disabled"])
         ], 32 /* HYDRATE_EVENTS */),
-        ($props.setView)
+        ($setup.setView)
           ? (openBlock(), createBlock(_component_styled_footer, { key: 1 }, {
               default: withCtx(() => [
                 createElementVNode("div", null, [
                   _hoisted_10$3,
                   createVNode(_component_styled_link, {
-                    onClick: _cache[4] || (_cache[4] = () => $props.setView($setup.Views.Login))
+                    onClick: _cache[4] || (_cache[4] = () => $setup.setView($setup.Views.Login))
                   }, {
                     default: withCtx(() => [
                       _hoisted_11$3
@@ -1290,10 +1290,10 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
       ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$c.render = render$c;
-script$c.__file = "src/components/AuthorizerSignup.vue";
+script$d.render = render$d;
+script$d.__file = "src/components/AuthorizerSignup.vue";
 
-var script$b = {
+var script$c = {
 	name: 'AuthorizerVerifyOtp',
 	props: ['setView', 'onLogin', 'email'],
 	components: {
@@ -1301,7 +1301,7 @@ var script$b = {
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		message: script$e,
+		message: script$f,
 	},
 	setup({ setView, onLogin, email }) {
 		const config = { ...toRefs(globalConfig) };
@@ -1394,7 +1394,7 @@ var script$b = {
 	},
 };
 
-const _hoisted_1$a = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
+const _hoisted_1$b = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, " Please enter the OTP you received on your email address. ", -1 /* HOISTED */);
 const _hoisted_2$6 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_3$5 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
@@ -1419,7 +1419,7 @@ const _hoisted_10$2 = { key: 2 };
 const _hoisted_11$2 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
 const _hoisted_12$2 = /*#__PURE__*/createTextVNode("Sign Up");
 
-function render$b(_ctx, _cache, $props, $setup, $data, $options) {
+function render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_styled_button = resolveComponent("styled-button");
@@ -1443,7 +1443,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           onClose: $setup.onErrorClose
         }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
       : createCommentVNode("v-if", true),
-    _hoisted_1$a,
+    _hoisted_1$b,
     _hoisted_2$6,
     createElementVNode("form", {
       onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
@@ -1518,10 +1518,10 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$b.render = render$b;
-script$b.__file = "src/components/AuthorizerVerifyOtp.vue";
+script$c.render = render$c;
+script$c.__file = "src/components/AuthorizerVerifyOtp.vue";
 
-var script$a = {
+var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
@@ -1529,8 +1529,8 @@ var script$a = {
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		'authorizer-verify-otp': script$b,
-		message: script$e,
+		'authorizer-verify-otp': script$c,
+		message: script$f,
 	},
 	setup({ setView, onLogin, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
@@ -1620,7 +1620,7 @@ var script$a = {
 	},
 };
 
-const _hoisted_1$9 = { key: 1 };
+const _hoisted_1$a = { key: 1 };
 const _hoisted_2$5 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
@@ -1651,7 +1651,7 @@ const _hoisted_10$1 = { key: 0 };
 const _hoisted_11$1 = /*#__PURE__*/createTextVNode(" Don't have an account? ");
 const _hoisted_12$1 = /*#__PURE__*/createTextVNode("Sign Up");
 
-function render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function render$b(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_authorizer_verify_otp = resolveComponent("authorizer-verify-otp");
   const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
@@ -1666,7 +1666,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
         onLogin: $props.onLogin,
         email: $setup.otpData.email.value
       }, null, 8 /* PROPS */, ["setView", "onLogin", "email"]))
-    : (openBlock(), createElementBlock("div", _hoisted_1$9, [
+    : (openBlock(), createElementBlock("div", _hoisted_1$a, [
         (_ctx.error)
           ? (openBlock(), createBlock(_component_message, {
               key: 0,
@@ -1763,16 +1763,16 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
       ]))
 }
 
-script$a.render = render$a;
-script$a.__file = "src/components/AuthorizerBasicAuthLogin.vue";
+script$b.render = render$b;
+script$b.__file = "src/components/AuthorizerBasicAuthLogin.vue";
 
-var script$9 = {
+var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-form-group': StyledFormGroup,
-		message: script$e,
+		message: script$f,
 	},
 	setup({ onMagicLinkLogin, urlProps }) {
 		const { authorizerRef } = { ...toRefs(globalState) };
@@ -1833,7 +1833,7 @@ var script$9 = {
 	},
 };
 
-const _hoisted_1$8 = /*#__PURE__*/createElementVNode("label", {
+const _hoisted_1$9 = /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
@@ -1848,7 +1848,7 @@ const _hoisted_3$3 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOI
 const _hoisted_4$3 = /*#__PURE__*/createTextVNode("Processing ...");
 const _hoisted_5$3 = /*#__PURE__*/createTextVNode("Send Email");
 
-function render$9(_ctx, _cache, $props, $setup, $data, $options) {
+function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_styled_button = resolveComponent("styled-button");
@@ -1874,7 +1874,7 @@ function render$9(_ctx, _cache, $props, $setup, $data, $options) {
           createCommentVNode(" Email "),
           createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
             default: withCtx(() => [
-              _hoisted_1$8,
+              _hoisted_1$9,
               withDirectives(createElementVNode("input", {
                 class: "form-input-field",
                 placeholder: "eg. foo@bar.com",
@@ -1909,10 +1909,10 @@ function render$9(_ctx, _cache, $props, $setup, $data, $options) {
       ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$9.render = render$9;
-script$9.__file = "src/components/AuthorizerMagicLinkLogin.vue";
+script$a.render = render$a;
+script$a.__file = "src/components/AuthorizerMagicLinkLogin.vue";
 
-var script$8 = {
+var script$9 = {
 	name: 'AuthorizerForgotPassword',
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
@@ -1920,7 +1920,7 @@ var script$8 = {
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		message: script$e,
+		message: script$f,
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
@@ -1979,7 +1979,7 @@ var script$8 = {
 	},
 };
 
-const _hoisted_1$7 = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, [
+const _hoisted_1$8 = /*#__PURE__*/createElementVNode("p", { style: { textAlign: 'center', margin: '10px 0px' } }, [
   /*#__PURE__*/createTextVNode(" Please enter your email address. "),
   /*#__PURE__*/createElementVNode("br"),
   /*#__PURE__*/createTextVNode(" We will send you an email to reset your password. ")
@@ -2002,7 +2002,7 @@ const _hoisted_7$2 = /*#__PURE__*/createTextVNode("Send Email");
 const _hoisted_8$1 = /*#__PURE__*/createTextVNode(" Remember your password? ");
 const _hoisted_9$1 = /*#__PURE__*/createTextVNode("Log In");
 
-function render$8(_ctx, _cache, $props, $setup, $data, $options) {
+function render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_message = resolveComponent("message");
   const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_styled_button = resolveComponent("styled-button");
@@ -2024,7 +2024,7 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
               onClose: $setup.onErrorClose
             }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
           : createCommentVNode("v-if", true),
-        _hoisted_1$7,
+        _hoisted_1$8,
         _hoisted_2$3,
         createElementVNode("form", {
           onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
@@ -2064,13 +2064,13 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
             _: 1 /* STABLE */
           }, 8 /* PROPS */, ["appearance", "disabled"])
         ], 32 /* HYDRATE_EVENTS */),
-        ($props.setView)
+        ($setup.setView)
           ? (openBlock(), createBlock(_component_styled_footer, { key: 1 }, {
               default: withCtx(() => [
                 createElementVNode("div", null, [
                   _hoisted_8$1,
                   createVNode(_component_styled_link, {
-                    onClick: _cache[2] || (_cache[2] = () => $props.setView($setup.Views.Login))
+                    onClick: _cache[2] || (_cache[2] = () => $setup.setView($setup.Views.Login))
                   }, {
                     default: withCtx(() => [
                       _hoisted_9$1
@@ -2085,17 +2085,17 @@ function render$8(_ctx, _cache, $props, $setup, $data, $options) {
       ], 64 /* STABLE_FRAGMENT */))
 }
 
-script$8.render = render$8;
-script$8.__file = "src/components/AuthorizerForgotPassword.vue";
+script$9.render = render$9;
+script$9.__file = "src/components/AuthorizerForgotPassword.vue";
 
-var script$7 = {
+var script$8 = {
 	name: 'Google',
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 };
 
-const _hoisted_1$6 = /*#__PURE__*/createElementVNode("g", { transform: "matrix(1, 0, 0, 1, 27.009001, -39.238998)" }, [
+const _hoisted_1$7 = /*#__PURE__*/createElementVNode("g", { transform: "matrix(1, 0, 0, 1, 27.009001, -39.238998)" }, [
   /*#__PURE__*/createElementVNode("path", {
     fill: "#4285F4",
     d: "M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"
@@ -2114,7 +2114,7 @@ const _hoisted_1$6 = /*#__PURE__*/createElementVNode("g", { transform: "matrix(1
   })
 ], -1 /* HOISTED */);
 
-function render$7(_ctx, _cache, $props, $setup, $data, $options) {
+function render$8(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -2122,25 +2122,25 @@ function render$7(_ctx, _cache, $props, $setup, $data, $options) {
     height: 24
   }, {
     default: withCtx(() => [
-      _hoisted_1$6
+      _hoisted_1$7
     ]),
     _: 1 /* STABLE */
   }))
 }
 
-script$7.render = render$7;
-script$7.__file = "src/icons/Google.vue";
+script$8.render = render$8;
+script$8.__file = "src/icons/Google.vue";
 
-var script$6 = {
+var script$7 = {
 	name: 'Facebook',
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 };
 
-const _hoisted_1$5 = /*#__PURE__*/createElementVNode("path", { d: "M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37,19h-2c-2.14,0-3,0.5-3,2 v3h5l-1,5h-4v15h-5V29h-4v-5h4v-3c0-4,2-7,6-7c2.9,0,4,1,4,1V19z" }, null, -1 /* HOISTED */);
+const _hoisted_1$6 = /*#__PURE__*/createElementVNode("path", { d: "M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37,19h-2c-2.14,0-3,0.5-3,2 v3h5l-1,5h-4v15h-5V29h-4v-5h4v-3c0-4,2-7,6-7c2.9,0,4,1,4,1V19z" }, null, -1 /* HOISTED */);
 
-function render$6(_ctx, _cache, $props, $setup, $data, $options) {
+function render$7(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -2150,28 +2150,28 @@ function render$6(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#1877f2'
   }, {
     default: withCtx(() => [
-      _hoisted_1$5
+      _hoisted_1$6
     ]),
     _: 1 /* STABLE */
   }))
 }
 
-script$6.render = render$6;
-script$6.__file = "src/icons/Facebook.vue";
+script$7.render = render$7;
+script$7.__file = "src/icons/Facebook.vue";
 
-var script$5 = {
+var script$6 = {
 	name: 'Github',
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 };
 
-const _hoisted_1$4 = /*#__PURE__*/createElementVNode("path", {
+const _hoisted_1$5 = /*#__PURE__*/createElementVNode("path", {
   d: "M145.66 0C65.219 0 0 65.219 0 145.66c0 80.45 65.219 145.66 145.66 145.66s145.66-65.21 145.66-145.66C291.319 65.219 226.1 0 145.66 0zm40.802 256.625c-.838-11.398-1.775-25.518-1.83-31.235-.364-4.388-.838-15.549-11.434-22.677 42.068-3.523 62.087-26.774 63.526-57.499 1.202-17.497-5.754-32.883-18.107-45.3.628-13.282-.401-29.023-1.256-35.941-9.486-2.731-31.608 8.949-37.79 13.947-13.037-5.062-44.945-6.837-64.336 0-13.747-9.668-29.396-15.64-37.926-13.974-7.875 17.452-2.813 33.948-1.275 35.914-10.142 9.268-24.289 20.675-20.447 44.572 6.163 35.04 30.816 53.94 70.508 58.564-8.466 1.73-9.896 8.048-10.606 10.788-26.656 10.997-34.275-6.791-37.644-11.425-11.188-13.847-21.23-9.832-21.849-9.614-.601.218-1.056 1.092-.992 1.511.564 2.986 6.655 6.018 6.955 6.263 8.257 6.154 11.316 17.27 13.2 20.438 11.844 19.473 39.374 11.398 39.638 11.562.018 1.702-.191 16.032-.355 27.184C64.245 245.992 27.311 200.2 27.311 145.66c0-65.365 52.984-118.348 118.348-118.348S264.008 80.295 264.008 145.66c0 51.008-32.318 94.332-77.546 110.965z",
   fill: "#2b414d"
 }, null, -1 /* HOISTED */);
 
-function render$5(_ctx, _cache, $props, $setup, $data, $options) {
+function render$6(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -2180,23 +2180,23 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: '0 0 291.32 291.32'
   }, {
     default: withCtx(() => [
-      _hoisted_1$4
+      _hoisted_1$5
     ]),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["viewBox"]))
 }
 
-script$5.render = render$5;
-script$5.__file = "src/icons/Github.vue";
+script$6.render = render$6;
+script$6.__file = "src/icons/Github.vue";
 
-var script$4 = {
+var script$5 = {
 	name: 'Linkedin',
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 };
 
-const _hoisted_1$3 = /*#__PURE__*/createElementVNode("path", {
+const _hoisted_1$4 = /*#__PURE__*/createElementVNode("path", {
   fill: "#0288D1",
   d: "M42 37a5 5 0 0 1-5 5H11a5 5 0 0 1-5-5V11a5 5 0 0 1 5-5h26a5 5 0 0 1 5 5v26z"
 }, null, -1 /* HOISTED */);
@@ -2205,7 +2205,7 @@ const _hoisted_2$2 = /*#__PURE__*/createElementVNode("path", {
   d: "M12 19h5v17h-5zm2.485-2h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99-.144.35-.101 1.318-.101 1.807v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36z"
 }, null, -1 /* HOISTED */);
 
-function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -2215,26 +2215,26 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#1877f2'
   }, {
     default: withCtx(() => [
-      _hoisted_1$3,
+      _hoisted_1$4,
       _hoisted_2$2
     ]),
     _: 1 /* STABLE */
   }))
 }
 
-script$4.render = render$4;
-script$4.__file = "src/icons/Linkedin.vue";
+script$5.render = render$5;
+script$5.__file = "src/icons/Linkedin.vue";
 
-var script$3 = {
+var script$4 = {
 	name: 'Apple',
 	components: {
-		'icon-root': script$g,
+		'icon-root': script$h,
 	},
 };
 
-const _hoisted_1$2 = /*#__PURE__*/createElementVNode("path", { d: "M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615-.35 1.116-6.599 22.563-21.757 44.716-13.104 19.153-26.705 38.235-48.13 38.63-21.05.388-27.82-12.483-51.888-12.483-24.061 0-31.582 12.088-51.51 12.871-20.68.783-36.428-20.71-49.64-39.793-27-39.033-47.633-110.3-19.928-158.406 13.763-23.89 38.36-39.017 65.056-39.405 20.307-.387 39.475 13.662 51.889 13.662 12.406 0 35.699-16.895 60.186-14.414 10.25.427 39.026 4.14 57.503 31.186-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199-15.826.636-34.962 10.546-46.314 23.828-10.173 11.763-19.082 30.589-16.678 48.633 17.64 1.365 35.66-8.964 46.64-22.262" }, null, -1 /* HOISTED */);
+const _hoisted_1$3 = /*#__PURE__*/createElementVNode("path", { d: "M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615-.35 1.116-6.599 22.563-21.757 44.716-13.104 19.153-26.705 38.235-48.13 38.63-21.05.388-27.82-12.483-51.888-12.483-24.061 0-31.582 12.088-51.51 12.871-20.68.783-36.428-20.71-49.64-39.793-27-39.033-47.633-110.3-19.928-158.406 13.763-23.89 38.36-39.017 65.056-39.405 20.307-.387 39.475 13.662 51.889 13.662 12.406 0 35.699-16.895 60.186-14.414 10.25.427 39.026 4.14 57.503 31.186-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199-15.826.636-34.962 10.546-46.314 23.828-10.173 11.763-19.082 30.589-16.678 48.633 17.64 1.365 35.66-8.964 46.64-22.262" }, null, -1 /* HOISTED */);
 
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_icon_root = resolveComponent("icon-root");
 
   return (openBlock(), createBlock(_component_icon_root, {
@@ -2244,6 +2244,36 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     fill: '#000000'
   }, {
     default: withCtx(() => [
+      _hoisted_1$3
+    ]),
+    _: 1 /* STABLE */
+  }))
+}
+
+script$4.render = render$4;
+script$4.__file = "src/icons/Apple.vue";
+
+var script$3 = {
+	name: 'Twitter',
+	components: {
+		'icon-root': script$h,
+	},
+};
+
+const _hoisted_1$2 = /*#__PURE__*/createElementVNode("path", {
+  fill: "#03A9F4",
+  d: "M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"
+}, null, -1 /* HOISTED */);
+
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_icon_root = resolveComponent("icon-root");
+
+  return (openBlock(), createBlock(_component_icon_root, {
+    width: 24,
+    height: 24,
+    viewBox: '0 0 48 48'
+  }, {
+    default: withCtx(() => [
       _hoisted_1$2
     ]),
     _: 1 /* STABLE */
@@ -2251,7 +2281,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script$3.render = render$3;
-script$3.__file = "src/icons/Apple.vue";
+script$3.__file = "src/icons/Twitter.vue";
 
 var script$2 = {
 	name: 'AuthorizerSocialLogin',
@@ -2259,11 +2289,12 @@ var script$2 = {
 	components: {
 		'styled-button': StyledButton,
 		'styled-separator': StyledSeparator,
-		google: script$7,
-		github: script$5,
-		facebook: script$6,
-		linkedin: script$4,
-		apple: script$3,
+		google: script$8,
+		github: script$6,
+		facebook: script$7,
+		linkedin: script$5,
+		apple: script$4,
+		twitter: script$3,
 	},
 	setup({ urlProps }) {
 		const config = { ...toRefs(globalConfig) };
@@ -2305,7 +2336,9 @@ const _hoisted_8 = /*#__PURE__*/createTextVNode(" Sign in with Facebook ");
 const _hoisted_9 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_10 = /*#__PURE__*/createTextVNode(" Sign in with Linkedin ");
 const _hoisted_11 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_12 = /*#__PURE__*/createTextVNode(" OR ");
+const _hoisted_12 = /*#__PURE__*/createTextVNode(" Sign in with Twitter ");
+const _hoisted_13 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
+const _hoisted_14 = /*#__PURE__*/createTextVNode(" OR ");
 
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_apple = resolveComponent("apple");
@@ -2412,14 +2445,33 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
           _hoisted_11
         ], 64 /* STABLE_FRAGMENT */))
       : createCommentVNode("v-if", true),
+    ($setup.config.is_twitter_login_enabled.value)
+      ? (openBlock(), createElementBlock(Fragment, { key: 5 }, [
+          createVNode(_component_styled_button, {
+            appearance: $setup.ButtonAppearance.Default,
+            onClick: _cache[5] || (_cache[5] = 
+					() => {
+						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/twitter?${$setup.queryParams}`;
+					}
+				)
+          }, {
+            default: withCtx(() => [
+              createVNode(_component_linkedin),
+              _hoisted_12
+            ]),
+            _: 1 /* STABLE */
+          }, 8 /* PROPS */, ["appearance"]),
+          _hoisted_13
+        ], 64 /* STABLE_FRAGMENT */))
+      : createCommentVNode("v-if", true),
     (
 				$setup.hasSocialLogin &&
 				($setup.config.is_basic_authentication_enabled.value ||
 					$setup.config.is_magic_link_login_enabled.value)
 			)
-      ? (openBlock(), createBlock(_component_styled_separator, { key: 5 }, {
+      ? (openBlock(), createBlock(_component_styled_separator, { key: 6 }, {
           default: withCtx(() => [
-            _hoisted_12
+            _hoisted_14
           ]),
           _: 1 /* STABLE */
         }))
@@ -2447,8 +2499,8 @@ var script$1 = {
 		'styled-wrapper': StyledWrapper,
 		'styled-button': StyledButton,
 		'styled-form-group': StyledFormGroup,
-		'password-strength-indicator': script$d,
-		message: script$e,
+		'password-strength-indicator': script$e,
+		message: script$f,
 	},
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
@@ -2569,7 +2621,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
             key: 0,
             type: $setup.MessageType.Error,
             text: _ctx.error,
-            onClose: _ctx.onErrorClose
+            onClose: $setup.onErrorClose
           }, null, 8 /* PROPS */, ["type", "text", "onClose"]))
         : createCommentVNode("v-if", true),
       createElementVNode("form", {
@@ -2656,10 +2708,10 @@ var script = {
 	components: {
 		'styled-wrapper': StyledWrapper,
 		'authorizer-social-login': script$2,
-		'authorizer-signup': script$c,
-		'authorizer-magic-link-login': script$9,
-		'authorizer-forgot-password': script$8,
-		'authorizer-basic-auth-login': script$a,
+		'authorizer-signup': script$d,
+		'authorizer-magic-link-login': script$a,
+		'authorizer-forgot-password': script$9,
+		'authorizer-basic-auth-login': script$b,
 	},
 	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
 	setup(props) {
@@ -2759,14 +2811,14 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$h,
-	AuthorizerSignup: script$c,
-	AuthorizerBasicAuthLogin: script$a,
-	AuthorizerMagicLinkLogin: script$9,
-	AuthorizerForgotPassword: script$8,
+	AuthorizerProvider: script$i,
+	AuthorizerSignup: script$d,
+	AuthorizerBasicAuthLogin: script$b,
+	AuthorizerMagicLinkLogin: script$a,
+	AuthorizerForgotPassword: script$9,
 	AuthorizerSocialLogin: script$2,
 	AuthorizerResetPassword: script$1,
-	AuthorizerVerifyOtp: script$b,
+	AuthorizerVerifyOtp: script$c,
 	AuthorizerRoot: script,
 };
 

@@ -70,6 +70,20 @@
 			</styled-button>
 			<br />
 		</template>
+		<template v-if="config.is_twitter_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => {
+						window.location.href = `${config.authorizerURL.value}/oauth_login/twitter?${queryParams}`;
+					}
+				"
+			>
+				<linkedin />
+				Sign in with Twitter
+			</styled-button>
+			<br />
+		</template>
 		<styled-separator
 			v-if="
 				hasSocialLogin &&
@@ -94,6 +108,7 @@ import Facebook from '../icons/Facebook.vue';
 import Github from '../icons/Github.vue';
 import Linkedin from '../icons/Linkedin.vue';
 import Apple from '../icons/Apple.vue';
+import Twitter from '../icons/Twitter.vue';
 export default {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
@@ -105,6 +120,7 @@ export default {
 		facebook: Facebook,
 		linkedin: Linkedin,
 		apple: Apple,
+		twitter: Twitter,
 	},
 	setup({ urlProps }) {
 		const config = { ...toRefs(globalConfig) };
