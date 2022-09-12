@@ -376,7 +376,7 @@ const StyledButton = Styled__default["default"]('button', props)`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 375;
+  min-width: 375px;
   max-height: 64px;
   background-color: ${(props) =>
 		props.appearance === 'Primary' ? theme.colors.primary : '#ffffff'};
@@ -807,7 +807,7 @@ const _hoisted_9$5 = /*#__PURE__*/vue.createTextVNode("At least 1 numeric charac
 const _hoisted_10$4 = ["checked"];
 const _hoisted_11$4 = /*#__PURE__*/vue.createTextVNode("At least 1 special character");
 const _hoisted_12$3 = ["checked"];
-const _hoisted_13$1 = /*#__PURE__*/vue.createTextVNode("Maximum 36 characters");
+const _hoisted_13 = /*#__PURE__*/vue.createTextVNode("Maximum 36 characters");
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_password_strength = vue.resolveComponent("styled-password-strength");
@@ -950,7 +950,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                 }, null, 8 /* PROPS */, _hoisted_12$3),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
-                    _hoisted_13$1
+                    _hoisted_13
                   ]),
                   _: 1 /* STABLE */
                 })
@@ -2313,9 +2313,7 @@ const _hoisted_8 = /*#__PURE__*/vue.createTextVNode(" Sign in with Facebook ");
 const _hoisted_9 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
 const _hoisted_10 = /*#__PURE__*/vue.createTextVNode(" Sign in with Linkedin ");
 const _hoisted_11 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_12 = /*#__PURE__*/vue.createTextVNode(" Sign in with Twitter ");
-const _hoisted_13 = /*#__PURE__*/vue.createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_14 = /*#__PURE__*/vue.createTextVNode(" OR ");
+const _hoisted_12 = /*#__PURE__*/vue.createTextVNode(" OR ");
 
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_apple = vue.resolveComponent("apple");
@@ -2422,33 +2420,15 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
           _hoisted_11
         ], 64 /* STABLE_FRAGMENT */))
       : vue.createCommentVNode("v-if", true),
-    ($setup.config.is_twitter_login_enabled.value)
-      ? (vue.openBlock(), vue.createElementBlock(vue.Fragment, { key: 5 }, [
-          vue.createVNode(_component_styled_button, {
-            appearance: $setup.ButtonAppearance.Default,
-            onClick: _cache[5] || (_cache[5] = 
-					() => {
-						$setup.window.location.href = `${$setup.config.authorizerURL.value}/oauth_login/twitter?${$setup.queryParams}`;
-					}
-				)
-          }, {
-            default: vue.withCtx(() => [
-              vue.createVNode(_component_linkedin),
-              _hoisted_12
-            ]),
-            _: 1 /* STABLE */
-          }, 8 /* PROPS */, ["appearance"]),
-          _hoisted_13
-        ], 64 /* STABLE_FRAGMENT */))
-      : vue.createCommentVNode("v-if", true),
+    vue.createCommentVNode(" <template v-if=\"config.is_twitter_login_enabled.value\">\n\t\t\t<styled-button\n\t\t\t\t:appearance=\"ButtonAppearance.Default\"\n\t\t\t\t@click=\"\n\t\t\t\t\t() => {\n\t\t\t\t\t\twindow.location.href = `${config.authorizerURL.value}/oauth_login/twitter?${queryParams}`;\n\t\t\t\t\t}\n\t\t\t\t\"\n\t\t\t>\n\t\t\t\t<linkedin />\n\t\t\t\tSign in with Twitter\n\t\t\t</styled-button>\n\t\t\t<br />\n\t\t</template> "),
     (
 				$setup.hasSocialLogin &&
 				($setup.config.is_basic_authentication_enabled.value ||
 					$setup.config.is_magic_link_login_enabled.value)
 			)
-      ? (vue.openBlock(), vue.createBlock(_component_styled_separator, { key: 6 }, {
+      ? (vue.openBlock(), vue.createBlock(_component_styled_separator, { key: 5 }, {
           default: vue.withCtx(() => [
-            _hoisted_14
+            _hoisted_12
           ]),
           _: 1 /* STABLE */
         }))
