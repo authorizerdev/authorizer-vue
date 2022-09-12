@@ -364,35 +364,6 @@ const StyledWrapper = Styled('div')`
 	};
 `;
 
-Styled('span')`
-  color: ${theme.colors.danger};
-  padding-right: 3px;
-`;
-
-Styled('div')`
-  color: ${theme.colors.danger};
-  font-size: ${theme.fonts.smallText};
-`;
-
-Styled('div')`
-  margin-bottom: 15px;
-`;
-
-Styled('label')`
-  display: block;
-  margin-bottom: 3px;
-`;
-
-Styled('input', props)`
-  padding: 10px;
-  border-radius: ${(props) => theme.radius.input};
-  width: 100%;
-  border-color: ${(props) =>
-		props.hasError ? theme.colors.danger : theme.colors.primary};
-  outline-color: ${(props) =>
-		props.hasError ? theme.colors.danger : theme.colors.primary};
-`;
-
 const StyledButton = Styled('button', props)`
   padding: 15px 10px;
   width: ${(props) => (props.style?.width ? props.style.width : '100%')};
