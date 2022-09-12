@@ -24,7 +24,7 @@ const StyledButton = Styled('button', props)`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 375;
+  min-width: 375px;
   max-height: 64px;
   background-color: ${(props) =>
 		props.appearance === 'Primary' ? theme.colors.primary : '#ffffff'};
