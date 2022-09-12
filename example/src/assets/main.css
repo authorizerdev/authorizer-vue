@@ -13,7 +13,7 @@ body {
 #app {
 	display: flex;
 	height: 100vh;
-	flex-deirection: column;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
