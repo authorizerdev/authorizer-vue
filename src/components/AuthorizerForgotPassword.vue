@@ -48,9 +48,7 @@
 import { computed, reactive, toRefs } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { MessageType } from '../constants/index';
-import { ButtonAppearance } from '../constants/index';
-import { Views } from '../constants/index';
+import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
 import {
 	StyledButton,

@@ -93,9 +93,7 @@ import {
 	StyledFooter,
 	StyledLink,
 } from '../styles/index';
-import { MessageType } from '../constants/index';
-import { ButtonAppearance } from '../constants/index';
-import { Views } from '../constants/index';
+import { Views, MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';

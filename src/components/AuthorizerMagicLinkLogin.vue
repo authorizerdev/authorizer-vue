@@ -34,8 +34,7 @@
 import { reactive, toRefs, computed } from 'vue';
 import globalState from '../state/globalState';
 import { StyledButton, StyledFormGroup } from '../styles/index';
-import { MessageType } from '../constants/index';
-import { ButtonAppearance } from '../constants/index';
+import { MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
 export default {

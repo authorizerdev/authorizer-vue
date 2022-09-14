@@ -61,9 +61,7 @@ import {
 	StyledLink,
 } from '../styles/index';
 import { isValidOtp } from '../utils/common';
-import { MessageType } from '../constants/index';
-import { ButtonAppearance } from '../constants/index';
-import { Views } from '../constants/index';
+import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerVerifyOtp',
