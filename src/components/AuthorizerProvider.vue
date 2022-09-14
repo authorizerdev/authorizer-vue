@@ -38,6 +38,8 @@ export default {
 			props?.config?.is_sign_up_enabled || false;
 		config.is_strong_password_enabled.value =
 			props?.config?.is_strong_password_enabled || true;
+		config.is_twitter_login_enabled.value =
+			props?.config?.is_twitter_login_enabled || false;
 		state.authorizerRef.value = new Authorizer({
 			authorizerURL: props?.config?.authorizerURL || '',
 			redirectURL: props?.config?.redirectURL

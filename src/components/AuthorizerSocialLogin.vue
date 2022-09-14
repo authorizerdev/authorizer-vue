@@ -70,7 +70,7 @@
 			</styled-button>
 			<br />
 		</template>
-		<!-- <template v-if="config.is_twitter_login_enabled.value">
+		<template v-if="config.is_twitter_login_enabled.value">
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
@@ -79,11 +79,11 @@
 					}
 				"
 			>
-				<linkedin />
+				<twitter />
 				Sign in with Twitter
 			</styled-button>
 			<br />
-		</template> -->
+		</template>
 		<styled-separator
 			v-if="
 				hasSocialLogin &&

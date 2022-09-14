@@ -13,4 +13,5 @@ export default reactive({
 	is_magic_link_login_enabled: false,
 	is_sign_up_enabled: false,
 	is_strong_password_enabled: true,
+	is_twitter_login_enabled: false,
 });
