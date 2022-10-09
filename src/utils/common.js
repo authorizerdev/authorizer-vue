@@ -53,6 +53,11 @@ export const formatErrorMessage = (message) => {
 	return message.replace(`[GraphQL] `, '');
 };
 
+export const hasSpecialChar = (char) => {
+	const re = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+	return re.test(char);
+};
+
 export const validatePassword = (value = '') => {
 	const res = {
 		score: 0,
@@ -85,7 +90,7 @@ export const validatePassword = (value = '') => {
 		} else if (char >= '0' && char <= '9' && !res.hasNumericChar) {
 			res.score = res.score + 1;
 			res.hasNumericChar = true;
-		} else if (!res.hasSpecialChar) {
+		} else if (hasSpecialChar(char) && !res.hasSpecialChar) {
 			res.score = res.score + 1;
 			res.hasSpecialChar = true;
 		}

@@ -570,6 +570,11 @@ const isValidOtp = (otp) => {
 	return otp && re.test(String(otp.trim()));
 };
 
+const hasSpecialChar = (char) => {
+	const re = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+	return re.test(char);
+};
+
 const validatePassword = (value = '') => {
 	const res = {
 		score: 0,
@@ -602,7 +607,7 @@ const validatePassword = (value = '') => {
 		} else if (char >= '0' && char <= '9' && !res.hasNumericChar) {
 			res.score = res.score + 1;
 			res.hasNumericChar = true;
-		} else if (!res.hasSpecialChar) {
+		} else if (hasSpecialChar(char) && !res.hasSpecialChar) {
 			res.score = res.score + 1;
 			res.hasSpecialChar = true;
 		}
@@ -770,14 +775,15 @@ var script$e = {
 			hasUpperCase: false,
 			maxThirtySixChar: false,
 		});
+		const eventHandler = (e) => {
+			e.preventDefault();
+		};
 		watch(
 			() => props.value,
 			(newValue) => {
 				const validationData = validatePassword(newValue);
 				Object.assign(componentState, validationData);
-				if (
-					Object.values(validationData).some((isValid) => isValid === false)
-				) {
+				if (!validationData.isValid) {
 					setDisableButton(true);
 				} else {
 					setDisableButton(false);
@@ -786,6 +792,7 @@ var script$e = {
 		);
 		return {
 			...toRefs(componentState),
+			eventHandler,
 		};
 	},
 };
@@ -847,9 +854,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[0] || (_cache[0] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[1] || (_cache[1] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasSixChar
-                }, null, 8 /* PROPS */, _hoisted_2$8),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_2$8),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_3$7
@@ -866,9 +875,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[2] || (_cache[2] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[3] || (_cache[3] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasLowerCase
-                }, null, 8 /* PROPS */, _hoisted_4$7),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4$7),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_5$7
@@ -885,9 +896,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[4] || (_cache[4] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[5] || (_cache[5] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasUpperCase
-                }, null, 8 /* PROPS */, _hoisted_6$6),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6$6),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_7$6
@@ -904,9 +917,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[6] || (_cache[6] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[7] || (_cache[7] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasNumericChar
-                }, null, 8 /* PROPS */, _hoisted_8$5),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_8$5),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_9$5
@@ -923,9 +938,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[8] || (_cache[8] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[9] || (_cache[9] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasSpecialChar
-                }, null, 8 /* PROPS */, _hoisted_10$4),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10$4),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_11$4
@@ -942,9 +959,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: withCtx(() => [
                 createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[10] || (_cache[10] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[11] || (_cache[11] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.maxThirtySixChar
-                }, null, 8 /* PROPS */, _hoisted_12$3),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_12$3),
                 createVNode(_component_styled_check_box_label, null, {
                   default: withCtx(() => [
                     _hoisted_13$1
