@@ -776,6 +776,9 @@ var script$e = {
 			hasUpperCase: false,
 			maxThirtySixChar: false,
 		});
+		const eventHandler = (e) => {
+			e.preventDefault();
+		};
 		vue.watch(
 			() => props.value,
 			(newValue) => {
@@ -792,6 +795,7 @@ var script$e = {
 		);
 		return {
 			...vue.toRefs(componentState),
+			eventHandler,
 		};
 	},
 };
@@ -853,9 +857,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[0] || (_cache[0] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[1] || (_cache[1] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasSixChar
-                }, null, 8 /* PROPS */, _hoisted_2$8),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_2$8),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_3$7
@@ -872,9 +878,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[2] || (_cache[2] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[3] || (_cache[3] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasLowerCase
-                }, null, 8 /* PROPS */, _hoisted_4$7),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4$7),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_5$7
@@ -891,9 +899,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[4] || (_cache[4] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[5] || (_cache[5] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasUpperCase
-                }, null, 8 /* PROPS */, _hoisted_6$6),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6$6),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_7$6
@@ -910,9 +920,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[6] || (_cache[6] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[7] || (_cache[7] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasNumericChar
-                }, null, 8 /* PROPS */, _hoisted_8$5),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_8$5),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_9$5
@@ -929,9 +941,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[8] || (_cache[8] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[9] || (_cache[9] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasSpecialChar
-                }, null, 8 /* PROPS */, _hoisted_10$4),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10$4),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_11$4
@@ -948,9 +962,11 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               default: vue.withCtx(() => [
                 vue.createElementVNode("input", {
                   readOnly: "",
+                  onClick: _cache[10] || (_cache[10] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
+                  onKeydown: _cache[11] || (_cache[11] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.maxThirtySixChar
-                }, null, 8 /* PROPS */, _hoisted_12$3),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_12$3),
                 vue.createVNode(_component_styled_check_box_label, null, {
                   default: vue.withCtx(() => [
                     _hoisted_13$1

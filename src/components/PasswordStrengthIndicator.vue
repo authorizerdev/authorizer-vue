@@ -17,35 +17,71 @@
 			</p>
 			<styled-flex flexDirection="column">
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="hasSixChar" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="hasSixChar"
+					/>
 					<styled-check-box-label>At least 6 characters</styled-check-box-label>
 				</styled-flex>
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="hasLowerCase" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="hasLowerCase"
+					/>
 					<styled-check-box-label
 						>At least 1 lowercase letter</styled-check-box-label
 					>
 				</styled-flex>
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="hasUpperCase" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="hasUpperCase"
+					/>
 					<styled-check-box-label
 						>At least 1 uppercase letter</styled-check-box-label
 					>
 				</styled-flex>
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="hasNumericChar" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="hasNumericChar"
+					/>
 					<styled-check-box-label
 						>At least 1 numeric character</styled-check-box-label
 					>
 				</styled-flex>
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="hasSpecialChar" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="hasSpecialChar"
+					/>
 					<styled-check-box-label
 						>At least 1 special character</styled-check-box-label
 					>
 				</styled-flex>
 				<styled-flex justifyContent="start" alignItems="center">
-					<input readOnly type="checkbox" :checked="maxThirtySixChar" />
+					<input
+						readOnly
+						@click="eventHandler"
+						@keydown="eventHandler"
+						type="checkbox"
+						:checked="maxThirtySixChar"
+					/>
 					<styled-check-box-label>Maximum 36 characters</styled-check-box-label>
 				</styled-flex>
 			</styled-flex>
@@ -83,6 +119,9 @@ export default {
 			hasUpperCase: false,
 			maxThirtySixChar: false,
 		});
+		const eventHandler = (e) => {
+			e.preventDefault();
+		};
 		watch(
 			() => props.value,
 			(newValue) => {
@@ -99,6 +138,7 @@ export default {
 		);
 		return {
 			...toRefs(componentState),
+			eventHandler,
 		};
 	},
 };
