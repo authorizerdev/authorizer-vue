@@ -127,9 +127,7 @@ export default {
 			(newValue) => {
 				const validationData = validatePassword(newValue);
 				Object.assign(componentState, validationData);
-				if (
-					Object.values(validationData).some((isValid) => isValid === false)
-				) {
+				if (!validationData.isValid) {
 					setDisableButton(true);
 				} else {
 					setDisableButton(false);

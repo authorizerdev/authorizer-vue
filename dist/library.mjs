@@ -570,6 +570,11 @@ const isValidOtp = (otp) => {
 	return otp && re.test(String(otp.trim()));
 };
 
+const hasSpecialChar = (char) => {
+	const re = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
+	return re.test(char);
+};
+
 const validatePassword = (value = '') => {
 	const res = {
 		score: 0,
@@ -602,7 +607,7 @@ const validatePassword = (value = '') => {
 		} else if (char >= '0' && char <= '9' && !res.hasNumericChar) {
 			res.score = res.score + 1;
 			res.hasNumericChar = true;
-		} else if (!res.hasSpecialChar) {
+		} else if (hasSpecialChar(char) && !res.hasSpecialChar) {
 			res.score = res.score + 1;
 			res.hasSpecialChar = true;
 		}
@@ -778,9 +783,7 @@ var script$e = {
 			(newValue) => {
 				const validationData = validatePassword(newValue);
 				Object.assign(componentState, validationData);
-				if (
-					Object.values(validationData).some((isValid) => isValid === false)
-				) {
+				if (!validationData.isValid) {
 					setDisableButton(true);
 				} else {
 					setDisableButton(false);
