@@ -64,3 +64,12 @@
 	cursor: not-allowed;
 	background-color: var(--authorizer-primary-disabled-color);
 }
+
+
+.styled-footer[data-v-6ea2852a] {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 15px;
+}

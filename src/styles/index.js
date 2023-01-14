@@ -184,7 +184,6 @@ export {
 	StyledWrapper,
 	StyledLink,
 	StyledSeparator,
-	StyledFooter,
 	StyledMessageWrapper,
 	StyledFormGroup,
 	StyledCheckBoxLabel,

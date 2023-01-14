@@ -87,8 +87,8 @@
 import { reactive, toRefs, computed } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { StyledFormGroup, StyledFooter, StyledLink } from '../styles/index';
-import { StyledButton } from '../styledComponents/index';
+import { StyledFormGroup, StyledLink } from '../styles/index';
+import { StyledButton, StyledFooter } from '../styledComponents/index';
 import { Views, MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
