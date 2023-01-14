@@ -183,7 +183,6 @@ const StyledPasswordStrength = Styled('div')`
 export {
 	StyledWrapper,
 	StyledSeparator,
-	StyledMessageWrapper,
 	StyledFormGroup,
 	StyledCheckBoxLabel,
 	StyledPasswordStrengthWrapper,
