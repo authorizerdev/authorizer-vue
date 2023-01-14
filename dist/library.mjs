@@ -870,22 +870,22 @@ var script$e = {
 	},
 };
 
-const _withScopeId$2 = n => (pushScopeId("data-v-a739a81a"),n=n(),popScopeId(),n);
-const _hoisted_1$d = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("p", null, [
+const _withScopeId$3 = n => (pushScopeId("data-v-a739a81a"),n=n(),popScopeId(),n);
+const _hoisted_1$d = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("p", null, [
   /*#__PURE__*/createElementVNode("b", null, "Criteria for a strong password:")
 ], -1 /* HOISTED */));
 const _hoisted_2$8 = ["checked"];
-const _hoisted_3$7 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 6 characters", -1 /* HOISTED */));
+const _hoisted_3$7 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 6 characters", -1 /* HOISTED */));
 const _hoisted_4$7 = ["checked"];
-const _hoisted_5$7 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 lowercase letter", -1 /* HOISTED */));
-const _hoisted_6$6 = ["checked"];
-const _hoisted_7$6 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 uppercase letter", -1 /* HOISTED */));
+const _hoisted_5$7 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 lowercase letter", -1 /* HOISTED */));
+const _hoisted_6$7 = ["checked"];
+const _hoisted_7$6 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 uppercase letter", -1 /* HOISTED */));
 const _hoisted_8$5 = ["checked"];
-const _hoisted_9$5 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 numeric character", -1 /* HOISTED */));
+const _hoisted_9$5 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 numeric character", -1 /* HOISTED */));
 const _hoisted_10$5 = ["checked"];
-const _hoisted_11$4 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 special character", -1 /* HOISTED */));
+const _hoisted_11$4 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 special character", -1 /* HOISTED */));
 const _hoisted_12$3 = ["checked"];
-const _hoisted_13$2 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "Maximum 36 characters", -1 /* HOISTED */));
+const _hoisted_13$2 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "Maximum 36 characters", -1 /* HOISTED */));
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_password_strength = resolveComponent("styled-password-strength");
@@ -963,7 +963,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   onKeydown: _cache[5] || (_cache[5] = (...args) => ($setup.eventHandler && $setup.eventHandler(...args))),
                   type: "checkbox",
                   checked: _ctx.hasUpperCase
-                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6$6),
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6$7),
                 _hoisted_7$6
               ]),
               _: 1 /* STABLE */
@@ -1182,7 +1182,7 @@ const _hoisted_5$6 = /*#__PURE__*/createElementVNode("label", {
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Confirm Password")
 ], -1 /* HOISTED */);
-const _hoisted_6$5 = {
+const _hoisted_6$6 = {
   key: 0,
   class: "form-input-error"
 };
@@ -1267,7 +1267,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
                 [vModelText, _ctx.confirmPassword]
               ]),
               ($setup.confirmPasswordError)
-                ? (openBlock(), createElementBlock("div", _hoisted_6$5, toDisplayString($setup.confirmPasswordError), 1 /* TEXT */))
+                ? (openBlock(), createElementBlock("div", _hoisted_6$6, toDisplayString($setup.confirmPasswordError), 1 /* TEXT */))
                 : createCommentVNode("v-if", true)
             ]),
             _: 1 /* STABLE */
@@ -1445,7 +1445,7 @@ const _hoisted_4$5 = {
   class: "form-input-error"
 };
 const _hoisted_5$5 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_6$4 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_6$5 = /*#__PURE__*/createTextVNode("Processing ...");
 const _hoisted_7$4 = /*#__PURE__*/createTextVNode("Submit");
 const _hoisted_8$3 = {
   key: 0,
@@ -1511,7 +1511,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
         default: withCtx(() => [
           (_ctx.loading)
             ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                _hoisted_6$4
+                _hoisted_6$5
               ], 64 /* STABLE_FRAGMENT */))
             : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
                 _hoisted_7$4
@@ -1656,10 +1656,10 @@ var script$b = {
 	},
 };
 
-const _withScopeId$1 = n => (pushScopeId("data-v-e2239b68"),n=n(),popScopeId(),n);
+const _withScopeId$2 = n => (pushScopeId("data-v-e2239b68"),n=n(),popScopeId(),n);
 const _hoisted_1$a = { key: 1 };
 const _hoisted_2$5 = { class: "styled-form-group" };
-const _hoisted_3$4 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("label", {
+const _hoisted_3$4 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
@@ -1671,7 +1671,7 @@ const _hoisted_4$4 = {
   class: "form-input-error"
 };
 const _hoisted_5$4 = { class: "styled-form-group" };
-const _hoisted_6$3 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("label", {
+const _hoisted_6$4 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
@@ -1682,7 +1682,7 @@ const _hoisted_7$3 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_8$2 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */));
+const _hoisted_8$2 = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */));
 const _hoisted_9$2 = /*#__PURE__*/createTextVNode("Processing ...");
 const _hoisted_10$2 = /*#__PURE__*/createTextVNode("Log In");
 const _hoisted_11$1 = /*#__PURE__*/createTextVNode(" Forgot Password? ");
@@ -1735,7 +1735,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           createCommentVNode(" password "),
           createElementVNode("div", _hoisted_5$4, [
-            _hoisted_6$3,
+            _hoisted_6$4,
             withDirectives(createElementVNode("input", {
               class: normalizeClass(`form-input-field ${
 							$setup.passwordError ? 'input-error-content' : null
@@ -1808,7 +1808,6 @@ var script$a = {
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
 		'styled-button': script$p,
-		'styled-form-group': StyledFormGroup,
 		message: script$f,
 	},
 	setup({ onMagicLinkLogin, urlProps }) {
@@ -1870,24 +1869,25 @@ var script$a = {
 	},
 };
 
-const _hoisted_1$9 = /*#__PURE__*/createElementVNode("label", {
+const _withScopeId$1 = n => (pushScopeId("data-v-9daba5ca"),n=n(),popScopeId(),n);
+const _hoisted_1$9 = { class: "styled-form-group" };
+const _hoisted_2$4 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
   for: ""
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
-], -1 /* HOISTED */);
-const _hoisted_2$4 = {
+], -1 /* HOISTED */));
+const _hoisted_3$3 = {
   key: 0,
   class: "form-input-error"
 };
-const _hoisted_3$3 = /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */);
-const _hoisted_4$3 = /*#__PURE__*/createTextVNode("Processing ...");
-const _hoisted_5$3 = /*#__PURE__*/createTextVNode("Send Email");
+const _hoisted_4$3 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("br", null, null, -1 /* HOISTED */));
+const _hoisted_5$3 = /*#__PURE__*/createTextVNode("Processing ...");
+const _hoisted_6$3 = /*#__PURE__*/createTextVNode("Send Email");
 
 function render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_message = resolveComponent("message");
-  const _component_styled_form_group = resolveComponent("styled-form-group");
   const _component_styled_button = resolveComponent("styled-button");
 
   return (_ctx.successMessage)
@@ -1909,24 +1909,23 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           onSubmit: _cache[1] || (_cache[1] = withModifiers((...args) => ($setup.onSubmit && $setup.onSubmit(...args)), ["prevent"]))
         }, [
           createCommentVNode(" Email "),
-          createVNode(_component_styled_form_group, { hasError: $setup.emailError }, {
-            default: withCtx(() => [
-              _hoisted_1$9,
-              withDirectives(createElementVNode("input", {
-                class: "form-input-field",
-                placeholder: "eg. foo@bar.com",
-                type: "email",
-                "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
-              }, null, 512 /* NEED_PATCH */), [
-                [vModelText, _ctx.email]
-              ]),
-              ($setup.emailError)
-                ? (openBlock(), createElementBlock("div", _hoisted_2$4, toDisplayString($setup.emailError), 1 /* TEXT */))
-                : createCommentVNode("v-if", true)
+          createElementVNode("div", _hoisted_1$9, [
+            _hoisted_2$4,
+            withDirectives(createElementVNode("input", {
+              class: normalizeClass(`form-input-field ${
+						$setup.emailError ? 'input-error-content' : null
+					}`),
+              placeholder: "eg. foo@bar.com",
+              type: "email",
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.email) = $event))
+            }, null, 2 /* CLASS */), [
+              [vModelText, _ctx.email]
             ]),
-            _: 1 /* STABLE */
-          }, 8 /* PROPS */, ["hasError"]),
-          _hoisted_3$3,
+            ($setup.emailError)
+              ? (openBlock(), createElementBlock("div", _hoisted_3$3, toDisplayString($setup.emailError), 1 /* TEXT */))
+              : createCommentVNode("v-if", true)
+          ]),
+          _hoisted_4$3,
           createVNode(_component_styled_button, {
             appearance: $setup.ButtonAppearance.Primary,
             disabled: !_ctx.email || $setup.emailError || _ctx.loading
@@ -1934,10 +1933,10 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
             default: withCtx(() => [
               (_ctx.loading)
                 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                    _hoisted_4$3
+                    _hoisted_5$3
                   ], 64 /* STABLE_FRAGMENT */))
                 : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                    _hoisted_5$3
+                    _hoisted_6$3
                   ], 64 /* STABLE_FRAGMENT */))
             ]),
             _: 1 /* STABLE */
@@ -1947,6 +1946,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script$a.render = render$a;
+script$a.__scopeId = "data-v-9daba5ca";
 script$a.__file = "src/components/AuthorizerMagicLinkLogin.vue";
 
 var script$9 = {
