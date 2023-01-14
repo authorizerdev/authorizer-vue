@@ -15,7 +15,7 @@ export default {
 			...props,
 			style: {
 				'background-color':
-					type === MessageType.Error
+					props.type === MessageType.Error
 						? 'var(--authorizer-danger-color)'
 						: 'var(--authorizer-success-color)',
 			},
