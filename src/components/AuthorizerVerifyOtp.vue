@@ -54,8 +54,12 @@
 import { computed, reactive, toRefs } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { StyledFormGroup, StyledLink } from '../styles/index';
-import { StyledButton, StyledFooter } from '../styledComponents/index';
+import { StyledFormGroup } from '../styles/index';
+import {
+	StyledButton,
+	StyledFooter,
+	StyledLink,
+} from '../styledComponents/index';
 import { isValidOtp } from '../utils/common';
 import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';

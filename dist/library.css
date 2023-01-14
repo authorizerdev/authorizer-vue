@@ -66,6 +66,12 @@
 }
 
 
+.styled-link[data-v-4b70836c] {
+	color: var(--authorizer-primary-color);
+	cursor: pointer;
+}
+
+
 .styled-footer[data-v-6ea2852a] {
 	display: flex;
 	flex-direction: column;
