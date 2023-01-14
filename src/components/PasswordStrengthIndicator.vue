@@ -24,7 +24,7 @@
 						type="checkbox"
 						:checked="hasSixChar"
 					/>
-					<styled-check-box-label>At least 6 characters</styled-check-box-label>
+					<div class="styled-check-box-label">At least 6 characters</div>
 				</styled-flex>
 				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
@@ -34,9 +34,7 @@
 						type="checkbox"
 						:checked="hasLowerCase"
 					/>
-					<styled-check-box-label
-						>At least 1 lowercase letter</styled-check-box-label
-					>
+					<div class="styled-check-box-label">At least 1 lowercase letter</div>
 				</styled-flex>
 				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
@@ -46,9 +44,7 @@
 						type="checkbox"
 						:checked="hasUpperCase"
 					/>
-					<styled-check-box-label
-						>At least 1 uppercase letter</styled-check-box-label
-					>
+					<div class="styled-check-box-label">At least 1 uppercase letter</div>
 				</styled-flex>
 				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
@@ -58,9 +54,7 @@
 						type="checkbox"
 						:checked="hasNumericChar"
 					/>
-					<styled-check-box-label
-						>At least 1 numeric character</styled-check-box-label
-					>
+					<div class="styled-check-box-label">At least 1 numeric character</div>
 				</styled-flex>
 				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
@@ -70,9 +64,7 @@
 						type="checkbox"
 						:checked="hasSpecialChar"
 					/>
-					<styled-check-box-label
-						>At least 1 special character</styled-check-box-label
-					>
+					<div class="styled-check-box-label">At least 1 special character</div>
 				</styled-flex>
 				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
@@ -82,7 +74,7 @@
 						type="checkbox"
 						:checked="maxThirtySixChar"
 					/>
-					<styled-check-box-label>Maximum 36 characters</styled-check-box-label>
+					<div class="styled-check-box-label">Maximum 36 characters</div>
 				</styled-flex>
 			</styled-flex>
 		</styled-password-strength-wrapper>
@@ -91,7 +83,6 @@
 
 <script>
 import { reactive, toRefs, watch } from 'vue';
-import { StyledCheckBoxLabel } from '../styles/index';
 import {
 	StyledFlex,
 	StyledPasswordStrength,
@@ -102,7 +93,6 @@ export default {
 	name: 'PasswordStrengthIndicator',
 	props: ['value', 'setDisableButton'],
 	components: {
-		'styled-check-box-label': StyledCheckBoxLabel,
 		'styled-password-strength-wrapper': StyledPasswordStrengthWrapper,
 		'styled-password-strength': StyledPasswordStrength,
 		'styled-flex': StyledFlex,
@@ -141,3 +131,9 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.styled-check-box-label {
+	margin-left: 5px;
+}
+</style>

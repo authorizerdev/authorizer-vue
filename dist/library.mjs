@@ -1,4 +1,4 @@
-import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, renderSlot, normalizeStyle, resolveComponent, createBlock, withCtx, createElementVNode, createVNode, toDisplayString, createCommentVNode, createTextVNode, Fragment, withModifiers, withDirectives, vModelText } from 'vue';
+import { reactive, toRefs, provide, onMounted, onUnmounted, watch, computed, openBlock, createElementBlock, renderSlot, normalizeStyle, resolveComponent, createBlock, withCtx, createElementVNode, createVNode, toDisplayString, createCommentVNode, pushScopeId, popScopeId, Fragment, withModifiers, withDirectives, vModelText, createTextVNode } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import Styled, { css } from 'vue3-styled-components';
 
@@ -313,7 +313,7 @@ const sizes = {
 	minWidth: sizes.lg,
 });
 
-const media = Object.keys(sizes).reduce((acc, label) => {
+Object.keys(sizes).reduce((acc, label) => {
 	acc[label] = (args) =>
 		css`
 			@media (min-width: ${sizes[label] / 16}em) {
@@ -354,129 +354,6 @@ const theme = {
 
 const props = [];
 
-Styled('div')`
-	font-family: ${theme.fonts.fontStack};
-	color: ${theme.colors.textColor};
-	font-size: ${theme.fonts.mediumText};
-	box-sizing: border-box;
-
-	*,
-	*:before,
-	*:after {
-		box-sizing: inherit;
-	};
-`;
-
-Styled('button', props)`
-  padding: 15px 10px;
-  width: ${(props) => (props.style?.width ? props.style.width : '100%')};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 375px;
-  max-height: 64px;
-  background-color: ${(props) =>
-		props.appearance === 'Primary' ? theme.colors.primary : '#ffffff'};
-  color: ${(props) =>
-		props.appearance === 'Default' ? theme.colors.textColor : '#ffffff'};
-  border-radius: ${theme.radius.button};
-  border-color: ${theme.colors.textColor};
-  border: ${(props) => (props.appearance === 'Primary' ? '0px' : '1px')};
-  border-style: solid;
-  cursor: pointer;
-  position: relative;
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: ${theme.colors.primaryDisabled};
-  }
-
-  svg {
-    position: absolute;
-    left: 10px;
-  }
-`;
-
-Styled('span')`
-  color: ${theme.colors.primary};
-  cursor: pointer;
-`;
-
-Styled('div')`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 10px 0px;
-
-  ::before {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid ${theme.colors.gray};
-  }
-
-  ::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid ${theme.colors.gray};
-  }
-
-  :not(:empty)::before {
-    margin-right: 0.25em;
-  }
-
-  :not(:empty)::after {
-    margin-left: 0.25em;
-  }
-`;
-
-Styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-`;
-
-Styled('div', props)`
-  padding: 10px;
-  color: white;
-  border-radius: ${theme.radius.card};
-  margin: 10px 0px;
-  font-size: ${theme.fonts.smallText};
-  ${(props) =>
-		props.type === 'Error' &&
-		`
-    background-color: ${theme.colors.danger};
-  `}
-  ${(props) =>
-		props.type === 'Success' &&
-		`
-    background-color: ${theme.colors.success};
-  `};
-`;
-
-Styled('div', props)`
-  display: flex;
-  flex-direction: ${({ flexDirection, isResponsive }) =>
-		isResponsive && flexDirection !== 'column'
-			? 'column'
-			: flexDirection || 'row'};
-  flex-wrap: ${({ wrap }) => wrap || 'wrap'};
-  ${({ alignItems }) =>
-		alignItems &&
-		css`
-			align-items: ${alignItems};
-		`};
-  ${({ justifyContent }) =>
-		justifyContent &&
-		css`
-			justify-content: ${justifyContent};
-		`};
-  ${media.lg`
-    flex-direction: ${({ flexDirection }) => flexDirection || 'row'}
-  `}
-`;
-
 const StyledFormGroup = Styled('div', props)`
   width: 100%;
   border: 0px;
@@ -509,24 +386,6 @@ const StyledFormGroup = Styled('div', props)`
     font-weight: 400;
     color: red;
   }
-`;
-
-const StyledCheckBoxLabel = Styled('div')`
-  margin-left: 5px
-`;
-
-Styled('div')`
-  margin: 2% 0 0;
-`;
-
-Styled('div')`
-  width: 100%;
-  height: 10px;
-  flex: 0.75;
-  border-radius: 5px;
-  margin-right: 5px;
-  background-color: ${theme.colors.primary};
-  opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
 
 var script$q = {
@@ -973,7 +832,6 @@ var script$e = {
 	name: 'PasswordStrengthIndicator',
 	props: ['value', 'setDisableButton'],
 	components: {
-		'styled-check-box-label': StyledCheckBoxLabel,
 		'styled-password-strength-wrapper': script$i,
 		'styled-password-strength': script$j,
 		'styled-flex': script$k,
@@ -1012,26 +870,26 @@ var script$e = {
 	},
 };
 
-const _hoisted_1$d = /*#__PURE__*/createElementVNode("p", null, [
+const _withScopeId = n => (pushScopeId("data-v-a739a81a"),n=n(),popScopeId(),n);
+const _hoisted_1$d = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("p", null, [
   /*#__PURE__*/createElementVNode("b", null, "Criteria for a strong password:")
-], -1 /* HOISTED */);
+], -1 /* HOISTED */));
 const _hoisted_2$8 = ["checked"];
-const _hoisted_3$7 = /*#__PURE__*/createTextVNode("At least 6 characters");
+const _hoisted_3$7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 6 characters", -1 /* HOISTED */));
 const _hoisted_4$7 = ["checked"];
-const _hoisted_5$7 = /*#__PURE__*/createTextVNode("At least 1 lowercase letter");
+const _hoisted_5$7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 lowercase letter", -1 /* HOISTED */));
 const _hoisted_6$6 = ["checked"];
-const _hoisted_7$6 = /*#__PURE__*/createTextVNode("At least 1 uppercase letter");
+const _hoisted_7$6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 uppercase letter", -1 /* HOISTED */));
 const _hoisted_8$5 = ["checked"];
-const _hoisted_9$5 = /*#__PURE__*/createTextVNode("At least 1 numeric character");
+const _hoisted_9$5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 numeric character", -1 /* HOISTED */));
 const _hoisted_10$4 = ["checked"];
-const _hoisted_11$4 = /*#__PURE__*/createTextVNode("At least 1 special character");
+const _hoisted_11$4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "At least 1 special character", -1 /* HOISTED */));
 const _hoisted_12$3 = ["checked"];
-const _hoisted_13$1 = /*#__PURE__*/createTextVNode("Maximum 36 characters");
+const _hoisted_13$1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("div", { class: "styled-check-box-label" }, "Maximum 36 characters", -1 /* HOISTED */));
 
 function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_styled_password_strength = resolveComponent("styled-password-strength");
   const _component_styled_flex = resolveComponent("styled-flex");
-  const _component_styled_check_box_label = resolveComponent("styled-check-box-label");
   const _component_styled_password_strength_wrapper = resolveComponent("styled-password-strength-wrapper");
 
   return (openBlock(), createElementBlock("div", null, [
@@ -1074,12 +932,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.hasSixChar
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_2$8),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_3$7
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_3$7
               ]),
               _: 1 /* STABLE */
             }),
@@ -1095,12 +948,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.hasLowerCase
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_4$7),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_5$7
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_5$7
               ]),
               _: 1 /* STABLE */
             }),
@@ -1116,12 +964,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.hasUpperCase
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_6$6),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_7$6
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_7$6
               ]),
               _: 1 /* STABLE */
             }),
@@ -1137,12 +980,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.hasNumericChar
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_8$5),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_9$5
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_9$5
               ]),
               _: 1 /* STABLE */
             }),
@@ -1158,12 +996,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.hasSpecialChar
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_10$4),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_11$4
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_11$4
               ]),
               _: 1 /* STABLE */
             }),
@@ -1179,12 +1012,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "checkbox",
                   checked: _ctx.maxThirtySixChar
                 }, null, 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_12$3),
-                createVNode(_component_styled_check_box_label, null, {
-                  default: withCtx(() => [
-                    _hoisted_13$1
-                  ]),
-                  _: 1 /* STABLE */
-                })
+                _hoisted_13$1
               ]),
               _: 1 /* STABLE */
             })
@@ -1198,6 +1026,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script$e.render = render$e;
+script$e.__scopeId = "data-v-a739a81a";
 script$e.__file = "src/components/PasswordStrengthIndicator.vue";
 
 var script$d = {
