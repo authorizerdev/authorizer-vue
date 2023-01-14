@@ -40,13 +40,6 @@
 	color: red;
 	border-color: var(--authorizer-danger-color);
 }
-.styled-message-wrapper {
-	padding: 10px;
-	color: white;
-	border-radius: var(--authorizer-radius-card);
-	margin: 10px 0px;
-	font-size: var(--authorizer-fonts-small-text);
-}
 .styled-password-strength {
 	width: 100%;
 	height: 10px;

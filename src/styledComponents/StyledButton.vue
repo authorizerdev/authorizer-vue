@@ -20,7 +20,7 @@ export default {
 			...props,
 			style: {
 				width: '100%',
-				backgroundColor: props.disabled
+				'background-color': props.disabled
 					? 'var(--authorizer-primary-disabled-color)'
 					: props.appearance === ButtonAppearance.Primary
 					? 'var(--authorizer-primary-color)'

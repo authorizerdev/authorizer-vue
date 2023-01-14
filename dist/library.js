@@ -72,7 +72,7 @@ var globalConfig = vue.reactive({
 	is_twitter_login_enabled: false,
 });
 
-var script$m = {
+var script$n = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -293,7 +293,7 @@ var script$m = {
 	},
 };
 
-script$m.__file = "src/components/AuthorizerProvider.vue";
+script$n.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -443,7 +443,7 @@ Styled__default["default"]('div')`
   margin-top: 15px;
 `;
 
-const StyledMessageWrapper = Styled__default["default"]('div', props)`
+Styled__default["default"]('div', props)`
   padding: 10px;
   color: white;
   border-radius: ${theme.radius.card};
@@ -535,7 +535,7 @@ const StyledPasswordStrength = Styled__default["default"]('div')`
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
 
-var script$l = {
+var script$m = {
 	name: 'StyledButton',
 	props: ['style', 'type', 'appearance', 'disabled'],
 	setup(props) {
@@ -543,7 +543,7 @@ var script$l = {
 			...props,
 			style: {
 				width: '100%',
-				backgroundColor: props.disabled
+				'background-color': props.disabled
 					? 'var(--authorizer-primary-disabled-color)'
 					: props.appearance === ButtonAppearance.Primary
 					? 'var(--authorizer-primary-color)'
@@ -560,7 +560,7 @@ var script$l = {
 
 const _hoisted_1$i = ["type", "disabled"];
 
-function render$l(_ctx, _cache, $props, $setup, $data, $options) {
+function render$m(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("button", {
     class: "styled-button",
     style: vue.normalizeStyle($setup.style),
@@ -571,11 +571,11 @@ function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   ], 12 /* STYLE, PROPS */, _hoisted_1$i))
 }
 
-script$l.render = render$l;
-script$l.__scopeId = "data-v-ed3ce8fc";
-script$l.__file = "src/styledComponents/StyledButton.vue";
+script$m.render = render$m;
+script$m.__scopeId = "data-v-ed3ce8fc";
+script$m.__file = "src/styledComponents/StyledButton.vue";
 
-var script$k = {
+var script$l = {
 	name: 'StyledLink',
 	props: ['marginBottom'],
 	setup(props) {
@@ -588,7 +588,7 @@ var script$k = {
 	},
 };
 
-function render$k(_ctx, _cache, $props, $setup, $data, $options) {
+function render$l(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("span", {
     class: "styled-link",
     style: vue.normalizeStyle($setup.style)
@@ -597,25 +597,54 @@ function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   ], 4 /* STYLE */))
 }
 
-script$k.render = render$k;
-script$k.__scopeId = "data-v-4b70836c";
-script$k.__file = "src/styledComponents/StyledLink.vue";
+script$l.render = render$l;
+script$l.__scopeId = "data-v-4b70836c";
+script$l.__file = "src/styledComponents/StyledLink.vue";
 
-var script$j = {
+var script$k = {
 	name: 'StyledFooter',
 };
 
 const _hoisted_1$h = { class: "styled-footer" };
 
-function render$j(_ctx, _cache, $props, $setup, $data, $options) {
+function render$k(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$h, [
     vue.renderSlot(_ctx.$slots, "default")
   ]))
 }
 
+script$k.render = render$k;
+script$k.__scopeId = "data-v-6ea2852a";
+script$k.__file = "src/styledComponents/StyledFooter.vue";
+
+var script$j = {
+	name: 'StyledMessageWrapper',
+	props: ['type'],
+	setup(props) {
+		return {
+			...props,
+			style: {
+				'background-color':
+					type === MessageType.Error
+						? 'var(--authorizer-danger-color)'
+						: 'var(--authorizer-success-color)',
+			},
+		};
+	},
+};
+
+function render$j(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("div", {
+    class: "styled-message-wrapper",
+    style: vue.normalizeStyle($setup.style)
+  }, [
+    vue.renderSlot(_ctx.$slots, "default")
+  ], 4 /* STYLE */))
+}
+
 script$j.render = render$j;
-script$j.__scopeId = "data-v-6ea2852a";
-script$j.__file = "src/styledComponents/StyledFooter.vue";
+script$j.__scopeId = "data-v-136945dc";
+script$j.__file = "src/styledComponents/StyledMessageWrapper.vue";
 
 var script$i = {
 	name: 'StyledFlex',
@@ -820,7 +849,7 @@ var script$f = {
 	name: 'Message',
 	props: ['type', 'text', 'onClose'],
 	components: {
-		'styled-message-wrapper': StyledMessageWrapper,
+		'styled-message-wrapper': script$j,
 		'styled-flex': script$i,
 		close: script$g,
 	},
@@ -1107,10 +1136,10 @@ var script$d = {
 	props: ['setView', 'onSignup', 'urlProps'],
 	components: {
 		'password-strength-indicator': script$e,
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
-		'styled-footer': script$j,
-		'styled-link': script$k,
+		'styled-footer': script$k,
+		'styled-link': script$l,
 		message: script$f,
 	},
 	setup({ setView, onSignup, urlProps }) {
@@ -1407,10 +1436,10 @@ var script$c = {
 	name: 'AuthorizerVerifyOtp',
 	props: ['setView', 'onLogin', 'email'],
 	components: {
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
-		'styled-footer': script$j,
-		'styled-link': script$k,
+		'styled-footer': script$k,
+		'styled-link': script$l,
 		message: script$f,
 	},
 	setup({ setView, onLogin, email }) {
@@ -1635,10 +1664,10 @@ var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
-		'styled-footer': script$j,
-		'styled-link': script$k,
+		'styled-footer': script$k,
+		'styled-link': script$l,
 		'authorizer-verify-otp': script$c,
 		message: script$f,
 	},
@@ -1880,7 +1909,7 @@ var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
 		message: script$f,
 	},
@@ -2026,10 +2055,10 @@ var script$9 = {
 	name: 'AuthorizerForgotPassword',
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
-		'styled-footer': script$j,
-		'styled-link': script$k,
+		'styled-footer': script$k,
+		'styled-link': script$l,
 		message: script$f,
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
@@ -2397,7 +2426,7 @@ var script$2 = {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
 	components: {
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-separator': StyledSeparator,
 		google: script$8,
 		github: script$6,
@@ -2608,7 +2637,7 @@ var script$1 = {
 	props: ['onReset'],
 	components: {
 		'styled-wrapper': StyledWrapper,
-		'styled-button': script$l,
+		'styled-button': script$m,
 		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': script$e,
 		message: script$f,
@@ -2922,7 +2951,7 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$m,
+	AuthorizerProvider: script$n,
 	AuthorizerSignup: script$d,
 	AuthorizerBasicAuthLogin: script$b,
 	AuthorizerMagicLinkLogin: script$a,
