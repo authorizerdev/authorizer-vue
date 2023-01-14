@@ -66,7 +66,7 @@ var globalConfig = reactive({
 	is_twitter_login_enabled: false,
 });
 
-var script$p = {
+var script$q = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -287,7 +287,7 @@ var script$p = {
 	},
 };
 
-script$p.__file = "src/components/AuthorizerProvider.vue";
+script$q.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -402,7 +402,7 @@ Styled('span')`
   cursor: pointer;
 `;
 
-const StyledSeparator = Styled('div')`
+Styled('div')`
   display: flex;
   align-items: center;
   text-align: center;
@@ -529,7 +529,7 @@ Styled('div')`
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
 
-var script$o = {
+var script$p = {
 	name: 'StyledButton',
 	props: ['style', 'type', 'appearance', 'disabled'],
 	setup(props) {
@@ -552,9 +552,9 @@ var script$o = {
 	},
 };
 
-const _hoisted_1$j = ["type", "disabled"];
+const _hoisted_1$k = ["type", "disabled"];
 
-function render$o(_ctx, _cache, $props, $setup, $data, $options) {
+function render$p(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("button", {
     class: "styled-button",
     style: normalizeStyle($setup.style),
@@ -562,14 +562,14 @@ function render$o(_ctx, _cache, $props, $setup, $data, $options) {
     disabled: $props.disabled
   }, [
     renderSlot(_ctx.$slots, "default")
-  ], 12 /* STYLE, PROPS */, _hoisted_1$j))
+  ], 12 /* STYLE, PROPS */, _hoisted_1$k))
 }
 
-script$o.render = render$o;
-script$o.__scopeId = "data-v-ed3ce8fc";
-script$o.__file = "src/styledComponents/StyledButton.vue";
+script$p.render = render$p;
+script$p.__scopeId = "data-v-ed3ce8fc";
+script$p.__file = "src/styledComponents/StyledButton.vue";
 
-var script$n = {
+var script$o = {
 	name: 'StyledLink',
 	props: ['marginBottom'],
 	setup(props) {
@@ -582,7 +582,7 @@ var script$n = {
 	},
 };
 
-function render$n(_ctx, _cache, $props, $setup, $data, $options) {
+function render$o(_ctx, _cache, $props, $setup, $data, $options) {
   return (openBlock(), createElementBlock("span", {
     class: "styled-link",
     style: normalizeStyle($setup.style)
@@ -591,9 +591,25 @@ function render$n(_ctx, _cache, $props, $setup, $data, $options) {
   ], 4 /* STYLE */))
 }
 
+script$o.render = render$o;
+script$o.__scopeId = "data-v-4b70836c";
+script$o.__file = "src/styledComponents/StyledLink.vue";
+
+var script$n = {
+	name: 'StyledSeparator',
+};
+
+const _hoisted_1$j = { class: "styled-separator" };
+
+function render$n(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", _hoisted_1$j, [
+    renderSlot(_ctx.$slots, "default")
+  ]))
+}
+
 script$n.render = render$n;
-script$n.__scopeId = "data-v-4b70836c";
-script$n.__file = "src/styledComponents/StyledLink.vue";
+script$n.__scopeId = "data-v-13c93576";
+script$n.__file = "src/styledComponents/StyledSeparator.vue";
 
 var script$m = {
 	name: 'StyledFooter',
@@ -1173,10 +1189,10 @@ var script$d = {
 	props: ['setView', 'onSignup', 'urlProps'],
 	components: {
 		'password-strength-indicator': script$e,
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': script$m,
-		'styled-link': script$n,
+		'styled-link': script$o,
 		message: script$f,
 	},
 	setup({ setView, onSignup, urlProps }) {
@@ -1473,10 +1489,10 @@ var script$c = {
 	name: 'AuthorizerVerifyOtp',
 	props: ['setView', 'onLogin', 'email'],
 	components: {
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': script$m,
-		'styled-link': script$n,
+		'styled-link': script$o,
 		message: script$f,
 	},
 	setup({ setView, onLogin, email }) {
@@ -1701,10 +1717,10 @@ var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': script$m,
-		'styled-link': script$n,
+		'styled-link': script$o,
 		'authorizer-verify-otp': script$c,
 		message: script$f,
 	},
@@ -1946,7 +1962,7 @@ var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		message: script$f,
 	},
@@ -2092,10 +2108,10 @@ var script$9 = {
 	name: 'AuthorizerForgotPassword',
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': script$m,
-		'styled-link': script$n,
+		'styled-link': script$o,
 		message: script$f,
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
@@ -2463,8 +2479,8 @@ var script$2 = {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
 	components: {
-		'styled-button': script$o,
-		'styled-separator': StyledSeparator,
+		'styled-button': script$p,
+		'styled-separator': script$n,
 		google: script$8,
 		github: script$6,
 		facebook: script$7,
@@ -2674,7 +2690,7 @@ var script$1 = {
 	props: ['onReset'],
 	components: {
 		'styled-wrapper': StyledWrapper,
-		'styled-button': script$o,
+		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': script$e,
 		message: script$f,
@@ -2988,7 +3004,7 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$p,
+	AuthorizerProvider: script$q,
 	AuthorizerSignup: script$d,
 	AuthorizerBasicAuthLogin: script$b,
 	AuthorizerMagicLinkLogin: script$a,
