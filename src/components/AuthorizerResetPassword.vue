@@ -5,10 +5,12 @@
 		</template>
 		<form @submit.prevent="onSubmit">
 			<!-- password -->
-			<styled-form-group :hasError="passwordError">
+			<div class="styled-form-group" :hasError="passwordError">
 				<label class="form-input-label" for=""><span>* </span>Password</label>
 				<input
-					class="form-input-field"
+					:class="`form-input-field ${
+						passwordError ? 'input-error-content' : null
+					}`"
 					placeholder="********"
 					type="password"
 					v-model="password"
@@ -16,15 +18,17 @@
 				<div v-if="passwordError" class="form-input-error">
 					{{ passwordError }}
 				</div>
-			</styled-form-group>
+			</div>
 
 			<!-- confirm password -->
-			<styled-form-group :hasError="confirmPasswordError">
+			<div class="styled-form-group" :hasError="confirmPasswordError">
 				<label class="form-input-label" for=""
 					><span>* </span>Confirm Password</label
 				>
 				<input
-					class="form-input-field"
+					:class="`form-input-field ${
+						confirmPasswordError ? 'input-error-content' : null
+					}`"
 					placeholder="********"
 					type="password"
 					v-model="confirmPassword"
@@ -32,7 +36,7 @@
 				<div v-if="confirmPasswordError" class="form-input-error">
 					{{ confirmPasswordError }}
 				</div>
-			</styled-form-group>
+			</div>
 			<template v-if="config.is_strong_password_enabled.value">
 				<password-strength-indicator
 					:value="password"
@@ -62,7 +66,6 @@
 import { reactive, toRefs, computed } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { StyledFormGroup } from '../styles/index';
 import { StyledButton, StyledWrapper } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
 import Message from './Message.vue';
@@ -74,7 +77,6 @@ export default {
 	components: {
 		'styled-wrapper': StyledWrapper,
 		'styled-button': StyledButton,
-		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': PasswordStrengthIndicator,
 		message: Message,
 	},
@@ -157,3 +159,45 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.styled-form-group {
+	width: 100%;
+	border: 0px;
+	background-color: var(--authorizer-white-color);
+	padding: 0 0 15px;
+}
+.form-input-label {
+	padding: 2.5px;
+}
+.form-input-label > span {
+	color: var(--authorizer-danger-color);
+}
+.form-input-field {
+	width: 100%;
+	margin-top: 5px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: var(--authorizer-radius-input);
+	border: 1px;
+	border-style: solid;
+	border-color: var(--authorizer-text-color);
+}
+.input-error-content {
+	border-color: var(--authorizer-danger-color) !important;
+}
+.input-error-content:hover {
+	outline-color: var(--authorizer-danger-color);
+}
+.input-error-content:focus {
+	outline-color: var(--authorizer-danger-color);
+}
+.form-input-error {
+	font-size: 12px;
+	font-weight: 400;
+	color: red;
+	border-color: var(--authorizer-danger-color);
+}
+</style>
