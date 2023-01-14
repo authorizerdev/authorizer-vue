@@ -31,7 +31,7 @@
 				</div>
 
 				<!-- password -->
-				<div class="styled-form-group" :hasError="passwordError">
+				<div class="styled-form-group">
 					<label class="form-input-label" for=""><span>* </span>Password</label>
 					<input
 						:class="`form-input-field ${
