@@ -14,16 +14,18 @@
 		<br />
 		<form @submit.prevent="onSubmit">
 			<!-- Email -->
-			<styled-form-group :hasError="emailError">
+			<div class="styled-form-group">
 				<label class="form-input-label" for=""><span>* </span>Email</label>
 				<input
-					class="form-input-field"
+					:class="`form-input-field ${
+						emailError ? 'input-error-content' : null
+					}`"
 					placeholder="eg. foo@bar.com"
 					type="email"
 					v-model="email"
 				/>
 				<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
-			</styled-form-group>
+			</div>
 			<br />
 			<styled-button
 				:appearance="ButtonAppearance.Primary"
@@ -50,7 +52,6 @@ import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
 import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
-import { StyledFormGroup } from '../styles/index';
 import {
 	StyledButton,
 	StyledFooter,
@@ -62,7 +63,6 @@ export default {
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
-		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
 		message: Message,
@@ -124,3 +124,45 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.styled-form-group {
+	width: 100%;
+	border: 0px;
+	background-color: var(--authorizer-white-color);
+	padding: 0 0 15px;
+}
+.form-input-label {
+	padding: 2.5px;
+}
+.form-input-label > span {
+	color: var(--authorizer-danger-color);
+}
+.form-input-field {
+	width: 100%;
+	margin-top: 5px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: var(--authorizer-radius-input);
+	border: 1px;
+	border-style: solid;
+	border-color: var(--authorizer-text-color);
+}
+.input-error-content {
+	border-color: var(--authorizer-danger-color) !important;
+}
+.input-error-content:hover {
+	outline-color: var(--authorizer-danger-color);
+}
+.input-error-content:focus {
+	outline-color: var(--authorizer-danger-color);
+}
+.form-input-error {
+	font-size: 12px;
+	font-weight: 400;
+	color: red;
+	border-color: var(--authorizer-danger-color);
+}
+</style>
