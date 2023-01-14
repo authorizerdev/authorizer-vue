@@ -66,7 +66,7 @@ var globalConfig = reactive({
 	is_twitter_login_enabled: false,
 });
 
-var script$i = {
+var script$j = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -287,7 +287,7 @@ var script$i = {
 	},
 };
 
-script$i.__file = "src/components/AuthorizerProvider.vue";
+script$j.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -367,7 +367,7 @@ const StyledWrapper = Styled('div')`
 	};
 `;
 
-const StyledButton = Styled('button', props)`
+Styled('button', props)`
   padding: 15px 10px;
   width: ${(props) => (props.style?.width ? props.style.width : '100%')};
   display: flex;
@@ -528,6 +528,45 @@ const StyledPasswordStrength = Styled('div')`
   background-color: ${theme.colors.primary};
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
+
+var script$i = {
+	name: 'StyledButton',
+	props: ['style', 'type', 'appearance', 'disabled'],
+	setup(props) {
+		return {
+			...props,
+			style: {
+				width: '100%',
+				backgroundColor: props.disabled
+					? 'var(--authorizer-primary-disabled-color)'
+					: props.appearance === ButtonAppearance.Primary
+					? 'var(--authorizer-primary-color)'
+					: 'var(--authorizer-white-color)',
+				color:
+					props.appearance === ButtonAppearance.Default
+						? 'var(--authorizer-text-color)'
+						: 'var(--authorizer-white-color)',
+				border: props.appearance === ButtonAppearance.Primary ? '0px' : '1px',
+			},
+		};
+	},
+};
+
+const _hoisted_1$h = ["type", "disabled"];
+
+function render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("button", {
+    class: "styled-button",
+    style: normalizeStyle($setup.style),
+    type: $props.type,
+    disabled: $props.disabled
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 12 /* STYLE, PROPS */, _hoisted_1$h))
+}
+
+script$i.render = render$i;
+script$i.__file = "src/styledComponents/StyledButton.vue";
 
 const getCrypto = () => {
 	//ie 11.x uses msCrypto
@@ -990,7 +1029,7 @@ var script$d = {
 	props: ['setView', 'onSignup', 'urlProps'],
 	components: {
 		'password-strength-indicator': script$e,
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1290,7 +1329,7 @@ var script$c = {
 	name: 'AuthorizerVerifyOtp',
 	props: ['setView', 'onLogin', 'email'],
 	components: {
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1518,7 +1557,7 @@ var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1763,7 +1802,7 @@ var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		message: script$f,
 	},
@@ -1909,7 +1948,7 @@ var script$9 = {
 	name: 'AuthorizerForgotPassword',
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -2280,7 +2319,7 @@ var script$2 = {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
 	components: {
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-separator': StyledSeparator,
 		google: script$8,
 		github: script$6,
@@ -2491,7 +2530,7 @@ var script$1 = {
 	props: ['onReset'],
 	components: {
 		'styled-wrapper': StyledWrapper,
-		'styled-button': StyledButton,
+		'styled-button': script$i,
 		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': script$e,
 		message: script$f,
@@ -2805,7 +2844,7 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$i,
+	AuthorizerProvider: script$j,
 	AuthorizerSignup: script$d,
 	AuthorizerBasicAuthLogin: script$b,
 	AuthorizerMagicLinkLogin: script$a,

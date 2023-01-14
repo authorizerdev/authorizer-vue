@@ -72,12 +72,8 @@
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
-import {
-	StyledButton,
-	StyledFormGroup,
-	StyledFooter,
-	StyledLink,
-} from '../styles/index';
+import { StyledFormGroup, StyledFooter, StyledLink } from '../styles/index';
+import { StyledButton } from '../styledComponents/index';
 import { ButtonAppearance, MessageType, Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';

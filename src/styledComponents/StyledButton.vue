@@ -4,7 +4,6 @@
 		:style="style"
 		:type="type"
 		:disabled="disabled"
-		:onClick="onClick"
 	>
 		<slot></slot>
 	</button>
@@ -15,7 +14,7 @@ import { ButtonAppearance } from '../constants/index';
 
 export default {
 	name: 'StyledButton',
-	props: ['style', 'type', 'appearance', 'disabled', 'onClick'],
+	props: ['style', 'type', 'appearance', 'disabled'],
 	setup(props) {
 		return {
 			...props,
@@ -36,3 +35,23 @@ export default {
 	},
 };
 </script>
+
+<style>
+.styled-button {
+	padding: 15px 10px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 375px;
+	max-height: 64px;
+	border-radius: var(--authorizer-radius-button);
+	border-color: var(--authorizer-text-color) !important;
+	border-style: solid !important;
+	cursor: pointer;
+	position: relative;
+}
+.styled-button:disabled {
+	cursor: not-allowed;
+	background-color: var(--authorizer-primary-disabled-color);
+}
+</style>

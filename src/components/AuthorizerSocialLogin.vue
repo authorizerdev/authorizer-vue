@@ -99,7 +99,8 @@
 <script>
 import { hasWindow } from '../utils/window';
 import { createQueryParams } from '../utils/common';
-import { StyledButton, StyledSeparator } from '../styles/index';
+import { StyledSeparator } from '../styles/index';
+import { StyledButton } from '../styledComponents/index';
 import { ButtonAppearance } from '../constants/index';
 import globalConfig from '../state/globalConfig';
 import { computed, toRefs } from 'vue';
