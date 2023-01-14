@@ -10,7 +10,8 @@
 </template>
 
 <script>
-import { StyledMessageWrapper, StyledFlex } from '../styles/index';
+import { StyledMessageWrapper } from '../styles/index';
+import { StyledFlex } from '../styledComponents/index';
 import Close from '../icons/Close.vue';
 import { capitalizeFirstLetter } from '../utils/common';
 export default {

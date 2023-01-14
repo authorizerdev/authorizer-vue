@@ -72,7 +72,7 @@ var globalConfig = vue.reactive({
 	is_twitter_login_enabled: false,
 });
 
-var script$j = {
+var script$k = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -293,7 +293,7 @@ var script$j = {
 	},
 };
 
-script$j.__file = "src/components/AuthorizerProvider.vue";
+script$k.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -461,7 +461,7 @@ const StyledMessageWrapper = Styled__default["default"]('div', props)`
   `};
 `;
 
-const StyledFlex = Styled__default["default"]('div', props)`
+Styled__default["default"]('div', props)`
   display: flex;
   flex-direction: ${({ flexDirection, isResponsive }) =>
 		isResponsive && flexDirection !== 'column'
@@ -535,7 +535,7 @@ const StyledPasswordStrength = Styled__default["default"]('div')`
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
 
-var script$i = {
+var script$j = {
 	name: 'StyledButton',
 	props: ['style', 'type', 'appearance', 'disabled'],
 	setup(props) {
@@ -560,7 +560,7 @@ var script$i = {
 
 const _hoisted_1$h = ["type", "disabled"];
 
-function render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function render$j(_ctx, _cache, $props, $setup, $data, $options) {
   return (vue.openBlock(), vue.createElementBlock("button", {
     class: "styled-button",
     style: vue.normalizeStyle($setup.style),
@@ -571,8 +571,38 @@ function render$i(_ctx, _cache, $props, $setup, $data, $options) {
   ], 12 /* STYLE, PROPS */, _hoisted_1$h))
 }
 
+script$j.render = render$j;
+script$j.__scopeId = "data-v-ed3ce8fc";
+script$j.__file = "src/styledComponents/StyledButton.vue";
+
+var script$i = {
+	name: 'StyledFlex',
+	props: ['flexDirection', 'alignItems', 'justifyContent', 'wrap', 'width'],
+	setup(props) {
+		return {
+			...props,
+			style: {
+				display: 'flex',
+				'flex-direction': props.flexDirection || 'row',
+				'align-items': props.alignItems || 'center',
+				'justify-content': props.justifyContent || 'center',
+				'flex-wrap': props.wrap || 'wrap',
+				width: props.width || '100%',
+			},
+		};
+	},
+};
+
+function render$i(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("div", {
+    style: vue.normalizeStyle($setup.style)
+  }, [
+    vue.renderSlot(_ctx.$slots, "default")
+  ], 4 /* STYLE */))
+}
+
 script$i.render = render$i;
-script$i.__file = "src/styledComponents/StyledButton.vue";
+script$i.__file = "src/styledComponents/StyledFlex.vue";
 
 const getCrypto = () => {
 	//ie 11.x uses msCrypto
@@ -749,7 +779,7 @@ var script$f = {
 	props: ['type', 'text', 'onClose'],
 	components: {
 		'styled-message-wrapper': StyledMessageWrapper,
-		'styled-flex': StyledFlex,
+		'styled-flex': script$i,
 		close: script$g,
 	},
 	setup({ type, text, onClose }) {
@@ -806,7 +836,7 @@ var script$e = {
 		'styled-check-box-label': StyledCheckBoxLabel,
 		'styled-password-strength-wrapper': StyledPasswordStrengthWrapper,
 		'styled-password-strength': StyledPasswordStrength,
-		'styled-flex': StyledFlex,
+		'styled-flex': script$i,
 	},
 	setup(props) {
 		const { setDisableButton } = props;
@@ -893,7 +923,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
         vue.createVNode(_component_styled_flex, { flexDirection: "column" }, {
           default: vue.withCtx(() => [
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -914,7 +944,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }),
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -935,7 +965,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }),
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -956,7 +986,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }),
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -977,7 +1007,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }),
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -998,7 +1028,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1 /* STABLE */
             }),
             vue.createVNode(_component_styled_flex, {
-              justifyContent: "start",
+              justifyContent: "flex-start",
               alignItems: "center"
             }, {
               default: vue.withCtx(() => [
@@ -1035,7 +1065,7 @@ var script$d = {
 	props: ['setView', 'onSignup', 'urlProps'],
 	components: {
 		'password-strength-indicator': script$e,
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1335,7 +1365,7 @@ var script$c = {
 	name: 'AuthorizerVerifyOtp',
 	props: ['setView', 'onLogin', 'email'],
 	components: {
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1563,7 +1593,7 @@ var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
 	props: ['setView', 'onLogin', 'urlProps'],
 	components: {
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -1808,7 +1838,7 @@ var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
 	props: ['onMagicLinkLogin', 'urlProps'],
 	components: {
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		message: script$f,
 	},
@@ -1954,7 +1984,7 @@ var script$9 = {
 	name: 'AuthorizerForgotPassword',
 	props: ['setView', 'onForgotPassword', 'urlProps'],
 	components: {
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
@@ -2325,7 +2355,7 @@ var script$2 = {
 	name: 'AuthorizerSocialLogin',
 	props: ['urlProps'],
 	components: {
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-separator': StyledSeparator,
 		google: script$8,
 		github: script$6,
@@ -2536,7 +2566,7 @@ var script$1 = {
 	props: ['onReset'],
 	components: {
 		'styled-wrapper': StyledWrapper,
-		'styled-button': script$i,
+		'styled-button': script$j,
 		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': script$e,
 		message: script$f,
@@ -2850,7 +2880,7 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$j,
+	AuthorizerProvider: script$k,
 	AuthorizerSignup: script$d,
 	AuthorizerBasicAuthLogin: script$b,
 	AuthorizerMagicLinkLogin: script$a,

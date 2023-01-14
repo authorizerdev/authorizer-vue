@@ -16,7 +16,7 @@
 				<b>Criteria for a strong password:</b>
 			</p>
 			<styled-flex flexDirection="column">
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -26,7 +26,7 @@
 					/>
 					<styled-check-box-label>At least 6 characters</styled-check-box-label>
 				</styled-flex>
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -38,7 +38,7 @@
 						>At least 1 lowercase letter</styled-check-box-label
 					>
 				</styled-flex>
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -50,7 +50,7 @@
 						>At least 1 uppercase letter</styled-check-box-label
 					>
 				</styled-flex>
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -62,7 +62,7 @@
 						>At least 1 numeric character</styled-check-box-label
 					>
 				</styled-flex>
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -74,7 +74,7 @@
 						>At least 1 special character</styled-check-box-label
 					>
 				</styled-flex>
-				<styled-flex justifyContent="start" alignItems="center">
+				<styled-flex justifyContent="flex-start" alignItems="center">
 					<input
 						readOnly
 						@click="eventHandler"
@@ -95,8 +95,8 @@ import {
 	StyledCheckBoxLabel,
 	StyledPasswordStrengthWrapper,
 	StyledPasswordStrength,
-	StyledFlex,
 } from '../styles/index';
+import { StyledFlex } from '../styledComponents/index';
 import { validatePassword } from '../utils/common';
 export default {
 	name: 'PasswordStrengthIndicator',

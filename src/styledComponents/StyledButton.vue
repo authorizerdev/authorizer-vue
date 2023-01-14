@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .styled-button {
 	padding: 15px 10px !important;
 	display: flex;
