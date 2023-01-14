@@ -40,9 +40,6 @@
 	color: red;
 	border-color: var(--authorizer-danger-color);
 }
-.styled-password-strength-wrapper {
-	margin: 2% 0 0;
-}
 .styled-separator {
 	display: flex;
 	align-items: center;

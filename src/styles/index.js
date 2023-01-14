@@ -180,11 +180,4 @@ const StyledPasswordStrength = Styled('div')`
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
 
-export {
-	StyledWrapper,
-	StyledSeparator,
-	StyledFormGroup,
-	StyledCheckBoxLabel,
-	StyledPasswordStrengthWrapper,
-	StyledPasswordStrength,
-};
+export { StyledWrapper, StyledSeparator, StyledFormGroup, StyledCheckBoxLabel };

@@ -98,3 +98,8 @@
 	margin-right: 5px;
 	background-color: var(--authorizer-primary-color);
 }
+
+
+.styled-password-strength-wrapper[data-v-59a9d057] {
+	margin: 2% 0 0;
+}

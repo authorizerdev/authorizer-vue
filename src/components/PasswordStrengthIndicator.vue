@@ -91,11 +91,12 @@
 
 <script>
 import { reactive, toRefs, watch } from 'vue';
+import { StyledCheckBoxLabel } from '../styles/index';
 import {
-	StyledCheckBoxLabel,
+	StyledFlex,
+	StyledPasswordStrength,
 	StyledPasswordStrengthWrapper,
-} from '../styles/index';
-import { StyledFlex, StyledPasswordStrength } from '../styledComponents/index';
+} from '../styledComponents/index';
 import { validatePassword } from '../utils/common';
 export default {
 	name: 'PasswordStrengthIndicator',

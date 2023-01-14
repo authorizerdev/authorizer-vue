@@ -1,5 +1,7 @@
 <template>
-	<div></div>
+	<div class="styled-password-strength-wrapper">
+		<slot></slot>
+	</div>
 </template>
 
 <script>
@@ -8,4 +10,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.styled-password-strength-wrapper {
+	margin: 2% 0 0;
+}
+</style>
