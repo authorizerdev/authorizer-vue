@@ -9,9 +9,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': fileURLToPath(new URL('./src', import.meta.url)),
-			'authorizer-vue': fileURLToPath(
-				new URL('../dist/library.mjs', import.meta.url)
-			),
+			'authorizer-vue': fileURLToPath(new URL('../dist', import.meta.url)),
 		},
 	},
 });
