@@ -4,6 +4,7 @@
 			:setView="setView"
 			:onLogin="onLogin"
 			:email="otpData.email.value"
+			:urlProps="urlProps"
 		/>
 	</template>
 	<template v-else>
@@ -89,7 +90,7 @@ import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerBasicAuthLogin',
-	props: ['setView', 'onLogin', 'urlProps'],
+	props: ['setView', 'onLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-footer': StyledFooter,
@@ -97,7 +98,7 @@ export default {
 		'authorizer-verify-otp': AuthorizerVerifyOtp,
 		message: Message,
 	},
-	setup({ setView, onLogin, urlProps }) {
+	setup({ setView, onLogin, urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
 		const componentState = reactive({
@@ -137,6 +138,12 @@ export default {
 				};
 				if (urlProps.scope) {
 					data.scope = urlProps.scope;
+				}
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				if (roles && roles.length) {
+					data.roles = roles;
 				}
 				const res = await authorizerRef.value.login(data);
 				if (res && res?.should_show_otp_screen) {
@@ -181,6 +188,7 @@ export default {
 			config,
 			MessageType,
 			onErrorClose,
+			urlProps,
 		};
 	},
 };

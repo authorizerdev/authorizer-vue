@@ -64,14 +64,14 @@ import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerVerifyOtp',
-	props: ['setView', 'onLogin', 'email'],
+	props: ['setView', 'onLogin', 'email', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
 		message: Message,
 	},
-	setup({ setView, onLogin, email }) {
+	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
 		const componentState = reactive({
@@ -93,10 +93,14 @@ export default {
 			componentState.successMessage = null;
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.verifyOtp({
+				const data = {
 					email,
 					otp: componentState.otp,
-				});
+				};
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				const res = await authorizerRef.value.verifyOtp(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;

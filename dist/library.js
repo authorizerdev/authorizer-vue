@@ -885,7 +885,7 @@ script$e.__file = "src/components/PasswordStrengthIndicator.vue";
 
 var script$d = {
 	name: 'AuthorizerSignup',
-	props: ['setView', 'onSignup', 'urlProps'],
+	props: ['setView', 'onSignup', 'urlProps', 'roles'],
 	components: {
 		'password-strength-indicator': script$e,
 		'styled-button': script$o,
@@ -893,7 +893,7 @@ var script$d = {
 		'styled-link': script$n,
 		message: script$f,
 	},
-	setup({ setView, onSignup, urlProps }) {
+	setup({ setView, onSignup, urlProps, roles }) {
 		const config = { ...vue.toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
 		const componentState = vue.reactive({
@@ -950,8 +950,17 @@ var script$d = {
 				if (urlProps.scope) {
 					data.scope = urlProps.scope;
 				}
+				if (urlProps.roles) {
+					data.roles = urlProps.roles;
+				}
 				if (urlProps.redirect_uri) {
 					data.redirect_uri = urlProps.redirect_uri;
+				}
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				if (roles && roles.length) {
+					data.roles;
 				}
 				const res = await authorizerRef.value.signup(data);
 				if (res) {
@@ -1195,14 +1204,14 @@ script$d.__file = "src/components/AuthorizerSignup.vue";
 
 var script$c = {
 	name: 'AuthorizerVerifyOtp',
-	props: ['setView', 'onLogin', 'email'],
+	props: ['setView', 'onLogin', 'email', 'urlProps'],
 	components: {
 		'styled-button': script$o,
 		'styled-footer': script$l,
 		'styled-link': script$n,
 		message: script$f,
 	},
-	setup({ setView, onLogin, email }) {
+	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...vue.toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
 		const componentState = vue.reactive({
@@ -1224,10 +1233,14 @@ var script$c = {
 			componentState.successMessage = null;
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.verifyOtp({
+				const data = {
 					email,
 					otp: componentState.otp,
-				});
+				};
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				const res = await authorizerRef.value.verifyOtp(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;
@@ -1424,7 +1437,7 @@ script$c.__file = "src/components/AuthorizerVerifyOtp.vue";
 
 var script$b = {
 	name: 'AuthorizerBasicAuthLogin',
-	props: ['setView', 'onLogin', 'urlProps'],
+	props: ['setView', 'onLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': script$o,
 		'styled-footer': script$l,
@@ -1432,7 +1445,7 @@ var script$b = {
 		'authorizer-verify-otp': script$c,
 		message: script$f,
 	},
-	setup({ setView, onLogin, urlProps }) {
+	setup({ setView, onLogin, urlProps, roles }) {
 		const config = { ...vue.toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
 		const componentState = vue.reactive({
@@ -1472,6 +1485,12 @@ var script$b = {
 				};
 				if (urlProps.scope) {
 					data.scope = urlProps.scope;
+				}
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				if (roles && roles.length) {
+					data.roles = roles;
 				}
 				const res = await authorizerRef.value.login(data);
 				if (res && res?.should_show_otp_screen) {
@@ -1516,6 +1535,7 @@ var script$b = {
 			config,
 			MessageType,
 			onErrorClose,
+			urlProps,
 		};
 	},
 };
@@ -1566,8 +1586,9 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
         key: 0,
         setView: $setup.setView,
         onLogin: $props.onLogin,
-        email: $setup.otpData.email.value
-      }, null, 8 /* PROPS */, ["setView", "onLogin", "email"]))
+        email: $setup.otpData.email.value,
+        urlProps: $setup.urlProps
+      }, null, 8 /* PROPS */, ["setView", "onLogin", "email", "urlProps"]))
     : (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$a, [
         (_ctx.error)
           ? (vue.openBlock(), vue.createBlock(_component_message, {
@@ -1669,12 +1690,12 @@ script$b.__file = "src/components/AuthorizerBasicAuthLogin.vue";
 
 var script$a = {
 	name: 'AuthorizerMagicLinkLogin',
-	props: ['onMagicLinkLogin', 'urlProps'],
+	props: ['onMagicLinkLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': script$o,
 		message: script$f,
 	},
-	setup({ onMagicLinkLogin, urlProps }) {
+	setup({ onMagicLinkLogin, urlProps, roles }) {
 		const { authorizerRef } = { ...vue.toRefs(globalState) };
 		const componentState = vue.reactive({
 			error: null,
@@ -1698,11 +1719,15 @@ var script$a = {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.magicLinkLogin({
+				const data = {
 					email: formData.email,
 					state: urlProps.state || '',
 					redirect_uri: urlProps.redirect_uri || '',
-				});
+				};
+				if (roles && roles.length) {
+					data.roles = roles;
+				}
+				const res = await authorizerRef.value.magicLinkLogin(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;
@@ -2173,7 +2198,7 @@ script$3.__file = "src/icons/Twitter.vue";
 
 var script$2 = {
 	name: 'AuthorizerSocialLogin',
-	props: ['urlProps'],
+	props: ['urlProps', 'roles'],
 	components: {
 		'styled-button': script$o,
 		'styled-separator': script$m,
@@ -2184,7 +2209,7 @@ var script$2 = {
 		apple: script$4,
 		twitter: script$3,
 	},
-	setup({ urlProps }) {
+	setup({ urlProps, roles }) {
 		const config = { ...vue.toRefs(globalConfig) };
 		const hasSocialLogin = vue.computed(function () {
 			return (
@@ -2195,10 +2220,11 @@ var script$2 = {
 				config.is_apple_login_enabled.value
 			);
 		});
-		const queryParams = createQueryParams({
-			...urlProps,
-			scope: urlProps.scope.join(' '),
-		});
+		const data = { ...urlProps, scope: urlProps.scope.join(' ') };
+		if (roles && roles.length) {
+			data.roles = roles;
+		}
+		const queryParams = createQueryParams(data);
 		const windowObject = hasWindow() ? window : null;
 		return {
 			config,
@@ -2608,7 +2634,13 @@ var script = {
 		'authorizer-forgot-password': script$9,
 		'authorizer-basic-auth-login': script$b,
 	},
-	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
+	props: [
+		'onLogin',
+		'onSignup',
+		'onMagicLinkLogin',
+		'onForgotPassword',
+		'roles',
+	],
 	setup(props) {
 		const state = vue.reactive({
 			view: Views.Login,
@@ -2656,7 +2688,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (vue.openBlock(), vue.createBlock(_component_styled_wrapper, null, {
     default: vue.withCtx(() => [
-      vue.createVNode(_component_authorizer_social_login, { urlProps: $setup.urlProps }, null, 8 /* PROPS */, ["urlProps"]),
+      vue.createVNode(_component_authorizer_social_login, {
+        urlProps: $setup.urlProps,
+        roles: $setup.roles
+      }, null, 8 /* PROPS */, ["urlProps", "roles"]),
       (
 				_ctx.view === $setup.Views.Login &&
 				$setup.config.is_basic_authentication_enabled.value &&
@@ -2666,8 +2701,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             key: 0,
             setView: $setup.setView,
             onLogin: $props.onLogin,
-            urlProps: $setup.urlProps
-          }, null, 8 /* PROPS */, ["setView", "onLogin", "urlProps"]))
+            urlProps: $setup.urlProps,
+            roles: $setup.roles
+          }, null, 8 /* PROPS */, ["setView", "onLogin", "urlProps", "roles"]))
         : vue.createCommentVNode("v-if", true),
       (
 				_ctx.view === $setup.Views.Signup &&
@@ -2679,15 +2715,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             key: 1,
             setView: $setup.setView,
             onSignup: $props.onSignup,
-            urlProps: $setup.urlProps
-          }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps"]))
+            urlProps: $setup.urlProps,
+            roles: $setup.roles
+          }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps", "roles"]))
         : vue.createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled.value)
         ? (vue.openBlock(), vue.createBlock(_component_authorizer_magic_link_login, {
             key: 2,
             onMagicLinkLogin: $props.onMagicLinkLogin,
-            urlProps: $setup.urlProps
-          }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps"]))
+            urlProps: $setup.urlProps,
+            roles: $setup.roles
+          }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps", "roles"]))
         : vue.createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.ForgotPassword)
         ? (vue.openBlock(), vue.createBlock(_component_authorizer_forgot_password, {

@@ -41,12 +41,12 @@ import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerMagicLinkLogin',
-	props: ['onMagicLinkLogin', 'urlProps'],
+	props: ['onMagicLinkLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': StyledButton,
 		message: Message,
 	},
-	setup({ onMagicLinkLogin, urlProps }) {
+	setup({ onMagicLinkLogin, urlProps, roles }) {
 		const { authorizerRef } = { ...toRefs(globalState) };
 		const componentState = reactive({
 			error: null,
@@ -70,11 +70,15 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.magicLinkLogin({
+				const data = {
 					email: formData.email,
 					state: urlProps.state || '',
 					redirect_uri: urlProps.redirect_uri || '',
-				});
+				};
+				if (roles && roles.length) {
+					data.roles = roles;
+				}
+				const res = await authorizerRef.value.magicLinkLogin(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;

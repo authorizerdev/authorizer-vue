@@ -111,7 +111,7 @@ import Apple from '../icons/Apple.vue';
 import Twitter from '../icons/Twitter.vue';
 export default {
 	name: 'AuthorizerSocialLogin',
-	props: ['urlProps'],
+	props: ['urlProps', 'roles'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-separator': StyledSeparator,
@@ -122,7 +122,7 @@ export default {
 		apple: Apple,
 		twitter: Twitter,
 	},
-	setup({ urlProps }) {
+	setup({ urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
 		const hasSocialLogin = computed(function () {
 			return (
@@ -133,10 +133,11 @@ export default {
 				config.is_apple_login_enabled.value
 			);
 		});
-		const queryParams = createQueryParams({
-			...urlProps,
-			scope: urlProps.scope.join(' '),
-		});
+		const data = { ...urlProps, scope: urlProps.scope.join(' ') };
+		if (roles && roles.length) {
+			data.roles = roles;
+		}
+		const queryParams = createQueryParams(data);
 		const windowObject = hasWindow() ? window : null;
 		return {
 			config,

@@ -1,6 +1,6 @@
 <template>
 	<styled-wrapper>
-		<authorizer-social-login :urlProps="urlProps" />
+		<authorizer-social-login :urlProps="urlProps" :roles="roles" />
 		<authorizer-basic-auth-login
 			v-if="
 				view === Views.Login &&
@@ -10,6 +10,7 @@
 			:setView="setView"
 			:onLogin="onLogin"
 			:urlProps="urlProps"
+			:roles="roles"
 		/>
 		<authorizer-signup
 			v-if="
@@ -21,11 +22,13 @@
 			:setView="setView"
 			:onSignup="onSignup"
 			:urlProps="urlProps"
+			:roles="roles"
 		/>
 		<authorizer-magic-link-login
 			v-if="view === Views.Login && config.is_magic_link_login_enabled.value"
 			:onMagicLinkLogin="onMagicLinkLogin"
 			:urlProps="urlProps"
+			:roles="roles"
 		/>
 		<authorizer-forgot-password
 			v-if="view === Views.ForgotPassword"
@@ -58,7 +61,13 @@ export default {
 		'authorizer-forgot-password': AuthorizerForgotPassword,
 		'authorizer-basic-auth-login': AuthorizerBasicAuthLogin,
 	},
-	props: ['onLogin', 'onSignup', 'onMagicLinkLogin', 'onForgotPassword'],
+	props: [
+		'onLogin',
+		'onSignup',
+		'onMagicLinkLogin',
+		'onForgotPassword',
+		'roles',
+	],
 	setup(props) {
 		const state = reactive({
 			view: Views.Login,

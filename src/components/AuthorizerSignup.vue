@@ -104,7 +104,7 @@ import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';
 export default {
 	name: 'AuthorizerSignup',
-	props: ['setView', 'onSignup', 'urlProps'],
+	props: ['setView', 'onSignup', 'urlProps', 'roles'],
 	components: {
 		'password-strength-indicator': PasswordStrengthIndicator,
 		'styled-button': StyledButton,
@@ -112,7 +112,7 @@ export default {
 		'styled-link': StyledLink,
 		message: Message,
 	},
-	setup({ setView, onSignup, urlProps }) {
+	setup({ setView, onSignup, urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
 		const componentState = reactive({
@@ -169,8 +169,17 @@ export default {
 				if (urlProps.scope) {
 					data.scope = urlProps.scope;
 				}
+				if (urlProps.roles) {
+					data.roles = urlProps.roles;
+				}
 				if (urlProps.redirect_uri) {
 					data.redirect_uri = urlProps.redirect_uri;
+				}
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				if (roles && roles.length) {
+					data.roles;
 				}
 				const res = await authorizerRef.value.signup(data);
 				if (res) {
