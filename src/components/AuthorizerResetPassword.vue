@@ -62,8 +62,8 @@
 import { reactive, toRefs, computed } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
-import { StyledWrapper, StyledFormGroup } from '../styles/index';
-import { StyledButton } from '../styledComponents/index';
+import { StyledFormGroup } from '../styles/index';
+import { StyledButton, StyledWrapper } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
 import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';

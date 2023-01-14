@@ -47,6 +47,20 @@
 }
 
 
+.styled-wrapper[data-v-f5751c1a] {
+	font-family: var(--authorizer-fonts-font-stack);
+	color: var(--authorizer-text-color);
+	font-size: var(--authorizer-fonts-medium-text);
+	box-sizing: border-box;
+	width: 100%;
+}
+.styled-wrapper *[data-v-f5751c1a],
+*[data-v-f5751c1a]:before,
+*[data-v-f5751c1a]:after {
+	box-sizing: inherit;
+}
+
+
 .styled-button[data-v-ed3ce8fc] {
 	padding: 15px 10px !important;
 	display: flex;

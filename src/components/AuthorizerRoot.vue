@@ -38,7 +38,7 @@
 
 <script>
 import { reactive, toRefs } from 'vue';
-import { StyledWrapper } from '../styles/index';
+import { StyledWrapper } from '../styledComponents/index';
 import { Views } from '../constants/index';
 import { hasWindow } from '../utils/window';
 import { createRandomString } from '../utils/common';

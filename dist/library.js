@@ -72,7 +72,7 @@ var globalConfig = vue.reactive({
 	is_twitter_login_enabled: false,
 });
 
-var script$q = {
+var script$r = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
@@ -293,7 +293,7 @@ var script$q = {
 	},
 };
 
-script$q.__file = "src/components/AuthorizerProvider.vue";
+script$r.__file = "src/components/AuthorizerProvider.vue";
 
 const sizes = {
 	sm: 576,
@@ -360,7 +360,7 @@ const theme = {
 
 const props = [];
 
-const StyledWrapper = Styled__default["default"]('div')`
+Styled__default["default"]('div')`
 	font-family: ${theme.fonts.fontStack};
 	color: ${theme.colors.textColor};
 	font-size: ${theme.fonts.mediumText};
@@ -534,6 +534,22 @@ Styled__default["default"]('div')`
   background-color: ${theme.colors.primary};
   opacity: ${(props) => passwordStrengthIndicatorOpacity[props.strength]};
 `;
+
+var script$q = {
+	name: 'StyledWrapper',
+};
+
+const _hoisted_1$l = { class: "styled-wrapper" };
+
+function render$q(_ctx, _cache, $props, $setup, $data, $options) {
+  return (vue.openBlock(), vue.createElementBlock("div", _hoisted_1$l, [
+    vue.renderSlot(_ctx.$slots, "default")
+  ]))
+}
+
+script$q.render = render$q;
+script$q.__scopeId = "data-v-f5751c1a";
+script$q.__file = "src/styledComponents/StyledWrapper.vue";
 
 var script$p = {
 	name: 'StyledButton',
@@ -2695,7 +2711,7 @@ var script$1 = {
 	name: 'AuthorizerResetPassword',
 	props: ['onReset'],
 	components: {
-		'styled-wrapper': StyledWrapper,
+		'styled-wrapper': script$q,
 		'styled-button': script$p,
 		'styled-form-group': StyledFormGroup,
 		'password-strength-indicator': script$e,
@@ -2905,7 +2921,7 @@ script$1.__file = "src/components/AuthorizerResetPassword.vue";
 var script = {
 	name: 'AuthorizerRoot',
 	components: {
-		'styled-wrapper': StyledWrapper,
+		'styled-wrapper': script$q,
 		'authorizer-social-login': script$2,
 		'authorizer-signup': script$d,
 		'authorizer-magic-link-login': script$a,
@@ -3010,7 +3026,7 @@ script.render = render;
 script.__file = "src/components/AuthorizerRoot.vue";
 
 var components = {
-	AuthorizerProvider: script$q,
+	AuthorizerProvider: script$r,
 	AuthorizerSignup: script$d,
 	AuthorizerBasicAuthLogin: script$b,
 	AuthorizerMagicLinkLogin: script$a,
