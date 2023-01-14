@@ -8,7 +8,7 @@ import StyledFlex from './StyledFlex.vue';
 import StyledPasswordStrength from './StyledPasswordStrength.vue';
 import StyledPasswordStrengthWrapper from './StyledPasswordStrengthWrapper.vue';
 
-export default {
+export {
 	StyledWrapper,
 	StyledButton,
 	StyledLink,
