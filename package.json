@@ -29,8 +29,10 @@
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-vue": "^6.0.0"
 	},
-	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.0.0",
+	"peerDependencies": {
 		"vue": "^3.2.21"
+	},
+	"dependencies": {
+		"@authorizerdev/authorizer-js": "^1.0.0"
 	}
 }

@@ -2688,7 +2688,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     default: withCtx(() => [
       createVNode(_component_authorizer_social_login, {
         urlProps: $setup.urlProps,
-        roles: $setup.roles
+        roles: $props.roles
       }, null, 8 /* PROPS */, ["urlProps", "roles"]),
       (
 				_ctx.view === $setup.Views.Login &&
@@ -2700,7 +2700,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             setView: $setup.setView,
             onLogin: $props.onLogin,
             urlProps: $setup.urlProps,
-            roles: $setup.roles
+            roles: $props.roles
           }, null, 8 /* PROPS */, ["setView", "onLogin", "urlProps", "roles"]))
         : createCommentVNode("v-if", true),
       (
@@ -2714,7 +2714,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             setView: $setup.setView,
             onSignup: $props.onSignup,
             urlProps: $setup.urlProps,
-            roles: $setup.roles
+            roles: $props.roles
           }, null, 8 /* PROPS */, ["setView", "onSignup", "urlProps", "roles"]))
         : createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.Login && $setup.config.is_magic_link_login_enabled.value)
@@ -2722,7 +2722,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             key: 2,
             onMagicLinkLogin: $props.onMagicLinkLogin,
             urlProps: $setup.urlProps,
-            roles: $setup.roles
+            roles: $props.roles
           }, null, 8 /* PROPS */, ["onMagicLinkLogin", "urlProps", "roles"]))
         : createCommentVNode("v-if", true),
       (_ctx.view === $setup.Views.ForgotPassword)
