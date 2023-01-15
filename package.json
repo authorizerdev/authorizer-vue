@@ -16,7 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/authorizerdev/authorizer-vue.git"
 	},
-	"author": "Anik Ghosh",
+	"author": "Lakhan Samani",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/authorizerdev/authorizer-vue/issues"
