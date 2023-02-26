@@ -1,6 +1,6 @@
 {
-	"name": "authorizer-vue",
-	"version": "0.0.1",
+	"name": "@authorizerdev/authorizer-vue",
+	"version": "1.0.0",
 	"main": "dist/library.js",
 	"module": "dist/library.mjs",
 	"files": [
@@ -14,24 +14,25 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/anik-ghosh-au7/authorizer-vue.git"
+		"url": "git+https://github.com/authorizerdev/authorizer-vue.git"
 	},
-	"author": "Anik Ghosh",
+	"author": "Lakhan Samani",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/anik-ghosh-au7/authorizer-vue/issues"
+		"url": "https://github.com/authorizerdev/authorizer-vue/issues"
 	},
-	"homepage": "https://github.com/anik-ghosh-au7/authorizer-vue#readme",
-	"peerDependencies": {},
+	"homepage": "https://github.com/authorizerdev/authorizer-vue#readme",
 	"devDependencies": {
 		"@vue/compiler-sfc": "^3.2.37",
 		"rollup": "^2.78.1",
+		"rollup-plugin-import-css": "^3.1.0",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-vue": "^6.0.0"
 	},
+	"peerDependencies": {
+		"vue": "^3.2.21"
+	},
 	"dependencies": {
-		"vue": "^3.2.21",
-		"@authorizerdev/authorizer-js": "^1.0.0",
-		"vue3-styled-components": "^1.2.1"
+		"@authorizerdev/authorizer-js": "^1.0.0"
 	}
 }

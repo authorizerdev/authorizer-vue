@@ -1,5 +1,6 @@
 import vue from 'rollup-plugin-vue';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import css from 'rollup-plugin-import-css';
 
 export default [
 	{
@@ -15,11 +16,11 @@ export default [
 				exports: 'auto',
 			},
 		],
-		plugins: [vue(), peerDepsExternal()],
+		plugins: [vue(), peerDepsExternal(), css()],
 		watch: {
 			include: './src/**',
 			clearScreen: false,
 		},
-		external: ['vue', '@authorizerdev/authorizer-js', 'vue3-styled-components'],
+		external: ['vue', '@authorizerdev/authorizer-js'],
 	},
 ];

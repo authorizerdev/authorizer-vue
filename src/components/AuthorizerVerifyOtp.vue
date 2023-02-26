@@ -15,18 +15,18 @@
 	<br />
 	<form @submit.prevent="onSubmit">
 		<!-- OTP -->
-		<styled-form-group :hasError="otpError">
+		<div class="styled-form-group" :hasError="otpError">
 			<label class="form-input-label" for=""
 				><span>* </span>OTP (One Time Password)</label
 			>
 			<input
-				class="form-input-field"
+				:class="`form-input-field ${otpError ? 'input-error-content' : null}`"
 				placeholder="eg. AB123C"
 				type="password"
 				v-model="otp"
 			/>
 			<div v-if="otpError" class="form-input-error">{{ otpError }}</div>
-		</styled-form-group>
+		</div>
 		<br />
 		<styled-button
 			:appearance="ButtonAppearance.Primary"
@@ -56,24 +56,22 @@ import globalConfig from '../state/globalConfig';
 import globalState from '../state/globalState';
 import {
 	StyledButton,
-	StyledFormGroup,
 	StyledFooter,
 	StyledLink,
-} from '../styles/index';
+} from '../styledComponents/index';
 import { isValidOtp } from '../utils/common';
 import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerVerifyOtp',
-	props: ['setView', 'onLogin', 'email'],
+	props: ['setView', 'onLogin', 'email', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
-		'styled-form-group': StyledFormGroup,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
 		message: Message,
 	},
-	setup({ setView, onLogin, email }) {
+	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
 		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
 		const componentState = reactive({
@@ -95,10 +93,14 @@ export default {
 			componentState.successMessage = null;
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.verifyOtp({
+				const data = {
 					email,
 					otp: componentState.otp,
-				});
+				};
+				if (urlProps.state) {
+					data.state = urlProps.state;
+				}
+				const res = await authorizerRef.value.verifyOtp(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;
@@ -164,5 +166,44 @@ export default {
 	},
 };
 </script>
-
-<style scoped></style>
+<style scoped>
+.styled-form-group {
+	width: 100%;
+	border: 0px;
+	background-color: var(--authorizer-white-color);
+	padding: 0 0 15px;
+}
+.form-input-label {
+	padding: 2.5px;
+}
+.form-input-label > span {
+	color: var(--authorizer-danger-color);
+}
+.form-input-field {
+	width: 100%;
+	margin-top: 5px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: var(--authorizer-radius-input);
+	border: 1px;
+	border-style: solid;
+	border-color: var(--authorizer-text-color);
+}
+.input-error-content {
+	border-color: var(--authorizer-danger-color) !important;
+}
+.input-error-content:hover {
+	outline-color: var(--authorizer-danger-color);
+}
+.input-error-content:focus {
+	outline-color: var(--authorizer-danger-color);
+}
+.form-input-error {
+	font-size: 12px;
+	font-weight: 400;
+	color: red;
+	border-color: var(--authorizer-danger-color);
+}
+</style>
