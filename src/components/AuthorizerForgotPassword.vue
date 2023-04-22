@@ -49,7 +49,7 @@
 <script>
 import { computed, reactive, toRefs } from 'vue';
 import globalConfig from '../state/globalConfig';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
 import {
@@ -69,7 +69,7 @@ export default {
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

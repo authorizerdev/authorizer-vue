@@ -65,7 +65,7 @@
 <script>
 import { reactive, toRefs, computed } from 'vue';
 import globalConfig from '../state/globalConfig';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import { StyledButton, StyledWrapper } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
 import Message from './Message.vue';
@@ -83,7 +83,7 @@ export default {
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
 		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,

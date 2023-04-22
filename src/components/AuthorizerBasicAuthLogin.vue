@@ -84,7 +84,7 @@ import {
 } from '../styledComponents/index';
 import { ButtonAppearance, MessageType, Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import { isValidEmail } from '../utils/common';
 import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
 import Message from './Message.vue';
@@ -100,7 +100,7 @@ export default {
 	},
 	setup({ setView, onLogin, urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			loading: false,
 			error: null,

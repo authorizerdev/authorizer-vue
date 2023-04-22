@@ -34,7 +34,7 @@
 
 <script>
 import { reactive, toRefs, computed } from 'vue';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import { StyledButton } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
@@ -47,7 +47,7 @@ export default {
 		message: Message,
 	},
 	setup({ onMagicLinkLogin, urlProps, roles }) {
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

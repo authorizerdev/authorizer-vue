@@ -3,14 +3,14 @@ import { toRefs, onMounted, watch, onUnmounted, provide, computed } from 'vue';
 import { Authorizer } from '@authorizerdev/authorizer-js';
 import { hasWindow } from '../utils/window';
 import { AuthorizerProviderActionType } from '../constants/index';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import globalConfig from '../state/globalConfig';
 export default {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
 		const config = { ...toRefs(globalConfig) };
-		const state = { ...toRefs(globalState) };
+		const state = { ...toRefs(globalContext) };
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
 		config.redirectURL.value = props?.config?.redirectURL
 			? props.config.redirectURL
@@ -68,7 +68,7 @@ export default {
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
 					const { config, ...rest } = payload;
 					Object.assign(globalConfig, { ...globalConfig, ...config });
-					Object.assign(globalState, { ...globalState, ...rest });
+					Object.assign(globalContext, { ...globalContext, ...rest });
 					break;
 				default:
 					throw new Error();
@@ -184,7 +184,7 @@ export default {
 			});
 		};
 		provide('useAuthorizer', () => {
-			return { ...toRefs(globalState), config: { ...toRefs(globalConfig) } };
+			return { ...toRefs(globalContext), config: { ...toRefs(globalConfig) } };
 		});
 		onMounted(() => {
 			getToken();
@@ -194,9 +194,9 @@ export default {
 				clearInterval(intervalRef);
 			}
 		});
-		watch([globalState, globalConfig], () => {
+		watch([globalContext, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback({ ...globalState, config: globalConfig });
+				props.onStateChangeCallback({ ...globalContext, config: globalConfig });
 			}
 		});
 		watch(

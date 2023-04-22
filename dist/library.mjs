@@ -36,7 +36,7 @@ const passwordStrengthIndicatorOpacity = {
 	veryStrong: 1,
 };
 
-var globalState = reactive({
+var globalContext = reactive({
 	user: null,
 	token: null,
 	loading: false,
@@ -71,7 +71,7 @@ var script$r = {
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
 		const config = { ...toRefs(globalConfig) };
-		const state = { ...toRefs(globalState) };
+		const state = { ...toRefs(globalContext) };
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
 		config.redirectURL.value = props?.config?.redirectURL
 			? props.config.redirectURL
@@ -129,7 +129,7 @@ var script$r = {
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
 					const { config, ...rest } = payload;
 					Object.assign(globalConfig, { ...globalConfig, ...config });
-					Object.assign(globalState, { ...globalState, ...rest });
+					Object.assign(globalContext, { ...globalContext, ...rest });
 					break;
 				default:
 					throw new Error();
@@ -245,7 +245,7 @@ var script$r = {
 			});
 		};
 		provide('useAuthorizer', () => {
-			return { ...toRefs(globalState), config: { ...toRefs(globalConfig) } };
+			return { ...toRefs(globalContext), config: { ...toRefs(globalConfig) } };
 		});
 		onMounted(() => {
 			getToken();
@@ -255,9 +255,9 @@ var script$r = {
 				clearInterval(intervalRef);
 			}
 		});
-		watch([globalState, globalConfig], () => {
+		watch([globalContext, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback({ ...globalState, config: globalConfig });
+				props.onStateChangeCallback({ ...globalContext, config: globalConfig });
 			}
 		});
 		watch(
@@ -896,7 +896,7 @@ var script$e = {
 	},
 	setup({ setView, onSignup, urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,
@@ -1210,7 +1210,7 @@ var script$d = {
 	},
 	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,
@@ -1439,7 +1439,7 @@ var script$c = {
 	},
 	setup({ setView, onLogin, urlProps, roles }) {
 		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			loading: false,
 			error: null,
@@ -1683,7 +1683,7 @@ var script$b = {
 		message: script$g,
 	},
 	setup({ onMagicLinkLogin, urlProps, roles }) {
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,
@@ -1834,7 +1834,7 @@ var script$a = {
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,
@@ -2439,7 +2439,7 @@ var script$1 = {
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
 		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalState) };
+		const { authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,

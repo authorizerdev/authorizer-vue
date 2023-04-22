@@ -53,7 +53,7 @@
 <script>
 import { computed, reactive, toRefs } from 'vue';
 import globalConfig from '../state/globalConfig';
-import globalState from '../state/globalState';
+import globalContext from '../state/globalContext';
 import {
 	StyledButton,
 	StyledFooter,
@@ -73,7 +73,7 @@ export default {
 	},
 	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

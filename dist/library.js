@@ -38,7 +38,7 @@ const passwordStrengthIndicatorOpacity = {
 	veryStrong: 1,
 };
 
-var globalState = vue.reactive({
+var globalContext = vue.reactive({
 	user: null,
 	token: null,
 	loading: false,
@@ -73,7 +73,7 @@ var script$r = {
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
 		const config = { ...vue.toRefs(globalConfig) };
-		const state = { ...vue.toRefs(globalState) };
+		const state = { ...vue.toRefs(globalContext) };
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
 		config.redirectURL.value = props?.config?.redirectURL
 			? props.config.redirectURL
@@ -131,7 +131,7 @@ var script$r = {
 				case AuthorizerProviderActionType.SET_AUTH_DATA:
 					const { config, ...rest } = payload;
 					Object.assign(globalConfig, { ...globalConfig, ...config });
-					Object.assign(globalState, { ...globalState, ...rest });
+					Object.assign(globalContext, { ...globalContext, ...rest });
 					break;
 				default:
 					throw new Error();
@@ -247,7 +247,7 @@ var script$r = {
 			});
 		};
 		vue.provide('useAuthorizer', () => {
-			return { ...vue.toRefs(globalState), config: { ...vue.toRefs(globalConfig) } };
+			return { ...vue.toRefs(globalContext), config: { ...vue.toRefs(globalConfig) } };
 		});
 		vue.onMounted(() => {
 			getToken();
@@ -257,9 +257,9 @@ var script$r = {
 				clearInterval(intervalRef);
 			}
 		});
-		vue.watch([globalState, globalConfig], () => {
+		vue.watch([globalContext, globalConfig], () => {
 			if (props?.onStateChangeCallback) {
-				props.onStateChangeCallback({ ...globalState, config: globalConfig });
+				props.onStateChangeCallback({ ...globalContext, config: globalConfig });
 			}
 		});
 		vue.watch(
@@ -898,7 +898,7 @@ var script$e = {
 	},
 	setup({ setView, onSignup, urlProps, roles }) {
 		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1212,7 +1212,7 @@ var script$d = {
 	},
 	setup({ setView, onLogin, email, urlProps }) {
 		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1441,7 +1441,7 @@ var script$c = {
 	},
 	setup({ setView, onLogin, urlProps, roles }) {
 		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalState) };
+		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			loading: false,
 			error: null,
@@ -1685,7 +1685,7 @@ var script$b = {
 		message: script$g,
 	},
 	setup({ onMagicLinkLogin, urlProps, roles }) {
-		const { authorizerRef } = { ...vue.toRefs(globalState) };
+		const { authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1836,7 +1836,7 @@ var script$a = {
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
 		const config = { ...vue.toRefs(globalConfig) };
-		const { authorizerRef } = { ...vue.toRefs(globalState) };
+		const { authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -2441,7 +2441,7 @@ var script$1 = {
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
 		const config = { ...vue.toRefs(globalConfig) };
-		const { authorizerRef } = { ...vue.toRefs(globalState) };
+		const { authorizerRef } = { ...vue.toRefs(globalContext) };
 		const componentState = vue.reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,
