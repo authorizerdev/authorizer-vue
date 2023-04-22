@@ -23,9 +23,9 @@
 	},
 	"homepage": "https://github.com/authorizerdev/authorizer-vue#readme",
 	"devDependencies": {
-		"@vue/compiler-sfc": "^3.2.37",
-		"rollup": "^2.78.1",
-		"rollup-plugin-import-css": "^3.1.0",
+		"@vue/compiler-sfc": "^3.2.47",
+		"rollup": "^2.79.1",
+		"rollup-plugin-import-css": "^3.2.1",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-vue": "^6.0.0"
 	},
@@ -33,6 +33,6 @@
 		"vue": "^3.2.21"
 	},
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.1.4"
+		"@authorizerdev/authorizer-js": "^1.2.3"
 	}
 }
