@@ -33,6 +33,6 @@
 		"vue": "^3.2.21"
 	},
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.0.0"
+		"@authorizerdev/authorizer-js": "^1.1.4"
 	}
 }

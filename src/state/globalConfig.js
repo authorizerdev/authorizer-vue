@@ -14,4 +14,5 @@ export default reactive({
 	is_sign_up_enabled: false,
 	is_strong_password_enabled: true,
 	is_twitter_login_enabled: false,
+	is_microsoft_login_enabled: false,
 });
