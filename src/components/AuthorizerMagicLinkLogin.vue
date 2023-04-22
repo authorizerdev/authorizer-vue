@@ -50,7 +50,7 @@ export default {
 		message: Message,
 	},
 	setup({ onMagicLinkLogin, urlProps, roles }) {
-		const { authorizerRef } = { ...toRefs(globalContext) };
+		const { authorizerRef } = toRefs(globalContext);
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

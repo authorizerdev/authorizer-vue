@@ -97,7 +97,7 @@ export default {
 		return {
 			...props,
 			...toRefs(state),
-			config: { ...toRefs(globalConfig) },
+			config: toRefs(globalConfig),
 			setView,
 			urlProps,
 			Views,

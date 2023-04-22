@@ -86,8 +86,8 @@ export default {
 	},
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
-		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalContext) };
+		const config = toRefs(globalConfig);
+		const { authorizerRef } = toRefs(globalContext);
 		const componentState = reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,

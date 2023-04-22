@@ -71,8 +71,8 @@ export default {
 		message: Message,
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
-		const config = { ...toRefs(globalConfig) };
-		const { authorizerRef } = { ...toRefs(globalContext) };
+		const config = toRefs(globalConfig);
+		const { authorizerRef } = toRefs(globalContext);
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

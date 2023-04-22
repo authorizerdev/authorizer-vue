@@ -122,8 +122,8 @@ export default {
 		message: Message,
 	},
 	setup({ setView, onSignup, urlProps, roles }) {
-		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
+		const config = toRefs(globalConfig);
+		const { setAuthData, authorizerRef } = toRefs(globalContext);
 		const componentState = reactive({
 			error: null,
 			successMessage: null,

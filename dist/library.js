@@ -72,8 +72,8 @@ var script$r = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
-		const config = { ...vue.toRefs(globalConfig) };
-		const state = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const context = vue.toRefs(globalContext);
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
 		config.redirectURL.value = props?.config?.redirectURL
 			? props.config.redirectURL
@@ -105,7 +105,7 @@ var script$r = {
 			props?.config?.is_twitter_login_enabled || false;
 		config.is_microsoft_login_enabled.value =
 			props?.config?.is_microsoft_login_enabled || false;
-		state.authorizerRef.value = new authorizerJs.Authorizer({
+		context.authorizerRef.value = new authorizerJs.Authorizer({
 			authorizerURL: props?.config?.authorizerURL || '',
 			redirectURL: props?.config?.redirectURL
 				? props.config.redirectURL
@@ -117,13 +117,13 @@ var script$r = {
 		function dispatch({ type, payload }) {
 			switch (type) {
 				case AuthorizerProviderActionType.SET_USER:
-					state.user.value = payload.user;
+					context.user.value = payload.user;
 					break;
 				case AuthorizerProviderActionType.SET_TOKEN:
-					state.token.value = payload.token;
+					context.token.value = payload.token;
 					break;
 				case AuthorizerProviderActionType.SET_LOADING:
-					state.loading.value = payload.loading;
+					context.loading.value = payload.loading;
 					break;
 				case AuthorizerProviderActionType.SET_CONFIG:
 					Object.assign(globalConfig, payload.config);
@@ -139,9 +139,9 @@ var script$r = {
 		}
 		let intervalRef = null;
 		const getToken = async () => {
-			const metaRes = await state.authorizerRef.value.getMetaData();
+			const metaRes = await context.authorizerRef.value.getMetaData();
 			try {
-				const res = await state.authorizerRef.value.getSession();
+				const res = await context.authorizerRef.value.getSession();
 				if (res.access_token && res.user) {
 					const token = {
 						access_token: res.access_token,
@@ -185,7 +185,7 @@ var script$r = {
 				});
 			}
 		};
-		state.setToken.value = (token) => {
+		context.setToken.value = (token) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_TOKEN,
 				payload: {
@@ -199,7 +199,7 @@ var script$r = {
 				}, token.expires_in * 1000);
 			}
 		};
-		state.setAuthData.value = (data) => {
+		context.setAuthData.value = (data) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_AUTH_DATA,
 				payload: data,
@@ -211,7 +211,7 @@ var script$r = {
 				}, data.token.expires_in * 1000);
 			}
 		};
-		state.setUser.value = (user) => {
+		context.setUser.value = (user) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_USER,
 				payload: {
@@ -219,7 +219,7 @@ var script$r = {
 				},
 			});
 		};
-		state.setLoading.value = (loading) => {
+		context.setLoading.value = (loading) => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
@@ -227,14 +227,14 @@ var script$r = {
 				},
 			});
 		};
-		state.logout.value = async () => {
+		context.logout.value = async () => {
 			dispatch({
 				type: AuthorizerProviderActionType.SET_LOADING,
 				payload: {
 					loading: true,
 				},
 			});
-			await state.authorizerRef.value.logout();
+			await context.authorizerRef.value.logout();
 			const loggedOutState = {
 				user: null,
 				token: null,
@@ -276,7 +276,7 @@ var script$r = {
 					clientID: props?.config?.client_id || globalConfig.client_id,
 				};
 				Object.assign(globalConfig, updatedConfig);
-				state.authorizerRef.value = vue.computed(function () {
+				context.authorizerRef.value = vue.computed(function () {
 					return new authorizerJs.Authorizer({
 						authorizerURL: config.authorizerURL.value,
 						redirectURL: config.redirectURL.value,
@@ -897,8 +897,8 @@ var script$e = {
 		message: script$g,
 	},
 	setup({ setView, onSignup, urlProps, roles }) {
-		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const { setAuthData, authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1214,8 +1214,8 @@ var script$d = {
 		message: script$g,
 	},
 	setup({ setView, onLogin, email, urlProps }) {
-		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const { setAuthData, authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1444,8 +1444,8 @@ var script$c = {
 		message: script$g,
 	},
 	setup({ setView, onLogin, urlProps, roles }) {
-		const config = { ...vue.toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const { setAuthData, authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			loading: false,
 			error: null,
@@ -1523,7 +1523,7 @@ var script$c = {
 		return {
 			...vue.toRefs(formData),
 			...vue.toRefs(componentState),
-			otpData: { ...vue.toRefs(otpData) },
+			otpData: vue.toRefs(otpData),
 			emailError,
 			passwordError,
 			onSubmit,
@@ -1691,7 +1691,7 @@ var script$b = {
 		message: script$g,
 	},
 	setup({ onMagicLinkLogin, urlProps, roles }) {
-		const { authorizerRef } = { ...vue.toRefs(globalContext) };
+		const { authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -1842,8 +1842,8 @@ var script$a = {
 		message: script$g,
 	},
 	setup({ setView, onForgotPassword, urlProps }) {
-		const config = { ...vue.toRefs(globalConfig) };
-		const { authorizerRef } = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const { authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			error: null,
 			successMessage: null,
@@ -2224,7 +2224,7 @@ var script$2 = {
 		microsoft: script$3,
 	},
 	setup({ urlProps, roles }) {
-		const config = { ...vue.toRefs(globalConfig) };
+		const config = vue.toRefs(globalConfig);
 		const hasSocialLogin = vue.computed(function () {
 			return (
 				config.is_google_login_enabled.value ||
@@ -2448,8 +2448,8 @@ var script$1 = {
 	},
 	setup({ onReset }) {
 		const { token, redirect_uri } = getSearchParams();
-		const config = { ...vue.toRefs(globalConfig) };
-		const { authorizerRef } = { ...vue.toRefs(globalContext) };
+		const config = vue.toRefs(globalConfig);
+		const { authorizerRef } = vue.toRefs(globalContext);
 		const componentState = vue.reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,
@@ -2700,7 +2700,7 @@ var script = {
 		return {
 			...props,
 			...vue.toRefs(state),
-			config: { ...vue.toRefs(globalConfig) },
+			config: vue.toRefs(globalConfig),
 			setView,
 			urlProps,
 			Views,

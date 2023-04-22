@@ -105,8 +105,8 @@ export default {
 		message: Message,
 	},
 	setup({ setView, onLogin, urlProps, roles }) {
-		const config = { ...toRefs(globalConfig) };
-		const { setAuthData, authorizerRef } = { ...toRefs(globalContext) };
+		const config = toRefs(globalConfig);
+		const { setAuthData, authorizerRef } = toRefs(globalContext);
 		const componentState = reactive({
 			loading: false,
 			error: null,
@@ -184,7 +184,7 @@ export default {
 		return {
 			...toRefs(formData),
 			...toRefs(componentState),
-			otpData: { ...toRefs(otpData) },
+			otpData: toRefs(otpData),
 			emailError,
 			passwordError,
 			onSubmit,

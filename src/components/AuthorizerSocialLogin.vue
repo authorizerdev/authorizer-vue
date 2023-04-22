@@ -139,7 +139,7 @@ export default {
 		microsoft: Microsoft,
 	},
 	setup({ urlProps, roles }) {
-		const config = { ...toRefs(globalConfig) };
+		const config = toRefs(globalConfig);
 		const hasSocialLogin = computed(function () {
 			return (
 				config.is_google_login_enabled.value ||
