@@ -9,6 +9,7 @@ export default {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
+		let intervalRef = null;
 		const config = toRefs(globalConfig);
 		const context = toRefs(globalContext);
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
@@ -74,7 +75,6 @@ export default {
 					throw new Error();
 			}
 		}
-		let intervalRef = null;
 		const getToken = async () => {
 			const metaRes = await context.authorizerRef.value.getMetaData();
 			try {

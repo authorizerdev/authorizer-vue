@@ -72,6 +72,7 @@ var script$r = {
 	name: 'AuthorizerProvider',
 	props: ['config', 'onStateChangeCallback'],
 	setup(props) {
+		let intervalRef = null;
 		const config = vue.toRefs(globalConfig);
 		const context = vue.toRefs(globalContext);
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
@@ -137,7 +138,6 @@ var script$r = {
 					throw new Error();
 			}
 		}
-		let intervalRef = null;
 		const getToken = async () => {
 			const metaRes = await context.authorizerRef.value.getMetaData();
 			try {
