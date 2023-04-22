@@ -15,8 +15,11 @@
 		<form @submit.prevent="onSubmit">
 			<!-- Email -->
 			<div class="styled-form-group">
-				<label class="form-input-label" for=""><span>* </span>Email</label>
+				<label class="form-input-label" for="authorizer-forgot-password-email"
+					><span>* </span>Email</label
+				>
 				<input
+					id="authorizer-forgot-password-email"
 					:class="`form-input-field ${
 						emailError ? 'input-error-content' : null
 					}`"

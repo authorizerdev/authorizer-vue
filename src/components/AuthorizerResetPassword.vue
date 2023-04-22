@@ -6,8 +6,11 @@
 		<form @submit.prevent="onSubmit">
 			<!-- password -->
 			<div class="styled-form-group" :hasError="passwordError">
-				<label class="form-input-label" for=""><span>* </span>Password</label>
+				<label class="form-input-label" for="authorizer-reset-password"
+					><span>* </span>Password</label
+				>
 				<input
+					id="authorizer-reset-password"
 					:class="`form-input-field ${
 						passwordError ? 'input-error-content' : null
 					}`"
@@ -22,10 +25,11 @@
 
 			<!-- confirm password -->
 			<div class="styled-form-group" :hasError="confirmPasswordError">
-				<label class="form-input-label" for=""
+				<label class="form-input-label" for="authorizer-reset-confirm-password"
 					><span>* </span>Confirm Password</label
 				>
 				<input
+					id="authorizer-reset-confirm-password"
 					:class="`form-input-field ${
 						confirmPasswordError ? 'input-error-content' : null
 					}`"

@@ -19,8 +19,11 @@
 			<form @submit.prevent="onSubmit">
 				<!-- Email -->
 				<div class="styled-form-group">
-					<label class="form-input-label" for=""><span>* </span>Email</label>
+					<label class="form-input-label" for="authorizer-login-email"
+						><span>* </span>Email</label
+					>
 					<input
+						id="authorizer-login-email"
 						:class="`form-input-field ${
 							emailError ? 'input-error-content' : null
 						}`"
@@ -33,8 +36,11 @@
 
 				<!-- password -->
 				<div class="styled-form-group">
-					<label class="form-input-label" for=""><span>* </span>Password</label>
+					<label class="form-input-label" for="authorizer-login-password"
+						><span>* </span>Password</label
+					>
 					<input
+						id="authorizer-login-password"
 						:class="`form-input-field ${
 							passwordError ? 'input-error-content' : null
 						}`"

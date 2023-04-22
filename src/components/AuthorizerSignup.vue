@@ -9,8 +9,11 @@
 		<form @submit.prevent="onSubmit">
 			<!-- Email -->
 			<div class="styled-form-group" :hasError="emailError">
-				<label class="form-input-label" for=""><span>* </span>Email</label>
+				<label class="form-input-label" for="authorizer-sign-up-email"
+					><span>* </span>Email</label
+				>
 				<input
+					id="authorizer-sign-up-email"
 					:class="`form-input-field ${
 						emailError ? 'input-error-content' : null
 					}`"
@@ -23,8 +26,11 @@
 
 			<!-- password -->
 			<div class="styled-form-group" :hasError="passwordError">
-				<label class="form-input-label" for=""><span>* </span>Password</label>
+				<label class="form-input-label" for="authorizer-sign-up-password"
+					><span>* </span>Password</label
+				>
 				<input
+					id="authorizer-sign-up-password"
 					:class="`form-input-field ${
 						passwordError ? 'input-error-content' : null
 					}`"
@@ -39,10 +45,13 @@
 
 			<!-- confirm password -->
 			<div class="styled-form-group" :hasError="confirmPasswordError">
-				<label class="form-input-label" for=""
+				<label
+					class="form-input-label"
+					for="authorizer-sign-up-confirm-password"
 					><span>* </span>Confirm Password</label
 				>
 				<input
+					id="authorizer-sign-up-confirm-password"
 					:class="`form-input-field ${
 						confirmPasswordError ? 'input-error-content' : null
 					}`"

@@ -1020,7 +1020,7 @@ const _withScopeId$5 = n => (pushScopeId("data-v-4caebfd1"),n=n(),popScopeId(),n
 const _hoisted_1$d = ["hasError"];
 const _hoisted_2$d = /*#__PURE__*/ _withScopeId$5(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-sign-up-email"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
@@ -1032,7 +1032,7 @@ const _hoisted_3$c = {
 const _hoisted_4$6 = ["hasError"];
 const _hoisted_5$5 = /*#__PURE__*/ _withScopeId$5(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-sign-up-password"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Password")
@@ -1044,7 +1044,7 @@ const _hoisted_6$5 = {
 const _hoisted_7$4 = ["hasError"];
 const _hoisted_8$3 = /*#__PURE__*/ _withScopeId$5(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-sign-up-confirm-password"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Confirm Password")
@@ -1087,6 +1087,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             _hoisted_2$d,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-sign-up-email",
               class: normalizeClass(`form-input-field ${
 						$setup.emailError ? 'input-error-content' : null
 					}`),
@@ -1107,6 +1108,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             _hoisted_5$5,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-sign-up-password",
               class: normalizeClass(`form-input-field ${
 						$setup.passwordError ? 'input-error-content' : null
 					}`),
@@ -1127,6 +1129,7 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             _hoisted_8$3,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-sign-up-confirm-password",
               class: normalizeClass(`form-input-field ${
 						$setup.confirmPasswordError ? 'input-error-content' : null
 					}`),
@@ -1309,7 +1312,7 @@ const _hoisted_2$c = /*#__PURE__*/ _withScopeId$4(() => /*#__PURE__*/createEleme
 const _hoisted_3$b = ["hasError"];
 const _hoisted_4$5 = /*#__PURE__*/ _withScopeId$4(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-verify-otp"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("OTP (One Time Password)")
@@ -1360,6 +1363,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
       }, [
         _hoisted_4$5,
         withDirectives(createElementVNode("input", {
+          id: "authorizer-verify-otp",
           class: normalizeClass(`form-input-field ${$setup.otpError ? 'input-error-content' : null}`),
           placeholder: "eg. AB123C",
           type: "password",
@@ -1537,7 +1541,7 @@ const _hoisted_1$b = { key: 1 };
 const _hoisted_2$b = { class: "styled-form-group" };
 const _hoisted_3$a = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-login-email"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
@@ -1549,7 +1553,7 @@ const _hoisted_4$4 = {
 const _hoisted_5$3 = { class: "styled-form-group" };
 const _hoisted_6$3 = /*#__PURE__*/ _withScopeId$3(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-login-password"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Password")
@@ -1592,6 +1596,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", _hoisted_2$b, [
             _hoisted_3$a,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-login-email",
               class: normalizeClass(`form-input-field ${
 							$setup.emailError ? 'input-error-content' : null
 						}`),
@@ -1609,6 +1614,7 @@ function render$c(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", _hoisted_5$3, [
             _hoisted_6$3,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-login-password",
               class: normalizeClass(`form-input-field ${
 							$setup.passwordError ? 'input-error-content' : null
 						}`),
@@ -1749,7 +1755,7 @@ const _withScopeId$2 = n => (pushScopeId("data-v-9daba5ca"),n=n(),popScopeId(),n
 const _hoisted_1$a = { class: "styled-form-group" };
 const _hoisted_2$a = /*#__PURE__*/ _withScopeId$2(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-magic-link-login-email"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
@@ -1786,6 +1792,7 @@ function render$b(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", _hoisted_1$a, [
             _hoisted_2$a,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-magic-link-login-email",
               class: normalizeClass(`form-input-field ${
 						$setup.emailError ? 'input-error-content' : null
 					}`),
@@ -1899,7 +1906,7 @@ const _hoisted_2$9 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createEleme
 const _hoisted_3$8 = { class: "styled-form-group" };
 const _hoisted_4$2 = /*#__PURE__*/ _withScopeId$1(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-forgot-password-email"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Email")
@@ -1940,6 +1947,7 @@ function render$a(_ctx, _cache, $props, $setup, $data, $options) {
           createElementVNode("div", _hoisted_3$8, [
             _hoisted_4$2,
             withDirectives(createElementVNode("input", {
+              id: "authorizer-forgot-password-email",
               class: normalizeClass(`form-input-field ${
 						$setup.emailError ? 'input-error-content' : null
 					}`),
@@ -2519,7 +2527,7 @@ const _withScopeId = n => (pushScopeId("data-v-92ad093e"),n=n(),popScopeId(),n);
 const _hoisted_1 = ["hasError"];
 const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-reset-password"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Password")
@@ -2531,7 +2539,7 @@ const _hoisted_3 = {
 const _hoisted_4 = ["hasError"];
 const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/createElementVNode("label", {
   class: "form-input-label",
-  for: ""
+  for: "authorizer-reset-confirm-password"
 }, [
   /*#__PURE__*/createElementVNode("span", null, "* "),
   /*#__PURE__*/createTextVNode("Confirm Password")
@@ -2568,6 +2576,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
           _hoisted_2,
           withDirectives(createElementVNode("input", {
+            id: "authorizer-reset-password",
             class: normalizeClass(`form-input-field ${
 						$setup.passwordError ? 'input-error-content' : null
 					}`),
@@ -2588,6 +2597,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
         }, [
           _hoisted_5,
           withDirectives(createElementVNode("input", {
+            id: "authorizer-reset-confirm-password",
             class: normalizeClass(`form-input-field ${
 						$setup.confirmPasswordError ? 'input-error-content' : null
 					}`),

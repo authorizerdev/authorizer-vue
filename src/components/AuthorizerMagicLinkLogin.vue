@@ -9,8 +9,11 @@
 		<form @submit.prevent="onSubmit">
 			<!-- Email -->
 			<div class="styled-form-group">
-				<label class="form-input-label" for=""><span>* </span>Email</label>
+				<label class="form-input-label" for="authorizer-magic-link-login-email"
+					><span>* </span>Email</label
+				>
 				<input
+					id="authorizer-magic-link-login-email"
 					:class="`form-input-field ${
 						emailError ? 'input-error-content' : null
 					}`"

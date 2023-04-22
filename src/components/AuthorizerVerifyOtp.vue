@@ -16,10 +16,11 @@
 	<form @submit.prevent="onSubmit">
 		<!-- OTP -->
 		<div class="styled-form-group" :hasError="otpError">
-			<label class="form-input-label" for=""
+			<label class="form-input-label" for="authorizer-verify-otp"
 				><span>* </span>OTP (One Time Password)</label
 			>
 			<input
+				id="authorizer-verify-otp"
 				:class="`form-input-field ${otpError ? 'input-error-content' : null}`"
 				placeholder="eg. AB123C"
 				type="password"
