@@ -4,9 +4,14 @@
 	<authorizer-reset-password />
 </template>
 
-<script>
+<script lang="ts">
+import AuthorizerResetPassword from '../../src/components/AuthorizerResetPassword.vue';
+
 export default {
 	name: 'ResetPassword',
+	components: {
+		'authorizer-reset-password': AuthorizerResetPassword,
+	},
 };
 </script>
 

@@ -39,8 +39,9 @@
 	</styled-wrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs } from 'vue';
+import type { AuthToken } from '@authorizerdev/authorizer-js';
 import { StyledWrapper } from '../styledComponents/index';
 import { Views } from '../constants/index';
 import { hasWindow } from '../utils/window';
@@ -68,11 +69,25 @@ export default {
 		'onForgotPassword',
 		'roles',
 	],
-	setup(props) {
-		const state = reactive({
+	setup({
+		onLogin,
+		onSignup,
+		onMagicLinkLogin,
+		onForgotPassword,
+		roles,
+	}: {
+		onLogin?: (data: AuthToken | void) => void;
+		onSignup?: (data: AuthToken | void) => void;
+		onMagicLinkLogin?: (data: any) => void;
+		onForgotPassword?: (data: any) => void;
+		roles?: string[];
+	}) {
+		const state: {
+			view: Views;
+		} = reactive({
 			view: Views.Login,
 		});
-		const setView = (viewType) => {
+		const setView = (viewType: Views) => {
 			if (viewType) state.view = viewType;
 		};
 		const searchParams = new URLSearchParams(
@@ -82,7 +97,7 @@ export default {
 		const scope = searchParams.get('scope')
 			? searchParams.get('scope')?.toString().split(' ')
 			: ['openid', 'profile', 'email'];
-		const urlProps = {
+		const urlProps: Record<string, any> = {
 			state: paramsState,
 			scope,
 		};
@@ -95,7 +110,11 @@ export default {
 		}
 		urlProps.redirect_uri = urlProps.redirectURL;
 		return {
-			...props,
+			onLogin,
+			onSignup,
+			onMagicLinkLogin,
+			onForgotPassword,
+			roles,
 			...toRefs(state),
 			config: toRefs(globalConfig),
 			setView,

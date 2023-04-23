@@ -35,8 +35,9 @@
 	</template>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs, computed } from 'vue';
+import type { MagicLinkLoginInput } from '@authorizerdev/authorizer-js';
 import globalContext from '../state/globalContext';
 import { StyledButton } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
@@ -49,14 +50,28 @@ export default {
 		'styled-button': StyledButton,
 		message: Message,
 	},
-	setup({ onMagicLinkLogin, urlProps, roles }) {
+	setup({
+		onMagicLinkLogin,
+		urlProps,
+		roles,
+	}: {
+		onMagicLinkLogin?: (data: any) => void;
+		urlProps?: Record<string, any>;
+		roles?: string[];
+	}) {
 		const { authorizerRef } = toRefs(globalContext);
-		const componentState = reactive({
+		const componentState: {
+			error: null | string;
+			successMessage: null | string;
+			loading: boolean;
+		} = reactive({
 			error: null,
 			successMessage: null,
 			loading: false,
 		});
-		const formData = reactive({
+		const formData: {
+			email: null | string;
+		} = reactive({
 			email: null,
 		});
 		const emailError = computed(() => {
@@ -73,10 +88,10 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const data = {
-					email: formData.email,
-					state: urlProps.state || '',
-					redirect_uri: urlProps.redirect_uri || '',
+				const data: MagicLinkLoginInput = {
+					email: formData.email || '',
+					state: urlProps?.state || '',
+					redirect_uri: urlProps?.redirect_uri || '',
 				};
 				if (roles && roles.length) {
 					data.roles = roles;
@@ -90,12 +105,12 @@ export default {
 						onMagicLinkLogin(res);
 					}
 				}
-				if (urlProps.redirect_uri) {
+				if (urlProps?.redirect_uri) {
 					setTimeout(() => {
 						window.location.replace(urlProps.redirect_uri);
 					}, 3000);
 				}
-			} catch (error) {
+			} catch (error: any) {
 				componentState.loading = false;
 				componentState.error = error.message;
 			}
@@ -114,43 +129,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-form-group {
-	width: 100%;
-	border: 0px;
-	background-color: var(--authorizer-white-color);
-	padding: 0 0 15px;
-}
-.form-input-label {
-	padding: 2.5px;
-}
-.form-input-label > span {
-	color: var(--authorizer-danger-color);
-}
-.form-input-field {
-	width: 100%;
-	margin-top: 5px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: var(--authorizer-radius-input);
-	border: 1px;
-	border-style: solid;
-	border-color: var(--authorizer-text-color);
-}
-.input-error-content {
-	border-color: var(--authorizer-danger-color) !important;
-}
-.input-error-content:hover {
-	outline-color: var(--authorizer-danger-color);
-}
-.input-error-content:focus {
-	outline-color: var(--authorizer-danger-color);
-}
-.form-input-error {
-	font-size: 12px;
-	font-weight: 400;
-	color: red;
-	border-color: var(--authorizer-danger-color);
-}
+@import '../styles/default.css';
 </style>

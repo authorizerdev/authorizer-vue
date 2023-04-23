@@ -4,9 +4,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/apple?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/apple?${queryParams}`)
+							: null
 				"
 			>
 				<apple />
@@ -18,9 +19,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/google?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/google?${queryParams}`)
+							: null
 				"
 			>
 				<google />
@@ -32,9 +34,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/github?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/github?${queryParams}`)
+							: null
 				"
 			>
 				<github />
@@ -46,9 +49,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/facebook?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/facebook?${queryParams}`)
+							: null
 				"
 			>
 				<facebook />
@@ -60,9 +64,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/linkedin?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/linkedin?${queryParams}`)
+							: null
 				"
 			>
 				<linkedin />
@@ -74,9 +79,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/twitter?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/twitter?${queryParams}`)
+							: null
 				"
 			>
 				<twitter />
@@ -88,9 +94,10 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => {
-						window.location.href = `${config.authorizerURL.value}/oauth_login/microsoft?${queryParams}`;
-					}
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/microsoft?${queryParams}`)
+							: null
 				"
 			>
 				<microsoft />
@@ -110,7 +117,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { hasWindow } from '../utils/window';
 import { createQueryParams } from '../utils/common';
 import { StyledButton, StyledSeparator } from '../styledComponents/index';
@@ -138,7 +145,13 @@ export default {
 		twitter: Twitter,
 		microsoft: Microsoft,
 	},
-	setup({ urlProps, roles }) {
+	setup({
+		urlProps,
+		roles,
+	}: {
+		urlProps?: Record<string, any>;
+		roles?: string[];
+	}) {
 		const config = toRefs(globalConfig);
 		const hasSocialLogin = computed(function () {
 			return (
@@ -151,7 +164,10 @@ export default {
 				config.is_microsoft_login_enabled.value
 			);
 		});
-		const data = { ...urlProps, scope: urlProps.scope.join(' ') };
+		const data: {
+			scope?: string;
+			roles?: string[];
+		} = { ...urlProps, scope: urlProps?.scope.join(' ') };
 		if (roles && roles.length) {
 			data.roles = roles;
 		}

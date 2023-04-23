@@ -81,8 +81,9 @@
 	</template>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs, computed } from 'vue';
+import type { AuthToken, LoginInput } from '@authorizerdev/authorizer-js';
 import {
 	StyledButton,
 	StyledFooter,
@@ -104,18 +105,37 @@ export default {
 		'authorizer-verify-otp': AuthorizerVerifyOtp,
 		message: Message,
 	},
-	setup({ setView, onLogin, urlProps, roles }) {
+	setup({
+		setView,
+		onLogin,
+		urlProps,
+		roles,
+	}: {
+		setView?: (v: Views) => void;
+		onLogin?: (data: AuthToken | void) => void;
+		urlProps?: Record<string, any>;
+		roles?: string[];
+	}) {
 		const config = toRefs(globalConfig);
 		const { setAuthData, authorizerRef } = toRefs(globalContext);
-		const componentState = reactive({
+		const componentState: {
+			loading: boolean;
+			error: null | string;
+		} = reactive({
 			loading: false,
 			error: null,
 		});
-		const otpData = reactive({
+		const otpData: {
+			isScreenVisible: boolean;
+			email: null | string;
+		} = reactive({
 			isScreenVisible: false,
 			email: null,
 		});
-		const formData = reactive({
+		const formData: {
+			email: null | string;
+			password: null | string;
+		} = reactive({
 			email: null,
 			password: null,
 		});
@@ -138,14 +158,14 @@ export default {
 		const onSubmit = async () => {
 			componentState.loading = true;
 			try {
-				const data = {
-					email: formData.email,
-					password: formData.password,
+				const data: LoginInput = {
+					email: formData.email || '',
+					password: formData.password || '',
 				};
-				if (urlProps.scope) {
+				if (urlProps?.scope) {
 					data.scope = urlProps.scope;
 				}
-				if (urlProps.state) {
+				if (urlProps?.state) {
 					data.state = urlProps.state;
 				}
 				if (roles && roles.length) {
@@ -176,7 +196,7 @@ export default {
 				if (onLogin) {
 					onLogin(res);
 				}
-			} catch (error) {
+			} catch (error: any) {
 				componentState.loading = false;
 				componentState.error = error.message;
 			}
@@ -201,43 +221,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-form-group {
-	width: 100%;
-	border: 0px;
-	background-color: var(--authorizer-white-color);
-	padding: 0 0 15px;
-}
-.form-input-label {
-	padding: 2.5px;
-}
-.form-input-label > span {
-	color: var(--authorizer-danger-color);
-}
-.form-input-field {
-	width: 100%;
-	margin-top: 5px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: var(--authorizer-radius-input);
-	border: 1px;
-	border-style: solid;
-	border-color: var(--authorizer-text-color);
-}
-.input-error-content {
-	border-color: var(--authorizer-danger-color) !important;
-}
-.input-error-content:hover {
-	outline-color: var(--authorizer-danger-color);
-}
-.input-error-content:focus {
-	outline-color: var(--authorizer-danger-color);
-}
-.form-input-error {
-	font-size: 12px;
-	font-weight: 400;
-	color: red;
-	border-color: var(--authorizer-danger-color);
-}
+@import '../styles/default.css';
 </style>

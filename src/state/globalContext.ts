@@ -1,0 +1,19 @@
+import { reactive } from 'vue';
+import { Authorizer } from '@authorizerdev/authorizer-js';
+import type { AuthorizerContextPropsType } from '../types';
+import { hasWindow } from '../utils/window';
+export default reactive({
+	user: null,
+	token: null,
+	loading: false,
+	setLoading: () => {},
+	setToken: () => {},
+	setUser: () => {},
+	setAuthData: () => {},
+	authorizerRef: new Authorizer({
+		authorizerURL: `http://localhost:8080`,
+		redirectURL: hasWindow() ? window.location.origin : '/',
+		clientID: '',
+	}),
+	logout: async () => {},
+}) as AuthorizerContextPropsType;

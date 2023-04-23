@@ -4,14 +4,12 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	name: 'StyledPasswordStrengthWrapper',
 };
 </script>
 
 <style scoped>
-.styled-password-strength-wrapper {
-	margin: 2% 0 0;
-}
+@import '../styles/default.css';
 </style>

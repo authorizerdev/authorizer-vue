@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { passwordStrengthIndicatorOpacity } from '../constants/index';
 
 export default {
@@ -23,12 +23,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-password-strength {
-	width: 100%;
-	height: 10px;
-	flex: 0.75;
-	border-radius: 5px;
-	margin-right: 5px;
-	background-color: var(--authorizer-primary-color);
-}
+@import '../styles/default.css';
 </style>

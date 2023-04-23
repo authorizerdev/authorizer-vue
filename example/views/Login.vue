@@ -6,13 +6,17 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import AuthorizerRoot from '../../src/components/AuthorizerRoot.vue';
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
 	name: 'Login',
+	components: {
+		'authorizer-root': AuthorizerRoot,
+	},
 	setup() {
-		const useAuthorizer = inject('useAuthorizer');
+		const useAuthorizer: any = inject('useAuthorizer');
 		const { user, config, token } = useAuthorizer();
 		function onLogin() {
 			console.log('test login');

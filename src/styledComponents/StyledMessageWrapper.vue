@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { MessageType } from '../constants/index';
 
 export default {
@@ -25,11 +25,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-message-wrapper {
-	padding: 10px;
-	color: white;
-	border-radius: var(--authorizer-radius-card);
-	margin: 10px 0px;
-	font-size: var(--authorizer-fonts-small-text);
-}
+@import '../styles/default.css';
 </style>

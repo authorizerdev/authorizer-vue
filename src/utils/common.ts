@@ -1,6 +1,6 @@
 import { hasWindow } from './window';
 
-export const getIntervalDiff = (accessTokenExpiresAt) => {
+export const getIntervalDiff = (accessTokenExpiresAt: number) => {
 	const expiresAt = accessTokenExpiresAt * 1000 - 300000;
 	const currentDate = new Date();
 
@@ -10,6 +10,7 @@ export const getIntervalDiff = (accessTokenExpiresAt) => {
 
 export const getCrypto = () => {
 	//ie 11.x uses msCrypto
+	// @ts-ignore
 	return hasWindow() ? window.crypto || window.msCrypto : null;
 };
 
@@ -20,19 +21,21 @@ export const createRandomString = () => {
 	const crypto = getCrypto();
 	if (crypto) {
 		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
-		randomValues.forEach((v) => (random += charset[v % charset.length]));
+		randomValues.forEach(
+			(v: number) => (random += charset[v % charset.length])
+		);
 	}
 	return random;
 };
 
-export const createQueryParams = (params) => {
+export const createQueryParams = (params: any) => {
 	return Object.keys(params)
 		.filter((k) => typeof params[k] !== 'undefined')
 		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
 		.join('&');
 };
 
-export const isValidEmail = (email) => {
+export const isValidEmail = (email: string) => {
 	return String(email)
 		.toLowerCase()
 		.match(
@@ -40,20 +43,20 @@ export const isValidEmail = (email) => {
 		);
 };
 
-export const capitalizeFirstLetter = (data) => {
+export const capitalizeFirstLetter = (data: string) => {
 	return data ? data.charAt(0).toUpperCase() + data.slice(1) : null;
 };
 
-export const isValidOtp = (otp) => {
+export const isValidOtp = (otp: string) => {
 	const re = /^([A-Z0-9]{6})$/;
 	return otp && re.test(String(otp.trim()));
 };
 
-export const formatErrorMessage = (message) => {
+export const formatErrorMessage = (message: string) => {
 	return message.replace(`[GraphQL] `, '');
 };
 
-export const hasSpecialChar = (char) => {
+export const hasSpecialChar = (char: string) => {
 	const re = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 	return re.test(char);
 };

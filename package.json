@@ -1,36 +1,38 @@
 {
 	"name": "@authorizerdev/authorizer-vue",
 	"version": "1.0.0",
-	"main": "dist/library.js",
-	"module": "dist/library.mjs",
-	"files": [
-		"dist/*"
-	],
 	"description": "authorizer vue sdk",
+	"files": [
+		"dist"
+	],
+	"main": "dist/@authorizerdev/authorizer-vue.umd.js",
+	"module": "dist/@authorizerdev/authorizer-vue.es.js",
+	"types": "dist/types/index.d.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "rollup -c",
-		"dev": "rollup --config --watch"
+		"dev": "vite",
+		"build": "vite build && npm run build:types",
+		"build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
+		"typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/authorizerdev/authorizer-vue.git"
-	},
-	"author": "Lakhan Samani",
+	"keywords": [],
+	"author": "anik-ghosh-au7",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/authorizerdev/authorizer-vue/issues"
 	},
 	"homepage": "https://github.com/authorizerdev/authorizer-vue#readme",
 	"devDependencies": {
-		"@vue/compiler-sfc": "^3.2.47",
-		"rollup": "^2.79.1",
-		"rollup-plugin-import-css": "^3.2.1",
-		"rollup-plugin-peer-deps-external": "^2.2.4",
-		"rollup-plugin-vue": "^6.0.0"
-	},
-	"peerDependencies": {
-		"vue": "^3.2.21"
+		"@babel/types": "^7.21.4",
+		"@tsconfig/node18": "^2.0.0",
+		"@types/node": "^18.15.13",
+		"@vitejs/plugin-vue": "^4.1.0",
+		"@vue/tsconfig": "^0.2.0",
+		"sass": "^1.62.0",
+		"typescript": "^5.0.4",
+		"vite": "^4.3.1",
+		"vue": "^3.2.47",
+		"vue-router": "^4.1.6",
+		"vue-tsc": "^1.4.2"
 	},
 	"dependencies": {
 		"@authorizerdev/authorizer-js": "^1.2.3"

@@ -81,7 +81,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs, watch } from 'vue';
 import {
 	StyledFlex,
@@ -109,7 +109,7 @@ export default {
 			hasUpperCase: false,
 			maxThirtySixChar: false,
 		});
-		const eventHandler = (e) => {
+		const eventHandler = (e: { preventDefault: () => void }) => {
 			e.preventDefault();
 		};
 		watch(
@@ -133,7 +133,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-check-box-label {
-	margin-left: 5px;
-}
+@import '../styles/default.css';
 </style>

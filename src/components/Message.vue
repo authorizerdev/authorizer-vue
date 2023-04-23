@@ -9,7 +9,7 @@
 	</styled-message-wrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { StyledFlex, StyledMessageWrapper } from '../styledComponents/index';
 import Close from '../icons/Close.vue';
 import { capitalizeFirstLetter } from '../utils/common';

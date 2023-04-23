@@ -98,8 +98,9 @@
 	</template>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs, computed } from 'vue';
+import type { AuthToken, SignupInput } from '@authorizerdev/authorizer-js';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
 import {
@@ -121,16 +122,35 @@ export default {
 		'styled-link': StyledLink,
 		message: Message,
 	},
-	setup({ setView, onSignup, urlProps, roles }) {
+	setup({
+		setView,
+		onSignup,
+		urlProps,
+		roles,
+	}: {
+		setView?: (v: Views) => void;
+		onSignup?: (data: AuthToken) => void;
+		urlProps?: Record<string, any>;
+		roles?: string[];
+	}) {
 		const config = toRefs(globalConfig);
 		const { setAuthData, authorizerRef } = toRefs(globalContext);
-		const componentState = reactive({
+		const componentState: {
+			error: null | string;
+			successMessage: null | string;
+			loading: boolean;
+			disableSignupButton: boolean;
+		} = reactive({
 			error: null,
 			successMessage: null,
 			loading: false,
 			disableSignupButton: false,
 		});
-		const formData = reactive({
+		const formData: {
+			email: null | string;
+			password: null | string;
+			confirmPassword: null | string;
+		} = reactive({
 			email: null,
 			password: null,
 			confirmPassword: null,
@@ -170,21 +190,21 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const data = {
-					email: formData.email,
-					password: formData.password,
-					confirm_password: formData.confirmPassword,
+				const data: SignupInput = {
+					email: formData.email || '',
+					password: formData.password || '',
+					confirm_password: formData.confirmPassword || '',
 				};
-				if (urlProps.scope) {
+				if (urlProps?.scope) {
 					data.scope = urlProps.scope;
 				}
-				if (urlProps.roles) {
+				if (urlProps?.roles) {
 					data.roles = urlProps.roles;
 				}
-				if (urlProps.redirect_uri) {
+				if (urlProps?.redirect_uri) {
 					data.redirect_uri = urlProps.redirect_uri;
 				}
-				if (urlProps.state) {
+				if (urlProps?.state) {
 					data.state = urlProps.state;
 				}
 				if (roles && roles.length) {
@@ -214,7 +234,7 @@ export default {
 						onSignup(res);
 					}
 				}
-			} catch (error) {
+			} catch (error: any) {
 				componentState.loading = false;
 				componentState.error = error.message;
 			}
@@ -222,7 +242,7 @@ export default {
 		const onErrorClose = () => {
 			componentState.error = null;
 		};
-		const setDisableButton = (value) => {
+		const setDisableButton = (value: boolean) => {
 			componentState.disableSignupButton = value;
 		};
 		return {
@@ -244,43 +264,5 @@ export default {
 };
 </script>
 <style scoped>
-.styled-form-group {
-	width: 100%;
-	border: 0px;
-	background-color: var(--authorizer-white-color);
-	padding: 0 0 15px;
-}
-.form-input-label {
-	padding: 2.5px;
-}
-.form-input-label > span {
-	color: var(--authorizer-danger-color);
-}
-.form-input-field {
-	width: 100%;
-	margin-top: 5px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: var(--authorizer-radius-input);
-	border: 1px;
-	border-style: solid;
-	border-color: var(--authorizer-text-color);
-}
-.input-error-content {
-	border-color: var(--authorizer-danger-color) !important;
-}
-.input-error-content:hover {
-	outline-color: var(--authorizer-danger-color);
-}
-.input-error-content:focus {
-	outline-color: var(--authorizer-danger-color);
-}
-.form-input-error {
-	font-size: 12px;
-	font-weight: 400;
-	color: red;
-	border-color: var(--authorizer-danger-color);
-}
+@import '../styles/default.css';
 </style>

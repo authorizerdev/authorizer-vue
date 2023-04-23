@@ -29,13 +29,13 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
 	name: 'Dashboard',
 	setup() {
-		const useAuthorizer = inject('useAuthorizer');
+		const useAuthorizer: any = inject('useAuthorizer');
 		const { user, loading, token, logout } = useAuthorizer();
 		const router = useRouter();
 		watch(

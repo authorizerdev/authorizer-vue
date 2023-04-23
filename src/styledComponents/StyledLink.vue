@@ -4,7 +4,7 @@
 	</span>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	name: 'StyledLink',
 	props: ['marginBottom'],
@@ -20,8 +20,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-link {
-	color: var(--authorizer-primary-color);
-	cursor: pointer;
-}
+@import '../styles/default.css';
 </style>

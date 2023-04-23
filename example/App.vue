@@ -21,10 +21,15 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
+import AuthorizerProvider from '../src/components/AuthorizerProvider.vue';
+
 export default {
+	components: {
+		'authorizer-provider': AuthorizerProvider,
+	},
 	setup() {
-		const stateChangeCallback = (state) => {
+		const stateChangeCallback = (state: any) => {
 			console.log('state changes from client ==>> ', state);
 		};
 		return {

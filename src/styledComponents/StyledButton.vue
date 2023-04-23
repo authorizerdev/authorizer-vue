@@ -9,7 +9,7 @@
 	</button>
 </template>
 
-<script>
+<script lang="ts">
 import { ButtonAppearance } from '../constants/index';
 
 export default {
@@ -37,21 +37,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-button {
-	padding: 15px 10px !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: 375px;
-	max-height: 64px;
-	border-radius: var(--authorizer-radius-button);
-	border-color: var(--authorizer-text-color) !important;
-	border-style: solid !important;
-	cursor: pointer;
-	position: relative;
-}
-.styled-button:disabled {
-	cursor: not-allowed;
-	background-color: var(--authorizer-primary-disabled-color);
-}
+@import '../styles/default.css';
 </style>

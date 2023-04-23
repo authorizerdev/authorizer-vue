@@ -66,7 +66,7 @@
 	</styled-wrapper>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive, toRefs, computed } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
@@ -84,16 +84,23 @@ export default {
 		'password-strength-indicator': PasswordStrengthIndicator,
 		message: Message,
 	},
-	setup({ onReset }) {
+	setup({ onReset }: { onReset?: (data: any) => void }) {
 		const { token, redirect_uri } = getSearchParams();
 		const config = toRefs(globalConfig);
 		const { authorizerRef } = toRefs(globalContext);
-		const componentState = reactive({
+		const componentState: {
+			error: null | string;
+			loading: boolean;
+			disableContinueButton: boolean;
+		} = reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,
 			disableContinueButton: false,
 		});
-		const formData = reactive({
+		const formData: {
+			password: null | string;
+			confirmPassword: null | string;
+		} = reactive({
 			password: null,
 			confirmPassword: null,
 		});
@@ -126,8 +133,8 @@ export default {
 			try {
 				const res = await authorizerRef.value.resetPassword({
 					token,
-					password: formData.password,
-					confirm_password: formData.confirmPassword,
+					password: formData.password || '',
+					confirm_password: formData.confirmPassword || '',
 				});
 				componentState.loading = false;
 				componentState.error = null;
@@ -137,12 +144,12 @@ export default {
 					window.location.href =
 						redirect_uri || config.redirectURL.value || window.location.origin;
 				}
-			} catch (error) {
+			} catch (error: any) {
 				componentState.loading = false;
 				componentState.error = error.message;
 			}
 		};
-		const setDisableButton = (value) => {
+		const setDisableButton = (value: boolean) => {
 			componentState.disableContinueButton = value;
 		};
 		const onErrorClose = () => {
@@ -165,43 +172,5 @@ export default {
 </script>
 
 <style scoped>
-.styled-form-group {
-	width: 100%;
-	border: 0px;
-	background-color: var(--authorizer-white-color);
-	padding: 0 0 15px;
-}
-.form-input-label {
-	padding: 2.5px;
-}
-.form-input-label > span {
-	color: var(--authorizer-danger-color);
-}
-.form-input-field {
-	width: 100%;
-	margin-top: 5px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	border-radius: var(--authorizer-radius-input);
-	border: 1px;
-	border-style: solid;
-	border-color: var(--authorizer-text-color);
-}
-.input-error-content {
-	border-color: var(--authorizer-danger-color) !important;
-}
-.input-error-content:hover {
-	outline-color: var(--authorizer-danger-color);
-}
-.input-error-content:focus {
-	outline-color: var(--authorizer-danger-color);
-}
-.form-input-error {
-	font-size: 12px;
-	font-weight: 400;
-	color: red;
-	border-color: var(--authorizer-danger-color);
-}
+@import '../styles/default.css';
 </style>

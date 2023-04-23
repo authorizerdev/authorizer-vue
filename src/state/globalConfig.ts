@@ -1,7 +1,8 @@
+import type { AuthorizerConfig } from '../types';
 import { reactive } from 'vue';
 export default reactive({
 	authorizerURL: '',
-	redirectURL: '/',
+	redirectURL: '',
 	client_id: '',
 	is_google_login_enabled: false,
 	is_github_login_enabled: false,
@@ -15,4 +16,4 @@ export default reactive({
 	is_strong_password_enabled: true,
 	is_twitter_login_enabled: false,
 	is_microsoft_login_enabled: false,
-});
+}) as AuthorizerConfig;

@@ -4,18 +4,12 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
 	name: 'StyledFooter',
 };
 </script>
 
 <style scoped>
-.styled-footer {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 15px;
-}
+@import '../styles/default.css';
 </style>
