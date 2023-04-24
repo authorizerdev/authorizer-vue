@@ -1,5 +1,8 @@
 <template>
-	<div class="styled-password-strength" :style="style">
+	<div
+		class="styled-password-strength"
+		:style="{ opacity: passwordStrengthIndicatorOpacity[strength] }"
+	>
 		<slot></slot>
 	</div>
 </template>
@@ -11,12 +14,9 @@ export default {
 	name: 'StyledPasswordStrength',
 	props: ['strength'],
 	setup(props) {
-		const strength = props.strength || 'default';
 		return {
 			...props,
-			style: {
-				opacity: passwordStrengthIndicatorOpacity[strength],
-			},
+			passwordStrengthIndicatorOpacity,
 		};
 	},
 };

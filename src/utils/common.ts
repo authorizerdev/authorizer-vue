@@ -62,7 +62,16 @@ export const hasSpecialChar = (char: string) => {
 };
 
 export const validatePassword = (value = '') => {
-	const res = {
+	const res: {
+		strength: string;
+		score: number;
+		hasSixChar: boolean;
+		hasLowerCase: boolean;
+		hasNumericChar: boolean;
+		hasSpecialChar: boolean;
+		hasUpperCase: boolean;
+		maxThirtySixChar: boolean;
+	} = {
 		score: 0,
 		strength: '',
 		hasSixChar: false,

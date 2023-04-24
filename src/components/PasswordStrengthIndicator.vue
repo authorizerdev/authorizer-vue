@@ -99,7 +99,16 @@ export default {
 	},
 	setup(props) {
 		const { setDisableButton } = props;
-		const componentState = reactive({
+		const componentState: {
+			strength: string;
+			score: number;
+			hasSixChar: boolean;
+			hasLowerCase: boolean;
+			hasNumericChar: boolean;
+			hasSpecialChar: boolean;
+			hasUpperCase: boolean;
+			maxThirtySixChar: boolean;
+		} = reactive({
 			strength: '',
 			score: 0,
 			hasSixChar: false,
