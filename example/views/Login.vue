@@ -17,15 +17,16 @@ export default {
 	},
 	setup() {
 		const useAuthorizer: any = inject('useAuthorizer');
-		const { user, config, token } = useAuthorizer();
-		function onLogin() {
-			console.log('test login');
-		}
+		const { token } = useAuthorizer();
 		const router = useRouter();
+		const onLogin = () => {
+			console.log('test login');
+		};
 		watch(
 			token,
-			function (newvalue) {
+			(newvalue) => {
 				if (newvalue) {
+					console.log('access token ==>> ', token.value.access_token);
 					router.push('/dashboard');
 				}
 			},
