@@ -14,7 +14,8 @@
 		"build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
 		"typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit",
 		"lint": "prettier --plugin-search-dir . --check . --ignore-path .gitignore && eslint . --ignore-path .gitignore",
-		"format": "prettier --plugin-search-dir . --write . --ignore-path .gitignore"
+		"format": "prettier --plugin-search-dir . --write . --ignore-path .gitignore",
+		"prepare": "husky install"
 	},
 	"keywords": [],
 	"author": "Lakhan Samani",
@@ -35,6 +36,7 @@
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-prettier-vue": "^4.2.0",
 		"eslint-plugin-vue": "^9.11.0",
+		"husky": "^8.0.3",
 		"prettier": "^2.8.8",
 		"sass": "^1.62.0",
 		"typescript": "^5.0.4",
