@@ -1,0 +1,67 @@
+{
+	// Use the vue-eslint-parser to parse Vue.js files
+	"parser": "vue-eslint-parser",
+	"parserOptions": {
+		// Use the @typescript-eslint/parser to parse TypeScript files
+		"parser": "@typescript-eslint/parser",
+		"ecmaVersion": 2020,
+		"sourceType": "module"
+	},
+	"extends": [
+		// Use the recommended rules for Vue.js from the vue plugin
+		"plugin:vue/recommended",
+		// Use the recommended rules for Prettier with Vue.js from the prettier-vue plugin
+		"plugin:prettier-vue/recommended",
+		// Use the recommended rules for TypeScript from the @typescript-eslint plugin
+		"plugin:@typescript-eslint/recommended"
+	],
+	"settings": {
+		"prettier-vue": {
+			// Settings for how to process Vue SFC Blocks
+			"SFCBlocks": {
+				"template": true,
+				"script": true,
+				"style": true,
+				"customBlocks": {
+					"docs": { "lang": "markdown" },
+					"config": { "lang": "json" },
+					"module": { "lang": "js" },
+					"comments": false
+				}
+			},
+			"usePrettierrc": true,
+			"fileInfoOptions": {
+				"ignorePath": ".testignore",
+				"withNodeModules": false
+			}
+		}
+	},
+	"rules": {
+		// Use Prettier to format Vue.js files
+		"prettier-vue/prettier": [
+			"error",
+			{
+				"useTabs": true,
+				"printWidth": 100,
+				"singleQuote": true,
+				"trailingComma": "none"
+			}
+		],
+		// Ignore unused variables that start with an underscore in TypeScript files
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+		],
+		// Disable the multi-word-component-names rule from the vue plugin
+		"vue/multi-word-component-names": "off"
+	},
+	"overrides": [
+		{
+			// Disable the no-undef rule for TypeScript files
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"no-undef": "off"
+			}
+		}
+	]
+}
