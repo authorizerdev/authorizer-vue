@@ -5,21 +5,44 @@
 </template>
 
 <script lang="ts">
+import type { CSSProperties } from 'vue';
+
 export default {
 	name: 'StyledFlex',
-	props: ['flexDirection', 'alignItems', 'justifyContent', 'wrap', 'width'],
+	props: {
+		flexDirection: {
+			type: String,
+			default: 'row'
+		},
+		alignItems: {
+			type: String,
+			default: 'center'
+		},
+		justifyContent: {
+			type: String,
+			default: 'center'
+		},
+		wrap: {
+			type: String,
+			default: 'wrap'
+		},
+		width: {
+			type: String,
+			default: '100%'
+		}
+	},
 	setup(props) {
 		return {
 			...props,
 			style: {
 				display: 'flex',
-				'flex-direction': props.flexDirection || 'row',
-				'align-items': props.alignItems || 'center',
-				'justify-content': props.justifyContent || 'center',
-				'flex-wrap': props.wrap || 'wrap',
-				width: props.width || '100%',
-			},
+				'flex-direction': props.flexDirection,
+				'align-items': props.alignItems,
+				'justify-content': props.justifyContent,
+				'flex-wrap': props.wrap,
+				width: props.width
+			} as CSSProperties
 		};
-	},
+	}
 };
 </script>

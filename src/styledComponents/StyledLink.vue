@@ -5,17 +5,24 @@
 </template>
 
 <script lang="ts">
+import type { CSSProperties } from 'vue';
+
 export default {
 	name: 'StyledLink',
-	props: ['marginBottom'],
+	props: {
+		marginBottom: {
+			type: String,
+			default: '0px'
+		}
+	},
 	setup(props) {
 		return {
 			...props,
 			style: {
-				'margin-bottom': props.marginBottom || '0px',
-			},
+				'margin-bottom': props.marginBottom
+			} as CSSProperties
 		};
-	},
+	}
 };
 </script>
 

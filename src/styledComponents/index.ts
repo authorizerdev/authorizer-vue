@@ -17,5 +17,5 @@ export {
 	StyledMessageWrapper,
 	StyledFlex,
 	StyledPasswordStrength,
-	StyledPasswordStrengthWrapper,
+	StyledPasswordStrengthWrapper
 };
