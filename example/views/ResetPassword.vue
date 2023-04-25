@@ -1,7 +1,9 @@
 <template>
-	<h1 :style="{ textAlign: 'center' }">Reset Password</h1>
-	<br />
-	<authorizer-reset-password />
+	<div>
+		<h1 :style="{ textAlign: 'center' }">Reset Password</h1>
+		<br />
+		<authorizer-reset-password />
+	</div>
 </template>
 
 <script lang="ts">
@@ -10,8 +12,8 @@ import AuthorizerResetPassword from '../../src/components/AuthorizerResetPasswor
 export default {
 	name: 'ResetPassword',
 	components: {
-		'authorizer-reset-password': AuthorizerResetPassword,
-	},
+		'authorizer-reset-password': AuthorizerResetPassword
+	}
 };
 </script>
 
