@@ -26,10 +26,27 @@ export const createRandomString = () => {
 	return random;
 };
 
-export const createQueryParams = (params: any) => {
+export const createQueryParams = (params: { scope?: string; roles?: string[] }) => {
 	return Object.keys(params)
-		.filter((k) => typeof params[k] !== 'undefined')
-		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+		.filter((k) => {
+			if (k === 'scope') {
+				return typeof params[k] !== 'undefined';
+			} else if (k === 'roles') {
+				return typeof params[k]?.[0] !== 'undefined';
+			}
+			return false;
+		})
+		.reduce((acc: string[], k: string) => {
+			if (k === 'scope') {
+				return [...acc, encodeURIComponent(k) + '=' + encodeURIComponent(params[k] || '')];
+			} else if (k === 'roles') {
+				return [
+					...acc,
+					encodeURIComponent(k) + '=' + encodeURIComponent(params[k]?.join(',') || '')
+				];
+			}
+			return acc;
+		}, [])
 		.join('&');
 };
 
