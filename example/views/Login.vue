@@ -2,7 +2,7 @@
 	<div>
 		<h1 :style="{ textAlign: 'center' }">Welcome to Authorizer</h1>
 		<br />
-		<authorizer-root :onLogin="onLogin" />
+		<authorizer-root :on-login="onLogin" />
 	</div>
 </template>
 
