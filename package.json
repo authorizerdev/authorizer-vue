@@ -13,8 +13,8 @@
 		"build": "vite build && npm run build:types",
 		"build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
 		"typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"lint": "prettier --plugin-search-dir . --check . --ignore-path .gitignore && eslint . --ignore-path .gitignore",
+		"format": "prettier --plugin-search-dir . --write . --ignore-path .gitignore"
 	},
 	"keywords": [],
 	"author": "Lakhan Samani",
