@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	setup(props) {
-		let intervalRef: number | undefined;
+		let intervalRef: ReturnType<typeof setInterval> | undefined;
 		const config = toRefs(globalConfig);
 		const context = toRefs(globalContext);
 		config.authorizerURL.value = props?.config?.authorizerURL || '';
