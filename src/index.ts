@@ -17,5 +17,5 @@ export default {
 	AuthorizerSocialLogin,
 	AuthorizerResetPassword,
 	AuthorizerVerifyOtp,
-	AuthorizerRoot,
+	AuthorizerRoot
 };

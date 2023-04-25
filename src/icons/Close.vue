@@ -1,10 +1,5 @@
 <template>
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 1000 1000"
-		width="10px"
-		height="10px"
-	>
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="10px" height="10px">
 		<g>
 			<path
 				fill="#ffffff"
@@ -16,6 +11,6 @@
 
 <script lang="ts">
 export default {
-	name: 'Close',
+	name: 'Close'
 };
 </script>

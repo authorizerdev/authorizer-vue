@@ -4,7 +4,7 @@
 			position: 'absolute',
 			left: '10px',
 			top: '12px',
-			display: 'flex',
+			display: 'flex'
 		}"
 	>
 		<svg
@@ -23,6 +23,6 @@
 
 <script lang="ts">
 export default {
-	name: 'Facebook',
+	name: 'Facebook'
 };
 </script>
