@@ -1,24 +1,19 @@
 {
-	// Use the vue-eslint-parser to parse Vue.js files
-	"parser": "vue-eslint-parser",
+	"parser": "vue-eslint-parser", // Use the vue-eslint-parser to parse Vue.js files
 	"parserOptions": {
-		// Use the @typescript-eslint/parser to parse TypeScript files
-		"parser": "@typescript-eslint/parser",
+		"parser": "@typescript-eslint/parser", // Use the @typescript-eslint/parser to parse TypeScript files
 		"ecmaVersion": 2020,
 		"sourceType": "module"
 	},
 	"extends": [
-		// Use the recommended rules for Vue.js from the vue plugin
-		"plugin:vue/recommended",
-		// Use the recommended rules for Prettier with Vue.js from the prettier-vue plugin
-		"plugin:prettier-vue/recommended",
-		// Use the recommended rules for TypeScript from the @typescript-eslint plugin
-		"plugin:@typescript-eslint/recommended"
+		"plugin:vue/recommended", // Use the recommended rules for Vue.js from the vue plugin
+		"plugin:prettier-vue/recommended", // Use the recommended rules for Prettier with Vue.js from the prettier-vue plugin
+		"plugin:@typescript-eslint/recommended" // Use the recommended rules for TypeScript from the @typescript-eslint plugin
 	],
 	"settings": {
 		"prettier-vue": {
-			// Settings for how to process Vue SFC Blocks
 			"SFCBlocks": {
+				// Specify which blocks in Vue SFCs should be processed by Prettier
 				"template": true,
 				"script": true,
 				"style": true,
@@ -29,38 +24,35 @@
 					"comments": false
 				}
 			},
-			"usePrettierrc": true,
+			"usePrettierrc": true, // Use the Prettier configuration file in the project root
 			"fileInfoOptions": {
-				"ignorePath": ".testignore",
-				"withNodeModules": false
+				"ignorePath": ".testignore", // Ignore files listed in the .testignore file
+				"withNodeModules": false // Ignore files in the node_modules directory
 			}
 		}
 	},
 	"rules": {
-		// Use Prettier to format Vue.js files
 		"prettier-vue/prettier": [
 			"error",
 			{
+				// Specify Prettier options for Vue.js files
 				"useTabs": true,
 				"printWidth": 100,
 				"singleQuote": true,
 				"trailingComma": "none"
 			}
 		],
-		// Ignore unused variables that start with an underscore in TypeScript files
 		"@typescript-eslint/no-unused-vars": [
 			"error",
-			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+			{ "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" } // Ignore unused variables that start with an underscore in TypeScript files
 		],
-		// Disable the multi-word-component-names rule from the vue plugin
-		"vue/multi-word-component-names": "off"
+		"vue/multi-word-component-names": "off" // Disable the multi-word-component-names rule from the vue plugin
 	},
 	"overrides": [
 		{
-			// Disable the no-undef rule for TypeScript files
 			"files": ["*.ts", "*.tsx"],
 			"rules": {
-				"no-undef": "off"
+				"no-undef": "off" // Disable the no-undef rule for TypeScript files
 			}
 		}
 	]
