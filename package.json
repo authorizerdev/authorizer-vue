@@ -17,7 +17,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"keywords": [],
-	"author": "anik-ghosh-au7",
+	"author": "Lakhan Samani",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/authorizerdev/authorizer-vue/issues"

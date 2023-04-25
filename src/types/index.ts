@@ -19,6 +19,12 @@ export type AuthorizerConfig = {
 	is_strong_password_enabled: boolean;
 };
 
+export type AuthorizerConfigInput = {
+	authorizerURL: string;
+	redirectURL?: string;
+	client_id?: string;
+};
+
 export type AuthorizerState = {
 	user: User | null;
 	token: AuthToken | null;
@@ -28,6 +34,7 @@ export type AuthorizerState = {
 
 export type AuthorizerProviderAction = {
 	type: AuthorizerProviderActionType;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	payload: any;
 };
 
@@ -49,7 +56,9 @@ export type OtpDataType = {
 };
 
 export type URLPropsType = {
-	scope: string[] | undefined;
-	state: string | undefined;
-	redirect_uri: string | undefined;
+	redirectURL?: string;
+	scope?: string[];
+	state?: string;
+	redirect_uri?: string;
+	roles?: string[];
 };

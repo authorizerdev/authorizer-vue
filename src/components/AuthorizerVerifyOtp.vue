@@ -1,89 +1,88 @@
 <template>
-	<template v-if="successMessage">
-		<message
-			:type="MessageType.Success"
-			:text="successMessage"
-			@close="onSuccessClose"
-		/>
-	</template>
-	<template v-if="error">
-		<message :type="MessageType.Error" :text="error" @close="onErrorClose" />
-	</template>
-	<p :style="{ textAlign: 'center', margin: '10px 0px' }">
-		Please enter the OTP you received on your email address.
-	</p>
-	<br />
-	<form @submit.prevent="onSubmit">
-		<!-- OTP -->
-		<div class="styled-form-group" :hasError="otpError">
-			<label class="form-input-label" for="authorizer-verify-otp"
-				><span>* </span>OTP (One Time Password)</label
-			>
-			<input
-				id="authorizer-verify-otp"
-				:class="`form-input-field ${otpError ? 'input-error-content' : null}`"
-				placeholder="eg. AB123C"
-				type="password"
-				v-model="otp"
-			/>
-			<div v-if="otpError" class="form-input-error">{{ otpError }}</div>
-		</div>
+	<div>
+		<template v-if="successMessage">
+			<message :type="MessageType.Success" :text="successMessage" @close="onSuccessClose" />
+		</template>
+		<template v-if="error">
+			<message :type="MessageType.Error" :text="error" @close="onErrorClose" />
+		</template>
+		<p :style="{ textAlign: 'center', margin: '10px 0px' }">
+			Please enter the OTP you received on your email address.
+		</p>
 		<br />
-		<styled-button
-			:appearance="ButtonAppearance.Primary"
-			:disabled="otpError || !otp"
-		>
-			<template v-if="loading">Processing ...</template>
-			<template v-else>Submit</template>
-		</styled-button>
-	</form>
-	<template v-if="setView">
-		<styled-footer>
-			<div v-if="sendingOtp" :style="{ marginBottom: '10px' }">Sending ...</div>
-			<styled-link v-else @click="resendOtp" :style="{ marginBottom: '10px' }">
-				Resend OTP
-			</styled-link>
-			<div v-if="config.is_sign_up_enabled.value">
-				Don't have an account?
-				<styled-link @click="() => setView(Views.Signup)">Sign Up</styled-link>
+		<form @submit.prevent="onSubmit">
+			<!-- OTP -->
+			<div class="styled-form-group" :hasError="otpError">
+				<label class="form-input-label" for="authorizer-verify-otp"
+					><span>* </span>OTP (One Time Password)</label
+				>
+				<input
+					id="authorizer-verify-otp"
+					v-model="otp"
+					:class="`form-input-field ${otpError ? 'input-error-content' : null}`"
+					placeholder="eg. AB123C"
+					type="password"
+				/>
+				<div v-if="otpError" class="form-input-error">{{ otpError }}</div>
 			</div>
-		</styled-footer>
-	</template>
+			<br />
+			<styled-button :appearance="ButtonAppearance.Primary" :disabled="!!otpError || !otp">
+				<template v-if="loading">Processing ...</template>
+				<template v-else>Submit</template>
+			</styled-button>
+		</form>
+		<template v-if="setView">
+			<styled-footer>
+				<div v-if="sendingOtp" :style="{ marginBottom: '10px' }">Sending ...</div>
+				<styled-link v-else :style="{ marginBottom: '10px' }" @click="resendOtp">
+					Resend OTP
+				</styled-link>
+				<div v-if="config.is_sign_up_enabled.value">
+					Don't have an account?
+					<styled-link @click="() => setView(Views.Signup)">Sign Up</styled-link>
+				</div>
+			</styled-footer>
+		</template>
+	</div>
 </template>
 
 <script lang="ts">
-import { computed, reactive, toRefs } from 'vue';
-import type { VerifyOtpInput } from '@authorizerdev/authorizer-js';
+import { computed, reactive, toRefs, type PropType } from 'vue';
+import type { AuthToken, VerifyOtpInput } from '@authorizerdev/authorizer-js';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
-import {
-	StyledButton,
-	StyledFooter,
-	StyledLink,
-} from '../styledComponents/index';
+import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
 import { isValidOtp } from '../utils/common';
 import { MessageType, ButtonAppearance, Views } from '../constants/index';
 import Message from './Message.vue';
+import type { URLPropsType } from 'src/types';
 export default {
 	name: 'AuthorizerVerifyOtp',
-	props: ['setView', 'onLogin', 'email', 'urlProps'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		message: Message,
+		message: Message
 	},
-	setup({
-		setView,
-		onLogin,
-		email,
-		urlProps,
-	}: {
-		setView?: (v: Views) => void;
-		onLogin?: (data: any) => void;
-		email: string;
-		urlProps?: Record<string, any>;
-	}) {
+	props: {
+		setView: {
+			type: Function as PropType<(arg: Views) => void>,
+			default: (_v: Views) => undefined
+		},
+		onLogin: {
+			type: Function as PropType<(arg: AuthToken | void) => void>,
+			default: undefined
+		},
+		email: {
+			type: String,
+			required: true
+		},
+		urlProps: {
+			type: Object as PropType<URLPropsType>,
+			default: undefined
+		}
+	},
+	setup(props) {
 		const config = toRefs(globalConfig);
 		const { setAuthData, authorizerRef } = toRefs(globalContext);
 		const componentState: {
@@ -97,26 +96,27 @@ export default {
 			successMessage: null,
 			loading: false,
 			sendingOtp: false,
-			otp: null,
+			otp: null
 		});
-		const otpError = computed(() => {
+		const otpError = computed((): string | null => {
 			if (componentState.otp === '') {
 				return 'OTP is required';
 			}
 			if (componentState.otp && !isValidOtp(componentState.otp)) {
 				return 'Please enter valid OTP';
 			}
+			return null;
 		});
 		const onSubmit = async () => {
 			componentState.successMessage = null;
 			try {
 				componentState.loading = true;
 				const data: VerifyOtpInput = {
-					email,
-					otp: componentState.otp || '',
+					email: props.email,
+					otp: componentState.otp || ''
 				};
-				if (urlProps?.state) {
-					data.state = urlProps.state;
+				if (props.urlProps?.state) {
+					data.state = props.urlProps.state;
 				}
 				const res = await authorizerRef.value.verifyOtp(data);
 				componentState.loading = false;
@@ -128,18 +128,18 @@ export default {
 							access_token: res.access_token,
 							expires_in: res.expires_in,
 							refresh_token: res.refresh_token,
-							id_token: res.id_token,
+							id_token: res.id_token
 						},
 						config: globalConfig,
-						loading: false,
+						loading: false
 					});
 				}
-				if (onLogin) {
-					onLogin(res);
+				if (props.onLogin) {
+					props.onLogin(res);
 				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		const onSuccessClose = () => {
@@ -153,19 +153,19 @@ export default {
 			try {
 				componentState.sendingOtp = true;
 				const res = await authorizerRef.value.resendOtp({
-					email,
+					email: props.email
 				});
 				componentState.sendingOtp = false;
 				if (res && res?.message) {
 					componentState.error = null;
 					componentState.successMessage = res.message;
+					if (props.onLogin) {
+						props.onLogin(res as AuthToken);
+					}
 				}
-				if (onLogin) {
-					onLogin(res);
-				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		return {
@@ -178,10 +178,9 @@ export default {
 			onErrorClose,
 			ButtonAppearance,
 			resendOtp,
-			Views,
-			setView,
+			Views
 		};
-	},
+	}
 };
 </script>
 <style scoped>

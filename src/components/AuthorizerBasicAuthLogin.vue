@@ -1,5 +1,5 @@
 <template>
-	<div v-if="otpData.isScreenVisible.value">
+	<div v-if="otpData.isScreenVisible.value && otpData.email.value">
 		<authorizer-verify-otp
 			:set-view="setView"
 			:on-login="onLogin"
@@ -91,25 +91,20 @@ export default {
 	},
 	props: {
 		setView: {
-			type: Function,
+			type: Function as PropType<(arg: Views) => void>,
 			default: (_v: Views) => undefined
 		},
 		onLogin: {
-			type: Function,
-			default: (_data: AuthToken | void) => undefined
+			type: Function as PropType<(arg: AuthToken | void) => void>,
+			default: undefined
 		},
 		urlProps: {
 			type: Object as PropType<URLPropsType>,
-			default: () => {
-				return {
-					scope: undefined,
-					state: undefined
-				};
-			}
+			default: undefined
 		},
 		roles: {
-			type: Object as PropType<string[] | undefined>,
-			default: () => undefined
+			type: Object as PropType<string[]>,
+			default: undefined
 		}
 	},
 	setup(props) {
@@ -161,10 +156,10 @@ export default {
 					email: formData.email || '',
 					password: formData.password || ''
 				};
-				if (props.urlProps.scope) {
+				if (props.urlProps?.scope) {
 					data.scope = props.urlProps.scope;
 				}
-				if (props.urlProps.state) {
+				if (props.urlProps?.state) {
 					data.state = props.urlProps.state;
 				}
 				if (props.roles && props.roles.length) {

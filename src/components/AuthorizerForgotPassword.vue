@@ -63,22 +63,16 @@ export default {
 	},
 	props: {
 		setView: {
-			type: Function,
+			type: Function as PropType<(arg: Views) => void>,
 			default: (_v: Views) => undefined
 		},
 		onForgotPassword: {
-			type: Function,
-			default: (_data: unknown) => undefined
+			type: Function as PropType<(arg: unknown) => void>,
+			default: undefined
 		},
 		urlProps: {
 			type: Object as PropType<URLPropsType>,
-			default: () => {
-				return {
-					scope: undefined,
-					state: undefined,
-					redirect_uri: undefined
-				};
-			}
+			default: undefined
 		}
 	},
 	setup(props) {

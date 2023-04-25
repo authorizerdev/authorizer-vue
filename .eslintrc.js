@@ -45,7 +45,8 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': [
 			'error',
 			{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
-		]
+		],
+		'vue/multi-word-component-names': 'off'
 	},
 	overrides: [
 		{
