@@ -1,8 +1,4 @@
-import {
-	type AuthToken,
-	type User,
-	type Authorizer,
-} from '@authorizerdev/authorizer-js';
+import { type AuthToken, type User, type Authorizer } from '@authorizerdev/authorizer-js';
 import { AuthorizerProviderActionType } from '../constants';
 
 export type AuthorizerConfig = {

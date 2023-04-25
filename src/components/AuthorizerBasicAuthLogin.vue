@@ -1,35 +1,27 @@
 <template>
-	<template v-if="otpData.isScreenVisible.value">
+	<div v-if="otpData.isScreenVisible.value">
 		<authorizer-verify-otp
-			:setView="setView"
-			:onLogin="onLogin"
+			:set-view="setView"
+			:on-login="onLogin"
 			:email="otpData.email.value"
-			:urlProps="urlProps"
+			:url-props="urlProps"
 		/>
-	</template>
-	<template v-else>
+	</div>
+	<div v-else>
 		<div>
 			<template v-if="error">
-				<message
-					:type="MessageType.Error"
-					:text="error"
-					@close="onErrorClose"
-				/>
+				<message :type="MessageType.Error" :text="error" @close="onErrorClose" />
 			</template>
 			<form @submit.prevent="onSubmit">
 				<!-- Email -->
 				<div class="styled-form-group">
-					<label class="form-input-label" for="authorizer-login-email"
-						><span>* </span>Email</label
-					>
+					<label class="form-input-label" for="authorizer-login-email"><span>* </span>Email</label>
 					<input
 						id="authorizer-login-email"
-						:class="`form-input-field ${
-							emailError ? 'input-error-content' : null
-						}`"
+						v-model="email"
+						:class="`form-input-field ${emailError ? 'input-error-content' : null}`"
 						placeholder="eg. foo@bar.com"
 						type="email"
-						v-model="email"
 					/>
 					<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
 				</div>
@@ -41,12 +33,10 @@
 					>
 					<input
 						id="authorizer-login-password"
-						:class="`form-input-field ${
-							passwordError ? 'input-error-content' : null
-						}`"
+						v-model="password"
+						:class="`form-input-field ${passwordError ? 'input-error-content' : null}`"
 						placeholder="********"
 						type="password"
-						v-model="password"
 					/>
 					<div v-if="passwordError" class="form-input-error">
 						{{ passwordError }}
@@ -55,7 +45,7 @@
 				<br />
 				<styled-button
 					:appearance="ButtonAppearance.Primary"
-					:disabled="emailError || passwordError || !email || !password"
+					:disabled="!!emailError || !!passwordError || !email || !password"
 				>
 					<template v-if="loading">Processing ...</template>
 					<template v-else>Log In</template>
@@ -64,31 +54,25 @@
 			<template v-if="setView">
 				<styled-footer>
 					<styled-link
-						@click="() => setView(Views.ForgotPassword)"
 						:style="{ marginBottom: '10px' }"
+						@click="() => setView(Views.ForgotPassword)"
 					>
 						Forgot Password?
 					</styled-link>
 					<div v-if="config.is_sign_up_enabled.value">
 						Don't have an account?
-						<styled-link @click="() => setView(Views.Signup)"
-							>Sign Up</styled-link
-						>
+						<styled-link @click="() => setView(Views.Signup)">Sign Up</styled-link>
 					</div>
 				</styled-footer>
 			</template>
 		</div>
-	</template>
+	</div>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, type PropType } from 'vue';
 import type { AuthToken, LoginInput } from '@authorizerdev/authorizer-js';
-import {
-	StyledButton,
-	StyledFooter,
-	StyledLink,
-} from '../styledComponents/index';
+import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
 import { ButtonAppearance, MessageType, Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
@@ -97,25 +81,40 @@ import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
 import Message from './Message.vue';
 export default {
 	name: 'AuthorizerBasicAuthLogin',
-	props: ['setView', 'onLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': StyledButton,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
 		'authorizer-verify-otp': AuthorizerVerifyOtp,
-		message: Message,
+		message: Message
 	},
-	setup({
-		setView,
-		onLogin,
-		urlProps,
-		roles,
-	}: {
-		setView?: (v: Views) => void;
-		onLogin?: (data: AuthToken | void) => void;
-		urlProps?: Record<string, any>;
-		roles?: string[];
-	}) {
+	props: {
+		setView: {
+			type: Function,
+			default: (_v: Views) => undefined
+		},
+		onLogin: {
+			type: Function,
+			default: (_data: AuthToken | void) => undefined
+		},
+		urlProps: {
+			type: Object as PropType<{
+				scope: string[] | undefined;
+				state: string | undefined;
+			}>,
+			default: () => {
+				return {
+					scope: undefined,
+					state: undefined
+				};
+			}
+		},
+		roles: {
+			type: Object as PropType<string[] | undefined>,
+			default: () => undefined
+		}
+	},
+	setup(props) {
 		const config = toRefs(globalConfig);
 		const { setAuthData, authorizerRef } = toRefs(globalContext);
 		const componentState: {
@@ -123,34 +122,36 @@ export default {
 			error: null | string;
 		} = reactive({
 			loading: false,
-			error: null,
+			error: null
 		});
 		const otpData: {
 			isScreenVisible: boolean;
 			email: null | string;
 		} = reactive({
 			isScreenVisible: false,
-			email: null,
+			email: null
 		});
 		const formData: {
 			email: null | string;
 			password: null | string;
 		} = reactive({
 			email: null,
-			password: null,
+			password: null
 		});
-		const emailError = computed(() => {
+		const emailError = computed((): string | null => {
 			if (formData.email === '') {
 				return 'Email is required';
 			}
 			if (formData.email && !isValidEmail(formData.email)) {
 				return 'Please enter valid email';
 			}
+			return null;
 		});
-		const passwordError = computed(() => {
+		const passwordError = computed((): string | null => {
 			if (formData.password === '') {
 				return 'Password is required';
 			}
+			return null;
 		});
 		const onErrorClose = () => {
 			componentState.error = null;
@@ -160,22 +161,22 @@ export default {
 			try {
 				const data: LoginInput = {
 					email: formData.email || '',
-					password: formData.password || '',
+					password: formData.password || ''
 				};
-				if (urlProps?.scope) {
-					data.scope = urlProps.scope;
+				if (props.urlProps.scope) {
+					data.scope = props.urlProps.scope;
 				}
-				if (urlProps?.state) {
-					data.state = urlProps.state;
+				if (props.urlProps.state) {
+					data.state = props.urlProps.state;
 				}
-				if (roles && roles.length) {
-					data.roles = roles;
+				if (props.roles && props.roles.length) {
+					data.roles = props.roles;
 				}
 				const res = await authorizerRef.value.login(data);
 				if (res && res?.should_show_otp_screen) {
 					Object.assign(otpData, {
 						isScreenVisible: true,
-						email: data.email,
+						email: data.email
 					});
 					return;
 				}
@@ -187,18 +188,18 @@ export default {
 							access_token: res.access_token,
 							expires_in: res.expires_in,
 							refresh_token: res.refresh_token,
-							id_token: res.id_token,
+							id_token: res.id_token
 						},
 						config: globalConfig,
-						loading: false,
+						loading: false
 					});
 				}
-				if (onLogin) {
-					onLogin(res);
+				if (props.onLogin) {
+					props.onLogin(res);
 				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		return {
@@ -209,14 +210,12 @@ export default {
 			passwordError,
 			onSubmit,
 			ButtonAppearance,
-			setView,
 			Views,
 			config,
 			MessageType,
-			onErrorClose,
-			urlProps,
+			onErrorClose
 		};
-	},
+	}
 };
 </script>
 
