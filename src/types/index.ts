@@ -47,3 +47,9 @@ export type OtpDataType = {
 	isScreenVisible: boolean;
 	email: string;
 };
+
+export type URLPropsType = {
+	scope: string[] | undefined;
+	state: string | undefined;
+	redirect_uri: string | undefined;
+};

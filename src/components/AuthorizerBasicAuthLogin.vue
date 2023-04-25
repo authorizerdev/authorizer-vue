@@ -79,6 +79,7 @@ import globalContext from '../state/globalContext';
 import { isValidEmail } from '../utils/common';
 import AuthorizerVerifyOtp from './AuthorizerVerifyOtp.vue';
 import Message from './Message.vue';
+import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerBasicAuthLogin',
 	components: {
@@ -98,10 +99,7 @@ export default {
 			default: (_data: AuthToken | void) => undefined
 		},
 		urlProps: {
-			type: Object as PropType<{
-				scope: string[] | undefined;
-				state: string | undefined;
-			}>,
+			type: Object as PropType<URLPropsType>,
 			default: () => {
 				return {
 					scope: undefined,

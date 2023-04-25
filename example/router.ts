@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 import Login from './views/Login.vue';
 import ResetPassword from './views/ResetPassword.vue';
 import Dashboard from './views/Dashboard.vue';
@@ -8,15 +9,15 @@ export default createRouter({
 	routes: [
 		{
 			path: '/',
-			component: Login,
+			component: Login
 		},
 		{
 			path: '/reset-password',
-			component: ResetPassword,
+			component: ResetPassword
 		},
 		{
 			path: '/dashboard',
-			component: Dashboard,
-		},
-	],
+			component: Dashboard
+		}
+	] as unknown as RouteRecordRaw[]
 });
