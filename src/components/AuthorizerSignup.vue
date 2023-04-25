@@ -54,7 +54,10 @@
 				</div>
 			</div>
 			<template v-if="config.is_strong_password_enabled.value">
-				<password-strength-indicator :value="password" :set-disable-button="setDisableButton" />
+				<password-strength-indicator
+					:value="password || undefined"
+					:set-disable-button="setDisableButton"
+				/>
 				<br />
 			</template>
 			<styled-button
@@ -95,7 +98,7 @@ import { Views, MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';
-import type { URLPropsType } from 'src/types';
+import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerSignup',
 	components: {
