@@ -11,12 +11,10 @@
 				>
 				<input
 					id="authorizer-reset-password"
-					:class="`form-input-field ${
-						passwordError ? 'input-error-content' : null
-					}`"
+					v-model="password"
+					:class="`form-input-field ${passwordError ? 'input-error-content' : null}`"
 					placeholder="********"
 					type="password"
-					v-model="password"
 				/>
 				<div v-if="passwordError" class="form-input-error">
 					{{ passwordError }}
@@ -30,29 +28,24 @@
 				>
 				<input
 					id="authorizer-reset-confirm-password"
-					:class="`form-input-field ${
-						confirmPasswordError ? 'input-error-content' : null
-					}`"
+					v-model="confirmPassword"
+					:class="`form-input-field ${confirmPasswordError ? 'input-error-content' : null}`"
 					placeholder="********"
 					type="password"
-					v-model="confirmPassword"
 				/>
 				<div v-if="confirmPasswordError" class="form-input-error">
 					{{ confirmPasswordError }}
 				</div>
 			</div>
 			<template v-if="config.is_strong_password_enabled.value">
-				<password-strength-indicator
-					:value="password"
-					:setDisableButton="setDisableButton"
-				/>
+				<password-strength-indicator :value="password" :set-disable-button="setDisableButton" />
 				<br />
 			</template>
 			<styled-button
 				:appearance="ButtonAppearance.Primary"
 				:disabled="
-					passwordError ||
-					confirmPasswordError ||
+					!!passwordError ||
+					!!confirmPasswordError ||
 					!password ||
 					!confirmPassword ||
 					loading ||
@@ -67,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, type PropType } from 'vue';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
 import { StyledButton, StyledWrapper } from '../styledComponents/index';
@@ -77,14 +70,19 @@ import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';
 import { getSearchParams } from '../utils/url';
 export default {
 	name: 'AuthorizerResetPassword',
-	props: ['onReset'],
 	components: {
 		'styled-wrapper': StyledWrapper,
 		'styled-button': StyledButton,
 		'password-strength-indicator': PasswordStrengthIndicator,
-		message: Message,
+		message: Message
 	},
-	setup({ onReset }: { onReset?: (data: any) => void }) {
+	props: {
+		onReset: {
+			type: Function as PropType<(arg: unknown) => void>,
+			default: undefined
+		}
+	},
+	setup(props) {
 		const { token, redirect_uri } = getSearchParams();
 		const config = toRefs(globalConfig);
 		const { authorizerRef } = toRefs(globalContext);
@@ -95,16 +93,16 @@ export default {
 		} = reactive({
 			error: !token ? 'Invalid token' : null,
 			loading: false,
-			disableContinueButton: false,
+			disableContinueButton: false
 		});
 		const formData: {
 			password: null | string;
 			confirmPassword: null | string;
 		} = reactive({
 			password: null,
-			confirmPassword: null,
+			confirmPassword: null
 		});
-		const passwordError = computed(() => {
+		const passwordError = computed((): string | null => {
 			if (formData.password === '') {
 				return 'Password is required';
 			}
@@ -115,8 +113,9 @@ export default {
 			) {
 				return `Password and confirm passwords don't match`;
 			}
+			return null;
 		});
-		const confirmPasswordError = computed(() => {
+		const confirmPasswordError = computed((): string | null => {
 			if (formData.confirmPassword === '') {
 				return 'Confirm password is required';
 			}
@@ -127,6 +126,7 @@ export default {
 			) {
 				return `Password and confirm passwords don't match`;
 			}
+			return null;
 		});
 		const onSubmit = async () => {
 			componentState.loading = true;
@@ -134,19 +134,18 @@ export default {
 				const res = await authorizerRef.value.resetPassword({
 					token,
 					password: formData.password || '',
-					confirm_password: formData.confirmPassword || '',
+					confirm_password: formData.confirmPassword || ''
 				});
 				componentState.loading = false;
 				componentState.error = null;
-				if (onReset) {
-					onReset(res);
+				if (props.onReset) {
+					props.onReset(res);
 				} else {
-					window.location.href =
-						redirect_uri || config.redirectURL.value || window.location.origin;
+					window.location.href = redirect_uri || config.redirectURL.value || window.location.origin;
 				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		const setDisableButton = (value: boolean) => {
@@ -165,9 +164,9 @@ export default {
 			MessageType,
 			ButtonAppearance,
 			setDisableButton,
-			onErrorClose,
+			onErrorClose
 		};
-	},
+	}
 };
 </script>
 

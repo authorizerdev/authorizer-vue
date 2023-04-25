@@ -2,7 +2,7 @@
 	<div>
 		<h1 :style="{ textAlign: 'center' }">Welcome to Authorizer</h1>
 		<br />
-		<authorizer-root :onLogin="onLogin" />
+		<authorizer-root :on-login="onLogin" />
 	</div>
 </template>
 
@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router';
 export default {
 	name: 'Login',
 	components: {
-		'authorizer-root': AuthorizerRoot,
+		'authorizer-root': AuthorizerRoot
 	},
 	setup() {
 		const useAuthorizer: any = inject('useAuthorizer');
@@ -31,7 +31,7 @@ export default {
 				}
 			},
 			{
-				immediate: true,
+				immediate: true
 			}
 		);
 		// watch(user, function (newvalue, oldvalue) {
@@ -43,9 +43,9 @@ export default {
 		// 	console.log('new value from client ==>> ', newvalue);
 		// });
 		return {
-			onLogin,
+			onLogin
 		};
-	},
+	}
 };
 </script>
 

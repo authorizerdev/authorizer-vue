@@ -7,7 +7,7 @@
 			<a
 				href="`mailto:${user?.email}`"
 				:style="{
-					color: '#3B82F6',
+					color: '#3B82F6'
 				}"
 			>
 				{{ user?.email }}
@@ -20,7 +20,7 @@
 			v-else
 			:style="{
 				color: '#3B82F6',
-				cursor: 'pointer',
+				cursor: 'pointer'
 			}"
 			@click="logout"
 		>
@@ -46,15 +46,15 @@ export default {
 				}
 			},
 			{
-				immediate: true,
+				immediate: true
 			}
 		);
 		return {
 			user,
 			loading,
-			logout,
+			logout
 		};
-	},
+	}
 };
 </script>
 

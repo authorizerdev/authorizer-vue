@@ -8,15 +8,15 @@ export default createRouter({
 	routes: [
 		{
 			path: '/',
-			component: Login,
+			component: Login
 		},
 		{
 			path: '/reset-password',
-			component: ResetPassword,
+			component: ResetPassword
 		},
 		{
 			path: '/dashboard',
-			component: Dashboard,
-		},
-	],
+			component: Dashboard
+		}
+	]
 });

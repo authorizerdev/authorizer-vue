@@ -1,15 +1,15 @@
 <template>
 	<styled-wrapper>
-		<authorizer-social-login :urlProps="urlProps" :roles="roles" />
+		<authorizer-social-login :url-props="urlProps" :roles="roles" />
 		<authorizer-basic-auth-login
 			v-if="
 				view === Views.Login &&
 				config.is_basic_authentication_enabled.value &&
 				!config.is_magic_link_login_enabled.value
 			"
-			:setView="setView"
-			:onLogin="onLogin"
-			:urlProps="urlProps"
+			:set-view="setView"
+			:on-login="onLogin"
+			:url-props="urlProps"
 			:roles="roles"
 		/>
 		<authorizer-signup
@@ -19,28 +19,28 @@
 				!config.is_magic_link_login_enabled.value &&
 				config.is_sign_up_enabled.value
 			"
-			:setView="setView"
-			:onSignup="onSignup"
-			:urlProps="urlProps"
+			:set-view="setView"
+			:on-signup="onSignup"
+			:url-props="urlProps"
 			:roles="roles"
 		/>
 		<authorizer-magic-link-login
 			v-if="view === Views.Login && config.is_magic_link_login_enabled.value"
-			:onMagicLinkLogin="onMagicLinkLogin"
-			:urlProps="urlProps"
+			:on-magic-link-login="onMagicLinkLogin"
+			:url-props="urlProps"
 			:roles="roles"
 		/>
 		<authorizer-forgot-password
 			v-if="view === Views.ForgotPassword"
-			:setView="setView"
-			:onForgotPassword="onForgotPassword"
-			:urlProps="urlProps"
+			:set-view="setView"
+			:on-forgot-password="onForgotPassword"
+			:url-props="urlProps"
 		/>
 	</styled-wrapper>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, type PropType } from 'vue';
 import type { AuthToken } from '@authorizerdev/authorizer-js';
 import { StyledWrapper } from '../styledComponents/index';
 import { Views } from '../constants/index';
@@ -52,6 +52,7 @@ import AuthorizerMagicLinkLogin from './AuthorizerMagicLinkLogin.vue';
 import AuthorizerForgotPassword from './AuthorizerForgotPassword.vue';
 import AuthorizerBasicAuthLogin from './AuthorizerBasicAuthLogin.vue';
 import globalConfig from '../state/globalConfig';
+import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerRoot',
 	components: {
@@ -60,67 +61,62 @@ export default {
 		'authorizer-signup': AuthorizerSignup,
 		'authorizer-magic-link-login': AuthorizerMagicLinkLogin,
 		'authorizer-forgot-password': AuthorizerForgotPassword,
-		'authorizer-basic-auth-login': AuthorizerBasicAuthLogin,
+		'authorizer-basic-auth-login': AuthorizerBasicAuthLogin
 	},
-	props: [
-		'onLogin',
-		'onSignup',
-		'onMagicLinkLogin',
-		'onForgotPassword',
-		'roles',
-	],
-	setup({
-		onLogin,
-		onSignup,
-		onMagicLinkLogin,
-		onForgotPassword,
-		roles,
-	}: {
-		onLogin?: (data: AuthToken | void) => void;
-		onSignup?: (data: AuthToken | void) => void;
-		onMagicLinkLogin?: (data: any) => void;
-		onForgotPassword?: (data: any) => void;
-		roles?: string[];
-	}) {
+	props: {
+		onLogin: {
+			type: Function as PropType<(arg: AuthToken | void) => void>,
+			default: undefined
+		},
+		onSignup: {
+			type: Function as PropType<(arg: AuthToken | void) => void>,
+			default: undefined
+		},
+		onMagicLinkLogin: {
+			type: Function as PropType<(arg: unknown) => void>,
+			default: undefined
+		},
+		onForgotPassword: {
+			type: Function as PropType<(arg: unknown) => void>,
+			default: undefined
+		},
+		roles: {
+			type: Object as PropType<string[]>,
+			default: undefined
+		}
+	},
+	setup() {
 		const state: {
 			view: Views;
 		} = reactive({
-			view: Views.Login,
+			view: Views.Login
 		});
 		const setView = (viewType: Views) => {
 			if (viewType) state.view = viewType;
 		};
-		const searchParams = new URLSearchParams(
-			hasWindow() ? window.location.search : ``
-		);
+		const searchParams = new URLSearchParams(hasWindow() ? window.location.search : ``);
 		const paramsState = searchParams.get('state') || createRandomString();
 		const scope = searchParams.get('scope')
 			? searchParams.get('scope')?.toString().split(' ')
 			: ['openid', 'profile', 'email'];
-		const urlProps: Record<string, any> = {
+		const urlProps: URLPropsType = {
 			state: paramsState,
-			scope,
+			scope
 		};
-		const redirectURL =
-			searchParams.get('redirect_uri') || searchParams.get('redirectURL');
+		const redirectURL = searchParams.get('redirect_uri') || searchParams.get('redirectURL');
 		if (redirectURL) {
 			urlProps.redirectURL = redirectURL;
 		} else {
-			urlProps.redirectURL = hasWindow() ? window.location.origin : redirectURL;
+			urlProps.redirectURL = hasWindow() ? window.location.origin : undefined;
 		}
 		urlProps.redirect_uri = urlProps.redirectURL;
 		return {
-			onLogin,
-			onSignup,
-			onMagicLinkLogin,
-			onForgotPassword,
-			roles,
 			...toRefs(state),
 			config: toRefs(globalConfig),
 			setView,
 			urlProps,
-			Views,
+			Views
 		};
-	},
+	}
 };
 </script>

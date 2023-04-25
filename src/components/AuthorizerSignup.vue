@@ -1,25 +1,21 @@
 <template>
-	<template v-if="successMessage">
+	<div v-if="successMessage">
 		<message :type="MessageType.Success" :text="successMessage" />
-	</template>
-	<template v-else>
+	</div>
+	<div v-else>
 		<template v-if="error">
 			<message :type="MessageType.Error" :text="error" @close="onErrorClose" />
 		</template>
 		<form @submit.prevent="onSubmit">
 			<!-- Email -->
 			<div class="styled-form-group" :hasError="emailError">
-				<label class="form-input-label" for="authorizer-sign-up-email"
-					><span>* </span>Email</label
-				>
+				<label class="form-input-label" for="authorizer-sign-up-email"><span>* </span>Email</label>
 				<input
 					id="authorizer-sign-up-email"
-					:class="`form-input-field ${
-						emailError ? 'input-error-content' : null
-					}`"
+					v-model="email"
+					:class="`form-input-field ${emailError ? 'input-error-content' : null}`"
 					placeholder="eg. foo@bar.com"
 					type="email"
-					v-model="email"
 				/>
 				<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
 			</div>
@@ -31,12 +27,10 @@
 				>
 				<input
 					id="authorizer-sign-up-password"
-					:class="`form-input-field ${
-						passwordError ? 'input-error-content' : null
-					}`"
+					v-model="password"
+					:class="`form-input-field ${passwordError ? 'input-error-content' : null}`"
 					placeholder="********"
 					type="password"
-					v-model="password"
 				/>
 				<div v-if="passwordError" class="form-input-error">
 					{{ passwordError }}
@@ -45,19 +39,15 @@
 
 			<!-- confirm password -->
 			<div class="styled-form-group" :hasError="confirmPasswordError">
-				<label
-					class="form-input-label"
-					for="authorizer-sign-up-confirm-password"
+				<label class="form-input-label" for="authorizer-sign-up-confirm-password"
 					><span>* </span>Confirm Password</label
 				>
 				<input
 					id="authorizer-sign-up-confirm-password"
-					:class="`form-input-field ${
-						confirmPasswordError ? 'input-error-content' : null
-					}`"
+					v-model="confirmPassword"
+					:class="`form-input-field ${confirmPasswordError ? 'input-error-content' : null}`"
 					placeholder="********"
 					type="password"
-					v-model="confirmPassword"
 				/>
 				<div v-if="confirmPasswordError" class="form-input-error">
 					{{ confirmPasswordError }}
@@ -65,17 +55,17 @@
 			</div>
 			<template v-if="config.is_strong_password_enabled.value">
 				<password-strength-indicator
-					:value="password"
-					:setDisableButton="setDisableButton"
+					:value="password || undefined"
+					:set-disable-button="setDisableButton"
 				/>
 				<br />
 			</template>
 			<styled-button
 				:appearance="ButtonAppearance.Primary"
 				:disabled="
-					emailError ||
-					passwordError ||
-					confirmPasswordError ||
+					!!emailError ||
+					!!passwordError ||
+					!!confirmPasswordError ||
 					!email ||
 					!password ||
 					!confirmPassword ||
@@ -95,44 +85,48 @@
 				</div>
 			</styled-footer>
 		</template>
-	</template>
+	</div>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, type PropType } from 'vue';
 import type { AuthToken, SignupInput } from '@authorizerdev/authorizer-js';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
-import {
-	StyledButton,
-	StyledFooter,
-	StyledLink,
-} from '../styledComponents/index';
+import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
 import { Views, MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';
+import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerSignup',
-	props: ['setView', 'onSignup', 'urlProps', 'roles'],
 	components: {
 		'password-strength-indicator': PasswordStrengthIndicator,
 		'styled-button': StyledButton,
 		'styled-footer': StyledFooter,
 		'styled-link': StyledLink,
-		message: Message,
+		message: Message
 	},
-	setup({
-		setView,
-		onSignup,
-		urlProps,
-		roles,
-	}: {
-		setView?: (v: Views) => void;
-		onSignup?: (data: AuthToken) => void;
-		urlProps?: Record<string, any>;
-		roles?: string[];
-	}) {
+	props: {
+		setView: {
+			type: Function as PropType<(arg: Views) => void>,
+			default: (_v: Views) => undefined
+		},
+		onSignup: {
+			type: Function as PropType<(arg: AuthToken | void) => void>,
+			default: undefined
+		},
+		urlProps: {
+			type: Object as PropType<URLPropsType>,
+			default: undefined
+		},
+		roles: {
+			type: Object as PropType<string[]>,
+			default: undefined
+		}
+	},
+	setup(props) {
 		const config = toRefs(globalConfig);
 		const { setAuthData, authorizerRef } = toRefs(globalContext);
 		const componentState: {
@@ -144,7 +138,7 @@ export default {
 			error: null,
 			successMessage: null,
 			loading: false,
-			disableSignupButton: false,
+			disableSignupButton: false
 		});
 		const formData: {
 			email: null | string;
@@ -153,17 +147,18 @@ export default {
 		} = reactive({
 			email: null,
 			password: null,
-			confirmPassword: null,
+			confirmPassword: null
 		});
-		const emailError = computed(() => {
+		const emailError = computed((): string | null => {
 			if (formData.email === '') {
 				return 'Email is required';
 			}
 			if (formData.email && !isValidEmail(formData.email)) {
 				return 'Please enter valid email';
 			}
+			return null;
 		});
-		const passwordError = computed(() => {
+		const passwordError = computed((): string | null => {
 			if (formData.password === '') {
 				return 'Password is required';
 			}
@@ -174,8 +169,9 @@ export default {
 			) {
 				return `Password and confirm passwords don't match`;
 			}
+			return null;
 		});
-		const confirmPasswordError = computed(() => {
+		const confirmPasswordError = computed((): string | null => {
 			if (formData.confirmPassword === '') {
 				return 'Confirm password is required';
 			}
@@ -186,6 +182,7 @@ export default {
 			) {
 				return `Password and confirm passwords don't match`;
 			}
+			return null;
 		});
 		const onSubmit = async () => {
 			try {
@@ -193,22 +190,22 @@ export default {
 				const data: SignupInput = {
 					email: formData.email || '',
 					password: formData.password || '',
-					confirm_password: formData.confirmPassword || '',
+					confirm_password: formData.confirmPassword || ''
 				};
-				if (urlProps?.scope) {
-					data.scope = urlProps.scope;
+				if (props.urlProps?.scope) {
+					data.scope = props.urlProps.scope;
 				}
-				if (urlProps?.roles) {
-					data.roles = urlProps.roles;
+				if (props.urlProps?.roles) {
+					data.roles = props.urlProps.roles;
 				}
-				if (urlProps?.redirect_uri) {
-					data.redirect_uri = urlProps.redirect_uri;
+				if (props.urlProps?.redirect_uri) {
+					data.redirect_uri = props.urlProps.redirect_uri;
 				}
-				if (urlProps?.state) {
-					data.state = urlProps.state;
+				if (props.urlProps?.state) {
+					data.state = props.urlProps.state;
 				}
-				if (roles && roles.length) {
-					data.roles;
+				if (props.roles && props.roles.length) {
+					data.roles = [...(data.roles || []), ...props.roles];
 				}
 				const res = await authorizerRef.value.signup(data);
 				if (res) {
@@ -221,22 +218,22 @@ export default {
 								access_token: res.access_token,
 								expires_in: res.expires_in,
 								refresh_token: res.refresh_token,
-								id_token: res.id_token,
+								id_token: res.id_token
 							},
 							config: globalConfig,
-							loading: false,
+							loading: false
 						});
 					} else {
 						componentState.error = null;
 						componentState.successMessage = res?.message ? res.message : null;
 					}
-					if (onSignup) {
-						onSignup(res);
+					if (props.onSignup) {
+						props.onSignup(res);
 					}
 				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		const onErrorClose = () => {
@@ -257,10 +254,9 @@ export default {
 			emailError,
 			passwordError,
 			confirmPasswordError,
-			setDisableButton,
-			setView,
+			setDisableButton
 		};
-	},
+	}
 };
 </script>
 <style scoped>

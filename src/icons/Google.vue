@@ -4,7 +4,7 @@
 			position: 'absolute',
 			left: '10px',
 			top: '12px',
-			display: 'flex',
+			display: 'flex'
 		}"
 	>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px">
@@ -32,6 +32,6 @@
 
 <script lang="ts">
 export default {
-	name: 'Google',
+	name: 'Google'
 };
 </script>

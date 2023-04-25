@@ -6,14 +6,14 @@
 				margin: `10px auto`,
 				border: `1px solid #D1D5DB`,
 				padding: `25px 20px`,
-				'border-radius': `5px`,
+				'border-radius': `5px`
 			}"
 		>
 			<authorizer-provider
 				:config="{
-					authorizerURL: 'http://localhost:8080',
+					authorizerURL: 'http://localhost:8080'
 				}"
-				:onStateChangeCallback="stateChangeCallback"
+				:on-state-change-callback="stateChangeCallback"
 			>
 				<router-view />
 			</authorizer-provider>
@@ -22,20 +22,21 @@
 </template>
 
 <script lang="ts">
+import type { AuthorizerState } from '../src/types';
 import AuthorizerProvider from '../src/components/AuthorizerProvider.vue';
 
 export default {
 	components: {
-		'authorizer-provider': AuthorizerProvider,
+		'authorizer-provider': AuthorizerProvider
 	},
 	setup() {
-		const stateChangeCallback = (state: any) => {
+		const stateChangeCallback = (state: AuthorizerState) => {
 			console.log('state changes from client ==>> ', state);
 		};
 		return {
-			stateChangeCallback,
+			stateChangeCallback
 		};
-	},
+	}
 };
 </script>
 

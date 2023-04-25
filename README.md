@@ -33,7 +33,7 @@ Authorizer comes with a [Provider](https://vuejs.org/api/composition-api-depende
 			:config="{
 				authorizerURL: 'http://localhost:8080',
 				redirectURL: window.location.origin,
-				clientID: 'AUTHORIZER_CLIENT_ID',
+				clientID: 'AUTHORIZER_CLIENT_ID'
 			}"
 			:onStateChangeCallback="stateChangeCallback"
 		>
@@ -47,16 +47,16 @@ import AuthorizerProvider from '@authorizerdev/authorizer-vue';
 
 export default {
 	components: {
-		'authorizer-provider': AuthorizerProvider,
+		'authorizer-provider': AuthorizerProvider
 	},
 	setup() {
 		const stateChangeCallback = (state: any) => {
 			console.log('state changed ==>> ', state);
 		};
 		return {
-			stateChangeCallback,
+			stateChangeCallback
 		};
-	},
+	}
 };
 </script>
 ```
@@ -77,7 +77,7 @@ import { useRouter } from 'vue-router';
 export default {
 	name: 'Login',
 	components: {
-		'authorizer-root': AuthorizerRoot,
+		'authorizer-root': AuthorizerRoot
 	},
 	setup() {
 		const useAuthorizer: any = inject('useAuthorizer');
@@ -95,20 +95,17 @@ export default {
 				}
 			},
 			{
-				immediate: true,
+				immediate: true
 			}
 		);
-		watch(
-			config.is_basic_authentication_enabled,
-			function (newvalue, oldvalue) {
-				console.log('basic auth enabled (old value) ==>> ', oldvalue);
-				console.log('basic auth enabled (new value) ==>> ', newvalue);
-			}
-		);
+		watch(config.is_basic_authentication_enabled, function (newvalue, oldvalue) {
+			console.log('basic auth enabled (old value) ==>> ', oldvalue);
+			console.log('basic auth enabled (new value) ==>> ', newvalue);
+		});
 		return {
-			onLogin,
+			onLogin
 		};
-	},
+	}
 };
 </script>
 ```
@@ -155,3 +152,15 @@ This runs a typecheck against our Vue components to make sure there are no type 
 ### Vite:
 
 - Vite requires a configuration to compile and bundle `.vue` to `.js` files that can be consumed through an npm module. It uses [rollup.js](https://rollupjs.org/) under the hood, check out the comments in `vite.config.ts` file in the project root to learn more about the configuarition details.
+
+### Eslint:
+
+- All required linting configurations are specified in the `.elsintrc.json` file in the project root, check the comments in each section to learn more about the configuarition details.
+
+### Prettier:
+
+- We have the `"usePrettierrc"` option set to true in the `eslint` configuration file which tells the `prettier-vue` plugin to use the Prettier configuration file `.prettierrc` in the project root directory and override any default settings.
+
+### Husky:
+
+- A pre-commit hook is set in `.husky/pre-commit` which formats the code and checks for any linting errors.

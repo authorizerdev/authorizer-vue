@@ -5,11 +5,17 @@
 </template>
 
 <script lang="ts">
+import type { CSSProperties } from 'vue';
 import { MessageType } from '../constants/index';
 
 export default {
 	name: 'StyledMessageWrapper',
-	props: ['type'],
+	props: {
+		type: {
+			type: String,
+			default: MessageType.Success
+		}
+	},
 	setup(props) {
 		return {
 			...props,
@@ -17,10 +23,10 @@ export default {
 				'background-color':
 					props.type === MessageType.Error
 						? 'var(--authorizer-danger-color)'
-						: 'var(--authorizer-success-color)',
-			},
+						: 'var(--authorizer-success-color)'
+			} as CSSProperties
 		};
-	},
+	}
 };
 </script>
 

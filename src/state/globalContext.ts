@@ -6,14 +6,14 @@ export default reactive({
 	user: null,
 	token: null,
 	loading: false,
-	setLoading: () => {},
-	setToken: () => {},
-	setUser: () => {},
-	setAuthData: () => {},
+	setLoading: () => undefined,
+	setToken: () => undefined,
+	setUser: () => undefined,
+	setAuthData: () => undefined,
 	authorizerRef: new Authorizer({
 		authorizerURL: `http://localhost:8080`,
 		redirectURL: hasWindow() ? window.location.origin : '/',
-		clientID: '',
+		clientID: ''
 	}),
-	logout: async () => {},
+	logout: async () => undefined
 }) as AuthorizerContextPropsType;

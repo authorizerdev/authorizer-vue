@@ -1,8 +1,8 @@
 <template>
-	<template v-if="successMessage">
+	<div v-if="successMessage">
 		<message :type="MessageType.Success" :text="successMessage" />
-	</template>
-	<template v-else>
+	</div>
+	<div v-else>
 		<template v-if="error">
 			<message :type="MessageType.Error" :text="error" @close="onErrorClose" />
 		</template>
@@ -14,51 +14,55 @@
 				>
 				<input
 					id="authorizer-magic-link-login-email"
-					:class="`form-input-field ${
-						emailError ? 'input-error-content' : null
-					}`"
+					v-model="email"
+					:class="`form-input-field ${emailError ? 'input-error-content' : null}`"
 					placeholder="eg. foo@bar.com"
 					type="email"
-					v-model="email"
 				/>
 				<div v-if="emailError" class="form-input-error">{{ emailError }}</div>
 			</div>
 			<br />
 			<styled-button
 				:appearance="ButtonAppearance.Primary"
-				:disabled="!email || emailError || loading"
+				:disabled="!email || !!emailError || loading"
 			>
 				<template v-if="loading">Processing ...</template>
 				<template v-else>Send Email</template>
 			</styled-button>
 		</form>
-	</template>
+	</div>
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, computed } from 'vue';
+import { reactive, toRefs, computed, type PropType } from 'vue';
 import type { MagicLinkLoginInput } from '@authorizerdev/authorizer-js';
 import globalContext from '../state/globalContext';
 import { StyledButton } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
 import { isValidEmail } from '../utils/common';
 import Message from './Message.vue';
+import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerMagicLinkLogin',
-	props: ['onMagicLinkLogin', 'urlProps', 'roles'],
 	components: {
 		'styled-button': StyledButton,
-		message: Message,
+		message: Message
 	},
-	setup({
-		onMagicLinkLogin,
-		urlProps,
-		roles,
-	}: {
-		onMagicLinkLogin?: (data: any) => void;
-		urlProps?: Record<string, any>;
-		roles?: string[];
-	}) {
+	props: {
+		onMagicLinkLogin: {
+			type: Function as PropType<(arg: unknown) => void>,
+			default: undefined
+		},
+		urlProps: {
+			type: Object as PropType<URLPropsType>,
+			default: undefined
+		},
+		roles: {
+			type: Object as PropType<string[]>,
+			default: undefined
+		}
+	},
+	setup(props) {
 		const { authorizerRef } = toRefs(globalContext);
 		const componentState: {
 			error: null | string;
@@ -67,20 +71,21 @@ export default {
 		} = reactive({
 			error: null,
 			successMessage: null,
-			loading: false,
+			loading: false
 		});
 		const formData: {
 			email: null | string;
 		} = reactive({
-			email: null,
+			email: null
 		});
-		const emailError = computed(() => {
+		const emailError = computed((): string | null => {
 			if (formData.email === '') {
 				return 'Email is required';
 			}
 			if (formData.email && !isValidEmail(formData.email)) {
 				return 'Please enter valid email';
 			}
+			return null;
 		});
 		const onErrorClose = () => {
 			componentState.error = null;
@@ -90,29 +95,29 @@ export default {
 				componentState.loading = true;
 				const data: MagicLinkLoginInput = {
 					email: formData.email || '',
-					state: urlProps?.state || '',
-					redirect_uri: urlProps?.redirect_uri || '',
+					state: props.urlProps?.state || '',
+					redirect_uri: props.urlProps?.redirect_uri || ''
 				};
-				if (roles && roles.length) {
-					data.roles = roles;
+				if (props.roles && props.roles.length) {
+					data.roles = props.roles;
 				}
 				const res = await authorizerRef.value.magicLinkLogin(data);
 				componentState.loading = false;
 				if (res) {
 					componentState.error = null;
 					componentState.successMessage = res.message || ``;
-					if (onMagicLinkLogin) {
-						onMagicLinkLogin(res);
+					if (props.onMagicLinkLogin) {
+						props.onMagicLinkLogin(res);
 					}
 				}
-				if (urlProps?.redirect_uri) {
+				if (props.urlProps?.redirect_uri) {
 					setTimeout(() => {
-						window.location.replace(urlProps.redirect_uri);
+						window.location.replace(props.urlProps?.redirect_uri || '');
 					}, 3000);
 				}
-			} catch (error: any) {
+			} catch (error: unknown) {
 				componentState.loading = false;
-				componentState.error = error.message;
+				componentState.error = error instanceof Error ? error.message : 'Internal error!';
 			}
 		};
 		return {
@@ -122,9 +127,9 @@ export default {
 			MessageType,
 			ButtonAppearance,
 			onErrorClose,
-			onSubmit,
+			onSubmit
 		};
-	},
+	}
 };
 </script>
 

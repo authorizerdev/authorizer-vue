@@ -12,13 +12,18 @@ import { passwordStrengthIndicatorOpacity } from '../constants/index';
 
 export default {
 	name: 'StyledPasswordStrength',
-	props: ['strength'],
+	props: {
+		strength: {
+			type: String,
+			default: 'default'
+		}
+	},
 	setup(props) {
 		return {
 			...props,
-			passwordStrengthIndicatorOpacity,
+			passwordStrengthIndicatorOpacity
 		};
-	},
+	}
 };
 </script>
 

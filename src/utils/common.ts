@@ -10,28 +10,43 @@ export const getIntervalDiff = (accessTokenExpiresAt: number) => {
 
 export const getCrypto = () => {
 	//ie 11.x uses msCrypto
-	// @ts-ignore
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-expect-error
 	return hasWindow() ? window.crypto || window.msCrypto : null;
 };
 
 export const createRandomString = () => {
-	const charset =
-		'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
+	const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_~.';
 	let random = '';
 	const crypto = getCrypto();
 	if (crypto) {
 		const randomValues = Array.from(crypto.getRandomValues(new Uint8Array(43)));
-		randomValues.forEach(
-			(v: number) => (random += charset[v % charset.length])
-		);
+		randomValues.forEach((v: number) => (random += charset[v % charset.length]));
 	}
 	return random;
 };
 
-export const createQueryParams = (params: any) => {
+export const createQueryParams = (params: { scope?: string; roles?: string[] }) => {
 	return Object.keys(params)
-		.filter((k) => typeof params[k] !== 'undefined')
-		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+		.filter((k) => {
+			if (k === 'scope') {
+				return typeof params[k] !== 'undefined';
+			} else if (k === 'roles') {
+				return typeof params[k]?.[0] !== 'undefined';
+			}
+			return false;
+		})
+		.reduce((acc: string[], k: string) => {
+			if (k === 'scope') {
+				return [...acc, encodeURIComponent(k) + '=' + encodeURIComponent(params[k] || '')];
+			} else if (k === 'roles') {
+				return [
+					...acc,
+					encodeURIComponent(k) + '=' + encodeURIComponent(params[k]?.join(',') || '')
+				];
+			}
+			return acc;
+		}, [])
 		.join('&');
 };
 
@@ -79,7 +94,7 @@ export const validatePassword = (value = '') => {
 		hasUpperCase: false,
 		hasNumericChar: false,
 		hasSpecialChar: false,
-		maxThirtySixChar: false,
+		maxThirtySixChar: false
 	};
 
 	if (value.length >= 6) {
