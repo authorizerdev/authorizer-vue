@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import type { AuthorizerState } from '../src/types';
-import AuthorizerProvider from '../src/components/AuthorizerProvider.vue';
+import { AuthorizerProvider } from '../src';
 
 export default {
 	components: {

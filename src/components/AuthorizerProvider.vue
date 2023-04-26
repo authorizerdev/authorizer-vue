@@ -19,7 +19,7 @@ export default {
 			default: undefined
 		}
 	},
-	setup(props) {
+	setup(props, { slots }) {
 		let intervalRef: ReturnType<typeof setInterval> | undefined;
 		const config = toRefs(globalConfig);
 		const context = toRefs(globalContext);
@@ -206,9 +206,9 @@ export default {
 				});
 			}
 		);
-	},
-	render() {
-		return this.$slots.default ? this.$slots.default() : null;
+		return () => {
+			return slots.default ? slots.default() : null;
+		};
 	}
 };
 </script>

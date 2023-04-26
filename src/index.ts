@@ -8,7 +8,7 @@ import AuthorizerResetPassword from './components/AuthorizerResetPassword.vue';
 import AuthorizerVerifyOtp from './components/AuthorizerVerifyOtp.vue';
 import AuthorizerRoot from './components/AuthorizerRoot.vue';
 
-export default {
+export {
 	AuthorizerProvider,
 	AuthorizerSignup,
 	AuthorizerBasicAuthLogin,

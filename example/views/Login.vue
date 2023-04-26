@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import AuthorizerRoot from '../../src/components/AuthorizerRoot.vue';
+import { AuthorizerRoot } from '../../src';
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {

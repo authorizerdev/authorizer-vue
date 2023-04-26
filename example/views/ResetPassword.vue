@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import AuthorizerResetPassword from '../../src/components/AuthorizerResetPassword.vue';
+import { AuthorizerResetPassword } from '../../src';
 
 export default {
 	name: 'ResetPassword',
