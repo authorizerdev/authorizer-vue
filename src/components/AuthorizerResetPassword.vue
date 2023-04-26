@@ -38,7 +38,10 @@
 				</div>
 			</div>
 			<template v-if="config.is_strong_password_enabled.value">
-				<password-strength-indicator :value="password" :set-disable-button="setDisableButton" />
+				<password-strength-indicator
+					:value="password || undefined"
+					:set-disable-button="setDisableButton"
+				/>
 				<br />
 			</template>
 			<styled-button
