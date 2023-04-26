@@ -6,7 +6,7 @@ Here is a quick guide on getting started with `@authorizerdev/authorizer-vue` pa
 
 <!-- Todo: update code sandbox link -->
 
-## Code Sandbox Demo: https://codesandbox.io/s/authorizer-vue-ts-example-700l1h
+## Code Sandbox Demo: https://codesandbox.io/s/authorizer-vue-example-700l1h
 
 ## Step 1 - Create Instance
 
