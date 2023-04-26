@@ -22,7 +22,7 @@ export type AuthorizerConfig = {
 export type AuthorizerConfigInput = {
 	authorizerURL: string;
 	redirectURL?: string;
-	client_id?: string;
+	clientID?: string;
 };
 
 export type AuthorizerState = {
