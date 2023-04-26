@@ -11,7 +11,8 @@
 		>
 			<authorizer-provider
 				:config="{
-					authorizerURL: 'http://localhost:8080'
+					authorizerURL: 'http://localhost:8080',
+					redirectURL: window.location.origin
 				}"
 				:on-state-change-callback="stateChangeCallback"
 			>
@@ -34,7 +35,8 @@ export default {
 			console.log('state changes from client ==>> ', state);
 		};
 		return {
-			stateChangeCallback
+			stateChangeCallback,
+			window
 		};
 	}
 };

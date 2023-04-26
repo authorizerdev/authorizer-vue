@@ -29,7 +29,7 @@ export default {
 			: hasWindow()
 			? window.location.origin
 			: '/';
-		config.client_id.value = props?.config?.client_id || '';
+		config.client_id.value = props?.config?.clientID || '';
 		context.authorizerRef.value = new Authorizer({
 			authorizerURL: props?.config?.authorizerURL || '',
 			redirectURL: props?.config?.redirectURL
@@ -37,7 +37,7 @@ export default {
 				: hasWindow()
 				? window.location.origin
 				: '/',
-			clientID: props?.config?.client_id || ''
+			clientID: props?.config?.clientID || ''
 		});
 		const dispatch = ({ type, payload }: AuthorizerProviderAction) => {
 			switch (type) {
@@ -196,7 +196,7 @@ export default {
 					...props.config,
 					authorizerURL: props?.config?.authorizerURL || globalConfig.authorizerURL,
 					redirectURL: props?.config?.redirectURL || globalConfig.redirectURL,
-					clientID: props?.config?.client_id || globalConfig.client_id
+					clientID: props?.config?.clientID || globalConfig.client_id
 				};
 				Object.assign(globalConfig, updatedConfig);
 				context.authorizerRef.value = new Authorizer({
