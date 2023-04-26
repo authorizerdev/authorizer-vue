@@ -208,7 +208,7 @@ export default {
 		);
 	},
 	render() {
-		return this.$slots.default;
+		return this.$slots.default ? this.$slots.default() : null;
 	}
 };
 </script>
