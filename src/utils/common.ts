@@ -26,27 +26,11 @@ export const createRandomString = () => {
 	return random;
 };
 
-export const createQueryParams = (params: { scope?: string; roles?: string[] }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const createQueryParams = (params: any) => {
 	return Object.keys(params)
-		.filter((k) => {
-			if (k === 'scope') {
-				return typeof params[k] !== 'undefined';
-			} else if (k === 'roles') {
-				return typeof params[k]?.[0] !== 'undefined';
-			}
-			return false;
-		})
-		.reduce((acc: string[], k: string) => {
-			if (k === 'scope') {
-				return [...acc, encodeURIComponent(k) + '=' + encodeURIComponent(params[k] || '')];
-			} else if (k === 'roles') {
-				return [
-					...acc,
-					encodeURIComponent(k) + '=' + encodeURIComponent(params[k]?.join(',') || '')
-				];
-			}
-			return acc;
-		}, [])
+		.filter((k) => typeof params[k] !== 'undefined')
+		.map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
 		.join('&');
 };
 
