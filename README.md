@@ -43,7 +43,7 @@ Authorizer comes with a [Provider](https://vuejs.org/api/composition-api-depende
 </template>
 
 <script lang="ts">
-import AuthorizerProvider from '@authorizerdev/authorizer-vue';
+import { AuthorizerProvider } from '@authorizerdev/authorizer-vue';
 
 export default {
 	components: {
@@ -71,7 +71,7 @@ export default {
 </template>
 
 <script lang="ts">
-import AuthorizerRoot from '@authorizerdev/authorizer-vue';
+import { AuthorizerRoot } from '@authorizerdev/authorizer-vue';
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
