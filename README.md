@@ -43,18 +43,19 @@ Authorizer comes with a [Provider](https://vuejs.org/api/composition-api-depende
 </template>
 
 <script lang="ts">
-import { AuthorizerProvider } from '@authorizerdev/authorizer-vue';
+import { AuthorizerProvider, type AuthorizerState } from '@authorizerdev/authorizer-vue';
 
 export default {
 	components: {
 		'authorizer-provider': AuthorizerProvider
 	},
 	setup() {
-		const stateChangeCallback = (state: any) => {
+		const stateChangeCallback = (state: AuthorizerState) => {
 			console.log('state changed ==>> ', state);
 		};
 		return {
-			stateChangeCallback
+			stateChangeCallback,
+			window
 		};
 	}
 };
