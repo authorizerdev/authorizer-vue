@@ -5,7 +5,7 @@ import { hasWindow } from '../utils/window';
 import { AuthorizerProviderActionType } from '../constants/index';
 import globalContext from '../state/globalContext';
 import globalConfig from '../state/globalConfig';
-import type { AuthorizerConfigInput, AuthorizerState } from '../types';
+import type { AuthorizerConfigInput, AuthorizerContextOutputType, AuthorizerState } from '../types';
 import type { AuthorizerProviderAction } from '../types';
 export default {
 	name: 'AuthorizerProvider',
@@ -170,7 +170,7 @@ export default {
 				payload: loggedOutState
 			});
 		};
-		provide('useAuthorizer', () => {
+		provide('useAuthorizer', (): AuthorizerContextOutputType => {
 			return { ...toRefs(globalContext), config: { ...toRefs(globalConfig) } };
 		});
 		onMounted(() => {

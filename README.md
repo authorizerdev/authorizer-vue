@@ -24,7 +24,7 @@ yarn add @authorizerdev/authorizer-vue
 
 ## Step 3 - Configure Provider and use Authorizer Components
 
-Authorizer comes with a [Provider](https://vuejs.org/api/composition-api-dependency-injection.html#provide) component that exposes a composable function to return a [reactive](https://vuejs.org/api/reactivity-core.html#reactive) state to it's children by using the `useAuthorizer` injection key, internally [toRefs](https://vuejs.org/api/reactivity-utilities.html#torefs) are used when returning the reactive state so that the consuming component(s) can destructure/spread the returned object without losing reactivity and each property could be watched to perform actions accordingly.
+Authorizer comes with a [Provider](https://vuejs.org/api/composition-api-dependency-injection.html#provide) component that exposes a composable function to return a [reactive](https://vuejs.org/api/reactivity-core.html#reactive) context to it's children by using the `useAuthorizer` injection key, internally [toRefs](https://vuejs.org/api/reactivity-utilities.html#torefs) are used when returning the reactive state so that the consuming component(s) can destructure/spread the returned object without losing reactivity and each property could be watched to perform actions accordingly.
 
 ```vue
 <template>
@@ -72,7 +72,7 @@ export default {
 </template>
 
 <script lang="ts">
-import { AuthorizerRoot } from '@authorizerdev/authorizer-vue';
+import { AuthorizerRoot, type AuthorizerContextOutputType } from '@authorizerdev/authorizer-vue';
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
@@ -81,8 +81,8 @@ export default {
 		'authorizer-root': AuthorizerRoot
 	},
 	setup() {
-		const useAuthorizer: any = inject('useAuthorizer');
-		const { token, config } = useAuthorizer();
+		const useAuthorizer = inject('useAuthorizer') as () => AuthorizerContextOutputType;
+		const { token, config } = useAuthorizer?.();
 		const router = useRouter();
 		const onLogin = () => {
 			console.log('test login');
@@ -91,7 +91,7 @@ export default {
 			token,
 			(newvalue) => {
 				if (newvalue) {
-					console.log('access token ==>> ', token.value.access_token);
+					console.log('access token ==>> ', token?.value?.access_token);
 					router.push('/dashboard');
 				}
 			},
@@ -99,10 +99,11 @@ export default {
 				immediate: true
 			}
 		);
-		watch(config.is_basic_authentication_enabled, function (newvalue, oldvalue) {
-			console.log('basic auth enabled (old value) ==>> ', oldvalue);
-			console.log('basic auth enabled (new value) ==>> ', newvalue);
-		});
+		config &&
+			watch(config.is_basic_authentication_enabled, (newvalue, oldvalue) => {
+				console.log('basic auth enabled (old value) ==>> ', oldvalue);
+				console.log('basic auth enabled (new value) ==>> ', newvalue);
+			});
 		return {
 			onLogin
 		};

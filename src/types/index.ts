@@ -1,5 +1,6 @@
 import { type AuthToken, type User, type Authorizer } from '@authorizerdev/authorizer-js';
 import { AuthorizerProviderActionType } from '../constants';
+import type { Ref } from 'vue';
 
 export type AuthorizerConfig = {
 	authorizerURL: string;
@@ -48,6 +49,35 @@ export type AuthorizerContextPropsType = {
 	setToken: (data: null | AuthToken) => void;
 	setAuthData: (data: AuthorizerState) => void;
 	authorizerRef: Authorizer;
+};
+
+export type AuthorizerContextOutputType = {
+	user: Ref<null | User>;
+	token: Ref<null | AuthToken>;
+	loading: Ref<boolean>;
+	logout: Ref<() => Promise<void>>;
+	setLoading: Ref<(data: boolean) => void>;
+	setUser: Ref<(data: null | User) => void>;
+	setToken: Ref<(data: null | AuthToken) => void>;
+	setAuthData: Ref<(data: AuthorizerState) => void>;
+	authorizerRef: Ref<Authorizer>;
+	config?: {
+		authorizerURL: Ref<string>;
+		redirectURL: Ref<string>;
+		client_id: Ref<string>;
+		is_google_login_enabled: Ref<boolean>;
+		is_github_login_enabled: Ref<boolean>;
+		is_facebook_login_enabled: Ref<boolean>;
+		is_linkedin_login_enabled: Ref<boolean>;
+		is_apple_login_enabled: Ref<boolean>;
+		is_twitter_login_enabled: Ref<boolean>;
+		is_microsoft_login_enabled: Ref<boolean>;
+		is_email_verification_enabled: Ref<boolean>;
+		is_basic_authentication_enabled: Ref<boolean>;
+		is_magic_link_login_enabled: Ref<boolean>;
+		is_sign_up_enabled: Ref<boolean>;
+		is_strong_password_enabled: Ref<boolean>;
+	};
 };
 
 export type OtpDataType = {

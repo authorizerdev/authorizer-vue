@@ -32,11 +32,12 @@
 <script lang="ts">
 import { inject, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import type { AuthorizerContextOutputType } from '../../src/types';
 export default {
 	name: 'Dashboard',
 	setup() {
-		const useAuthorizer: any = inject('useAuthorizer');
-		const { user, loading, token, logout } = useAuthorizer();
+		const useAuthorizer = inject('useAuthorizer') as () => AuthorizerContextOutputType;
+		const { user, loading, token, logout } = useAuthorizer?.();
 		const router = useRouter();
 		watch(
 			token,
