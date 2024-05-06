@@ -105,6 +105,34 @@
 			</styled-button>
 			<br />
 		</template>
+		<template v-if="config.is_discord_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() => 
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/discord?${queryParams}`)
+							: null
+				"
+			>
+				<discord />
+			</styled-button>
+			<br />
+		</template>
+		<template v-if="config.is_roblox_login_enabled.value">
+			<styled-button
+				:appearance="ButtonAppearance.Default"
+				@click="
+					() =>
+						window
+							? (window.location.href = `${config.authorizerURL.value}/oauth_login/roblox?${queryParams}`)
+							: null
+				"
+			>
+				<roblox />
+			</styled-button>
+			<br />
+		</template>
 		<styled-separator
 			v-if="
 				hasSocialLogin &&
@@ -130,6 +158,8 @@ import Linkedin from '../icons/Linkedin.vue';
 import Apple from '../icons/Apple.vue';
 import Twitter from '../icons/Twitter.vue';
 import Microsoft from '../icons/Microsoft.vue';
+import Discord from '../icons/Discord.vue';
+import Roblox from '../icons/Roblox.vue';
 import type { URLPropsType } from '../types';
 export default {
 	name: 'AuthorizerSocialLogin',
@@ -142,7 +172,9 @@ export default {
 		linkedin: Linkedin,
 		apple: Apple,
 		twitter: Twitter,
-		microsoft: Microsoft
+		microsoft: Microsoft,
+		discord: Discord,
+		roblox: Roblox
 	},
 	props: {
 		urlProps: {
@@ -165,7 +197,9 @@ export default {
 				config.is_linkedin_login_enabled.value ||
 				config.is_apple_login_enabled.value ||
 				config.is_twitter_login_enabled.value ||
-				config.is_microsoft_login_enabled.value
+				config.is_microsoft_login_enabled.value ||
+				config.is_discord_login_enabled.value ||
+				config.is_roblox_login_enabled.value
 			);
 		});
 		const data: {

@@ -13,6 +13,8 @@ export type AuthorizerConfig = {
 	is_apple_login_enabled: boolean;
 	is_twitter_login_enabled: boolean;
 	is_microsoft_login_enabled: boolean;
+	is_discord_login_enabled: boolean;
+	is_roblox_login_enabled: boolean;
 	is_email_verification_enabled: boolean;
 	is_basic_authentication_enabled: boolean;
 	is_magic_link_login_enabled: boolean;
@@ -72,6 +74,8 @@ export type AuthorizerContextOutputType = {
 		is_apple_login_enabled: Ref<boolean>;
 		is_twitter_login_enabled: Ref<boolean>;
 		is_microsoft_login_enabled: Ref<boolean>;
+		is_discord_login_enabled: Ref<boolean>;
+		is_roblox_login_enabled: Ref<boolean>;
 		is_email_verification_enabled: Ref<boolean>;
 		is_basic_authentication_enabled: Ref<boolean>;
 		is_magic_link_login_enabled: Ref<boolean>;
