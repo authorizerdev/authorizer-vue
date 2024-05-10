@@ -9,6 +9,8 @@ export default reactive({
 	is_facebook_login_enabled: false,
 	is_linkedin_login_enabled: false,
 	is_apple_login_enabled: false,
+	is_discord_login_enabled: false,
+	is_roblox_login_enabled: false,
 	is_email_verification_enabled: false,
 	is_basic_authentication_enabled: false,
 	is_magic_link_login_enabled: false,
