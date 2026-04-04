@@ -63,20 +63,14 @@ export default {
 			}
 		};
 		const getToken = async () => {
-			const metaRes = await context.authorizerRef.value.getMetaData();
+			const { data: metaRes } = await context.authorizerRef.value.getMetaData();
 			try {
-				const res = await context.authorizerRef.value.getSession();
-				if (res.access_token && res.user) {
-					const token = {
-						access_token: res.access_token,
-						expires_in: res.expires_in,
-						id_token: res.id_token,
-						refresh_token: res.refresh_token || ''
-					};
+				const { data: res, errors } = await context.authorizerRef.value.getSession();
+				if (res && res.access_token && res.user) {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							token,
+							token: res,
 							user: res.user,
 							config: metaRes,
 							loading: false

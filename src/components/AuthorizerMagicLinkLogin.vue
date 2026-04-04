@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { reactive, toRefs, computed, type PropType } from 'vue';
-import type { MagicLinkLoginInput } from '@authorizerdev/authorizer-js';
+import type { MagicLinkLoginRequest } from '@authorizerdev/authorizer-js';
 import globalContext from '../state/globalContext';
 import { StyledButton } from '../styledComponents/index';
 import { MessageType, ButtonAppearance } from '../constants/index';
@@ -93,7 +93,7 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const data: MagicLinkLoginInput = {
+				const data: MagicLinkLoginRequest = {
 					email: formData.email || '',
 					state: props.urlProps?.state || '',
 					redirect_uri: props.urlProps?.redirect_uri || ''
@@ -101,8 +101,12 @@ export default {
 				if (props.roles && props.roles.length) {
 					data.roles = props.roles;
 				}
-				const res = await authorizerRef.value.magicLinkLogin(data);
+				const { data: res, errors } = await authorizerRef.value.magicLinkLogin(data);
 				componentState.loading = false;
+				if (errors && errors.length) {
+					componentState.error = errors[0].message;
+					return;
+				}
 				if (res) {
 					componentState.error = null;
 					componentState.successMessage = res.message || ``;

@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import { reactive, toRefs, computed, type PropType } from 'vue';
-import type { AuthToken, SignupInput } from '@authorizerdev/authorizer-js';
+import type { AuthToken, SignupRequest } from '@authorizerdev/authorizer-js';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
 import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
@@ -187,7 +187,7 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const data: SignupInput = {
+				const data: SignupRequest = {
 					email: formData.email || '',
 					password: formData.password || '',
 					confirm_password: formData.confirmPassword || ''
@@ -207,19 +207,19 @@ export default {
 				if (props.roles && props.roles.length) {
 					data.roles = [...(data.roles || []), ...props.roles];
 				}
-				const res = await authorizerRef.value.signup(data);
+				const { data: res, errors } = await authorizerRef.value.signup(data);
+				if (errors && errors.length) {
+					componentState.error = errors[0].message;
+					componentState.loading = false;
+					return;
+				}
 				if (res) {
 					componentState.error = null;
 					if (res.access_token) {
 						componentState.error = null;
 						setAuthData.value({
 							user: res.user || null,
-							token: {
-								access_token: res.access_token,
-								expires_in: res.expires_in,
-								refresh_token: res.refresh_token,
-								id_token: res.id_token
-							},
+							token: res,
 							config: globalConfig,
 							loading: false
 						});

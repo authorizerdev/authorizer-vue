@@ -101,13 +101,17 @@ export default {
 		const onSubmit = async () => {
 			try {
 				componentState.loading = true;
-				const res = await authorizerRef.value.forgotPassword({
+				const { data: res, errors } = await authorizerRef.value.forgotPassword({
 					email: componentState.email || '',
 					state: props.urlProps?.state || '',
 					redirect_uri:
 						props.urlProps?.redirect_uri || config.redirectURL.value || window.location.origin
 				});
 				componentState.loading = false;
+				if (errors && errors.length) {
+					componentState.error = errors[0].message;
+					return;
+				}
 				if (res && res.message) {
 					componentState.error = null;
 					componentState.successMessage = res.message;
