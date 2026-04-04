@@ -52,6 +52,6 @@
 		"vue-tsc": "^2.2.0"
 	},
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "3.0.0-rc.1"
+		"@authorizerdev/authorizer-js": "3.0.0"
 	}
 }
