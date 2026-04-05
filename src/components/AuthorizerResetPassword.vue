@@ -71,6 +71,21 @@ import { MessageType, ButtonAppearance } from '../constants/index';
 import Message from './Message.vue';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator.vue';
 import { getSearchParams } from '../utils/url';
+
+function isValidRedirectUri(uri: string, allowedRedirect?: string): boolean {
+	try {
+		const url = new URL(uri, window.location.origin);
+		if (url.origin === window.location.origin) return true;
+		if (allowedRedirect) {
+			const allowed = new URL(allowedRedirect);
+			if (url.origin === allowed.origin) return true;
+		}
+		return false;
+	} catch {
+		return false;
+	}
+}
+
 export default {
 	name: 'AuthorizerResetPassword',
 	components: {
@@ -144,7 +159,13 @@ export default {
 				if (props.onReset) {
 					props.onReset(res);
 				} else {
-					window.location.href = redirect_uri || config.redirectURL.value || window.location.origin;
+					const fallback = config.redirectURL.value || window.location.origin;
+					const target =
+						redirect_uri &&
+						isValidRedirectUri(redirect_uri, config.redirectURL.value)
+							? redirect_uri
+							: fallback;
+					window.location.href = target;
 				}
 			} catch (error: unknown) {
 				componentState.loading = false;

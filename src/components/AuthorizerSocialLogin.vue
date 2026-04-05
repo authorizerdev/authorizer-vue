@@ -109,7 +109,7 @@
 			<styled-button
 				:appearance="ButtonAppearance.Default"
 				@click="
-					() => 
+					() =>
 						window
 							? (window.location.href = `${config.authorizerURL.value}/oauth_login/discord?${queryParams}`)
 							: null
