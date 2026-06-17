@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { computed, reactive, toRefs, type PropType } from 'vue';
-import type { AuthToken, VerifyOtpInput } from '@authorizerdev/authorizer-js';
+import type { AuthToken, VerifyOtpRequest } from '@authorizerdev/authorizer-js';
 import globalConfig from '../state/globalConfig';
 import globalContext from '../state/globalContext';
 import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
@@ -111,25 +111,24 @@ export default {
 			componentState.successMessage = null;
 			try {
 				componentState.loading = true;
-				const data: VerifyOtpInput = {
+				const data: VerifyOtpRequest = {
 					email: props.email,
 					otp: componentState.otp || ''
 				};
 				if (props.urlProps?.state) {
 					data.state = props.urlProps.state;
 				}
-				const res = await authorizerRef.value.verifyOtp(data);
+				const { data: res, errors } = await authorizerRef.value.verifyOtp(data);
 				componentState.loading = false;
+				if (errors && errors.length) {
+					componentState.error = errors[0]?.message || 'Internal error!';
+					return;
+				}
 				if (res) {
 					componentState.error = null;
 					setAuthData.value({
 						user: res.user || null,
-						token: {
-							access_token: res.access_token,
-							expires_in: res.expires_in,
-							refresh_token: res.refresh_token,
-							id_token: res.id_token
-						},
+						token: res,
 						config: globalConfig,
 						loading: false
 					});
@@ -152,10 +151,14 @@ export default {
 			componentState.successMessage = null;
 			try {
 				componentState.sendingOtp = true;
-				const res = await authorizerRef.value.resendOtp({
+				const { data: res, errors } = await authorizerRef.value.resendOtp({
 					email: props.email
 				});
 				componentState.sendingOtp = false;
+				if (errors && errors.length) {
+					componentState.error = errors[0]?.message || 'Internal error!';
+					return;
+				}
 				if (res && res?.message) {
 					componentState.error = null;
 					componentState.successMessage = res.message;

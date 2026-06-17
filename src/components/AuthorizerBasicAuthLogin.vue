@@ -71,7 +71,7 @@
 
 <script lang="ts">
 import { reactive, toRefs, computed, type PropType } from 'vue';
-import type { AuthToken, LoginInput } from '@authorizerdev/authorizer-js';
+import type { AuthToken, LoginRequest } from '@authorizerdev/authorizer-js';
 import { StyledButton, StyledFooter, StyledLink } from '../styledComponents/index';
 import { ButtonAppearance, MessageType, Views } from '../constants/index';
 import globalConfig from '../state/globalConfig';
@@ -152,7 +152,7 @@ export default {
 		const onSubmit = async () => {
 			componentState.loading = true;
 			try {
-				const data: LoginInput = {
+				const data: LoginRequest = {
 					email: formData.email || '',
 					password: formData.password || ''
 				};
@@ -165,8 +165,13 @@ export default {
 				if (props.roles && props.roles.length) {
 					data.roles = props.roles;
 				}
-				const res = await authorizerRef.value.login(data);
-				if (res && res?.should_show_otp_screen) {
+				const { data: res, errors } = await authorizerRef.value.login(data);
+				if (errors && errors.length) {
+					componentState.loading = false;
+					componentState.error = errors[0]?.message || 'Internal error!';
+					return;
+				}
+				if (res?.should_show_email_otp_screen || res?.should_show_totp_screen) {
 					Object.assign(otpData, {
 						isScreenVisible: true,
 						email: data.email
@@ -177,12 +182,7 @@ export default {
 					componentState.error = null;
 					setAuthData.value({
 						user: res.user || null,
-						token: {
-							access_token: res.access_token,
-							expires_in: res.expires_in,
-							refresh_token: res.refresh_token,
-							id_token: res.id_token
-						},
+						token: res,
 						config: globalConfig,
 						loading: false
 					});

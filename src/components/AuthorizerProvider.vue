@@ -37,7 +37,8 @@ export default {
 				: hasWindow()
 				? window.location.origin
 				: '/',
-			clientID: props?.config?.clientID || ''
+			clientID: props?.config?.clientID || '',
+			...(props.config?.protocol ? { protocol: props.config.protocol as never } : {})
 		});
 		const dispatch = ({ type, payload }: AuthorizerProviderAction) => {
 			switch (type) {
@@ -63,20 +64,26 @@ export default {
 			}
 		};
 		const getToken = async () => {
-			const metaRes = await context.authorizerRef.value.getMetaData();
+			const { data: metaRes } = await context.authorizerRef.value.getMetaData();
 			try {
-				const res = await context.authorizerRef.value.getSession();
-				if (res.access_token && res.user) {
-					const token = {
-						access_token: res.access_token,
-						expires_in: res.expires_in,
-						id_token: res.id_token,
-						refresh_token: res.refresh_token || ''
-					};
+				const { data: res, errors } = await context.authorizerRef.value.getSession();
+				if (errors && errors.length) {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
 						payload: {
-							token,
+							token: null,
+							user: null,
+							config: metaRes,
+							loading: false
+						}
+					});
+					return;
+				}
+				if (res?.access_token && res?.user) {
+					dispatch({
+						type: AuthorizerProviderActionType.SET_AUTH_DATA,
+						payload: {
+							token: res,
 							user: res.user,
 							config: metaRes,
 							loading: false
@@ -85,7 +92,7 @@ export default {
 					if (intervalRef) clearInterval(intervalRef);
 					intervalRef = setInterval(() => {
 						getToken();
-					}, res.expires_in * 1000);
+					}, (res.expires_in || 0) * 1000);
 				} else {
 					dispatch({
 						type: AuthorizerProviderActionType.SET_AUTH_DATA,
@@ -120,7 +127,7 @@ export default {
 				if (intervalRef) clearInterval(intervalRef);
 				intervalRef = setInterval(() => {
 					getToken();
-				}, token.expires_in * 1000);
+				}, (token.expires_in || 0) * 1000);
 			}
 		};
 		context.setAuthData.value = (data: AuthorizerState) => {
@@ -132,7 +139,7 @@ export default {
 				if (intervalRef) clearInterval(intervalRef);
 				intervalRef = setInterval(() => {
 					getToken();
-				}, data.token.expires_in * 1000);
+				}, (data.token.expires_in || 0) * 1000);
 			}
 		};
 		context.setUser.value = (user: User | null) => {
@@ -202,7 +209,8 @@ export default {
 				context.authorizerRef.value = new Authorizer({
 					authorizerURL: config.authorizerURL.value,
 					redirectURL: config.redirectURL.value,
-					clientID: config.client_id.value
+					clientID: config.client_id.value,
+					...(props.config?.protocol ? { protocol: props.config.protocol as never } : {})
 				});
 			}
 		);

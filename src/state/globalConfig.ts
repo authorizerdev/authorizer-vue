@@ -11,11 +11,15 @@ export default reactive({
 	is_apple_login_enabled: false,
 	is_discord_login_enabled: false,
 	is_roblox_login_enabled: false,
+	is_twitch_login_enabled: false,
 	is_email_verification_enabled: false,
 	is_basic_authentication_enabled: false,
 	is_magic_link_login_enabled: false,
 	is_sign_up_enabled: false,
 	is_strong_password_enabled: true,
 	is_twitter_login_enabled: false,
-	is_microsoft_login_enabled: false
+	is_microsoft_login_enabled: false,
+	is_multi_factor_auth_enabled: false,
+	is_mobile_basic_authentication_enabled: false,
+	is_phone_verification_enabled: false
 }) as AuthorizerConfig;

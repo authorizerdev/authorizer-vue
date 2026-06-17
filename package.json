@@ -1,6 +1,6 @@
 {
 	"name": "@authorizerdev/authorizer-vue",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "authorizer vue sdk",
 	"files": [
 		"dist"
@@ -13,9 +13,9 @@
 		"build": "vite build && npm run build:types",
 		"build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
 		"typecheck": "vue-tsc --project tsconfig.build-types.json --noEmit",
+		"test": "vue-tsc --project tsconfig.build-types.json --noEmit",
 		"lint": "prettier --plugin-search-dir . --check . --ignore-path .gitignore && eslint . --ignore-path .gitignore",
-		"format": "prettier --plugin-search-dir . --write . --ignore-path .gitignore",
-		"prepare": "husky install"
+		"format": "prettier --plugin-search-dir . --write . --ignore-path .gitignore"
 	},
 	"keywords": [],
 	"author": "Lakhan Samani",
@@ -47,6 +47,6 @@
 		"vue-tsc": "^1.4.2"
 	},
 	"dependencies": {
-		"@authorizerdev/authorizer-js": "^1.2.3"
+		"@authorizerdev/authorizer-js": "^3.2.1"
 	}
 }

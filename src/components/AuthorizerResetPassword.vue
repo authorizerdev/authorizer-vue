@@ -149,20 +149,23 @@ export default {
 		const onSubmit = async () => {
 			componentState.loading = true;
 			try {
-				const res = await authorizerRef.value.resetPassword({
+				const { data: res, errors } = await authorizerRef.value.resetPassword({
 					token,
 					password: formData.password || '',
 					confirm_password: formData.confirmPassword || ''
 				});
 				componentState.loading = false;
+				if (errors && errors.length) {
+					componentState.error = errors[0]?.message || 'Internal error!';
+					return;
+				}
 				componentState.error = null;
 				if (props.onReset) {
 					props.onReset(res);
 				} else {
 					const fallback = config.redirectURL.value || window.location.origin;
 					const target =
-						redirect_uri &&
-						isValidRedirectUri(redirect_uri, config.redirectURL.value)
+						redirect_uri && isValidRedirectUri(redirect_uri, config.redirectURL.value)
 							? redirect_uri
 							: fallback;
 					window.location.href = target;
