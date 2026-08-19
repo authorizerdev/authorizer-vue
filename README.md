@@ -30,19 +30,19 @@ yarn add @authorizerdev/authorizer-vue
 
 ```vue
 <template>
-  <div :style="{ display: 'flex', justifyContent: 'center' }">
-    <authorizer-provider
-      :config="{
-        authorizerURL: 'http://localhost:8080',
-        redirectURL: window.location.origin,
-        clientID: 'AUTHORIZER_CLIENT_ID',
-      }"
-      protocol="graphql"
-      :onStateChangeCallback="stateChangeCallback"
-    >
-      <router-view />
-    </authorizer-provider>
-  </div>
+	<div :style="{ display: 'flex', justifyContent: 'center' }">
+		<authorizer-provider
+			:config="{
+				authorizerURL: 'http://localhost:8080',
+				redirectURL: window.location.origin,
+				clientID: 'AUTHORIZER_CLIENT_ID'
+			}"
+			protocol="graphql"
+			:onStateChangeCallback="stateChangeCallback"
+		>
+			<router-view />
+		</authorizer-provider>
+	</div>
 </template>
 
 <script lang="ts">
@@ -50,15 +50,15 @@ import { AuthorizerProvider } from '@authorizerdev/authorizer-vue';
 import type { AuthorizerState } from '@authorizerdev/authorizer-vue/dist/types/types';
 
 export default {
-  components: {
-    'authorizer-provider': AuthorizerProvider,
-  },
-  setup() {
-    const stateChangeCallback = (state: AuthorizerState) => {
-      console.log('state changed ==>> ', state);
-    };
-    return { stateChangeCallback, window };
-  },
+	components: {
+		'authorizer-provider': AuthorizerProvider
+	},
+	setup() {
+		const stateChangeCallback = (state: AuthorizerState) => {
+			console.log('state changed ==>> ', state);
+		};
+		return { stateChangeCallback, window };
+	}
 };
 </script>
 ```
@@ -67,11 +67,11 @@ export default {
 
 ```vue
 <template>
-  <div>
-    <h1 :style="{ textAlign: 'center' }">Welcome to Authorizer</h1>
-    <br />
-    <authorizer-root :onLogin="onLogin" />
-  </div>
+	<div>
+		<h1 :style="{ textAlign: 'center' }">Welcome to Authorizer</h1>
+		<br />
+		<authorizer-root :onLogin="onLogin" />
+	</div>
 </template>
 
 <script lang="ts">
@@ -81,36 +81,36 @@ import { AuthorizerRoot } from '@authorizerdev/authorizer-vue';
 import type { AuthorizerContextOutputType } from '@authorizerdev/authorizer-vue/dist/types/types';
 
 export default {
-  name: 'Login',
-  components: {
-    'authorizer-root': AuthorizerRoot,
-  },
-  setup() {
-    const useAuthorizer = inject('useAuthorizer') as () => AuthorizerContextOutputType;
-    const { token, config } = useAuthorizer?.();
-    const router = useRouter();
+	name: 'Login',
+	components: {
+		'authorizer-root': AuthorizerRoot
+	},
+	setup() {
+		const useAuthorizer = inject('useAuthorizer') as () => AuthorizerContextOutputType;
+		const { token, config } = useAuthorizer?.();
+		const router = useRouter();
 
-    const onLogin = () => {
-      console.log('login event');
-    };
+		const onLogin = () => {
+			console.log('login event');
+		};
 
-    watch(
-      token,
-      (newValue) => {
-        if (newValue) {
-          router.push('/dashboard');
-        }
-      },
-      { immediate: true },
-    );
+		watch(
+			token,
+			(newValue) => {
+				if (newValue) {
+					router.push('/dashboard');
+				}
+			},
+			{ immediate: true }
+		);
 
-    config &&
-      watch(config.is_basic_authentication_enabled, (newValue, oldValue) => {
-        console.log('basic auth enabled changed', oldValue, '->', newValue);
-      });
+		config &&
+			watch(config.is_basic_authentication_enabled, (newValue, oldValue) => {
+				console.log('basic auth enabled changed', oldValue, '->', newValue);
+			});
 
-    return { onLogin };
-  },
+		return { onLogin };
+	}
 };
 </script>
 ```
